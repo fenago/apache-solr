@@ -37,7 +37,7 @@ allows a lot more than a simple search. So get ready and hold your
 breath to take a deep dive into Solr—a scalable, flexible, and
 enterprise NoSQL search platform!
 
-We will go through the following topics in this chapter:
+We will go through the following topics in this lab:
 
 -   Introduction to Solr
 -   Why Solr?
@@ -141,11 +141,11 @@ expression support and JDBC driver for the SQL interface.
 
 Finally, Solr 7.0 was released in September 2017, followed by 7.1.0 in
 October 2017, as shown in the following diagram. We will discuss the new
-features as we move ahead in this chapter, in the [*What is new in Solr
+features as we move ahead in this lab, in the [*What is new in Solr
 7*] [*section.*]
 
 
-![](1_files/04c28613-074f-400d-a3d2-50342a43b46b.png)
+![](https://github.com/fenago/apache-solr/raw/master/images/04c28613-074f-400d-a3d2-50342a43b46b.png)
 
 
 We have depicted the history of Solr in the preceding image for a much
@@ -192,7 +192,7 @@ Why choose Solr?
 If we already have a relational database, then why should we use Solr?
 It\'s simple; if there is a use case that needs you to search, you need
 a search engine platform like Solr. There are
-various use cases that we will be discussing further in the chapter.
+various use cases that we will be discussing further in the lab.
  
 Databases and Solr have their own pros and cons. In one place where we
 use a database, SQL supports limited wildcard-based text search with
@@ -204,7 +204,7 @@ faster than traditional database searches.
 Let's look at the following diagram to understand this better:
 
 
-![](2_files/aa028c1d-2580-4beb-8da4-17115d8656be.png)
+![](https://github.com/fenago/apache-solr/raw/master/images/aa028c1d-2580-4beb-8da4-17115d8656be.png)
 
 
 Having an enterprise search engine solution is must for an organization
@@ -239,7 +239,7 @@ Here is a high-level diagram that shows how Solr is integrated with an
 application:
 
 
-![](2_files/79741818-032f-4519-943e-f2f620bc2394.png)
+![](https://github.com/fenago/apache-solr/raw/master/images/79741818-032f-4519-943e-f2f620bc2394.png)
 
 
 The majority of popular websites, including many Intranet websites, have
@@ -327,7 +327,7 @@ Solr, you can refer to the official web page of Solr
 at <https://wiki.apache.org/solr/PublicServers>:
 
 
-![](3_files/415b6695-28f7-43e4-8fae-4848c13e18c4.png)
+![](https://github.com/fenago/apache-solr/raw/master/images/415b6695-28f7-43e4-8fae-4848c13e18c4.png)
 
 
 This diagram helps us understand Solr as a solution serving various
@@ -756,18 +756,18 @@ other features and improvements that have been made in Solr 7:
 Summary
 -------------------------
 
-This was an interesting chapter with important content to learn, right?
-In this chapter, we started with an introduction to Solr. We went
+This was an interesting lab with important content to learn, right?
+In this lab, we started with an introduction to Solr. We went
 through the impressive history of Solr and its backbone, Lucene. We
 learned and understood the characteristics and why we use Solr. Besides,
 we saw a wonderful list of use cases around the globe that have adopted
 Solr to serve many of the key features of the solution. In the later
-section of the chapter, we learned about the exciting new features of
+section of the lab, we learned about the exciting new features of
 Solr 7 that briefly covered replication, SolrJ, schemaless improvements,
 spatial fields, and more.
 
-Moving on to the next chapter, we will learn how to get started with
-Solr. The chapter will focus on Solr installation, understanding various
+Moving on to the next lab, we will learn how to get started with
+Solr. The lab will focus on Solr installation, understanding various
 files and the folder structure, along with loading sample data into
-Solr. The chapter will explain how we can browse the Solr interface and
+Solr. The lab will explain how we can browse the Solr interface and
 how to use the Solr admin interface.

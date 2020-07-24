@@ -1,15 +1,15 @@
 
 
-Chapter 5. Data Indexing and Operations
+Lab 5. Data Indexing and Operations
 ------------------------------------------------
 
 
 
-In the last chapter, we jumped into various text analysis methodologies,
+In the last lab, we jumped into various text analysis methodologies,
 such as seeing the use of analyzers, filters, and tokenizers, to have an
 efficient text analysis. 
 
-In this chapter, we will see ways to add data to Solr indexes.
+In this lab, we will see ways to add data to Solr indexes.
 
 
 
@@ -22,7 +22,7 @@ indexing essentially involves any one of the three activities as shown
 in this diagram:
 
 
-![](2_files/f714f9ba-d700-4ae9-8dd9-f53a59c0136a.png)
+![](https://github.com/fenago/apache-solr/raw/master/images/f714f9ba-d700-4ae9-8dd9-f53a59c0136a.png)
 
 
 Let's drill down and look at the indexing process, which has the
@@ -72,18 +72,18 @@ using Postman to invoke such services.
 
 Postman can be downloaded from <https://www.getpostman.com/>. The site
 provides installation instructions for each
-of the major operating systems. In this chapter, we will do our exercise
+of the major operating systems. In this lab, we will do our exercise
 based on Windows, so we\'ll proceed to install the Windows executable.
 
 Once you\'ve downloaded and installed Postman, you should see a screen
 like this: 
 
 
-![](2_files/40daa2bd-ce0d-4119-9e77-561dbfe22277.png)
+![](https://github.com/fenago/apache-solr/raw/master/images/40daa2bd-ce0d-4119-9e77-561dbfe22277.png)
 
 
 Don\'t worry! We will get into the details as to how to use Postman
-later in the chapter. Alternatively, you can use `curl` to do
+later in the lab. Alternatively, you can use `curl` to do
 the same, but I prefer Postman due to its easy usability.
 
 
@@ -121,7 +121,7 @@ java -jar post.jar -h
 We will see the following output:
 
 
-![](2_files/c17790c9-67b5-4a60-853a-1ebe7d60996d.png)
+![](https://github.com/fenago/apache-solr/raw/master/images/c17790c9-67b5-4a60-853a-1ebe7d60996d.png)
 
 
 As you can see, we get the full documentation of the post tool.
@@ -239,7 +239,7 @@ URL `http://localhost:8983/solr/gettingstarted/update`, as
 shown in the following screenshot:
 
 
-![](3_files/528f7dda-7908-4be5-ab54-842a4ecf937d.png)
+![](https://github.com/fenago/apache-solr/raw/master/images/528f7dda-7908-4be5-ab54-842a4ecf937d.png)
 
 
 Note that we have selected the method type to **`POST`**. You also need
@@ -277,7 +277,7 @@ button in Postman. If everything goes right, you should see the
 following response:
 
 
-![](3_files/8d8611dc-1c4a-48d7-9a6d-b627d09f3ab2.png)
+![](https://github.com/fenago/apache-solr/raw/master/images/8d8611dc-1c4a-48d7-9a6d-b627d09f3ab2.png)
 
 
 This indicates that the document has been successfully added to the
@@ -286,7 +286,7 @@ console in the browser, select `gettingstarted`, and then
 navigate to the **`Query`** section, as follows:
 
 
-![](3_files/b791c53c-b459-4866-aa62-612974a95f58.png)
+![](https://github.com/fenago/apache-solr/raw/master/images/b791c53c-b459-4866-aa62-612974a95f58.png)
 
 
 Once you are on the previous page, click on the **`Execute Query`**
@@ -349,7 +349,7 @@ just replace the content with the following:
 In Postman, it will look something like this once executed:
 
 
-![](3_files/44243344-73a7-4be7-b210-de4d5a54a4f1.png)
+![](https://github.com/fenago/apache-solr/raw/master/images/44243344-73a7-4be7-b210-de4d5a54a4f1.png)
 
 
 What we have done is deleted a couple of records, one with a query where
@@ -359,7 +359,7 @@ this, go to the admin console and click on the **`Execute Query`**
 button once again:
 
 
-![](3_files/3a48c227-0c3e-4c2b-a29e-e1c062344d6f.png)
+![](https://github.com/fenago/apache-solr/raw/master/images/3a48c227-0c3e-4c2b-a29e-e1c062344d6f.png)
 
 
 As you can see, there is only one entry now
@@ -383,7 +383,7 @@ Open Postman and create a new request with this URL. See the following
 screenshot for clarity:
 
 
-![](3_files/225b331b-7a44-4214-8c2d-19657a0163aa.png)
+![](https://github.com/fenago/apache-solr/raw/master/images/225b331b-7a44-4214-8c2d-19657a0163aa.png)
 
 
 As you can see, we have set **`Content-Type`** to
@@ -391,7 +391,7 @@ As you can see, we have set **`Content-Type`** to
 the JSON content as follows:
 
 
-![](3_files/edb20edc-a778-4593-94f6-5daa9acb0214.png)
+![](https://github.com/fenago/apache-solr/raw/master/images/edb20edc-a778-4593-94f6-5daa9acb0214.png)
 
 
 Once you are done, execute the request and it will run to success with
@@ -413,7 +413,7 @@ validate this, go to the Solr admin console and execute the query as we
 did earlier:
 
 
-![](3_files/5c3e291b-7fb0-4319-88c1-3b2fc583ee1d.png)
+![](https://github.com/fenago/apache-solr/raw/master/images/5c3e291b-7fb0-4319-88c1-3b2fc583ee1d.png)
 
 
  Once you execute the query, you should see that the index also contains
@@ -442,7 +442,7 @@ be `http://localhost:8983/solr/gettingstarted/update/`, as
 shown in the following screenshot:
 
 
-![](3_files/fb30599f-4f1c-4d90-aba5-41291740c27c.png)
+![](https://github.com/fenago/apache-solr/raw/master/images/fb30599f-4f1c-4d90-aba5-41291740c27c.png)
 
 
 You will get a success response with `status` set to
@@ -450,7 +450,7 @@ You will get a success response with `status` set to
 navigate to the Solr admin panel and execute the query:
 
 
-![](3_files/81b15d66-d367-4847-819d-c7ee7e146bbc.png)
+![](https://github.com/fenago/apache-solr/raw/master/images/81b15d66-d367-4847-819d-c7ee7e146bbc.png)
 
 
 Your response will now have the two documents
@@ -526,7 +526,7 @@ author is `rowling`.
 The request in Postman will look something like this:
 
 
-![](3_files/5aba5dd4-299e-4414-a7a7-cb466cd3f474.png)
+![](https://github.com/fenago/apache-solr/raw/master/images/5aba5dd4-299e-4414-a7a7-cb466cd3f474.png)
 
 
 In order to execute this, hit the **`Send`** button. You will get a
@@ -639,7 +639,7 @@ Upload the file in the **`binary`** section. Finally submit the request
 as follows:
 
 
-![](4_files/d14da98b-e8b6-4d2e-8530-20429d82fcca.png)
+![](https://github.com/fenago/apache-solr/raw/master/images/d14da98b-e8b6-4d2e-8530-20429d82fcca.png)
 
 
 You will see that the request is successful, with `status`
@@ -809,20 +809,20 @@ APIs:
 
  
 
-More details on the client API will be covered in a later chapter.
+More details on the client API will be covered in a later lab.
 
 
 
 Summary
 -------------------------
 
-In this chapter, we saw various techniques to index data. We went
+In this lab, we saw various techniques to index data. We went
 through index handlers and how they help us in indexing data using XML
 and JSON formats. We made use of the Solr Cell framework to index binary
 data formats. We then saw how language detection works. We finally
 touched on various client APIs available for indexing, though this will
-be covered in detail in a later chapter.
+be covered in detail in a later lab.
 
-In the next chapter, we will see in detail how searching works in Solr.
+In the next lab, we will see in detail how searching works in Solr.
 We will cover faceting, spell checking, highlighting, ranking,
 pagination, and many other features related to searches.

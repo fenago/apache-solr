@@ -1,6 +1,6 @@
 
 
-Chapter 4. Mastering Text Analysis Methodologies
+Lab 4. Mastering Text Analysis Methodologies
 ---------------------------------------------------------
 
 
@@ -8,7 +8,7 @@ Chapter 4. Mastering Text Analysis Methodologies
 So far we have seen the installation of Solr server, schema design,
 documents, fields, field types, the Schema API and schemaless mode.
 
-In this chapter we will explore:
+In this lab we will explore:
 
 
 -   Text analysis
@@ -63,7 +63,7 @@ If someone is searching for the string
 is searching for the string
 `The Host Nation of Football world cup 2018`, the result
 should be `Russia` in both the cases. We will learn later in
-this chapter how Solr matches a query containing `Nation` and
+this lab how Solr matches a query containing `Nation` and
 `Football` to documents containing `Country` and
 `Soccer`.
 
@@ -175,7 +175,7 @@ is hidden in its three powerful tools:
     
 
 
-We will explore each one of these in detail later in this chapter. By
+We will explore each one of these in detail later in this lab. By
 using these three tools, Solr becomes a powerful search engine to meet
 any complex search requirement.
 
@@ -188,7 +188,7 @@ In the Solr admin console, the user can easily understand text analysis,
 querying, and so on:
 
 
-![](2_files/cac3c476-f93a-490d-b4ab-993f43b3b8fc.jpg)
+![](https://github.com/fenago/apache-solr/raw/master/images/cac3c476-f93a-490d-b4ab-993f43b3b8fc.jpg)
 
 
 Go to **`Dashboard | Core Selector`**, select your configured example,
@@ -221,7 +221,7 @@ index time and query
 .indexterm} time:
 
 
-![](2_files/825bb1bd-5c2c-49aa-8d7a-53f6de026a40.png)
+![](https://github.com/fenago/apache-solr/raw/master/images/825bb1bd-5c2c-49aa-8d7a-53f6de026a40.png)
 
 
 Text analysis applied during index time on the input string.
@@ -284,7 +284,7 @@ and `soccer`) available in both streams. So here, both
 This is the way how text analysis process executing. Here we have just
 provided an overview of an analyzer, tokenizer, and filters. We will
 understand all of these analysis tools in
-detail later in this chapter.
+detail later in this lab.
 
 
 Understanding analyzer
@@ -320,7 +320,7 @@ configuration:
 Here, we have defined a single `<analyzer>` element. This is
 the simplest way to define an analyzer. We\'ve already understood the
 `positionIncrementGap` attribute, which adds a space
-between multi-value fields, in the previous chapter.
+between multi-value fields, in the previous lab.
 
 The class attribute value is a fully qualified Java class name. The
 input text will be analyzed by the analyzer class
@@ -339,7 +339,7 @@ through the admin console:
 Applying WhitespaceAnalyzer on the input string:
 
 
-![](3_files/60e937e9-f3d3-48b1-ae66-f4992d5af93e.png)
+![](https://github.com/fenago/apache-solr/raw/master/images/60e937e9-f3d3-48b1-ae66-f4992d5af93e.png)
 
 
 [**Input**]:
@@ -503,7 +503,7 @@ Text analysis by configuring various tokenizers and filters during index
 time and query time:
 
 
-![](3_files/b77d3e9c-0a87-4cb0-8866-42b166ca0e62.png)
+![](https://github.com/fenago/apache-solr/raw/master/images/b77d3e9c-0a87-4cb0-8866-42b166ca0e62.png)
 
 
 In the preceding screen, we have provided the string
@@ -668,7 +668,7 @@ The synonyms (`country` for `nation` and
 `soccer` for `Football`) are added to the
 stream. All synonyms are configured in the `synonyms.txt`
 file, as follows. We will see this filter in detail later in this
-chapter. 
+lab. 
 
 `Synonyms.txt file`: Synonym mapping examples. Blank lines and
 lines that start with `#` will be ignored:
@@ -766,7 +766,7 @@ The analyzer executes the analysis process in two steps:
 
 We can also do preprocessing on a character stream before tokenization;
 we can do this with the help of `CharFilters` (we will see
-this later in the chapter). An analyzer knows its configured field, but
+this later in the lab). An analyzer knows its configured field, but
 a tokenizer doesn\'t have any idea about the field. The job of the
 tokenizer is only to read from a character stream, apply a tokenization
 mechanism based on its behavior, and produce a new sequence of a token
@@ -2293,7 +2293,7 @@ the Solr Admin console by configuring them in the
 Summary
 -------------------------
 
-In this chapter, we saw an overview of text analysis, analyzers,
+In this lab, we saw an overview of text analysis, analyzers,
 tokenizers, filters, and how to configure an analyzer along with
 tokenizers and filters. We also saw the implementation approach for
 putting tokenizers and filters together. Then we moved on to multiple
@@ -2303,7 +2303,7 @@ multiple-language search, and the pros and cons of each approach.
 Finally, we understood Solr phonetic matching mechanics using the BMPM
 algorithm.
 
-In the next chapter, we will see how to do indexing using client API,
+In the next lab, we will see how to do indexing using client API,
 upload data using index handlers, upload data using Apache Tika with
 Solr Cell, and detect languages while indexing.
 

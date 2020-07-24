@@ -6,7 +6,7 @@ Chapter 7. Advanced Queries -- Part II
 
 
 We started understanding the concept of relevance and its terms
-precision and recall in the previous chapter. Then we learned about
+precision and recall in the previous lab. Then we learned about
 various query parsers, their parameters, and how we can configure them.
 In the same way, we explored various response writers, their parameters,
 and how we can configure them. We also looked at velocity search UI.
@@ -15,7 +15,7 @@ such as range faceting, pivot faceting, and interval faceting. At the
 end, we saw the Solr highlighting mechanism, parameters, various
 highlighters, and boundary scanners.
 
-In this chapter, we will learn about more search functionalities such as
+In this lab, we will learn about more search functionalities such as
 spellchecking, suggester, pagination, result grouping and clustering,
 and spatial search. Let's start with the spellchecking feature of Solr.
 
@@ -169,7 +169,7 @@ query requires an already executed query.
 
 
 
-As we discussed earlier in this chapter, we
+As we discussed earlier in this lab, we
 do not need to pass any parameter to enable or configure a parameter
 with a query string. Configuring them with any request handler in the
 `solrconfig.xml` file will enable them. Let's understand all
@@ -835,7 +835,7 @@ additionally it removes duplicate documents from the list. But from a
 performance point of view, expand and collapse is a better choice than
 result grouping.
 
-We looked at faceting in the previous chapter. Result grouping also
+We looked at faceting in the previous lab. Result grouping also
 looks similar to faceting, but through faceting, Solr returns a separate
 facet section along with the counts for each value. Through result
 grouping, it actually returns the unique values and their counts (like
@@ -1306,7 +1306,7 @@ configure a special parser that supports
 spatial search:
 
 
-![](7_files/4f57348f-d800-4cdb-858c-db554dcda8b7.png)
+![](https://github.com/fenago/apache-solr/raw/master/images/4f57348f-d800-4cdb-858c-db554dcda8b7.png)
 
 
  There are two types of spatial search parsers available in Solr.
@@ -1414,313 +1414,28 @@ Additionally, we sort by distance ascending. The following is the query:
 
 This is the basic overview of spatial search. There are many more
 spatial searching features available in Solr. Exploring every feature
-here is not possible. However, we can take this chapter as a reference
+here is not possible. However, we can take this lab as a reference
 and explore more spatial search features. Rather than going into more
-details of spatial search, Let's move on to the next chapter.
+details of spatial search, Let's move on to the next lab.
 
 
 
 Summary
 -------------------------
 
-In this chapter, we explored and understood various searching
+In this lab, we explored and understood various searching
 functionalities such as spellchecking, suggester, pagination, result
 grouping, and result clustering. Finally, we looked at spatial search.
 
 So far, we have seen configurations for each one and executed examples
 by configuring various functionality parameters. Now Let's move to the
-next chapter, where we will see how to configure Solr for production and
+next lab, where we will see how to configure Solr for production and
 learn fine-tuning methodologies for better performance. We will explore
 how to secure Solr and how to take backups. We will configure logging
 and get an overview of SolrCloud.
 
 
-
-
-
-
-
-
-
-![](8_files/f809d079111e31b1f0b7716cb973d607.jpg){.mb15 .ng-hide}
-
-
-
-
-
-
-
-[Show transcript]{.link .link-black .underline .ng-binding .ng-hide}
-
-
-
-
-
-
-
-
-------------------------------------------------------------------------
-
-[ Previous
-Section](https://subscription.packtpub.com/book/big_data_and_business_intelligence/9781788837385/7/ch07lvl1sec53/spatial-search){.btn
-.btn-primary .pull-left .btn-lg .btn-block} [Next Section
-](https://subscription.packtpub.com/book/big_data_and_business_intelligence/9781788837385/8){.btn
-.btn-primary .pull-right .btn-lg .btn-block}
-
-
-
-
-------------------------------------------------------------------------
-
-[Next Section
-](https://subscription.packtpub.com/book/big_data_and_business_intelligence/9781788837385/8){.btn
-.btn-primary .pull-right .btn-lg .btn-block}
-
-
-
-
-------------------------------------------------------------------------
-
-[ Previous
-Section](https://subscription.packtpub.com/book/big_data_and_business_intelligence/9781788837385/7/ch07lvl1sec53/spatial-search){.btn
-.btn-primary .pull-left .btn-lg .btn-block} [Complete Course
-](https://subscription.packtpub.com/book/big_data_and_business_intelligence/9781788837385){.btn
-.btn-primary .pull-right .btn-lg .btn-block}
-
-
-
-
-
-
-##### Something went wrong, please check your internet connection and try again\...
-
-[Retry](https://subscription.packtpub.com/#){.btn .btn-primary .btn-lg
-.btn-block-xs}
-
-
-
-
-
-
-
-
-
-
-
-
-[×]{aria-hidden="true"}
-
-#### Just Checking\...
-
-#### Sorry\...
-
-
-
-Are you sure you would like to use one of your credits to purchase this
-title?
-
-
-
-
-
-
-No
-
-Yes
-
-
-
-
-
-
-
-
-
-#### Create Playlist
-
-
-
-
-Playlist name
-
-
-
-
-[Cancel]{.btn .btn-block .btn-default}
-
-
-
-Create
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-[×]{aria-hidden="true"}
-
-#### Something went wrong
-
-
-
-Please try again
-
-
-
-Close
-
-
-
-
-
-
-
-
-
-eBooks & Videos
-
-
--   [Web
-    Development](https://subscription.packtpub.com/search?released=Available&category=Web%20Development){.ng-binding}
--   [Programming](https://subscription.packtpub.com/search?released=Available&category=Programming){.ng-binding}
--   [Data](https://subscription.packtpub.com/search?released=Available&category=Data){.ng-binding}
--   [Cloud &
-    Networking](https://subscription.packtpub.com/search?released=Available&category=Cloud%20%26%20Networking){.ng-binding}
--   [Mobile](https://subscription.packtpub.com/search?released=Available&category=Mobile){.ng-binding}
--   [Security](https://subscription.packtpub.com/search?released=Available&category=Security){.ng-binding}
--   [IoT &
-    Hardware](https://subscription.packtpub.com/search?released=Available&category=IoT%20%26%20Hardware){.ng-binding}
--   [Game
-    Development](https://subscription.packtpub.com/search?released=Available&category=Game%20Development){.ng-binding}
--   [Business &
-    Other](https://subscription.packtpub.com/search?released=Available&category=Business%20%26%20Other){.ng-binding}
--   [View
-    All](https://subscription.packtpub.com/search?released=Available)
-
-
-
-
-Useful Links
-
-
--   [Books](https://subscription.packtpub.com/search?products=Book&released=Available){.ng-binding}
--   [Videos](https://subscription.packtpub.com/search?products=Video&released=Available){.ng-binding}
--   [Learning
-    Paths](https://subscription.packtpub.com/learning-paths){.ng-binding}
--   [Code
-    Downloads](https://www.packtpub.com/support/code-downloads){.ng-binding}
--   [Contact Us](https://www.packtpub.com/contact){.ng-binding}
-
-
-
-
-
-
-
-
-eBooks & Videos
-
--   [Web
-    Development](https://subscription.packtpub.com/search?released=Available&category=Web%20Development){.ng-binding}
--   [Programming](https://subscription.packtpub.com/search?released=Available&category=Programming){.ng-binding}
--   [Data](https://subscription.packtpub.com/search?released=Available&category=Data){.ng-binding}
--   [Cloud &
-    Networking](https://subscription.packtpub.com/search?released=Available&category=Cloud%20%26%20Networking){.ng-binding}
--   [Mobile](https://subscription.packtpub.com/search?released=Available&category=Mobile){.ng-binding}
-
-
-
--   [Security](https://subscription.packtpub.com/search?released=Available&category=Security){.ng-binding}
--   [IoT &
-    Hardware](https://subscription.packtpub.com/search?released=Available&category=IoT%20%26%20Hardware){.ng-binding}
--   [Game
-    Development](https://subscription.packtpub.com/search?released=Available&category=Game%20Development){.ng-binding}
--   [Business &
-    Other](https://subscription.packtpub.com/search?released=Available&category=Business%20%26%20Other){.ng-binding}
--   [View
-    All](https://subscription.packtpub.com/search?released=Available)
-
-
-
-Useful Links
-
--   [Books](https://subscription.packtpub.com/search?products=Book&released=Available){.ng-binding}
--   [Videos](https://subscription.packtpub.com/search?products=Video&released=Available){.ng-binding}
--   [Learning
-    Paths](https://subscription.packtpub.com/learning-paths){.ng-binding}
--   [Code
-    Downloads](https://www.packtpub.com/support/code-downloads){.ng-binding}
--   [Contact Us](https://www.packtpub.com/contact){.ng-binding}
-
-
-
-Packt
-
-Sign up to our emails for the latest subscription updates.
-
-
-
-
-
-Submitting\...
-
-
-
-[![Download on the App
-Store](8_files/722c312b88d618e5136845252a309b79.png){.app-icon-badge}](https://apps.apple.com/app/packt/id1376577776?ls=1)
-[![Get it on Google
-Play](8_files/8303c4a7bb1e47b82f62c91a6204cab2.png){.app-icon-badge}](https://play.google.com/store/apps/details?id=com.packtpub.reader)
-
-
-
-
-
-[ © 2020 Packt Publishing Limited All Rights Reserved ]{.copyright
-.ng-binding} [\|]{.separator .ng-scope ng-if="!$root.isIOS"} [Privacy
-Policy](https://www.packtpub.com/about/privacy-policy){.ng-scope}
-[\|]{.separator .ng-scope ng-if="!$root.isIOS"} [Terms &
-Conditions](https://www.packtpub.com/about/terms-and-conditions){.ng-scope}
-
-
-![](https://www.facebook.com/tr?id=445429252334850&ev=PageView&noscript=1){width="1"
-height="1"}
-
-
-
-
-
-
-
-
-
-
-
-![](https://www.facebook.com/tr?id=445429252334850&ev=PageView&noscript=1){width="1"
-height="1"}
-
-
-Annotate
-
-
-
--   
--   Allow anyone to **view** this annotation
--   Allow anyone to **edit** this annotation
-
-
-[Cancel](https://subscription.packtpub.com/#cancel){.annotator-cancel}
-[Save](https://subscription.packtpub.com/#save){.annotator-save
-.annotator-focus}
-
-
+![](https://github.com/fenago/apache-solr/raw/master/images/f809d079111e31b1f0b7716cb973d607.jpg){.mb15 .ng-hide}
 
 
 

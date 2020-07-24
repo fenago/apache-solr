@@ -14,7 +14,7 @@ the default setting. In such a case, a manual comes in handy for
 learning and tweaking all the features that your car can provide.
 Similarly, you need to fine-tune and manage your Solr so as to get the
 most out of it. This is exactly what we are going to see in this
-chapter.
+lab.
 
 
 
@@ -504,7 +504,7 @@ http://localhost:8983/solr/
 You should see the following admin screen:
 
 
-![](6_files/e0c03976-7305-4ebc-aca6-039c278b09a5.png)
+![](https://github.com/fenago/apache-solr/raw/master/images/e0c03976-7305-4ebc-aca6-039c278b09a5.png)
 
 
 You will see that on the left-hand side, there is a **`Logging`**
@@ -512,7 +512,7 @@ option. Click on it and there will be a submenu item called **`Level`**,
 which will open up the following screen:
 
 
-![](6_files/7f2b38e1-17e5-45c2-bec5-4b1b9635d304.png)
+![](https://github.com/fenago/apache-solr/raw/master/images/7f2b38e1-17e5-45c2-bec5-4b1b9635d304.png)
 
 
 Here, we can set the logging level for many different log categories in
@@ -522,7 +522,7 @@ subcategories under it to debug level; I will click on the edit icon
 next to `ssl`, as shown here:
 
 
-![](6_files/d557d238-539c-423a-ba57-f984a4836959.png)
+![](https://github.com/fenago/apache-solr/raw/master/images/d557d238-539c-423a-ba57-f984a4836959.png)
 
 
 This will open up a small popup with various log levels that we can set.
@@ -686,7 +686,7 @@ solr -e cloud
 
 
 
-![](7_files/395b1329-f3db-4146-a4a2-a97038f64f76.png)
+![](https://github.com/fenago/apache-solr/raw/master/images/395b1329-f3db-4146-a4a2-a97038f64f76.png)
 
 
 As you can see, an interactive session starts up, asking you how many
@@ -695,7 +695,7 @@ can start up to `4` nodes, but we will leave it as the
 default.
 
 
-![](7_files/c26e740a-d4a1-4c59-95a0-43830850d629.png)
+![](https://github.com/fenago/apache-solr/raw/master/images/c26e740a-d4a1-4c59-95a0-43830850d629.png)
 
 
 Next, you will be asked to select ports for the two nodes. Leave the
@@ -712,7 +712,7 @@ Navigate to the browser and type the specified URL; you will see Solr as
 follows:
 
 
-![](7_files/38ee2645-5e98-4836-959f-9fe87d5f5a67.png)
+![](https://github.com/fenago/apache-solr/raw/master/images/38ee2645-5e98-4836-959f-9fe87d5f5a67.png)
 
 
 As you can see, the node is started with two
@@ -919,7 +919,7 @@ the key password and store password. This will open up an interactive
 prompt, as shown here:
 
 
-![](8_files/61276ff6-a9b9-474a-83c7-0d5decaed6bf.png)
+![](https://github.com/fenago/apache-solr/raw/master/images/61276ff6-a9b9-474a-83c7-0d5decaed6bf.png)
 
 
 In the interactive prompt, fill in the rest of the details and voilà!
@@ -948,7 +948,7 @@ keystore type to be `pkcs12`. You will see an interactive
 session opening up again:
 
 
-![](8_files/64f743bd-08bd-442d-bbd7-9df63f5b4b94.png)
+![](https://github.com/fenago/apache-solr/raw/master/images/64f743bd-08bd-442d-bbd7-9df63f5b4b94.png)
 
 
 As shown here, you will be asked the destination password for the new
@@ -972,7 +972,7 @@ folder from where you have issued the command with all the three files
 (jks, pkcs12, and pem keystores), as shown here:
 
 
-![](8_files/be3bd63f-bdc3-46c1-a369-f1b87cf8cdad.png)
+![](https://github.com/fenago/apache-solr/raw/master/images/be3bd63f-bdc3-46c1-a369-f1b87cf8cdad.png)
 
 
 Congratulations!!! You are one step closer to setting up SSL.
@@ -993,7 +993,7 @@ When you open the file, you will see a set of properties intended for
 SSL, as highlighted here:
 
 
-![](8_files/35b01f57-9367-4545-88db-398563fa9568.png)
+![](https://github.com/fenago/apache-solr/raw/master/images/35b01f57-9367-4545-88db-398563fa9568.png)
 
 
 
@@ -1045,7 +1045,7 @@ the certificate and continue. Once you continue, you will see the Solr
 home page:
 
 
-![](8_files/dc2a55f3-acd2-41d7-9e40-d4909dfc0d63.png)
+![](https://github.com/fenago/apache-solr/raw/master/images/dc2a55f3-acd2-41d7-9e40-d4909dfc0d63.png)
 
 
 
@@ -1061,7 +1061,7 @@ certificate are the same as you created, click on [*F12*] to
 open developer tools if you are using a Chrome browser:
 
 
-![](8_files/ab97dd92-4948-4ee4-88ad-d8e4f211f0cf.png)
+![](https://github.com/fenago/apache-solr/raw/master/images/ab97dd92-4948-4ee4-88ad-d8e4f211f0cf.png)
 
 
 As shown, click on the **`Security`** tab and then on the
@@ -1124,11 +1124,11 @@ well. 
 Summary
 -------------------------
 
-In this chapter, we saw the various tuning parameters needed to take
+In this lab, we saw the various tuning parameters needed to take
 Solr to production. We started off with JVM parameters, and then saw how
 to manage `solrconfig.xml`. We got an understanding of taking
 backups, setting up JMX, and configuring logs. Finally, we had an
 overview of SolrCloud.
 
-In the next chapter, we will see various Client APIs made available by
+In the next lab, we will see various Client APIs made available by
 Solr.

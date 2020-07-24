@@ -1,12 +1,12 @@
 
 
-Chapter 6. Advanced Queries -- Part I
+Lab 6. Advanced Queries -- Part I
 ----------------------------------------------
 
 
 
-In the previous chapter, we learned how to build indexes using various
-methods. In this chapter, we will see how Solr\'s search works. Solr
+In the previous lab, we learned how to build indexes using various
+methods. In this lab, we will see how Solr\'s search works. Solr
 comes with a large searching kit; by configuring elements from this kit,
 it provides users with an extensive search experience and returns
 impressive results with a helpful interface.
@@ -28,7 +28,7 @@ in the list of desirable search engines:
 -   Autocomplete
 
 
-We will look at some of these functions in detail later in this chapter,
+We will look at some of these functions in detail later in this lab,
 but first Let's understand every component that performs an important
 role during searches and generates impressive results.
 
@@ -96,12 +96,12 @@ through velocity UI. You can access the UI through
 the following screenshot:
 
 
-![](3_files/b3fb9022-3682-434c-867e-76a7c6c214c7.png)
+![](https://github.com/fenago/apache-solr/raw/master/images/b3fb9022-3682-434c-867e-76a7c6c214c7.png)
 
 
 Solr uses response writer to generate an organized response. Here
 velocity UI uses velocity response writer. We will explore response
-writer later in this chapter.
+writer later in this lab.
 
 
 
@@ -442,7 +442,7 @@ In Solr admin console, while running a query to search a product with
 `id=SP2514N` displays the response as follows:
 
 
-![](4_files/54583c1c-0b1e-4535-9d0b-7ab29ac29ed6.png)
+![](https://github.com/fenago/apache-solr/raw/master/images/54583c1c-0b1e-4535-9d0b-7ab29ac29ed6.png)
 
 
 The response code is as follows:
@@ -1030,7 +1030,7 @@ The following shows the Solr admin console showing an example for DisMax
 query parser:
 
 
-![](4_files/9ac6acff-a614-467c-bbe6-2e398cd223da.png)
+![](https://github.com/fenago/apache-solr/raw/master/images/9ac6acff-a614-467c-bbe6-2e398cd223da.png)
 
 
 [**Response**]: 
@@ -1536,7 +1536,7 @@ query in the `q` field, select the `wt` parameter as
 bottom. The query URL and response output will be displayed as follows:
 
 
-![](5_files/6861b886-f008-490d-a55e-bfc276ddad7f.png)
+![](https://github.com/fenago/apache-solr/raw/master/images/6861b886-f008-490d-a55e-bfc276ddad7f.png)
 
 
 Solr console admin, response writer configuration, and output
@@ -1571,7 +1571,7 @@ Solr admin console, searching for product `id=SP2514N`, and
 retrieving the response in XML format:
 
 
-![](5_files/97bd976d-fb25-4212-892b-ff236235dc22.png)
+![](https://github.com/fenago/apache-solr/raw/master/images/97bd976d-fb25-4212-892b-ff236235dc22.png)
 
 
 [**URL**`:`****] `http://localhost:8983/solr/techproducts/select?q=SP2514N&wt=xml`
@@ -1654,7 +1654,7 @@ Solr admin console, searching for product `id=SP2514N`, and
 retrieving the response in `.csv` format:
 
 
-![](5_files/b1008006-a69b-496a-8aa4-96b37c1c2bfb.png)
+![](https://github.com/fenago/apache-solr/raw/master/images/b1008006-a69b-496a-8aa4-96b37c1c2bfb.png)
 
 
 [**URL:**] `http://localhost:8983/solr/techproducts/select?q=SP2514N&wt=csv`
@@ -1733,7 +1733,7 @@ faceting types that Solr currently supports:
 -   Interval faceting
 
 
-We will explore these later in this chapter. But to configure any
+We will explore these later in this lab. But to configure any
 faceting in Solr, first we have to configure the related parameters. So
 Let's understand faceting parameters first.
 
@@ -2695,7 +2695,7 @@ parameters.
 Summary
 -------------------------
 
-In this chapter, we learned the concept of relevance and its terms:
+In this lab, we learned the concept of relevance and its terms:
 Precision and Recall. Then we looked at the velocity search UI. We saw
 the common parameters for various query parsers and explored each query
 parser (standard, DisMax, and eDisMax) in detail. After that, we looked
@@ -2708,6 +2708,6 @@ faceting parameters and faceting types such as range, pivot, and
 interval faceting. At the end, we saw Solr highlighting mechanisms,
 parameters, highlighters, and boundary scanners.
 
-In the next chapter, or rather the second part of this chapter, we will
+In the next lab, or rather the second part of this lab, we will
 learn more search functionalities such as spell checking, suggester,
 pagination, result grouping and clustering, and spatial search.

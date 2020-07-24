@@ -5,13 +5,13 @@ Chapter 9. Client APIs -- An Overview
 
 
 
-In the previous chapter, we saw the various steps to be configured for
+In the previous lab, we saw the various steps to be configured for
 production readiness. We also explored the fine-tuning configuration
 needs to be considered during production setup for better performance.
 We learned how to secure a Solr, take backups, and configure logs. Then
 we got an overview of SolrCloud. Now we have a complete configured Solr
 with all the required configurations to meet any search request. In this
-chapter, we will learn how Solr can be used with a web application and
+lab, we will learn how Solr can be used with a web application and
 how to call APIs in different languages. We\'ll have an overview of
 various Client APIs supported by Solr.
 
@@ -33,7 +33,7 @@ web application asks Solr to perform some operations, such as querying
 and indexing. Solr performs those operations and provides a response to
 the application. Solr also supports various response formats based on
 programming languages such as Java, JavaScript/JSON, Python, Ruby, PHP,
-and many more (we have seen this in [Chapter
+and many more (we have seen this in [Lab
 6](https://subscription.packtpub.com/book/big_data_and_business_intelligence/9781788837385/6){.link},
 [*Advanced Queries -- Part I*]). So it becomes very easy for
 any programming languages to deal with Solr and to parse a response in
@@ -150,7 +150,7 @@ the
 **`Search button. If everything goes well, the Solr API will be called and the response will be displayed as follows. Here we are searching for ipod`:**
 
 
-![](3_files/a7691ee7-d6e0-4895-aee9-43fe234f3cb0.png)
+![](https://github.com/fenago/apache-solr/raw/master/images/a7691ee7-d6e0-4895-aee9-43fe234f3cb0.png)
 
 
 [**Response**]:
@@ -806,7 +806,7 @@ we can dive deep and explore Python and Solr bounding in more detail.
 Summary
 -------------------------
 
-In this chapter, we got a basic overview of various JavaScript, SolrJ,
+In this lab, we got a basic overview of various JavaScript, SolrJ,
 Ruby, and Python supports for Solr API. We explored the basic
 configurations required to connect with the Solr API for each one of
 them. Then we designed basic programs for searching, adding, adding in

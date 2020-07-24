@@ -28,7 +28,7 @@ possible to use most of the available programming languages even without
 Java coding. You feed Solr data over HTTP and Solr responds with an
 output in formats of JSON, CSV, and binary. Apache Lucene and Apache
 Solr were merged in 2010 and they are collectively termed Lucene/Solr or
-Solr/Lucene. This chapter focuses mainly on the following points:
+Solr/Lucene. This lab focuses mainly on the following points:
 
 
 -   Solr installation
@@ -69,7 +69,7 @@ java -version
 It should show the following output:
 
 
-![](2_files/e7753bbc-17c6-4ba8-9752-e09629ac74b2.png)
+![](https://github.com/fenago/apache-solr/raw/master/images/e7753bbc-17c6-4ba8-9752-e09629ac74b2.png)
 
 
 If your output is something different, it means Java is not properly
@@ -100,7 +100,7 @@ Solr, follow along steps:
 
 
 
-![](2_files/d348364e-c01c-4103-94eb-255b9a76fb41.jpg)
+![](https://github.com/fenago/apache-solr/raw/master/images/d348364e-c01c-4103-94eb-255b9a76fb41.jpg)
 
 
 
@@ -142,7 +142,7 @@ location should be something like this, with the folder structure as
 follows:
 
 
-![](2_files/feb03e12-8d55-4fa2-95e5-fec6b8bcacd7.jpg)
+![](https://github.com/fenago/apache-solr/raw/master/images/feb03e12-8d55-4fa2-95e5-fec6b8bcacd7.jpg)
 
 
 Now that we have Solr installed, the next step is to get it up and
@@ -158,7 +158,7 @@ solr -e cloud
 
 
 
-![](2_files/1bddc411-3d2a-4ede-934b-37e9447ca940.jpg)
+![](https://github.com/fenago/apache-solr/raw/master/images/1bddc411-3d2a-4ede-934b-37e9447ca940.jpg)
 
 
 Let's look at the following steps:
@@ -187,7 +187,7 @@ Let's look at the following steps:
 If everything goes well, you should see the following screen:
 
 
-![](2_files/a2d726bd-f003-4af8-bf7e-df25dd86f01c.jpg)
+![](https://github.com/fenago/apache-solr/raw/master/images/a2d726bd-f003-4af8-bf7e-df25dd86f01c.jpg)
 
 
 You can now navigate either to `http://localhost:8983/solr/#/`
@@ -195,7 +195,7 @@ or `http://localhost:7574/solr/#/` as you have started Solr in
 cluster mode. You should be able to see the following admin interface:
 
 
-![](2_files/31b17a18-1f0a-4550-818a-017a08776b8c.jpg)
+![](https://github.com/fenago/apache-solr/raw/master/images/31b17a18-1f0a-4550-818a-017a08776b8c.jpg)
 
 
 What did we just do? While running this command, we started Solr in
@@ -240,7 +240,7 @@ the configurations involved. This diagram shows the parent-level
 directory of Solr, along with an explanation of each folder:
 
 
-![](3_files/5598bebb-eb3c-449e-9d78-3b0e9e25263a.jpg)
+![](https://github.com/fenago/apache-solr/raw/master/images/5598bebb-eb3c-449e-9d78-3b0e9e25263a.jpg)
 
 
 Let's look at the major folders and files we will be dealing with.
@@ -326,7 +326,7 @@ The following screenshot helps us to understand how we can execute a
 post script from the command line:
 
 
-![](3_files/690de324-f8e7-4980-84ae-469ac708e351.jpg)
+![](https://github.com/fenago/apache-solr/raw/master/images/690de324-f8e7-4980-84ae-469ac708e351.jpg)
 
 
 This table consists of some example commands used for the same purpose:
@@ -484,7 +484,7 @@ Let's look at one such directory structure of an out-of-the-box example
 of Solr `cloud`:
 
 
-![](3_files/276a41df-5385-4103-a9fe-d53bfe4ae026.jpg)
+![](https://github.com/fenago/apache-solr/raw/master/images/276a41df-5385-4103-a9fe-d53bfe4ae026.jpg)
 
 
 Here is the detailed directory structure of our out-of-the-box example
@@ -756,7 +756,7 @@ configurations. Then you can see the Solr running status on hitting
 something like this:
 
 
-![](4_files/21b61f80-33b1-4ce1-9df0-53e2f85afdb3.jpg)
+![](https://github.com/fenago/apache-solr/raw/master/images/21b61f80-33b1-4ce1-9df0-53e2f85afdb3.jpg)
 
 
 Now, to check the status of the running instances of Solr, it provides
@@ -774,7 +774,7 @@ service, with a few more details such as `uptime`,
 `solr_home`, `memory`, and so on:
 
 
-![](4_files/a24b3170-adc4-44d3-bd85-77a964281e03.jpg)
+![](https://github.com/fenago/apache-solr/raw/master/images/a24b3170-adc4-44d3-bd85-77a964281e03.jpg)
 
 
 Now, if you haven\'t started Solr with example config sets, you will
@@ -954,7 +954,7 @@ post script or `post.jar`.
 Uh Oh!! It throws an error, as follows:
 
 
-![](5_files/2607e86c-1e5d-48af-a0a7-a84f4c94aac4.jpg)
+![](https://github.com/fenago/apache-solr/raw/master/images/2607e86c-1e5d-48af-a0a7-a84f4c94aac4.jpg)
 
 
 What must have gone wrong? By checking the logs while creating the
@@ -1071,7 +1071,7 @@ the example of DIH. It will pick the configuration set in
 data in MySQL as follows:
 
 
-![](5_files/672e9ef9-5137-4ae9-be15-fc34619fb8fb.jpg)
+![](https://github.com/fenago/apache-solr/raw/master/images/672e9ef9-5137-4ae9-be15-fc34619fb8fb.jpg)
 
 
 Now it\'s time to integrate it into Solr. Follow these steps to find out
@@ -1187,7 +1187,7 @@ Go to the Solr admin panel. On the core selector, select the database
 and follow the steps shown in this screenshot:
 
 
-![](5_files/a347a745-fcda-41af-8242-d7bb57d349e1.png)
+![](https://github.com/fenago/apache-solr/raw/master/images/a347a745-fcda-41af-8242-d7bb57d349e1.png)
 
 
 You can hit on the browser to see MySQL data in Solr.
@@ -1214,7 +1214,7 @@ the browse interface provided by Solr, as shown in the following
 screenshot:
 
 
-![](6_files/c86e54f6-6293-4ff5-b2bd-3aa143dba6cd.png)
+![](https://github.com/fenago/apache-solr/raw/master/images/c86e54f6-6293-4ff5-b2bd-3aa143dba6cd.png)
 
 
 It is just another Google search for electronics now. Go ahead and type
@@ -1225,7 +1225,7 @@ The following screenshot explains the browse interface in a lot of
 detail:
 
 
-![](6_files/afd8ee02-b2a6-428a-9cff-5bdb91152e02.jpg)
+![](https://github.com/fenago/apache-solr/raw/master/images/afd8ee02-b2a6-428a-9cff-5bdb91152e02.jpg)
 
 
 This feature makes use of the solariatis
@@ -1311,7 +1311,7 @@ can see various log levels, time, message, the core from which it comes,
 and so on:
 
 
-![](7_files/9c38c623-df6e-4314-907a-2437216b9c01.jpg)
+![](https://github.com/fenago/apache-solr/raw/master/images/9c38c623-df6e-4314-907a-2437216b9c01.jpg)
 
 
 Here are a few highlights of the logging details of our out-of-the-box
@@ -1344,7 +1344,7 @@ to change many categories at once by just changing the log level of the
 parent:
 
 
-![](7_files/cd7ba97d-4d19-4e26-9d74-288a43fd2772.jpg)
+![](https://github.com/fenago/apache-solr/raw/master/images/cd7ba97d-4d19-4e26-9d74-288a43fd2772.jpg)
 
 
 
@@ -1421,7 +1421,7 @@ such as `state.json` (which has a definition of the
 collection), the shard leaders, and the configuration files in use.
 
 
-![](7_files/26288f44-26d7-483e-a79b-0d8a8172d4a4.jpg)
+![](https://github.com/fenago/apache-solr/raw/master/images/26288f44-26d7-483e-a79b-0d8a8172d4a4.jpg)
 
 
 
@@ -1438,7 +1438,7 @@ shows labels for the leader shard, active shards, recovering shards,
 failed shards, inactive shards, and gone shards:
 
 
-![](7_files/5b7316c8-915e-4d2f-b799-5474f06e93c0.jpg)
+![](https://github.com/fenago/apache-solr/raw/master/images/5b7316c8-915e-4d2f-b799-5474f06e93c0.jpg)
 
 
 As you can see, there are multiple collections: `films`,
@@ -1484,7 +1484,7 @@ set name, and so on. It enables various options, as seen in this
 diagram:
 
 
-![](7_files/12735590-17e7-4bf2-aaf1-2615d5d17695.jpg)
+![](https://github.com/fenago/apache-solr/raw/master/images/12735590-17e7-4bf2-aaf1-2615d5d17695.jpg)
 
 
 
@@ -1499,7 +1499,7 @@ properties of JVM, which is running Solr. It includes the class path,
 encoding type, external libraries, and so on.
 
 
-![](7_files/7eff47af-f345-4799-b030-950403f13cb7.jpg)
+![](https://github.com/fenago/apache-solr/raw/master/images/7eff47af-f345-4799-b030-950403f13cb7.jpg)
 
 
 
@@ -1518,7 +1518,7 @@ thread can be in any one of `new`, `runnable`,
 `terminated` states.
 
 
-![](7_files/ba87b90a-5033-494d-abc9-bb5efb020e8e.jpg)
+![](https://github.com/fenago/apache-solr/raw/master/images/ba87b90a-5033-494d-abc9-bb5efb020e8e.jpg)
 
 
 
@@ -1557,7 +1557,7 @@ the content would be applied during indexing or query processing. Let's
 analyze one such query that gives us a detailed output, as follows:
 
 
-![](7_files/d6c2aa53-9e5d-4611-921e-beda44f07746.jpg)
+![](https://github.com/fenago/apache-solr/raw/master/images/d6c2aa53-9e5d-4611-921e-beda44f07746.jpg)
 
 
 This screen is useful to study the analyzers applied on a collection.
@@ -1597,7 +1597,7 @@ set of tasks:
 
 
 
-![](7_files/1326134b-7082-4985-857d-1407472d9211.jpg)
+![](https://github.com/fenago/apache-solr/raw/master/images/1326134b-7082-4985-857d-1407472d9211.jpg)
 
 
 
@@ -1613,7 +1613,7 @@ If you want to edit them, you have to visit
 the **`Schema Browser`** screen.
 
 
-![](7_files/37d6b45e-a67c-48cb-a2a4-f3cfc8cac9ea.jpg)
+![](https://github.com/fenago/apache-solr/raw/master/images/37d6b45e-a67c-48cb-a2a4-f3cfc8cac9ea.jpg)
 
 
 
@@ -1633,7 +1633,7 @@ collection. Go to the **`Query`** screen; at the bottom, click on
 Click on **`execute query`**:
 
 
-![](7_files/96f3e767-616c-41d6-b2b6-e5234d0c431d.jpg)
+![](https://github.com/fenago/apache-solr/raw/master/images/96f3e767-616c-41d6-b2b6-e5234d0c431d.jpg)
 
 
 
@@ -1648,7 +1648,7 @@ explanation of a query. It is very similar to the **`Query`** screen; it
 just adds an explanation part.
 
 
-![](7_files/d90aa8cb-d00c-4d19-bf36-195abe346fd8.png)
+![](https://github.com/fenago/apache-solr/raw/master/images/d90aa8cb-d00c-4d19-bf36-195abe346fd8.png)
 
 
 
@@ -1664,7 +1664,7 @@ fields and its field type. It has options to add dynamic fields and copy
 field mapping from one field to another.
 
 
-![](7_files/d46695ba-b102-4854-95d5-82f0010e15d5.jpg)
+![](https://github.com/fenago/apache-solr/raw/master/images/d46695ba-b102-4854-95d5-82f0010e15d5.jpg)
 
 
 
@@ -1692,7 +1692,7 @@ dropdown, you will see the following screens:
 
 
 
-![](7_files/29ca8e54-1570-4381-b086-bf431af5ac60.jpg)
+![](https://github.com/fenago/apache-solr/raw/master/images/29ca8e54-1570-4381-b086-bf431af5ac60.jpg)
 
 
 
@@ -1706,13 +1706,13 @@ dropdown, you will see the following screens:
 Summary
 -------------------------
 
-In this chapter, we got started with Solr. We saw the various options
+In this lab, we got started with Solr. We saw the various options
 available to start Solr and saw the directory and folder structure of
 Solr in detail. We learned how to run Solr as service, Solr and
 ZooKeeper configurations, how to load some sample data from documents
 and databases, the browse interface, and the Admin UI in detail.
 
-Let's move on to designing a schema in the next chapter. We will learn
+Let's move on to designing a schema in the next lab. We will learn
 how to design it using documents and fields. We will go through various
 field types and see the schema API. We will also look at the schemaless
 mode.

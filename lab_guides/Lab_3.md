@@ -1,5 +1,5 @@
 
-Chapter 3. Designing Schemas
+Lab 3. Designing Schemas
 -------------------------------------
 
 
@@ -15,7 +15,7 @@ area that you have and decide on a design that you think will not only
 look good but also last long. Creating any application follows the same
 principle and demands proper schema design.
 
-In this chapter, we will traverse through schema design. We will
+In this lab, we will traverse through schema design. We will
 understand how to design a schema using documents and fields. We will
 also see various field types and get an understanding of the Schema API.
 We will finally look at schemaless mode.
@@ -41,7 +41,7 @@ feeding in the data. Let's have a look at the following diagram and
 understand how Solr search platform works:
 
 
-![](2_files/ebaeefbe-9985-45c7-b2a8-59f482a4a896.png)
+![](https://github.com/fenago/apache-solr/raw/master/images/ebaeefbe-9985-45c7-b2a8-59f482a4a896.png)
 
 
 As you can see, the way to look at Solr is like this---it is basically
@@ -72,7 +72,7 @@ look at the following diagram and understand how the documents, fields
 are laid out in index of Solr instance:
 
 
-![](2_files/ff99aa2f-c23c-4a18-83d3-d8a39b76c635.png)
+![](https://github.com/fenago/apache-solr/raw/master/images/ff99aa2f-c23c-4a18-83d3-d8a39b76c635.png)
 
 
 As you can see from the previous diagram, we can have as many
@@ -141,7 +141,7 @@ letters?
 
 All of these problems can be catered using field analysis to ignore
 common words or casing while indexing or querying. We will dive
-deep into field analysis in the next chapter.
+deep into field analysis in the next lab.
 
 Now, coming back to field types, all analyses on a field are done by the
 field type, whether documents are indexed or a query is made on the
@@ -228,7 +228,7 @@ for `Nair Dharmesh`. But with
 the `positionIncrementGap` attribute, we can avoid this.
 
 We will cover the rest of the details available in
-`fieldType` class in detail in the next chapter.
+`fieldType` class in detail in the next lab.
 
 
 ### []{#note14}Note
@@ -1692,11 +1692,11 @@ predefined processors and make it default.
 Summary
 -------------------------
 
-In this chapter, we got an overview of how Solr works and saw schema
+In this lab, we got an overview of how Solr works and saw schema
 design. We then jumped into Solr field types and saw how to define
 fields, copy fields, and create dynamic fields. We moved on to the
 Schema API, and finally we saw what schemaless mode is all about.
 
-In the next chapter, we will get our hands dirty and learn all about
+In the next lab, we will get our hands dirty and learn all about
 analyzers, tokenizers, and filters.
 
