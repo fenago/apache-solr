@@ -1,6 +1,6 @@
 
 
-Chapter 1. Introduction to Solr 7 {.title}
+Lab 1. Introduction to Solr 7
 ---------------------------------
 
 Today we are in the age of digitization. People are generating data in
@@ -39,10 +39,10 @@ enterprise NoSQL search platform!
 
 We will go through the following topics in this lab:
 
--   Introduction to Solr
--   Why Solr?
--   Solr use cases
--   What's new in Solr 7
+-  Introduction to Solr
+-  Why Solr?
+-  Solr use cases
+-  What's new in Solr 7
 
 
 Introduction to Solr
@@ -52,8 +52,8 @@ Solr is one of the most popular
 enterprise search servers and is widely used
 across the world. It is written based on Java and uses the Lucene Java
 search library. Solr is an open source project
-.indexterm} from [**Apache Software Foundation**]
-([**ASF**]) and is amazingly fast, scalable, and ideal for
+.indexterm} from **Apache Software Foundation**
+(**ASF**) and is amazingly fast, scalable, and ideal for
 searching relevant data. Some of the major Solr users are Netfix,
 SourceForge, Instagram, CNET, and Flipkart. You can check out more such
 use cases at <https://wiki.apache.org/solr/PublicServers>.
@@ -61,27 +61,25 @@ use cases at <https://wiki.apache.org/solr/PublicServers>.
 Some of the features included are as follows:
 
 
--   Full-text search
--   Faceted search
--   Dynamic clustering
--   GEO search
--   Hit highlighting
--   Near-real-time indexing
--   Rich document handling
--   Geospatial search
--   [**Structured Query Language**] ([**SQL**])
-    support
--   Textual search
--   Rest API
--   JSON, XML, PHP, Ruby, Python, XSLT, velocity, and custom Java binary
-    output formats over HTTP
--   GUI admin interface
--   Replication
--   Distributed search
--   Caching of queries, documents, and filters
--   Auto-suggest
--   Streaming
--   Many more features
+-  Full-text search
+-  Faceted search
+-  Dynamic clustering
+-  GEO search
+-  Hit highlighting
+-  Near-real-time indexing
+-  Rich document handling
+-  Geospatial search
+-  **Structured Query Language** (**SQL**) support
+-  Textual search
+-  Rest API
+-  JSON, XML, PHP, Ruby, Python, XSLT, velocity, and custom Java binary output formats over HTTP
+-  GUI admin interface
+-  Replication
+-  Distributed search
+-  Caching of queries, documents, and filters
+-  Auto-suggest
+-  Streaming
+-  Many more features
 
 
 Solr has enabled many such Internet sites, government sites, and
@@ -90,13 +88,7 @@ research, and so on. Solr can index billions of documents/rows via XML,
 JSON, CSV, or HTTP APIs. It can secure your data with the help of
 authentication and can be drilled down to role-based authentication.
 Solr is now an integral part of many big data solutions too.
-
-
-
 ### History of Solr
-
-
-
 Doug Cutting created `Lucene` in 2000, which is the
 core technology behind Solr.
 
@@ -156,13 +148,7 @@ history. We must also have a good understanding of why we should be
 using Solr. Let's get the answer to this
 question too.
 
-
-
-
 ### Lucene -- the backbone of Solr
-
-
-
 Lucene is an open source project that
 provides text search engine libraries. It is widely adopted for many
 search engine technologies. It has strong
@@ -183,14 +169,11 @@ the document. Once you have the index in place, you can search for
 documents with the input of a query string that is parsed accordingly to
 Lucence. Lucene manages to score a value for each of the relevant
 documents and the ones that are high-scoring documents are displayed.
-
-
-
 Why choose Solr?
 ----------------------------------
 
 If we already have a relational database, then why should we use Solr?
-It\'s simple; if there is a use case that needs you to search, you need
+It's simple; if there is a use case that needs you to search, you need
 a search engine platform like Solr. There are
 various use cases that we will be discussing further in the lab.
  
@@ -214,7 +197,7 @@ engine platform can result in insufficient information, inefficiency of
 productivity, and additional efforts due to duplication of work. Why?
 Just because of not having the right
 information available quickly, without a search; it is something that we
-can\'t even think of. Most such use cases comprise the following key
+can't even think of. Most such use cases comprise the following key
 requirements:
 
 
@@ -247,48 +230,36 @@ integrated search solutions to help users find relevant information
 quickly. User experience is a key element for any solution that we
 develop; and searching is one of the major features that cannot be
 ignored when we talk about user experience.
-
-
-
 ### Benefits of keyword search
-
-
-
 One of the basic needs a search engine should
-support is a keyword search, as that\'s the primary goal behind the
+support is a keyword search, as that's the primary goal behind the
 search engine platform. In fact it is the first thing a user will start
 with. Keyword search is the most common technique used for a search
 engine and also for end users on our websites. It is a pretty common
 expectation nowadays to punch in a few keywords and quickly retrieve the
 relevant results. But what happens in the backend is something we need
-to take care of to ensure that the user experience doesn\'t deteriorate.
+to take care of to ensure that the user experience doesn't deteriorate.
 Let's look at a few areas that we must consider in order to provide
 better outcomes for search engine platforms using Solr:
 
 
--   Relevant search with quick turnaround
--   Auto-correct spelling
--   Auto-suggestions
--   Synonyms
--   Multilingual support
--   Phrase handling---an option to search for a specific keyword or all
+-  Relevant search with quick turnaround
+-  Auto-correct spelling
+-  Auto-suggestions
+-  Synonyms
+-  Multilingual support
+-  Phrase handling---an option to search for a specific keyword or all
     keywords in a phrase provided
--   Expanded results if the user wants to view something beyond the
+-  Expanded results if the user wants to view something beyond the
     top-ranked results
 
 
 These features can be easily managed by Solr; so our next challenge is
 to provide relevant results with improved user experience.
 
-
-
-
 ### Benefits of ranked results
-
-
-
 Solr is not limited to finding relevant
-results for a user\'s search. Providing the end user with selection of
+results for a user's search. Providing the end user with selection of
 the most relevant results, that are sorted, is important as well. We
 will be doing this using SQL to find relevant matching pattern results
 and sorting them into columns in either ascending or descending order.
@@ -299,10 +270,10 @@ in the dataset.
 Ranked results is very important, primarily because the volume of data
 that search engine platforms have to dig through is huge. If there is no
 control on ranked results, then the result set would be filled with no
-relevancy and would have so much data that it wouldn\'t be feasible to
+relevancy and would have so much data that it wouldn't be feasible to
 display it either. The other important aspect is user experience. All of
 us are now used to expecting a search engine to provide relevant results
-using limited keywords. We are getting restless, aren\'t we? But we
+using limited keywords. We are getting restless, aren't we? But we
 expect a search engine platform to not get annoyed and provide us
 relevant ranked results with few keywords. Hold on, we are not talking
 of Google search here! So for users like us, Solr can help address such
@@ -331,58 +302,43 @@ at <https://wiki.apache.org/solr/PublicServers>:
 
 
 This diagram helps us understand Solr as a solution serving various
-industries. Though it\'s not an exhaustive list of industries where Solr
+industries. Though it's not an exhaustive list of industries where Solr
 has been playing a prominent role in business decisions, Let's discuss
 a few of the industries.
 
 
 ### Social media
-
-
-
 LinkedIn, a well known professional social media site, uses Lucene/Solr
 search. Lucene has a powerful faceting system that allows us to pivot
 and navigate by user or company attributes
 abstracted from user profile data. LinkedIn has an excellent feature
-that is backed up by Solr: its ranking of results by people\'s
+that is backed up by Solr: its ranking of results by people's
 relationship with you. This data is not fixed, and being derived by
-Lucene in real time, it\'s all based on the arithmetic calculations of
+Lucene in real time, it's all based on the arithmetic calculations of
 the relationships in your connections list.
 
-One more use case is Myspace. Myspace is considered one of the world\'s
+One more use case is Myspace. Myspace is considered one of the world's
 largest search sites, with almost 200 million active users and adding up
 to almost 2.5k new users daily. It is expected to have around 50 million
 videos and adding around 75,000 daily. Myspace consists of almost 900
 billion rows of data and 15 billion friend relationship searches by
 Lucene, with about 1 terabyte of data added every week.
 
-
-
-
 ### Science and research
-
-
-
 NASA (<https://www.nasa.gov/open/nebula.html>) uses Solr
 .indexterm} for its Nebula Cloud Computing Platform.
-Similarly, [**Public Library of Science**]
-([**PLOS**]) that is a non-profit
+Similarly, **Public Library of Science**
+(**PLOS**) that is a non-profit
 publisher of research articles on various subjects. VUFind
 (<https://vufind.org/vufind/>) is another
 powerful open source discovery portal of
 libraries. It is known to have around 25 million records for a few of
 its implementations.
 
-
-
-
 ### Search engine
-
-
-
 Having Google using Solr is a
-milestone for Solr. [**Google Search
-Appliance**] ([**GSA**]), is backed up with Solr. GSA
+milestone for Solr. **Google Search
+Appliance** (**GSA**), is backed up with Solr. GSA
 uses many features of Solr: metadata sorting, recommendations,
 spellcheck, auto-suggest, and more.
 
@@ -390,13 +346,7 @@ Similarly, Open Test Search (<http://www.opentestsearch.com/>) uses Solr
 to provide a comparison of a few common
 search engines.
 
-
-
-
 ### E-commerce
-
-
-
 Flipkart is a leading example of Solr. It has
 more than 900k users and sees more than 20k searches per second.
 Flipkart product search has a backbone of 175 million listings, \~250
@@ -405,13 +355,7 @@ real-time results, ranking, autocompletion, high-update rates, and
 inverted index. It has become a huge success by using Solr for product
 searches for its e-commerce business.
 
-
-
-
 ### Media and entertainment
-
-
-
 Netflix uses Solr for the site search
 feature. Netflix has more than 2 million queries per day for searches
 and more than 15 million subscribers. It is available in more than 190
@@ -423,26 +367,14 @@ The Guardian, one of the leading newspapers, also uses Solr for its API
 search platform. There are other users too: MTV, Digg, cnet.com, and
 many more.
 
-
-
-
 ### Government
-
-
-
 The White House uses Solr for <https://www.whitehouse.gov/>. It uses
 features such as
-search, highlighting, and faceting. Similarly, [**Federal Communications
-Commission**] ([**FCC**]) uses Solr for
+search, highlighting, and faceting. Similarly, **Federal Communications
+Commission** (**FCC**) uses Solr for
 .indexterm} its website search.
 
-
-
-
 ### Education
-
-
-
 Hathitrust is another wonderful use case of
 Solr. It has almost a couple of terabytes of index, with more than 10
 million books provided online. Solr plays a prominent role in searches
@@ -450,13 +382,11 @@ through its huge library of books. There are many such examples having
 similar use cases:
 
 
--   [**Internet Archive**]: <https://archive.org/>
--   [**National Library of
-    Australia**]: <http://trove.nla.gov.au/>
--   [**FictFact**]: <https://www.fictfact.com/>
--   [**Biblio**]: <https://www.biblio.com/>
--   [**A Norwegian online book
-    store**]:[ https://www.akademika.no/](https://www.akademika.no/){.ulink}
+-  **Internet Archive**: <https://archive.org/>
+-  **National Library of Australia**: <http://trove.nla.gov.au/>
+-  **FictFact**: <https://www.fictfact.com/>
+-  **Biblio**: <https://www.biblio.com/>
+-  **A Norwegian online book store**:[ https://www.akademika.no/](https://www.akademika.no/){.ulink}
 
 
 What's new in Solr 7?
@@ -467,13 +397,7 @@ features have been introduced. Overall, there are 51 new small-to-major
 features introduced in Solr 7. Along with these features, lots of bug
 fixes, optimization, and updates have been introduced. Let us go through
 some of the major changes introduced in Solr 7.
-
-
-
 ### Replication for SolrCloud
-
-
-
 Before we understand the new replication
 methods introduced in Solr 7, Let's go through what was available for
 replication before Solr 7.
@@ -481,13 +405,13 @@ replication before Solr 7.
 Until Solr 7, Solr had two options for replication purposes:
 
 
--   Master-slave replication or index replication
--   Solr Cloud
+-  Master-slave replication or index replication
+-  Solr Cloud
 
 
 In master-slave replication, also known as
-[**index replication**], the master shares a copy of indexed
-data with one or more slave servers. The master server\'s job is to
+**index replication**, the master shares a copy of indexed
+data with one or more slave servers. The master server's job is to
 index the data that is being added into Solr and share it with the slave
 servers while all read operations are performed in the slaves.
 
@@ -506,16 +430,10 @@ available in SolrCloud before Solr 7, was known as NRT replicas.
 In Solr 7, two new replication methods have been introduced:
 
 
--   TLOG replicas
--   PULL replicas
-
-
-
+-  TLOG replicas
+-  PULL replicas
 
 #### TLOG replicas
-
-
-
 TLOG replica means transaction log replica.
 Instead of indexing the data again, a TLOG replica reads the
 transactions logs of the master or leader shard and replicates the
@@ -527,13 +445,7 @@ replica shard mode and performs only binary replication of segments.
 Replication done using the TLOG replication method is not as real-time
 as the one done using NRT replicas.
 
-
-
-
 #### PULL replicas
-
-
-
 A PULL replica pulls the data from the leader
 shard instead of indexing data locally as in NTR replicas or maintaining
 the transaction logs as in TLOG replicas. In case of failure of the
@@ -542,13 +454,7 @@ that, we may have to use either TLOG or NRT only. PULL replicas provide
 faster data replication from leader shards to replica shards.
 
 
-
-
-
 ### Schemaless improvements
-
-
-
 Solr has improved its schemaless mode
 functionality, the way it now detects data for indexing of an incoming
 field would be text based. By default, it will now be indexed as
@@ -579,13 +485,7 @@ curl http://hostname:8983/solr/collection/config -d '{"set-user-property": {"upd
 ```
 
 
-
-
-
 ### Autoscaling
-
-
-
 As termed in the documentation of
 [http://lucene.apache.org](http://lucene.apache.org/){.ulink}, the goal
 of autoscaling is to make SolrCloud cluster management easier by
@@ -599,13 +499,7 @@ the preferences. With the updated autoscaling feature, we can now have
 Solr spin up new replicas depending on the monitoring metrics, such as
 disk space.
 
-
-
-
 ### Default numeric types
-
-
-
 `Trie*`-based numeric files are now
 replaced by `*PointField` from Solr 7 onwards. Going forward,
 from Solr 8, all `*PointField` types will be removed. You need
@@ -613,80 +507,62 @@ to work towards moving from `*PointFields` to the new
 `Trie*` fields for your schema. After changing to the new
 `*Pointfields` type, data will need to be reindexed in Solr.
 
-
-
-
 ### Spatial fields
-
-
-
 Here is the list of spatial fields that have
 been deprecated:
 
 
--   `SpatialVectorFieldType`
--   `SpatialTermQueryPrefixTreeFieldType`
--   `LatLonType`
--   `GeoHashField`
+-  `SpatialVectorFieldType`
+-  `SpatialTermQueryPrefixTreeFieldType`
+-  `LatLonType`
+-  `GeoHashField`
 
 
 The following is the list of spatial fields that can be used moving
 forward:
 
 
--   `SpatialRecursivePrefixTreeField`
--   `RptWithGeometrySpatialField`
--   `LatLonPointSpatialField`
-
-
-
+-  `SpatialRecursivePrefixTreeField`
+-  `RptWithGeometrySpatialField`
+-  `LatLonPointSpatialField`
 
 
 ### SolrJ
-
-
-
 Here are the changes made in SolrJ:
 
 
--   `HttpClientBuilderPlugin` is replaced with
+-  `HttpClientBuilderPlugin` is replaced with
     `HttpClientInterceptorPlugin` and would work with a
     `SolrHttpClientBuilder` rather than
     `HttpClientConfigurer` that was the case earlier.
--   `HttpClient` instances configuration can be done now with
+-  `HttpClient` instances configuration can be done now with
     help of `SolrHttpClientBuilder` rather than the earlier
     `HttpClientConfigurer` with the help of
     `HttpClientUtil`.
--   `SOLR_AUTHENTICATION_CLIENT_BUILDER` is now being used in
+-  `SOLR_AUTHENTICATION_CLIENT_BUILDER` is now being used in
     variable instead of
     `SOLR_AUTHENTICATION_CLIENT_CONFIGURER` in environment
     variable.
--   `HttpSolrClient#setMaxTotalConnections` along with
+-  `HttpSolrClient#setMaxTotalConnections` along with
     `HttpSolrClient#setDefaultMaxConnectionsPerHost` has now
     been removed. By default, these parameters are now set on the higher
     side and can be changed with the help of parameters when an
     `HttpClient` instance is created.
 
 
-
-
-
 ### JMX and MBeans
+Here are the changes made in **Java
+Management Extensions** (**JMX**) and MBeans:
 
 
-
-Here are the changes made in [**Java
-Management Extensions**] ([**JMX**]) and MBeans:
-
-
--   We notice there is now a hierarchical
+-  We notice there is now a hierarchical
     format for names used in metrics in
     MBeans attributes. For reference we can have look at
     `/admin/plugins` and `/admin/mbeans`. And the UI
     plugins tab is now using a similar approach as now all the APIs
     fetch data from a metrics API. The earlier approach of having a flat
     JMX view has been removed.
--   `<metric><reporter>` has now replaced `<jmx>`
+-  `<metric><reporter>` has now replaced `<jmx>`
     elements in `solrconfig.xml`. And
     `<metric><reporter>` needs to be defined in
     the `solr.xml` configuration file. Default instances of
@@ -697,36 +573,30 @@ Management Extensions**] ([**JMX**]) and MBeans:
     configuration file or via system properties that uses
     `-Dcom.sun.management.jmxremote`. With default instance
     all registries are exported using Solr metrics.
--   If we want to disable the behavior of `SolrJmxReporter` we
+-  If we want to disable the behavior of `SolrJmxReporter` we
     can do it by using `SolrJmxReporter` configuration with a
     `Boolean` argument set to `false`. Backward
     compatibility support might be removed from Solr 8 for
     `SolrJmxReporter`.
 
 
-
-
-
 ### Other changes
-
-
-
 Apart from these changes, there are many
 other features and improvements that have been made in Solr 7:
 
 
--   In Solr 7 the default response type is set to `JSON` that
+-  In Solr 7 the default response type is set to `JSON` that
     was previously in XML format. If you want a response in
     `XML` then you will need to defined `wt=xml` in
     the request parameter.
--   Default value for the `legacyCloud` parameter is set to
+-  Default value for the `legacyCloud` parameter is set to
     `false`. That means if an entry is not found for the
     replica in `state.json`, it will not be registered in the
     cluster shard.
--   By default, the new incoming field will be indexed as
+-  By default, the new incoming field will be indexed as
     `text_general`. The name of the field will be the same as
     defined in the incoming document.
--   The `_default` config set is introduced to replace
+-  The `_default` config set is introduced to replace
     `data_driven_configset` and `basic_configset`.
     So while creating a new collection if no configuration value is
     defined, it will use `_default` configuration. In case of
@@ -734,25 +604,22 @@ other features and improvements that have been made in Solr 7:
     no configuration parameter is defined. While in standalone mode,
     `instanceDir` will be created using the
     `_default` configuration parameter.
--   New configuration set is defined for the SolrClient. So now
+-  New configuration set is defined for the SolrClient. So now
     configuration of socket timeout or connect timeouts are not
     dependent on `HttpClient` and can be defined specifically
     for SolrClient.
--   In SolrJ, `HttpSolrClient#setAllowCompression` that was
+-  In SolrJ, `HttpSolrClient#setAllowCompression` that was
     earlier used to define enabling compression has been removed. Now
     this parameter must be enabled from the `Constructor`
     parameter only.
--   New V2 [**Application Program Interface**]
-    ([**API**]) is available at `/api/` as a
+-  New V2 **Application Program Interface**
+    (**API**) is available at `/api/` as a
     preferred method and to leverage old API `/solr/`
     continues to be available.
--   The standard query parser now has the default
+-  The standard query parser now has the default
     `sow=false` which means that text fields will not split on
     whitespace before handing text to the analyzer. It will help
     analyzer to match synonyms of multi-words.
-
-
-
 Summary
 -------------------------
 

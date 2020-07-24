@@ -2,11 +2,8 @@
 
 Lab 6. Advanced Queries -- Part I
 ----------------------------------------------
-
-
-
 In the previous lab, we learned how to build indexes using various
-methods. In this lab, we will see how Solr\'s search works. Solr
+methods. In this lab, we will see how Solr's search works. Solr
 comes with a large searching kit; by configuring elements from this kit,
 it provides users with an extensive search experience and returns
 impressive results with a helpful interface.
@@ -15,30 +12,27 @@ Here is a list of search functionalities provided by Solr, that put Solr
 in the list of desirable search engines:
 
 
--   Highlighting
--   Spell checking
--   Reranking
--   Transformation of results
--   Suggested words
--   Pagination on results
--   Expand and collapse
--   Grouping and clustering
--   Spatial search
--   More like this word
--   Autocomplete
+-  Highlighting
+-  Spell checking
+-  Reranking
+-  Transformation of results
+-  Suggested words
+-  Pagination on results
+-  Expand and collapse
+-  Grouping and clustering
+-  Spatial search
+-  More like this word
+-  Autocomplete
 
 
 We will look at some of these functions in detail later in this lab,
 but first Let's understand every component that performs an important
 role during searches and generates impressive results.
 
-
-
-
 Search relevance
 ----------------------------------
 
-Relevance is a measurement of the user\'s satisfaction
+Relevance is a measurement of the user's satisfaction
 with the response to their search query. It
 completely depends on the context of the search. Sometimes, the same
 document can be searched by different classes of people for different
@@ -46,9 +40,9 @@ context. For example, the search query [*higher tax payer in
 India*] can be searched by:
 
 
--   An income tax department in the context of their duty
--   Chartered accountants in the context of their professional interest
--   Students in the context of gaining knowledge
+-  An income tax department in the context of their duty
+-  Chartered accountants in the context of their professional interest
+-  Students in the context of gaining knowledge
 
 
 The comprehensiveness of any response depends on the context of the
@@ -60,9 +54,9 @@ take care of this too.
 There are two terms that play an important role in relevance:
 
 
--   [**Precision**]: Precision is the percentage of documents
+-  **Precision**: Precision is the percentage of documents
     in the returned results that are relevant.
--   [**Recall**]: Recall is the percentage of relevant results
+-  **Recall**: Recall is the percentage of relevant results
     returned out of all relevant results in the system. Retrieving
     perfect recall is insignificant, for example, returning every
     document for every query.
@@ -80,9 +74,6 @@ application can be configured with the flexibility to help end users get
 their searches, in order to return the most relevant results for users.
 We can configure Solr to balance precision and recall to meet the needs
 of a particular user community.
-
-
-
 Velocity search UI
 ------------------------------------
 
@@ -102,9 +93,6 @@ the following screenshot:
 Solr uses response writer to generate an organized response. Here
 velocity UI uses velocity response writer. We will explore response
 writer later in this lab.
-
-
-
 Query parsing and syntax
 ------------------------------------------
 
@@ -114,29 +102,23 @@ supports some query parsers. Here is the list of parsers supported by
 Solr:
 
 
--   [**Standard query parser**]
--   [**DisMax query parser**]
--   [**Extended DisMax (eDisMax) query parser**]
+-  **Standard query parser**
+-  **DisMax query parser**
+-  **Extended DisMax (eDisMax) query parser**
 
 
 Each parser has its own configuration parameters for clubbing with Solr.
 However, there are some common parameters required by all parsers. First
 Let's take a look at these common parameters.
-
-
-
 ### Common query parameters
-
-
-
 The following are the common query parameters
 supported by standard query parser, DisMax query parser, and extended
 DisMax query parser:
 
 
 +----------------------+----------------------+----------------------+
-| [**P                 | [**                  | [**Default           |
-| arameter**] | Behavior**] | value**]    |
+| **P                 | **                  | **Default           |
+| arameter** | Behavior** | value**    |
 +----------------------+----------------------+----------------------+
 | `defType`  | Selects the query    | `Lucene`   |
 |                      | parser:              | (standard query      |
@@ -161,20 +143,20 @@ DisMax query parser:
 |                      | supports sorting by  |                      |
 |                      | field clones.        |                      |
 |                      |                      |                      |
-|                      | [**                  |                      |
-|                      | Example**]: |                      |
+|                      | **                  |                      |
+|                      | Example**: |                      |
 |                      |                      |                      |
 |                      |   |                      |
-|                      | -   `sa              |                      |
+|                      | -  `sa              |                      |
 |                      | lary asc`: |                      |
 |                      |     Sorts based on   |                      |
 |                      |     salary (high to  |                      |
 |                      |     low).            |                      |
-|                      | -   `n               |                      |
+|                      | -  `n               |                      |
 |                      | ame desc`: |                      |
 |                      |     Sorts based on   |                      |
 |                      |     names (z → a).   |                      |
-|                      | -   `salary asc n    |                      |
+|                      | -  `salary asc n    |                      |
 |                      | ame desc`: |                      |
 |                      |     First sorts by   |                      |
 |                      |     salary high to   |                      |
@@ -217,7 +199,7 @@ DisMax query parser:
 |                      | For example:         |                      |
 |                      |                      |                      |
 |                      |   |                      |
-|                      | -   `fl=id nam       |                      |
+|                      | -  `fl=id nam       |                      |
 |                      | e salary`: |                      |
 |                      |     Returns only     |                      |
 |                      |     `id`,  |                      |
@@ -226,7 +208,7 @@ DisMax query parser:
 |                      |     and              |                      |
 |                      |                      |                      |
 |                      |   `salary` |                      |
-|                      | -   `fl=id,nam       |                      |
+|                      | -  `fl=id,nam       |                      |
 |                      | e,salary`: |                      |
 |                      |     Returns only     |                      |
 |                      |     `id`,  |                      |
@@ -252,20 +234,20 @@ DisMax query parser:
 |                      | example:             |                      |
 |                      |                      |                      |
 |                      |   |                      |
-|                      | -   `fl=             |                      |
+|                      | -  `fl=             |                      |
 |                      | id score`: |                      |
 |                      |     Returns the      |                      |
 |                      |     `id`   |                      |
 |                      |     field and the    |                      |
 |                      |                      |                      |
 |                      |    `score` |                      |
-|                      | -   `fl              |                      |
+|                      | -  `fl              |                      |
 |                      | =* score`: |                      |
 |                      |     Returns all the  |                      |
 |                      |     fields in each   |                      |
 |                      |     document along   |                      |
 |                      |     with each        |                      |
-|                      |     field\'s         |                      |
+|                      |     field's         |                      |
 |                      |                      |                      |
 |                      |    `score` |                      |
 |                      |                   |                      |
@@ -276,13 +258,13 @@ DisMax query parser:
 |                      | For example:         |                      |
 |                      |                      |                      |
 |                      |   |                      |
-|                      | -   `de              |                      |
+|                      | -  `de              |                      |
 |                      | bug=query` |                      |
 |                      |     will return      |                      |
 |                      |     debug            |                      |
 |                      |     information      |                      |
 |                      |     about the query  |                      |
-|                      | -   `deb             |                      |
+|                      | -  `deb             |                      |
 |                      | ug=timing` |                      |
 |                      |     will return      |                      |
 |                      |     debug            |                      |
@@ -290,7 +272,7 @@ DisMax query parser:
 |                      |     about the        |                      |
 |                      |     processing time  |                      |
 |                      |     of the query     |                      |
-|                      | -   `debu            |                      |
+|                      | -  `debu            |                      |
 |                      | g=results` |                      |
 |                      |     will return      |                      |
 |                      |     debug            |                      |
@@ -298,7 +280,7 @@ DisMax query parser:
 |                      |     about the score  |                      |
 |                      |     results          |                      |
 |                      |     (explain)        |                      |
-|                      | -   `                |                      |
+|                      | -  `                |                      |
 |                      | debug=all` |                      |
 |                      |     or               |                      |
 |                      |     `d               |                      |
@@ -388,34 +370,16 @@ Apart from the preceding common parameters for parsers,
 parameters which are used by all the parsers. We are not detailing these
 parameters here.
 
-
-
-
 ### Standard query parser
-
-
-
 Standard query parser, also
-known as [**Lucene query
-parser**], is the default query
+known as **Lucene query
+parser**, is the default query
 parser for Solr.
-
-
-
 #### Advantage
-
-
-
 The syntax is easy and differently structured
 queries can easily be created using standard query parser.
 
-
-
-
 #### Disadvantage
-
-
-
 Standard query parser does not throw any
 syntax error. So, identifying syntax errors is a little tough.
 
@@ -424,7 +388,7 @@ configure them in `solrconfig.xml`:
 
 
   -------------------------- --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- ------------------------------
-  [**Parameter**]   [**Behavior**]                                                                                                                                                           [**Default value**]
+  **Parameter**   **Behavior**                                                                                                                                                           **Default value**
   `q`              Specifies a query using standard query syntax. This is a mandatory parameter for any request.                                                                                     
   `q.op`           Specifies the default operator for query expressions, which overrides the default operator configured inside the schema. Possible values are `AND` or `OR`.   
   `df`             Specifies a default field, which overrides the default field definition inside the schema.                                                                                        
@@ -432,11 +396,11 @@ configure them in `solrconfig.xml`:
   -------------------------- --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- ------------------------------
 
 
-[**Standard query parser response**]: The following is the
+**Standard query parser response**: The following is the
 sample response provided by the standard query parser when we search for
 `field id=SP2514N`
 
-[**URL**]: `http://localhost:8983/solr/techproducts/select?q=SP2514N&wt=json`
+**URL**: `http://localhost:8983/solr/techproducts/select?q=SP2514N&wt=json`
 
 In Solr admin console, while running a query to search a product with
 `id=SP2514N` displays the response as follows:
@@ -483,9 +447,9 @@ In the same way, now the query `id=SP2514N`; and we need only
 two fields, `id` and `name`, in
 `response`.
 
-[**URL**]: `http://localhost:8983/solr/techproducts/select?fl=id,name&q=SP2514N&wt=json`.
+**URL**: `http://localhost:8983/solr/techproducts/select?fl=id,name&q=SP2514N&wt=json`.
 
-[**Response**]:
+**Response**:
 
 
 ``` {.programlisting .language-markup}
@@ -511,20 +475,14 @@ We can format the response by setting the `wt` parameter as
 `javabin`, `geojson`, `python`,
 `php`, `phps`, `ruby`, `csv`,
 `velocity`, `smile`, or `xlsx`.
-
-
-
 ##### Searching terms for standard query parser
-
-
-
 A query string to standard query parser
 contains terms and operators. There are two types of terms:
 
 
--   [**Single term**]: A single word, such as
+-  **Single term**: A single word, such as
     `soccer` or `volleyball`
--   [**A phrase**]: A group of words surrounded by double
+-  **A phrase**: A group of words surrounded by double
     quotes, such as `apache solr`
 
 
@@ -532,24 +490,12 @@ We can combine multiple terms with Boolean operators to form complex
 queries.
 
 
-
-
-
 #### Term modifiers
-
-
-
 Solr supports many term modifiers that add
 flexibility or precision during searching. These term modifiers are
 wildcard characters, characters for making a search fuzzy, and so on.
 
-
-
-
 #### Wildcard searches
-
-
-
 The standard query parser supports two types
 of wildcard searches within a single term. They are single
 (`?`) and multiple (`*`) characters. They can be
@@ -557,19 +503,13 @@ applied to single terms only, and not to search phrases. For example:
 
 
   ------------------------------------------------------------------ ---------------------------------- -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-  [**Wildcard search type**]                                [**Special character**]   [**Search example**]
+  **Wildcard search type**                                **Special character**   **Search example**
   Single character (matches a single character)                      `?`                      Searching for a string `te?t` will match `test` and `text`.
   Multiple characters (matches zero or more sequential characters)   `*`                      Searching for string `tes*` will match `test`, `testing`, and `tester`. The wildcard characters can be used at the beginning, middle, or end of a term. For example, the string `te*t` will match `test` and `text`, and `*est` will match `pest` and `test`.
   ------------------------------------------------------------------ ---------------------------------- -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
-
-
-
 #### Fuzzy searches
-
-
-
 In fuzzy searching, instead of matching exact terms, Solr searches
 terms that are likely similar to a specified
 term. The tilde (`~`) symbol is used at the end of a single
@@ -584,13 +524,7 @@ searching for `roam~1` will search the terms such as roams and
 foam but not foams because it has a modification distance of
 `2`.
 
-
-
-
 #### Proximity searching 
-
-
-
 Proximity searching searches for terms within
 a specific distance of each other. To implement a proximity search,
 specify a tilde (`~`) symbol with a numeric value at the end
@@ -607,13 +541,7 @@ document, do this:
 The distance value specifies the term movements needed to match the
 specified phrase.
 
-
-
-
 #### Range searches
-
-
-
 In range searches, documents are searched based on a provided range
 (upper and lower bound) for a specific field. All the documents whose
 values for the specified field fall in a
@@ -642,9 +570,9 @@ are between `apache` and `lucene`, but not including
 `apache` and `lucene`:
 
 
--   [**Inclusive**]: Square brackets `[ & ]`.
+-  **Inclusive**: Square brackets `[ & ]`.
     Documents are searched by including the upper and lower bound.
--   [**Exclusive**]: Curly brackets
+-  **Exclusive**: Curly brackets
     `{ & }`. Documents are searched between the upper and
     lower bound, but excluding the bounds.
 
@@ -653,20 +581,14 @@ Combining inclusive and exclusive is also possible, where one end is
 inclusive and the other is exclusive, for
 example, `price:[5 TO 20}`.
 
-
-
-
 #### Boolean operators
-
-
-
 Here is a list of Boolean operators supported by standard
 .indexterm} query parser:
 
 
 +----------------------+----------------------+----------------------+
-| [**                  | [                    | [**Des               |
-| Operator**] | **Symbol**] | cription**] |
+| **                  | [                    | **Des               |
+| Operator** | **Symbol** | cription** |
 +----------------------+----------------------+----------------------+
 | `AND`      | `&&`       | Requires both terms  |
 |                      |                      | to match. For        |
@@ -676,10 +598,10 @@ Here is a list of Boolean operators supported by standard
 |                      |                      | volleyball:          |
 |                      |                      |                      |
 |                      |                      |   |
-|                      |                      | -                    |
+|                      |                      | -                   |
 |                      |                      |    `"soccer" AND "vo |
 |                      |                      | lleyball"` |
-|                      |                      | -   `"soccer" && "vo |
+|                      |                      | -  `"soccer" && "vo |
 |                      |                      | lleyball"` |
 |                      |                      |                   |
 +----------------------+----------------------+----------------------+
@@ -693,10 +615,10 @@ Here is a list of Boolean operators supported by standard
 |                      |                      | contain volleyball:  |
 |                      |                      |                      |
 |                      |                      |   |
-|                      |                      | -                    |
+|                      |                      | -                   |
 |                      |                      |    `"soccer" NOT "vo |
 |                      |                      | lleyball"` |
-|                      |                      | -   `"soccer" ! "vo  |
+|                      |                      | -  `"soccer" ! "vo  |
 |                      |                      | lleyball"` |
 |                      |                      |                   |
 +----------------------+----------------------+----------------------+
@@ -712,9 +634,9 @@ Here is a list of Boolean operators supported by standard
 |                      |                      | volleyball:          |
 |                      |                      |                      |
 |                      |                      |   |
-|                      |                      | -   `"soccer" OR "vo |
+|                      |                      | -  `"soccer" OR "vo |
 |                      |                      | lleyball"` |
-|                      |                      | -   `"soccer" || "vo |
+|                      |                      | -  `"soccer" || "vo |
 |                      |                      | lleyball"` |
 |                      |                      |                   |
 +----------------------+----------------------+----------------------+
@@ -741,22 +663,13 @@ Here is a list of Boolean operators supported by standard
 |                      |                      | `+soccer -v          |
 |                      |                      | olleyball` |
 +----------------------+----------------------+----------------------+
-
-
-
-### []{#note30}Note
+### Note
 
 Please note that the Boolean operators `AND` and
 `NOT` must be specified in uppercase.
 
 
-
-
-
 #### Escaping special characters
-
-
-
 [] Solr treats these characters with
 a special meaning when they are used in a query:
 
@@ -778,13 +691,7 @@ will be treated as normal characters like this:
 ```
 
 
-
-
-
 #### Grouping terms
-
-
-
 Solr supports groups of clauses using parentheses to form
 .indexterm} subqueries that control the Boolean logic for a query.
 
@@ -808,13 +715,7 @@ game:(+soccer +volleyball)
 ```
 
 
-
-
-
 #### Dates and times in query strings
-
-
-
 We need to use an appropriate date format whenever
 .indexterm} we are running a query against any date field. Search
 queries for exact date values will require quoting or escaping because
@@ -840,13 +741,7 @@ createddate:[2001-01-11T23:45:40.60Z/YEAR TO 2001-01-11T23:45:40.60Z]
 ```
 
 
-
-
-
 #### Adding comments to the query string
-
-
-
 Comments can also be added to the query
 string. Solr supports C-style comments in the query string. Comments may
 be nested. For example:
@@ -858,13 +753,7 @@ soccer /* this is a simple comment for query string */ OR volleyball
 
 
 
-
-
-
 ### The DisMax Query Parser
-
-
-
 The DisMax query parser processes simple
 phrases (simple syntax). The DisMax query provides an interface that
 looks similar to Google. The DisMax Query Parser supports the simplified
@@ -873,24 +762,12 @@ grouping phrases. The DisMax Query Parser
 escapes all Boolean operators to simplify the query syntax, except the
 operators `AND` and `OR`, which can be used to
 determine mandatory and optional clauses.
-
-
-
 #### Advantages
-
-
-
 It produces syntax error messages. It also provides
 .indexterm} additional boosting queries, boosting functions, and
 filtering queries for search results.
 
-
-
-
 #### DisMax query parser parameters
-
-
-
 Apart from common parameters, the following is a list
 .indexterm} of all parameters supported by the DisMax Query Parser. All
 the default values for these parameters are configured in
@@ -898,7 +775,7 @@ the default values for these parameters are configured in
 
 
 +--------------------------+------------------------------------------+
-| [**Parameter**] | [**Behavior**]                  |
+| **Parameter** | **Behavior**                  |
 +--------------------------+------------------------------------------+
 | `q`            | Specifies a query string with no special |
 |                          | characters and treats Boolean operators  |
@@ -908,8 +785,8 @@ the default values for these parameters are configured in
 |                          | parameter:                               |
 |                          |                                          |
 |                          |                       |
-|                          | -   `q=apache`                 |
-|                          | -   `q="Apache Lucene"`        |
+|                          | -  `q=apache`                 |
+|                          | -  `q="Apache Lucene"`        |
 |                          |                                       |
 +--------------------------+------------------------------------------+
 | `a.alt`        | Defines an alternate query when the main |
@@ -953,15 +830,15 @@ the default values for these parameters are configured in
 |                          | The default value for mm is 100%, which  |
 |                          | means all clauses must match.            |
 +--------------------------+------------------------------------------+
-| `pf`           | The [**Phrase Fields**]         |
-|                          | ([**pf**]) parameter            |
+| `pf`           | The **Phrase Fields**         |
+|                          | (**pf**) parameter            |
 |                          | boosts the    |
 |                          | score of a document when all the terms   |
 |                          | in the `q` parameter appear in |
 |                          | close proximity.                         |
 +--------------------------+------------------------------------------+
-| `ps`           | The [**Phrase Slop**]           |
-|                          | ([**ps**]) parameter specifies  |
+| `ps`           | The **Phrase Slop**           |
+|                          | (**ps**) parameter specifies  |
 |                          | the number of positions a term is        |
 |                          | required to move to match a phrase       |
 |                          | specified in a query with the            |
@@ -969,10 +846,10 @@ the default values for these parameters are configured in
 +--------------------------+------------------------------------------+
 | `qs`           | Similar to the `ps` parameter  |
 |                          | for the `pf` parameter, the    |
-|                          | [**Query Phrase Slop**]         |
-|                          | ([**qs**]) defines the amount   |
+|                          | **Query Phrase Slop**         |
+|                          | (**qs**) defines the amount   |
 |                          | of slop on phrase queries explicitly     |
-|                          | included in the user\'s query            |
+|                          | included in the user's query            |
 |                          | string with   |
 |                          | the `qf` parameter.            |
 +--------------------------+------------------------------------------+
@@ -982,11 +859,11 @@ the default values for these parameters are configured in
 |                          | tiebreaker when a query term is matched  |
 |                          | in more than one field in a document.    |
 +--------------------------+------------------------------------------+
-| `bq`           | The [**Boost Query**]           |
-|                          | ([**bq**]) parameter            |
+| `bq`           | The **Boost Query**           |
+|                          | (**bq**) parameter            |
 |                          | specifies an  |
 |                          | additional and optional query clause     |
-|                          | that will be added to the user\'s main   |
+|                          | that will be added to the user's main   |
 |                          | query to influence the score. For        |
 |                          | example, if you want to add a relevancy  |
 |                          | boost for recent documents:              |
@@ -999,11 +876,11 @@ the default values for these parameters are configured in
 |                          | be parsed as separate clauses with       |
 |                          | separate boosts.                         |
 +--------------------------+------------------------------------------+
-| `bf`           | The [**Boost Functions**]       |
-|                          | ([**bf**]) parameter            |
+| `bf`           | The **Boost Functions**       |
+|                          | (**bf**) parameter            |
 |                          | specifies     |
 |                          | functions (with optional boosts) that    |
-|                          | will be added to the user\'s main query  |
+|                          | will be added to the user's main query  |
 |                          | to influence the score. Any function     |
 |                          | supported natively by Solr can be used   |
 |                          | along with a boost value. For example,   |
@@ -1033,7 +910,7 @@ query parser:
 ![](https://github.com/fenago/apache-solr/raw/master/images/9ac6acff-a614-467c-bbe6-2e398cd223da.png)
 
 
-[**Response**]: 
+**Response**: 
 
 
 ``` {.programlisting .language-markup}
@@ -1068,13 +945,12 @@ query parser:
 ```
 
 
-[**Example**]: Retrieve only field `id` and
+**Example**: Retrieve only field `id` and
 `name` with `score`
 
-[**URL**]:
-`http://localhost:8983/solr/techproducts/select?defType=dismax&q=SP2514N&fl=id,name,score`
+**URL**: `http://localhost:8983/solr/techproducts/select?defType=dismax&q=SP2514N&fl=id,name,score`
 
-[**Response**]:
+**Response**:
 
 
 ``` {.programlisting .language-markup}
@@ -1097,14 +973,13 @@ query parser:
 
 Use `fl=*` to retrieve all the fields.
 
-[**Example**]: Now we search for query `iPod`,
+**Example**: Now we search for query `iPod`,
 assigning boosting to the `fields` features and
 `cat`.
 
-[**URL**]:
-`http://localhost:8983/solr/techproducts/select?defType=dismax&q=iPod&qf=features^10.0+cat^0.5`
+**URL**: `http://localhost:8983/solr/techproducts/select?defType=dismax&q=iPod&qf=features^10.0+cat^0.5`
 
-[**Response**]:
+**Response**:
 
 
 ``` {.programlisting .language-markup}
@@ -1138,49 +1013,43 @@ assigning boosting to the `fields` features and
 ```
 
 
-[**Example**]: Boost results that have a field that matches a
+**Example**: Boost results that have a field that matches a
 specific value.
 
-[**URL:**] `http://localhost:8983/solr/techproducts/select?defType=dismax&q=iPod&bq=cat:electronics^5.0`
+**URL:** `http://localhost:8983/solr/techproducts/select?defType=dismax&q=iPod&bq=cat:electronics^5.0`
 
 In the same way, we can construct a URL for other
 parameters as well.
 
 
-
-
-
 ### eDisMax Query Parser
-
-
-
 The eDisMax Query Parser is an improved version
 .indexterm} of the DisMax Query Parser. Along with supporting all the
 features provided by DisMax Query Parser, it supports
 .indexterm} the following:
 
 
--   Lucene query parser syntax
--   Improved smart partial escaping in the case of syntax errors
--   Improved proximity boosting by using word shingles
--   Advanced stop word handling
--   Improved boost function
--   Pure negative nested queries
--   We can specify which fields the end user is allowed to query, and
+-  Lucene query parser syntax
+-  Improved smart partial escaping in the case of syntax errors
+-  Improved proximity boosting by using word shingles
+-  Advanced stop word handling
+-  Improved boost function
+-  Pure negative nested queries
+-  We can specify which fields the end user is allowed to query, and
     specify to disallow direct fielded searches
 
 
-[**eDisMax Query Parser Parameters**]: Along with the common
+**eDisMax Query Parser Parameters**: Along with the common
 parameters, we have these eDisMax Query Parser parameters:
 
 
   -------------------------------- ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- --------------------------------------
-  [**Parameter**]         [**Behavior**]                                                                                                                                                                                                                                                                                                   [**Default Value**]
+  **Parameter**         **Behavior**                                                                                                                                                                                                                                                                                                   **Default Value**
   `sow`                  Split on whitespace. Possible values are true and false. Once we set this to `true`, text analysis will be done for every individual whitespace-separated term.                                                                                                                                                 False
   `mm.autoRelax`         Relax the clauses in case of some of the clauses removed like stop words and search wont get impacted due to any clause removal. We need to take care when using the `mm.autoRelax` parameter because sometimes we may get unpredictable results. Possible values are `true` and `false`.   False
   `boost`                A multivalued list of strings parsed as queries, with scores multiplied by the score from the main query for all matching documents.                                                                                                                                                                                      
   `lowercaseOperators`   Treats lowercase `and` and `or` the same as the operators `AND` and `OR`.                                                                                                                                                                                                         False
-  `pf2`                  A multivalued list of fields with optional weights. It\'s similar to `pf`, but based on pairs of word shingles.                                                                                                                                                                                                 
+  `pf2`                  A multivalued list of fields with optional weights. It's similar to `pf`, but based on pairs of word shingles.                                                                                                                                                                                                 
   `pf3`                  A multivalued list of fields with optional weights, based on triplets of word shingles. It is similar to `pf`, except that instead of building a phrase per field out of all the words in the input, it builds a set of phrases for each field out of each triplet of word shingles.                            
   `ps`                   The `ps` parameter specifies how many term positions the terms in the query can be off by to be considered a match on the phrase fields.                                                                                                                                                                        
   `ps2`                  Similar to `ps` but overrides the slop factor used for `pf2`. If not specified, `ps` is used.                                                                                                                                                                                               
@@ -1192,12 +1061,12 @@ parameters, we have these eDisMax Query Parser parameters:
 
  
 
-[**Examples**]: Searching for `music` or
+**Examples**: Searching for `music` or
 `camera` and boosting by popularity.
 
-[**URL:**] `http://localhost:8983/solr/techproducts/select?defType=edismax&q=music+OR+camera&boost=popularity`
+**URL:** `http://localhost:8983/solr/techproducts/select?defType=edismax&q=music+OR+camera&boost=popularity`
 
-[**Response:**]
+**Response:**
 
 
 ``` {.programlisting .language-markup}
@@ -1260,9 +1129,6 @@ parameters, we have these eDisMax Query Parser parameters:
 
 In the same way, we can configure all the eDisMax parser parameters and
 explore the search functionality.
-
-
-
 Response writer
 ---------------------------------
 
@@ -1271,7 +1137,7 @@ The user who is searching is mainly interested
 in only a single format, if we allow them to select their choice of
 output/response format and return a response in that format, it will
 really make the user happy. The good news is that Solr provides various
-response writers for the end user\'s convenience.
+response writers for the end user's convenience.
 
 Once the user runs a search, along with providing matching results, Solr
 provides a formatted and well-organized output result that becomes easy
@@ -1279,19 +1145,19 @@ and attractive for the end user. Solr handles this through a response
 writer. Solr supports these response writers:
 
 
--   JSON (default)
--   Standard XML
--   XSLT
--   Binary
--   GeoJSON
--   Python
--   PHP
--   PHP serialized
--   Ruby
--   CSV
--   Velocity
--   Smile
--   XLSX
+-  JSON (default)
+-  Standard XML
+-  XSLT
+-  Binary
+-  GeoJSON
+-  Python
+-  PHP
+-  PHP serialized
+-  Ruby
+-  CSV
+-  Velocity
+-  Smile
+-  XLSX
 
 
 We can select the response writer by providing an appropriate value to
@@ -1300,7 +1166,7 @@ the `wt` parameter. These are the response writer values for
 
 
   -------------------------------- -----------------------------------
-  [**Response writer**]   [**wt parameter value**]
+  **Response writer**   **wt parameter value**
   JSON                             `json`
   Standard XML                     `xml`
   XSLT                             `xslt`
@@ -1318,13 +1184,7 @@ the `wt` parameter. These are the response writer values for
 
 
 Let's explore some of these response writers in detail.
-
-
-
 ### JSON
-
-
-
 JSON response writer converts results into
 JSON format. This is a default response writer for Solr, so if we do not
 set the `wt` parameter, the default output will be in JSON
@@ -1347,15 +1207,15 @@ configuration in `techproducts solrconfig.xml`:
 ```
 
 
-[**JSON response writer parameters**]
+**JSON response writer parameters**
 
 This is a list of JSON response writer parameters that we need to
 configure to get a response in the expected format:
 
 
 +----------------+----------------+----------------+----------------+
-| [**Paramet     | [**Behavi      | [**Val         | [**Descripti   |
-| er**] | or**] | ue**] | on**] |
+| **Paramet     | **Behavi      | **Val         | **Descripti   |
+| er** | or** | ue** | on** |
 +----------------+----------------+----------------+----------------+
 | `json          | Controls the   | `f             | `NamedL        |
 | .nl` | output format  | lat` | ist` |
@@ -1366,8 +1226,8 @@ configure to get a response in the expected format:
 |                | order is more  |                | names and      |
 |                | important than |                | values.        |
 |                | access by      |                |                |
-|                | name.          |                | [**Inpu        |
-|                | `NamedL        |                | t:**] |
+|                | name.          |                | **Inpu        |
+|                | `NamedL        |                | t:** |
 |                | ist` |                |                |
 |                | is currently   |                | `Nam           |
 |                | used for field |                | edList("a"=1,  |
@@ -1375,8 +1235,8 @@ configure to get a response in the expected format:
 |                |                |                | ull=3, null=nu |
 |                |                |                | ll)` |
 |                |                |                |                |
-|                |                |                | [**Outpu       |
-|                |                |                | t:**] |
+|                |                |                | **Outpu       |
+|                |                |                | t:** |
 |                |                |                |                |
 |                |                |                | `["a",1,       |
 |                |                |                | "bar","foo", n |
@@ -1392,14 +1252,14 @@ configure to get a response in the expected format:
 |                |                |                | preserves the  |
 |                |                |                | order.         |
 |                |                |                |                |
-|                |                |                | [**Input:**    |
+|                |                |                | **Input:**    |
 |                |                |                | ]`Nam |
 |                |                |                | edList("a"=1,  |
 |                |                |                | "bar"="foo", n |
 |                |                |                | ull=3, null=nu |
 |                |                |                | ll)` |
 |                |                |                |                |
-|                |                |                | [**Output:**]  |
+|                |                |                | **Output:**  |
 |                |                |                | `{"a" |
 |                |                |                | :1, "bar":"foo |
 |                |                |                | ", "":3, "":nu |
@@ -1412,14 +1272,14 @@ configure to get a response in the expected format:
 |                |                |                | two element    |
 |                |                |                | arrays.        |
 |                |                |                |                |
-|                |                |                | [**Input:**    |
+|                |                |                | **Input:**    |
 |                |                |                | ]`Nam |
 |                |                |                | edList("a"=1,  |
 |                |                |                | "bar"="foo", n |
 |                |                |                | ull=3, null=nu |
 |                |                |                | ll)` |
 |                |                |                |                |
-|                |                |                | [**Output:*    |
+|                |                |                | **Output:*    |
 |                |                |                | *]`[[ |
 |                |                |                | "a",1], ["bar" |
 |                |                |                | ,"foo"], [null |
@@ -1432,15 +1292,15 @@ configure to get a response in the expected format:
 |                |                |                | as an array of |
 |                |                |                | JSON objects.  |
 |                |                |                |                |
-|                |                |                | [**Input:**    |
+|                |                |                | **Input:**    |
 |                |                |                | ]`Nam |
 |                |                |                | edList("a"=1,  |
 |                |                |                | "bar"="foo", n |
 |                |                |                | ull=3, null=nu |
 |                |                |                | ll)` |
 |                |                |                |                |
-|                |                |                | [**Ou          |
-|                |                |                | tput:**]{.stro |
+|                |                |                | **Ou          |
+|                |                |                | tput:**{.stro |
 |                |                |                | ng}`[{"a":1},  |
 |                |                |                | {"b":2}, 3, nu |
 |                |                |                | ll]` |
@@ -1453,14 +1313,14 @@ configure to get a response in the expected format:
 |                |                |                | value JSON     |
 |                |                |                | objects.       |
 |                |                |                |                |
-|                |                |                | [**Input:**    |
+|                |                |                | **Input:**    |
 |                |                |                | ]`Nam |
 |                |                |                | edList("a"=1,  |
 |                |                |                | "bar"="foo", n |
 |                |                |                | ull=3, null=nu |
 |                |                |                | ll)` |
 |                |                |                |                |
-|                |                |                | [**Output:**   |
+|                |                |                | **Output:**   |
 |                |                |                | ]`[{" |
 |                |                |                | name":"a","typ |
 |                |                |                | e":"int","valu |
@@ -1489,11 +1349,11 @@ configure to get a response in the expected format:
 +----------------+----------------+----------------+----------------+
 
 
-[**Example:**] Searching for `id=SP2514N`.
+**Example:** Searching for `id=SP2514N`.
 
-[**URL:**]`http://localhost:8983/solr/techproducts/select?q=SP2514N&wt=json.`
+**URL:**`http://localhost:8983/solr/techproducts/select?q=SP2514N&wt=json.`
 
-[**Response:**]
+**Response:**
 
 
 ``` {.programlisting .language-markup}
@@ -1541,21 +1401,15 @@ bottom. The query URL and response output will be displayed as follows:
 
 Solr console admin, response writer configuration, and output
 
-
-
-
 ### Standard XML
-
-
-
 The standard XML response writer is the most
 common and usable response writer in Solr.
 
-[**Standard XML response writer parameters**]:
+**Standard XML response writer parameters**:
 
 
   -------------------------- -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- ---------------------------------------------------------------------------------------------------
-  [**Parameter**]   [**Behavior**]                                                                                                                                                                                              [**Default Value**]
+  **Parameter**   **Behavior**                                                                                                                                                                                              **Default Value**
   `version`        The `version` parameter determines the XML protocol used in the response. The advantage of setting this parameter is that the response format remains the same even if the Solr version gets an upgrade.   The default value is the latest supported one. The only currently supported version value is 2.2.
   `stylesheet`     It includes a `<?xml-stylesheet type="text/xsl" href="…​"?>` declaration in the XML response.                                                                                                              Solr does not return any style sheet declaration by default.
   `indent`         Indenting the XML response for a more human-readable format.                                                                                                                                                         By default, Solr will not indent the XML response.
@@ -1564,7 +1418,7 @@ common and usable response writer in Solr.
 
  
 
-[**Example**]: Searching for query `id=SP2514N` and
+**Example**: Searching for query `id=SP2514N` and
 retrieving a response in XML format.
 
 Solr admin console, searching for product `id=SP2514N`, and
@@ -1574,9 +1428,9 @@ retrieving the response in XML format:
 ![](https://github.com/fenago/apache-solr/raw/master/images/97bd976d-fb25-4212-892b-ff236235dc22.png)
 
 
-[**URL**`:`****] `http://localhost:8983/solr/techproducts/select?q=SP2514N&wt=xml`
+**URL**`:`**** `http://localhost:8983/solr/techproducts/select?q=SP2514N&wt=xml`
 
-[**Response**]:
+**Response**:
 
 
 ``` {.programlisting .language-markup}
@@ -1618,24 +1472,18 @@ retrieving the response in XML format:
 ```
 
 
-
-
-
 ### CSV
-
-
-
 This returns the results in CSV format. Some
 information (like facet) will be excluded from the CSV response. The CSV
 response writer supports multi-valued fields as well as pseudo-fields,
-and the output of this CSV format is compatible with Solr\'s CSV update
+and the output of this CSV format is compatible with Solr's CSV update
 format.
 
-[**CSV response writer parameters**]:
+**CSV response writer parameters**:
 
 
   ------------------------------ ------------------------------------------------------------------------------ ------------------------------
-  [**Parameter**]       [**Behavior**]                                                        [**Default value**]
+  **Parameter**       **Behavior**                                                        **Default value**
   `csv.encapsulator`   Specifies a character to be used as an encapsulator in the response            `"`
   `csv.escape`         Specifies the items to be escaped from the response                            `None`
   `csv.separator`      Specifies the separator for the CSV response                                   `,`
@@ -1647,7 +1495,7 @@ format.
 
  
 
-[**Example:**] Searching for query `id=SP2514N` and
+**Example:** Searching for query `id=SP2514N` and
 retrieving the response in `.csv` format.
 
 Solr admin console, searching for product `id=SP2514N`, and
@@ -1657,9 +1505,9 @@ retrieving the response in `.csv` format:
 ![](https://github.com/fenago/apache-solr/raw/master/images/b1008006-a69b-496a-8aa4-96b37c1c2bfb.png)
 
 
-[**URL:**] `http://localhost:8983/solr/techproducts/select?q=SP2514N&wt=csv`
+**URL:** `http://localhost:8983/solr/techproducts/select?q=SP2514N&wt=csv`
 
-[**Response:**]
+**Response:**
 
 
 ``` {.programlisting .language-markup}
@@ -1668,18 +1516,12 @@ payloads,manu_id_s,manu,address_s,weight,includes,incubationdate_dt,store,manufa
 ```
 
 
-
-
-
 ### Velocity
-
-
-
 Solr supports a velocity response writer,
 which is used in Velocity UI to demonstrate
 some core search features:
-[**faceting**], [**highlighting**],
-[**autocomplete**], and [**geospatial**] searching.
+**faceting**, **highlighting**,
+**autocomplete**, and **geospatial** searching.
 velocity response writer is an
 optional plugin available in the
 `contrib/velocity` directory.
@@ -1711,9 +1553,6 @@ We have almost finished looking at search configuration components such
 as relevance, various query parsers, and response writers. Now Let's
 take a deep dive and and explore various search result operations:
 faceting, clustering, highlighting, and so on.
-
-
-
 Faceting
 --------------------------
 
@@ -1728,39 +1567,27 @@ There are many types of faceting provided by Solr. Here is a list of
 faceting types that Solr currently supports:
 
 
--   Range faceting
--   Pivot (decision tree) faceting
--   Interval faceting
+-  Range faceting
+-  Pivot (decision tree) faceting
+-  Interval faceting
 
 
 We will explore these later in this lab. But to configure any
 faceting in Solr, first we have to configure the related parameters. So
 Let's understand faceting parameters first.
-
-
-
 ### Common parameters
-
-
-
 These are the common parameters for all types
 of faceting:
 
 
   -------------------------- ---------------------------------------------------------------------------------------------------------- ------------------------------
-  [**Parameter**]   [**Behavior**]                                                                                    [**Default value**]
+  **Parameter**   **Behavior**                                                                                    **Default value**
   `facet`          Enable or disable faceting.                                                                                `false`
-  `facet.query`    Specifies a faceting query, which overrides Solr\'s default faceting query and returns a faceting count.   
+  `facet.query`    Specifies a faceting query, which overrides Solr's default faceting query and returns a faceting count.   
   -------------------------- ---------------------------------------------------------------------------------------------------------- ------------------------------
 
 
-
-
-
 ### Field-value faceting parameters
-
-
-
 Field-value parameters are used to trigger
 faceting based on the indexed terms in a field. By default, all
 field-value faceting parameters can be
@@ -1769,8 +1596,8 @@ specified on a per field basis with the syntax of
 
 
 +----------------------+----------------------+----------------------+
-| [**P                 | [**                  | [**Default           |
-| arameter**] | Behavior**] | value**]    |
+| **P                 | **                  | **Default           |
+| arameter** | Behavior** | value**    |
 +----------------------+----------------------+----------------------+
 | `fa                  | Identifies a field   |                      |
 | cet.field` | that should be       |                      |
@@ -1830,13 +1657,13 @@ specified on a per field basis with the syntax of
 |                      | Possible values are: |                      |
 |                      |                      |                      |
 |                      |   |                      |
-|                      | -   `cou             |                      |
+|                      | -  `cou             |                      |
 |                      | nt`: Sorts |                      |
 |                      |     constraints      |                      |
 |                      |     based on the     |                      |
 |                      |     count (high to   |                      |
 |                      |     low)             |                      |
-|                      | -                    |                      |
+|                      | -                   |                      |
 |                      |   `index`: |                      |
 |                      |     Sorts            |                      |
 |                      |     constraints      |                      |
@@ -1869,10 +1696,10 @@ specified on a per field basis with the syntax of
 |                      | required for a facet |                      |
 |                      | field to be included |                      |
 |                      | in the response. If  |                      |
-|                      | a field\'s counts    |                      |
+|                      | a field's counts    |                      |
 |                      | are less than the    |                      |
 |                      | minimum, the         |                      |
-|                      | field\'s facet is    |                      |
+|                      | field's facet is    |                      |
 |                      | not returned.        |                      |
 +----------------------+----------------------+----------------------+
 | `face                | Specifies whether or | `false`    |
@@ -1881,7 +1708,7 @@ specified on a per field basis with the syntax of
 |                      | that do not have any |                      |
 |                      | values is to be      |                      |
 |                      | returned in the      |                      |
-|                      | facet\'s field.      |                      |
+|                      | facet's field.      |                      |
 +----------------------+----------------------+----------------------+
 | `fac                 | Specifies the type   | `fc`       |
 | et.method` | of algorithm or      |                      |
@@ -1891,7 +1718,7 @@ specified on a per field basis with the syntax of
 |                      | methods in Solr are: |                      |
 |                      |                      |                      |
 |                      |   |                      |
-|                      | -   `enum`           |                      |
+|                      | -  `enum`           |                      |
 |                      | : Iterates |                      |
 |                      |     over all the     |                      |
 |                      |     terms in the     |                      |
@@ -1905,7 +1732,7 @@ specified on a per field basis with the syntax of
 |                      |     fields that      |                      |
 |                      |     contain fewer    |                      |
 |                      |     values.          |                      |
-|                      | -   `fc`             |                      |
+|                      | -  `fc`             |                      |
 |                      | : Iterates |                      |
 |                      |     over documents   |                      |
 |                      |     that match the   |                      |
@@ -1918,7 +1745,7 @@ specified on a per field basis with the syntax of
 |                      |     fields that      |                      |
 |                      |     contain many     |                      |
 |                      |     unique values.   |                      |
-|                      | -   `fcs`: |                      |
+|                      | -  `fcs`: |                      |
 |                      |     Performs         |                      |
 |                      |     per-segment      |                      |
 |                      |     field faceting   |                      |
@@ -1964,7 +1791,7 @@ specified on a per field basis with the syntax of
 |                      | be used with         |                      |
 |                      | `facet.me            |                      |
 |                      | thod=enum` |                      |
-|                      | or when it\'s        |                      |
+|                      | or when it's        |                      |
 |                      | omitted. It can be   |                      |
 |                      | used only on on-trie |                      |
 |                      | fields (such as      |                      |
@@ -2001,22 +1828,16 @@ specified on a per field basis with the syntax of
 +----------------------+----------------------+----------------------+
 
 
-
-
-
 ### Range faceting
-
-
-
 Range faceting can be done on date
 fields and numeric fields.
 
-[**Range faceting parameters**]:
+**Range faceting parameters**:
 
 
 +-----------------------+-----------------------+--------------------+
-| [**                   | [*                    | Default value      |
-| Parameter**] | *Behavior**] |                    |
+| **                   | [*                    | Default value      |
+| Parameter** | *Behavior** |                    |
 +-----------------------+-----------------------+--------------------+
 | `f                    | Specifies the field   |                    |
 | acet.range` | for which Solr should |                    |
@@ -2110,21 +1931,21 @@ fields and numeric fields.
 |                       | values are:           |                    |
 |                       |                       |                    |
 |                       |    |                    |
-|                       | -                     |                    |
+|                       | -                    |                    |
 |                       |    `lower`: |                    |
 |                       |     All gap-based     |                    |
 |                       |     ranges include    |                    |
 |                       |     their             |                    |
 |                       |     `lower` |                    |
 |                       |     bound             |                    |
-|                       | -                     |                    |
+|                       | -                    |                    |
 |                       |    `upper`: |                    |
 |                       |     All gap-based     |                    |
 |                       |     ranges include    |                    |
 |                       |     their             |                    |
 |                       |     `upper` |                    |
 |                       |     bound             |                    |
-|                       | -   `edge`: |                    |
+|                       | -  `edge`: |                    |
 |                       |     The first and     |                    |
 |                       |     last gap ranges   |                    |
 |                       |     include their     |                    |
@@ -2142,7 +1963,7 @@ fields and numeric fields.
 |                       | al}/`lower` |                    |
 |                       |     option is not     |                    |
 |                       |     specified         |                    |
-|                       | -                     |                    |
+|                       | -                    |                    |
 |                       |    `outer`: |                    |
 |                       |     The               |                    |
 |                       |                       |                    |
@@ -2156,7 +1977,7 @@ fields and numeric fields.
 |                       |     last ranges       |                    |
 |                       |     already include   |                    |
 |                       |     those boundaries  |                    |
-|                       | -   `all`:  |                    |
+|                       | -  `all`:  |                    |
 |                       |     Includes all      |                    |
 |                       |     options           |                    |
 |                       | ---`lower`, |                    |
@@ -2180,7 +2001,7 @@ fields and numeric fields.
 |                       | options as well:      |                    |
 |                       |                       |                    |
 |                       |    |                    |
-|                       | -                     |                    |
+|                       | -                    |                    |
 |                       |   `before`: |                    |
 |                       |     All records with  |                    |
 |                       |     field values      |                    |
@@ -2188,7 +2009,7 @@ fields and numeric fields.
 |                       |     `lower` |                    |
 |                       |     bound of the      |                    |
 |                       |     first range       |                    |
-|                       | -                     |                    |
+|                       | -                    |                    |
 |                       |    `after`: |                    |
 |                       |     All records with  |                    |
 |                       |     field values      |                    |
@@ -2196,17 +2017,17 @@ fields and numeric fields.
 |                       |     `upper` |                    |
 |                       |     bound of the last |                    |
 |                       |     range             |                    |
-|                       | -                     |                    |
+|                       | -                    |                    |
 |                       |  `between`: |                    |
 |                       |     All records with  |                    |
 |                       |     field values      |                    |
 |                       |     between the start |                    |
 |                       |     and end bounds of |                    |
 |                       |     all ranges        |                    |
-|                       | -   `none`: |                    |
+|                       | -  `none`: |                    |
 |                       |     Do not compute    |                    |
 |                       |     any counts        |                    |
-|                       | -   `all`:  |                    |
+|                       | -  `all`:  |                    |
 |                       |     Compute counts    |                    |
 |                       |     for               |                    |
 |                       |                       |                    |
@@ -2221,14 +2042,14 @@ fields and numeric fields.
 | nge.method` | method:               |                    |
 |                       |                       |                    |
 |                       |    |                    |
-|                       | -   `filter`          |                    |
+|                       | -  `filter`          |                    |
 |                       | : Generates |                    |
 |                       |     the ranges based  |                    |
 |                       |     on other          |                    |
 |                       |     `f                |                    |
 |                       | acet.range` |                    |
 |                       |     parameters.       |                    |
-|                       | -   `div`:  |                    |
+|                       | -  `div`:  |                    |
 |                       |     Iterates all the  |                    |
 |                       |     documents that    |                    |
 |                       |     match the main    |                    |
@@ -2250,13 +2071,13 @@ fields and numeric fields.
 
  
 
-[**Example**]: Search query for `iPod` with faceting
+**Example**: Search query for `iPod` with faceting
 enabled and range for the field price from `1000` to
 `100000`
 
-[**URL**]: `http://localhost:8983/solr/techproducts/select?defType=edismax&q=ipod&fl=id,name,price&facet=true&facet.range=price&facet.range.start=10&facet.range.end=20&facet.range.gap=5`
+**URL**: `http://localhost:8983/solr/techproducts/select?defType=edismax&q=ipod&fl=id,name,price&facet=true&facet.range=price&facet.range.start=10&facet.range.end=20&facet.range.gap=5`
 
-[**Response**]:
+**Response**:
 
 
 ``` {.programlisting .language-markup}
@@ -2303,13 +2124,7 @@ enabled and range for the field price from `1000` to
 ```
 
 
-
-
-
 ### Pivot faceting
-
-
-
 Pivot faceting is similar to pivot tables in
 the latest spreadsheets. Pivot faceting provides a facility to generate
 an aggregate summary from fetched faceting
@@ -2317,7 +2132,7 @@ results on multiple fields:
 
 
   ---------------------------------- ----------------------------------------------------------------------------------------------------------------- ------------------------------
-  [**Parameter**]           [**Behavior**]                                                                                           [**Default value**]
+  **Parameter**           **Behavior**                                                                                           **Default value**
   `facet.pivot`            Specify the field on which you want to apply pivoting                                                             
   `facet.pivot.mincount`   Specify the minimum number of documents that need to match in order for the facet to be included in the results   `1`
   ---------------------------------- ----------------------------------------------------------------------------------------------------------------- ------------------------------
@@ -2325,12 +2140,12 @@ results on multiple fields:
 
  
 
-[**Example**]:  In our `techproducts`, we need the
+**Example**:  In our `techproducts`, we need the
 stock availability based on the popularity of a category
 
-[**URL**]: `http://localhost:8983/solr/techproducts/select?q=*:*&facet.pivot=cat,popularity,inStock&facet.pivot=popularity,cat&facet=true&facet.field=cat&facet.limit=5&rows=0&facet.pivot.mincount=2`
+**URL**: `http://localhost:8983/solr/techproducts/select?q=*:*&facet.pivot=cat,popularity,inStock&facet.pivot=popularity,cat&facet=true&facet.field=cat&facet.limit=5&rows=0&facet.pivot.mincount=2`
 
-[**Response**]:
+**Response**:
 
 
 ``` {.programlisting .language-markup}
@@ -2365,13 +2180,7 @@ stock availability based on the popularity of a category
 
  
 
-
-
-
 ### Interval faceting
-
-
-
 Interval faceting is similar to range
 faceting, but it allows us to set variable intervals and count the
 number of documents that have values within
@@ -2382,8 +2191,8 @@ more effective:
 
 
 +----------------------+----------------------+----------------------+
-| [**P                 | [**                  | [**Default           |
-| arameter**] | Behavior**] | value**]    |
+| **P                 | **                  | **Default           |
+| arameter** | Behavior** | value**    |
 +----------------------+----------------------+----------------------+
 | `facet               | To specify a field   |                      |
 | .interval` | where we want to     |                      |
@@ -2428,12 +2237,12 @@ more effective:
 
  
 
-[**Example**]: Faceting query for field `price >=10`
+**Example**: Faceting query for field `price >=10`
 and `price < 20`
 
-[**URL**]: `http://localhost:8983/solr/techproducts/select?q=*:*&facet=true&facet.interval=price&f.price.facet.interval.set=[10,20)`
+**URL**: `http://localhost:8983/solr/techproducts/select?q=*:*&facet=true&facet.interval=price&f.price.facet.interval.set=[10,20)`
 
-[**Response**]:
+**Response**:
 
 
 ``` {.programlisting .language-markup}
@@ -2447,13 +2256,10 @@ and `price < 20`
  "facet_heatmaps":{}
  }
 ```
-
-
-
 Highlighting
 ------------------------------
 
-Solr supports a feature called [**highlighting**] that helps
+Solr supports a feature called **highlighting** that helps
 end users who are running a query to scan results quickly. Providing a
 matching term in bold and highlighted the
 format makes it an extremely satisfying experience for the user. With
@@ -2464,37 +2270,25 @@ next query.
 
 Solr comes with a great
 configuration for highlighting. There are
-many parameters for [**fragment
-sizing**], [**formatting**], [**ordering**],
-[**backup.alternate behavior**], and
-[**categorization**]. Fragments or snippets
+many parameters for **fragment
+sizing**, **formatting**, **ordering**,
+**backup.alternate behavior**, and
+**categorization**. Fragments or snippets
 .indexterm} are parts of the response that contain matching terms.
-
-
-
 ### Highlighting parameters
-
-
-
 Solr provides a large list for highlighting
 fragments. The following are the basic parameters required to start
 highlighting:
 
 
   -------------------------- --------------------------------------------------------------------------------------------------------------------------------------------- ------------------------------
-  [**Parameter**]   [**Behavior**]                                                                                                                       [**Default value**]
+  **Parameter**   **Behavior**                                                                                                                       **Default value**
   `hl`             A Boolean parameter to enable/disable highlighting. `hl=true` will enable highlighting.                                             `false`
   `hl.method`      To specify a method to implement highlighting. Available methods are `unified`, `original`, and `fastVector`.   `original`
   -------------------------- --------------------------------------------------------------------------------------------------------------------------------------------- ------------------------------
 
 
-
-
-
 ### Highlighter
-
-
-
 Highlighter is nothing but a highlighting
 implemented method that actually performs the activity. There are three
 methods available for highlighting. They
@@ -2505,17 +2299,11 @@ method, the default original method performs the activity.
 
 There are many parameters supported by highlighters. Sometimes, the
 implementation details and semantics will be a bit different, so we
-can\'t expect identical results when switching highlighters. Normally,
+can't expect identical results when switching highlighters. Normally,
 highlighter selection is done via the `hl.method` parameter,
 but we can also explicitly configure an implementation by class name in
 `solrconfig.xml`. Let's explore highlighters in detail.
-
-
-
 #### Unified highlighter (hl.method=unified)
-
-
-
 Unified highlighter is the new highlighter
 from Solr 6.4. This is the most flexible highlighter and supports the
 most common highlighting parameters. It can handle any query accurately,
@@ -2524,16 +2312,10 @@ highlighter is that we can add more configurations to speed up
 highlighting on large data documents. We can also add multiple
 configurations on a per field basis.
 
-
-
-
 #### Original highlighter (hl.method=original) 
-
-
-
 Original highlighter is the default
-highlighter, also known as [**standard highlighter**] or
-[**default highlighter**]. The advantage of this highlighter is
+highlighter, also known as **standard highlighter** or
+**default highlighter**. The advantage of this highlighter is
 its capability of highlighting any query
 accurately and efficiently, like
 `unified` highlighter, but it is very slow compared to
@@ -2547,14 +2329,8 @@ highlighter, it is very slow. Also it does not have a
 breakiterator-based fragmenter, which can cause problems in some
 languages.
 
-
-
-
 #### FastVector highlighter (hl.method=fastVector)
-
-
-
-[**FastVector Highlighter**] ([**FVH**]) is faster
+**FastVector Highlighter** (**FVH**) is faster
 than `original` highlighter because
 it skips the analysis step when generating fragments. Sometimes, FVH is
 not able to highlight some of the fields; in
@@ -2565,13 +2341,7 @@ highlighter to match the requirement. For such cases, we need to set
 should use the FVH.
 
 
-
-
-
 ### Boundary scanners
-
-
-
 Sometimes, `fastVector` highlighter will
 truncate highlighted words, so the output
 after highlighting may be incomplete or improper. To resolve this issue,
@@ -2579,13 +2349,7 @@ we need to configure a boundary scanner in `solrconfig.xml`.
 There are two types of boundary scanners available in Solr. We have to
 specify a boundary scanner using the parameter
 `hl.boundaryScanner`.
-
-
-
 #### The breakIterator boundary scanner
-
-
-
 The `breakIterator` boundary scanner scans
 .indexterm} term boundaries by considering the language
 (`hl.bs.language`) and boundary type (`hl.bs.type`)
@@ -2611,13 +2375,7 @@ Possible values for the `hl.bs.type` parameter are
 `WORD`, `LINE`, `SENTENCE`, and
 `CHARACTER`.
 
-
-
-
 #### The simple boundary scanner
-
-
-
 The simple boundary scanner scans term
 boundaries by the specified maximum character value
 (`hl.bs.maxScan`) and common delimiters such as punctuation
@@ -2636,12 +2394,12 @@ following code snippet to the highlighting section in
 ```
 
 
-[**Example**]: Querying for `ipod`, highlighting for
+**Example**: Querying for `ipod`, highlighting for
 the field `name` using `fastVector` highlighter
 
-[**URL**]:` http://localhost:8983/solr/techproducts/select?hl=true&hl.method=fastVector&q=ipod&hl.fl=name&fl=id,name,cat`
+**URL**:` http://localhost:8983/solr/techproducts/select?hl=true&hl.method=fastVector&q=ipod&hl.fl=name&fl=id,name,cat`
 
-[**Response**]:
+**Response**:
 
 
 ``` {.programlisting .language-markup}
@@ -2689,9 +2447,6 @@ in the `name` field. When there is a match to the query term
 in that field, it will be included for each document ID in the list. In
 the same way, we can explore highlighting more by configuring different
 parameters.
-
-
-
 Summary
 -------------------------
 

@@ -2,24 +2,18 @@
 
 Lab 4. Mastering Text Analysis Methodologies
 ---------------------------------------------------------
-
-
-
 So far we have seen the installation of Solr server, schema design,
 documents, fields, field types, the Schema API and schemaless mode.
 
 In this lab we will explore:
 
 
--   Text analysis
--   Analyzers
--   Tokenizers
--   Filters
--   Multilingual analysis
--   Phonetic matching
-
-
-
+-  Text analysis
+-  Analyzers
+-  Tokenizers
+-  Filters
+-  Multilingual analysis
+-  Phonetic matching
 Understanding text analysis
 ---------------------------------------------
 
@@ -32,20 +26,14 @@ processes sequentially behind the scenes: it examines the input string,
 normalizes the text, generates the token stream, builds indexes, and so
 on. The set of all of these processes is called text analysis. Let's
 explore text analysis in detail.
-
-
-
 ### What is text analysis?
-
-
-
 Text analysis is a Solr mechanism that takes
 place in two phases:
 
 
--   During index time, optimize the input terms, feeding the
+-  During index time, optimize the input terms, feeding the
     information, generates the token stream and builds the indexes
--   During query time, optimize the query terms, generates the token
+-  During query time, optimize the query terms, generates the token
     stream, matches with the term generated at index time, and provides
     results
 
@@ -53,9 +41,9 @@ place in two phases:
 Let's dive deeper and understand:
 
 
--   How exactly Solr works to build indexes
--   How to optimize the query terms to match with indexes
--   How we get accurate, efficient, and fast results
+-  How exactly Solr works to build indexes
+-  How to optimize the query terms to match with indexes
+-  How we get accurate, efficient, and fast results
 
 
 If someone is searching for the string
@@ -67,15 +55,15 @@ this lab how Solr matches a query containing `Nation` and
 `Football` to documents containing `Country` and
 `Soccer`.
 
-We can\'t assume which type of search input comes from the end users
+We can't assume which type of search input comes from the end users
 during the search, for example:
 
 
--   Searching for `Soccer` and `Football`
--   Searching for `Unites States Of America` and
+-  Searching for `Soccer` and `Football`
+-  Searching for `Unites States Of America` and
     `USA`
--   Searching for `South Africa` and `RSA`
--   Searching for `air-crew`, `aircrew`, and
+-  Searching for `South Africa` and `RSA`
+-  Searching for `air-crew`, `aircrew`, and
     `air crew` 
 
 
@@ -84,8 +72,8 @@ meaning in natural languages. But the user may provide input in a
 non-natural language also, like this:
 
 
--   Searching for `Hundred GB` and `100 gigabyte`
--   Searching for `Caffé` and `cafe`
+-  Searching for `Hundred GB` and `100 gigabyte`
+-  Searching for `Caffé` and `cafe`
 
 
 There are also other complex search patterns that may be used by end
@@ -94,28 +82,22 @@ patterns used by end users during search time, Solr has to be ready to
 determine all possible search patterns, analyze them, and output them
 accurately with efficient results.
 
-Here, however, we don\'t have to worry because [*The
+Here, however, we don't have to worry because [*The
 Solr*] is an intelligent search engine that handles all
 search input patterns being used across the world. So now, without
-thinking too much about Solr\'s searching capability, Let's see how
+thinking too much about Solr's searching capability, Let's see how
 Solr actually works to meet all our search requirements.
 
-
-
-
 ### How text analysis works
-
-
-
-We have seen an overview of Solr\'s text analysis; now Let's learn how
+We have seen an overview of Solr's text analysis; now Let's learn how
 Solr actually implements the analysis process. Here are the common
 steps normally used by Solr in an analysis
 process:
 
 
--   [**Removing stop words**]:
+-  **Removing stop words**:
     
-    -   Stop words (common letters/words) such as `a`,
+    -  Stop words (common letters/words) such as `a`,
         `an`, `the`, `at`, `to`,
         `for`, and so on are removed from the text string; so
         Solr will not give results for these common words. These words
@@ -123,54 +105,54 @@ process:
         `stopwords_en.txt`) and this file needs to be imported
         in the analysis configuration.
     
--   [**Adding synonyms**]:
+-  **Adding synonyms**:
     
-    -   Solr reads synonyms from the text file (synonyms) and adds them
+    -  Solr reads synonyms from the text file (synonyms) and adds them
         to the token stream. All synonyms need to be preconfigured in
         the text file, such as `Football` and
         `Soccer`, `Country` and `Nation`,
         and so on.
     
--   [**Stemming the words**]:
+-  **Stemming the words**:
     
-    -   Solr transforms words into a base form using language-specific
+    -  Solr transforms words into a base form using language-specific
         rules
-    -   It transforms
-        [**removing**] → [**remove**] (removes
-        [**ing**])
-    -   It transforms
-        [**searches**] → [**search**] (converts to
+    -  It transforms
+        **removing** → **remove** (removes
+        **ing**)
+    -  It transforms
+        **searches** → **search** (converts to
         singular)
     
--   [**Set all to lowercase**]:
+-  **Set all to lowercase**:
     
-    -   Solr converts all tokens to lowercase
+    -  Solr converts all tokens to lowercase
     
 
 
 These are the common steps that Solr performs in all normal scenarios.
 But in real life, things may not be that easy and straightforward. We
-can\'t assume which type of search input pattern in which language end
-users may use. To meet all possible requirements, Solr\'s intelligence
+can't assume which type of search input pattern in which language end
+users may use. To meet all possible requirements, Solr's intelligence
 is hidden in its three powerful tools:
 
 
--   [**Analyzer**]: The task of the analyzer is to determine
+-  **Analyzer**: The task of the analyzer is to determine
     the text and generate the token stream accordingly
--   [**Tokenizer**]: The tokenizer splits the input string at
+-  **Tokenizer**: The tokenizer splits the input string at
     some delimiter and generates a token stream, say
     `Mastering Apache Solr` to `Mastering`,
     `Apache`, and `Solr` (splitting at white spaces)
--   [**Filter**]: The filter performs one of these tasks:
+-  **Filter**: The filter performs one of these tasks:
     
-    -   [**Adding**]: Adds new tokens to the stream, such as
+    -  **Adding**: Adds new tokens to the stream, such as
         adding synonyms
     
 
     
-    -   [**Removing**]: Removes tokens from the stream, such
+    -  **Removing**: Removes tokens from the stream, such
         as stop words
-    -   [**Conversation**]: Converts tokens from one form to
+    -  **Conversation**: Converts tokens from one form to
         another, such as uppercase to lowercase
     
 
@@ -192,7 +174,7 @@ querying, and so on:
 
 
 Go to **`Dashboard | Core Selector`**, select your configured example,
-and click on **`Analysis`**. Here we are using Solr\'s built-in example
+and click on **`Analysis`**. Here we are using Solr's built-in example
 `techproducts`.
 
 We have configured the `text_en` field as follows in the
@@ -216,7 +198,7 @@ We have configured the `text_en` field as follows in the
 ```
 
 
-Applying [**lower case filter**] ([**LCF**]) during
+Applying **lower case filter** (**LCF**) during
 index time and query
 .indexterm} time:
 
@@ -226,34 +208,33 @@ index time and query
 
 Text analysis applied during index time on the input string.
 
-[**Input**]: `The Nation of soccer`
+**Input**: `The Nation of soccer`
 
-[**Output**]:[** **]`nation`, `soccer`
+**Output**: `nation`, `soccer`
 
-[**Analysis applied**]:
+**Analysis applied**:
 
 
--   It is split at white spaces
--   Stop words (`The`, `of`) removed
--   All set to lowercase
+-  It is split at white spaces
+-  Stop words (`The`, `of`) removed
+-  All set to lowercase
 
 
 Text analysis applied during query time on the input string.
 
-[**Input**]: `Famous country for football`
+**Input**: `Famous country for football`
 
-[**Output**]:
-`famous`, `nation`, `country`, `soccer`,
+**Output**: `famous`, `nation`, `country`, `soccer`,
 and `football`
 
-[**Analysis applied**]:
+**Analysis applied**:
 
 
--   Split at white spaces
--   Stop words (`for`) removed
--   Synonyms added (`nation` for `country` and
+-  Split at white spaces
+-  Stop words (`for`) removed
+-  Synonyms added (`nation` for `country` and
     `soccer` for `football`)
--   All set to lowercase
+-  All set to lowercase
 
 
 As we know that analysis takes place in both phases (index time and
@@ -295,13 +276,7 @@ Now Let's dive deeper and understand the core processes running behind
 the scenes of analysis. As we have seen previously, the analyzer,
 tokenizer and filter are the three main components Solr uses for text
 analysis. Let's explore an analyzer. 
-
-
-
 ### What is an analyzer?
-
-
-
 An analyzer examines the text of fields and
 generates a token stream. Normally, only fields of type
 `solr.TextField` will specify an analyzer. An analyzer is
@@ -342,10 +317,9 @@ Applying WhitespaceAnalyzer on the input string:
 ![](https://github.com/fenago/apache-solr/raw/master/images/60e937e9-f3d3-48b1-ae66-f4992d5af93e.png)
 
 
-[**Input**]:
-`Running simple Solr analyzer through admin console`
+**Input**: `Running simple Solr analyzer through admin console`
 
-[**Output**]:[** **]`Running`, `simple`, `Solr`, `analyzer`, `through`, `admin`,
+**Output**: `Running`, `simple`, `Solr`, `analyzer`, `through`, `admin`,
 and `console`
 
 This is a very simple example. The analyzer
@@ -370,10 +344,7 @@ filters in the order you want to run them in. Here is an example:
  </analyzer>
 </fieldType>
 ```
-
-
-
-### []{#tip26}Note
+### Note
 
 Solr will execute tokenizers and filters in the order in which they are
 configured. The execution order should be defined logically. For
@@ -390,13 +361,7 @@ way, all the steps will be executed. The tokens generated from the
 last filter (`LowerCaseFilterFactory` here) will be the final
 token stream. Solr builds indexes using this stream.
 
-
-
-
 ### How an analyzer works
-
-
-
 Text analysis takes place in two phases,
 during index time and during query time. So we need to configure
 `<analyzer>` for both phases, distinguished by the type
@@ -448,26 +413,26 @@ term `soccer`.
 So far we have learned the following:
 
 
--   Solr performs text analysis in both phases: index and query time.
--   Solr uses analyzers, tokenizers, and filters for text analysis.
--   Using the analyzers, tokenizers, and filters, Solr examines the
+-  Solr performs text analysis in both phases: index and query time.
+-  Solr uses analyzers, tokenizers, and filters for text analysis.
+-  Using the analyzers, tokenizers, and filters, Solr examines the
     input string during index time. It normalizes accordingly and
     generates the token stream. Solr builds indexes based on this token
     stream.
--   Using the same analyzer, tokenizers, and filters during query
+-  Using the same analyzer, tokenizers, and filters during query
     time, Solr examines the query string, normalizes accordingly,
     and generates a token stream. This token stream will be compared
     with the token stream generated at index time and return the
     matching output.
--   The configuration of analyzer depends on the search requirements.
--   Defining a single analyzer will be considered as the same analysis
+-  The configuration of analyzer depends on the search requirements.
+-  Defining a single analyzer will be considered as the same analysis
     configuration for both phases.
--   The advisable approach is always to define two separate analyzer for
+-  The advisable approach is always to define two separate analyzer for
     each phase so that we can apply friendlier configurations for each
     phase.
--   When defining the tokenizers and filter, the ordering should be
+-  When defining the tokenizers and filter, the ordering should be
     logical.
--   Both the phase configurations should be compatible with each other.
+-  Both the phase configurations should be compatible with each other.
 
 
 So now we can apply text analysis on slightly more complex search
@@ -512,14 +477,13 @@ In the preceding screen, we have provided the string
 
 An analyzer during index time.
 
-[**String**]:
-`The Host Country of Soccer World Cup 2018`
+**String**: `The Host Country of Soccer World Cup 2018`
 
 Solr executes all tokenizers and filters sequentially configured inside
 the `<analyzer type="index">` definition and generates a token
 stream accordingly. It builds indexes using this token stream.
 
-[**StandardTokenizerFactory**] ([**ST**]): Splits the
+**StandardTokenizerFactory** (**ST**): Splits the
 string at white spaces:
 
 
@@ -528,10 +492,9 @@ string at white spaces:
 ```
 
 
-[**Input**]:
-`The Host Country of Soccer World Cup 2018`
+**Input**: `The Host Country of Soccer World Cup 2018`
 
-[**Output**]: `The`, `Host`, `Country`, `of`, `Soccer`, `World`, `Cup`,
+**Output**: `The`, `Host`, `Country`, `of`, `Soccer`, `World`, `Cup`,
 and `2018`
 
 The analyzer passes the input text to the first element from the list.
@@ -541,7 +504,7 @@ tokenizer will be the input to the next (immediate successor) in the
 sequence chain; here, it is
 `StopFilterFactory`.
 
-[**StopFilterFactory**]:  Removes all stop words (common)
+**StopFilterFactory**:  Removes all stop words (common)
 listed in the `stopwords_en.txt` file:
 
 
@@ -550,12 +513,12 @@ listed in the `stopwords_en.txt` file:
 ```
 
 
-[**Input**]: `The`, `Host`,
+**Input**: `The`, `Host`,
 `Country`, `of`, `Soccer`,
 `World`, `Cup`, `2018` ( output of
 immediate predecessor)
 
-[**Output: **]`Host`,`Country`,`Soccer`,`World`,`Cup`,`2018`
+**Output: **`Host`,`Country`,`Soccer`,`World`,`Cup`,`2018`
 
 Here all stop words (`The`, `of`, and so on) are
 removed from the steam. Stop words are nothing but all common words
@@ -570,7 +533,7 @@ The `attribute ignoreCase="true"` (default `false`)
 will ignore case when testing for stop words. If it is `true`,
 the stop list should contain lowercase words.
 
-[**LowerCaseFilterFactory**]: Converts all tokens to lowercase:
+**LowerCaseFilterFactory**: Converts all tokens to lowercase:
 
 
 ``` {.programlisting .language-markup}
@@ -578,9 +541,9 @@ the stop list should contain lowercase words.
 ```
 
 
-[**Input**]: `Host`, `Country`, `Soccer`, `World`, `Cup`, `2018`
+**Input**: `Host`, `Country`, `Soccer`, `World`, `Cup`, `2018`
 
-[**Output**]:[** **]`host`, `country`, `soccer`, `world`, `cup`, `X`
+**Output**: `host`, `country`, `soccer`, `world`, `cup`, `X`
 
 All the incoming inputs will be converted to lowercase:
 
@@ -590,15 +553,15 @@ have executed their job sequentially and generated the final token
 stream:
 
 
--   [**Final token
-    stream**]: `host`, `country`, `soccer`, `world`, `cup`, `2018`
+-  **Final token
+    stream**: `host`, `country`, `soccer`, `world`, `cup`, `2018`
 
 
 Next, Solr builds indexes based on this final token stream:
 
 
--   [**Analyzer**]: Query time
--   [**String:**]`The Host Nation of Football world cup 2018`
+-  **Analyzer**: Query time
+-  **String:**`The Host Nation of Football world cup 2018`
 
 
 At query time, Solr executes all tokenizers and filters sequentially
@@ -607,7 +570,7 @@ generates a token stream accordingly. This token stream will be compared
 with the token stream generated during index time. The matching result
 will be given as output.
 
-[**StandardTokenizerFactory**]: Splits the string at white
+**StandardTokenizerFactory**: Splits the string at white
 spaces:
 
 
@@ -616,10 +579,9 @@ spaces:
 ```
 
 
-[**Input**]:
-`The Host Nation of Football world cup 2018`
+**Input**: `The Host Nation of Football world cup 2018`
 
-[**Output: **]`The`, `Host`, `Nation`, `of`, `Football`, `world`, `cup`,`2018`
+**Output: **`The`, `Host`, `Nation`, `of`, `Football`, `world`, `cup`,`2018`
 
 The analyzer passes the input text to the first element from the list.
 Here, it is `StandardTokenizerFactory`. The entire string was
@@ -627,7 +589,7 @@ split at white spaces using Standard Tokenizer. The output of this
 tokenizer will be the input to the immediate successor in the chain;
 here, it is `StopFilterFactory`.
 
-[**StopFilterFactory**]: Removes all stop words (common) listed
+**StopFilterFactory**: Removes all stop words (common) listed
 in the `stopwords_en.txt` file.
 
 
@@ -636,12 +598,12 @@ in the `stopwords_en.txt` file.
 ```
 
 
-[**Input**]: `The`, `Host`,
+**Input**: `The`, `Host`,
 `Nation`, `of`, `Football`,
 `world`, `cup`, `2018` (output of
 immediate predecessor)
 
-[**Output**]: `Host`, `Nation`,
+**Output**: `Host`, `Nation`,
 `Football`, `world`,
 `cup`,`2018`
 
@@ -653,7 +615,7 @@ The `attribute ignoreCase="true"` (default: `false`)
 will ignore casing when testing for stop words. If it is
 `true`, the stop list should contain lowercase words.
 
-[**SynonymGraphFilterFactory**]: Adds synonyms to the token
+**SynonymGraphFilterFactory**: Adds synonyms to the token
 stream:
 
 
@@ -662,7 +624,7 @@ stream:
 ```
 
 
-[**Input**]: `Host`, `Nation`, `Football`, `world`, `cup`, `2018`[**Output**]:[** **]`Host`, `country`, `Nation`, `soccer`, `Football`, `world`, `cup`, `2018`
+**Input**: `Host`, `Nation`, `Football`, `world`, `cup`, `2018`**Output**: `Host`, `country`, `Nation`, `soccer`, `Football`, `world`, `cup`, `2018`
 
 The synonyms (`country` for `nation` and
 `soccer` for `Football`) are added to the
@@ -689,7 +651,7 @@ of configuration variation for index time and query time.
 The output will be passed to the next filter,
 `LowerCaseFilterFactory`.
 
-[**LowerCaseFilterFactory**]: Converts all tokens to lowercase:
+**LowerCaseFilterFactory**: Converts all tokens to lowercase:
 
 
 ``` {.programlisting .language-markup}
@@ -697,9 +659,9 @@ The output will be passed to the next filter,
 ```
 
 
-[**Input**]:[** **]`Host`, `country`, `Nation`, `soccer`, `Football`, `world`, `cup`, `2018`
+**Input**: `Host`, `country`, `Nation`, `soccer`, `Football`, `world`, `cup`, `2018`
 
-[**Output**]:[** **]`host`, `country`, `nation`, `soccer`, `football`, `world`, `cup`, `2018`
+**Output**: `host`, `country`, `nation`, `soccer`, `football`, `world`, `cup`, `2018`
 
 All the incoming inputs will be converted to lowercase.
 
@@ -711,9 +673,9 @@ and `LowerCaseFilterFactory`).
 Now, these are the final streams of both phases:
 
 
--   [**Indexed
-    stream**]: `host`, `country`, `soccer`, `world`, `cup`, `2018`
--   [**Query **][**stream**]:[** **]`host`, `country`, `nation`, `soccer`, `football`, `world`, `cup`, `2018`
+-  **Indexed
+    stream**: `host`, `country`, `soccer`, `world`, `cup`, `2018`
+-  **Query ****stream**: `host`, `country`, `nation`, `soccer`, `football`, `world`, `cup`, `2018`
 
 
 We can see that many tokens from the query stream are matching tokens
@@ -726,24 +688,24 @@ the search string
 Thus, we have covered:
 
 
--   The Solr text analysis mechanism
--   The tasks of analyzer, tokenizer, and filters
--   Defining a single `<analyzer>` or multiple
+-  The Solr text analysis mechanism
+-  The tasks of analyzer, tokenizer, and filters
+-  Defining a single `<analyzer>` or multiple
     `<analyzer>` distinguished by the type attribute based on
     search requirements
--   Defining configurations steps logically such as using a LCF after a
+-  Defining configurations steps logically such as using a LCF after a
     stop filter and adding a synonym filter at query time only (we
     explained both the examples previously)
 
 
 Now we are familiar with the Solr text analysis mechanism. Here we have
 tried to explain it by taking a little complex string example, but we
-can\'t assume which type of input may be entered during searches by end
+can't assume which type of input may be entered during searches by end
 users. Providing accurate results for any pattern of input string is the
 main aim of any search engine. Solr comes with a number of tokenizers
 and filters to challenge any input pattern. Solr is also efficient at
 multiple language search. Here we have covered very few and common
-tokenizers and filters, but Solr\'s list for tokenizers and filters does
+tokenizers and filters, but Solr's list for tokenizers and filters does
 not end there. There are many tokenizers and filters available. Let's
 understand the behavior of tokenizers in the
 next section.
@@ -758,26 +720,20 @@ be a single class or a set of defined tokenizer and filter classes.
 The analyzer executes the analysis process in two steps:
 
 
--   [**Tokenization (parsing)**]: Using configured tokenizer
+-  **Tokenization (parsing)**: Using configured tokenizer
     classes
--   [**Filtering (transformation)**]: Using configured filter
+-  **Filtering (transformation)**: Using configured filter
     classes
 
 
 We can also do preprocessing on a character stream before tokenization;
 we can do this with the help of `CharFilters` (we will see
 this later in the lab). An analyzer knows its configured field, but
-a tokenizer doesn\'t have any idea about the field. The job of the
+a tokenizer doesn't have any idea about the field. The job of the
 tokenizer is only to read from a character stream, apply a tokenization
 mechanism based on its behavior, and produce a new sequence of a token
 stream. 
-
-
-
 ### What is a tokenizer?
-
-
-
 A tokenizer is a tool provided by Solr that
 runs a tokenization process, breaks a stream of text into tokens at some
 delimiter, and generates a token stream. Tokenizers are configured by
@@ -806,27 +762,15 @@ token, along with its normalized text values, also holds some metadata,
 such as the location at which they are generated. Token metadata is
 important for things like highlighting search results in the field text.
 A newly generated token contains a value that may be different from its
-input text value. We can\'t assume that the text of a token is the same
+input text value. We can't assume that the text of a token is the same
 as the input text, or that the length is the same. It's also possible
 for more than one token to have the same position or refer to the same
 set in the original text.
 
-
-
-
 ### Available tokenizers in Solr
-
-
-
 Solr provides a large number of tokenizers.
 Let's explore the behavior of some of them.
-
-
-
 #### Standard tokenizer
-
-
-
 This splits the text field into tokens,
 treating white space and punctuation as delimiters. It considers white
 spaces and punctuation (comma, dots, hyphens, semicolons, colons,
@@ -834,16 +778,16 @@ hashtags, and @ ) as delimiters and discards all of them, with these
 exceptions:
 
 
--   Dots that are not followed by white spaces are kept as part of the
+-  Dots that are not followed by white spaces are kept as part of the
     token. An example is internet domains such as
     `www.google.com`.
--   Factory class---`solr.StandardTokenizerFactory`.
--   Arguments---`maxTokenLength` (integer, default 255) The
+-  Factory class---`solr.StandardTokenizerFactory`.
+-  Arguments---`maxTokenLength` (integer, default 255) The
     max length of token characters. Tokens that exceed the number of
     characters specified by `maxTokenLength` will be ignored.
 
 
-[**Example**]:
+**Example**:
 
 
 ``` {.programlisting .language-markup}
@@ -855,45 +799,37 @@ exceptions:
 ```
 
 
-[**Input**]: `Please send a mail at dharmesh.vasoya@example.com by 12-11.`
+**Input**: `Please send a mail at dharmesh.vasoya@example.com by 12-11.`
 
-[**Output**]: `Please`, `send`, `a`, `mail`, `at`, `dharmesh.vasoya`, `example.com`, `by`, `12`, `11`
+**Output**: `Please`, `send`, `a`, `mail`, `at`, `dharmesh.vasoya`, `example.com`, `by`, `12`, `11`
 
 A total of 10 tokens have been generated by the standard tokenizer.
 These will be passed to its immediate successor in the chain. Standard
 tokenizer supports Unicode standard annex
 UAX\#29, <http://unicode.org/reports/tr29/#Word_Boundaries> word
-boundaries with the following token types:
-`<ALPHANUM>`, `<NUM>`,
+boundaries with the following token types: `<ALPHANUM>`, `<NUM>`,
 `<SOUTHEAST_ASIAN>`, `<IDEOGRAPHIC>`, and
 `<HIRAGANA>`.
 
-
-
-
 #### White space tokenizer
-
-
-
 This splits the text stream at white spaces
 only. However, it will not split the text at any punctuation (like the
 standard tokenizer). Therefore, all of the punctuation will remain as is
 inside the generated tokens.
 
-[**Factory
-class**]:[** **]`solr.WhitespaceTokenizerFactory`
+**Factory class**: `solr.WhitespaceTokenizerFactory`
 
-[**Arguments**]:
+**Arguments**:
 
 
--   `rule`[** **](default: `java`): A rule
+-  `rule`** **(default: `java`): A rule
     that considers white space as a delimiter.
--   `java`: Uses `Character.isWhitespace(int)`
+-  `java`: Uses `Character.isWhitespace(int)`
     (<https://docs.oracle.com/javase/8/docs/api/java/lang/Character.html#isWhitespace-int->)
--   `unicode`: Uses unicode\'s `WHITESPACE` property
+-  `unicode`: Uses unicode's `WHITESPACE` property
 
 
-[**Example:**]
+**Example:**
 
 
 ``` {.programlisting .language-markup}
@@ -905,22 +841,15 @@ class**]:[** **]`solr.WhitespaceTokenizerFactory`
 ```
 
 
-[**Input**]:
-`Please send a mail at dharmesh.vasoya@example.com by 12-11.`
+**Input**: `Please send a mail at dharmesh.vasoya@example.com by 12-11.`
 
-[**Output**]:[** **]`Please`, `send`, `a`, `mail`, `at`, `dharmesh.vasoya@example.com`, `by`, `12-11.`
+**Output**: `Please`, `send`, `a`, `mail`, `at`, `dharmesh.vasoya@example.com`, `by`, `12-11.`
 
 The input string was split at white spaces but the punctuation
 (`@`, `.`,and `-`) was preserved in the
 tokens.
 
-
-
-
 #### Classic tokenizer
-
-
-
 This splits the text field into tokens at
 white spaces and punctuation. The classic tokenizer behaves in the same
 way as the standard tokenizer of Solr versions 3.1 and older. Like The
@@ -929,23 +858,22 @@ word boundary rules. Delimiter characters are discarded, with the
 following exceptions:
 
 
--   Dots that are not followed by white spaces are kept as part of the
+-  Dots that are not followed by white spaces are kept as part of the
     token
--   Words are split at hyphens unless there is a number in the word, in
+-  Words are split at hyphens unless there is a number in the word, in
     which case the token is not split and the numbers and hyphens are
     preserved
--   It preserves internet domain names and email addresses as a single
+-  It preserves internet domain names and email addresses as a single
     token
 
 
-[**Factory
-class**]:[** **]`solr.ClassicTokenizerFactory`
+**Factory class**: `solr.ClassicTokenizerFactory`
 
-[**Arguments**]: `maxTokenLength` (integer, default
+**Arguments**: `maxTokenLength` (integer, default
 255): Max length of the token characters. Tokens that exceed the number
 of characters specified by `maxTokenLength` will be ignored.
 
-[**Example**]:
+**Example**:
 
 
 ``` {.programlisting .language-markup}
@@ -957,31 +885,24 @@ of characters specified by `maxTokenLength` will be ignored.
 ```
 
 
-[**Input**]:[** **]`Please send a mail at dharmesh.vasoya@example.com by 12-Nov.`
+**Input**: `Please send a mail at dharmesh.vasoya@example.com by 12-Nov.`
 
-[**Output**]:[** **]`Please`, `send`, `a`, `mail`, `at`, `dharmesh.vasoya@example.com`, `by`, `12-Nov`
+**Output**: `Please`, `send`, `a`, `mail`, `at`, `dharmesh.vasoya@example.com`, `by`, `12-Nov`
 
 The input string is split at white spaces and punctuation, but the email
 address `dharmesh.vasoya@example.com` and
 `12-Nov` are preserved as part of the token.
 
-
-
-
 #### Keyword tokenizer
-
-
-
 This treats the entire text field as a single
 token. The kyword tokenizer is required in scenarios where we want to
 match the entire string as it is:
 
-[**Factory
-class**]:[** **]`solr.KeywordTokenizerFactory`
+**Factory class**: `solr.KeywordTokenizerFactory`
 
-[**Arguments**]: None
+**Arguments**: None
 
-[**Example**]: 
+**Example**: 
 
 
 ``` {.programlisting .language-markup}
@@ -993,30 +914,23 @@ class**]:[** **]`solr.KeywordTokenizerFactory`
 ```
 
 
-[**Input: **]`Please send a mail at dharmesh.vasoya@example.com by 12-Nov.`
+**Input: **`Please send a mail at dharmesh.vasoya@example.com by 12-Nov.`
 
-[**Output:**]`Please send a mail at dharmesh.vasoya@example.com by 12-Nov.`
+**Output:**`Please send a mail at dharmesh.vasoya@example.com by 12-Nov.`
 
 The entire input string is preserved as a single token.
 
-
-
-
 #### Lower case tokenizer
-
-
-
 The lower case tokenizer considers white
 spaces and non-letters as delimiters, splits the input string at these
 delimiters, and then discards all delimiters. Finally, it converts all
 letters to lowercase.
 
-[**Factory
-class**]:[** **]`solr.LowerCaseTokenizerFactory`
+**Factory class**: `solr.LowerCaseTokenizerFactory`
 
-[**Arguments**]: None
+**Arguments**: None
 
-[**Example**]:
+**Example**:
 
 
 ``` {.programlisting .language-markup}
@@ -1028,30 +942,23 @@ class**]:[** **]`solr.LowerCaseTokenizerFactory`
 ```
 
 
-[**Input**]:
-`Please send a mail at dharmesh.vasoya@example.com by 12-Nov.`
+**Input**: `Please send a mail at dharmesh.vasoya@example.com by 12-Nov.`
 
-[**Output**]: `please`, `send`, `a`, `mail`, `at`, `dharmesh`, `vasoya`, `example`, `com`, `by`, `nov`
+**Output**: `please`, `send`, `a`, `mail`, `at`, `dharmesh`, `vasoya`, `example`, `com`, `by`, `nov`
 
 The input string was first split at white spaces and punctuation and
 then converted to lowercase.
 
-
-
-
 #### Letter tokenizer
-
-
-
 The letter tokenizer discards all non-letter
 characters from the input string and then generates a token at strings
 of contiguous letters.
 
-[**Factory class**]: `solr.LetterTokenizerFactory`
+**Factory class**: `solr.LetterTokenizerFactory`
 
-[**Arguments**]: None
+**Arguments**: None
 
-[**Example**]:
+**Example**:
 
 
 ``` {.programlisting .language-markup}
@@ -1063,38 +970,32 @@ of contiguous letters.
 ```
 
 
-[**Input**]:[** **]`I haven't received mail by Nov12Sunday`
+**Input**: `I haven't received mail by Nov12Sunday`
 
-[**Output**]:[** **]`I`, `haven`, `t`, `received`, `mail`, `by`, `Nov`, `Sunday`
+**Output**: `I`, `haven`, `t`, `received`, `mail`, `by`, `Nov`, `Sunday`
 
 All non-letter characters (`'` and `12`) are
 discarded first, and then tokens are generated by considering strings of
 contiguous letters.
 
-
-
-
 #### N-gram tokenizer
-
-
-
 This generates n-gram tokens of sizes in the
 provided range from the input string.
 
-[**Factory class**]: `solr.NGramTokenizerFactory`
+**Factory class**: `solr.NGramTokenizerFactory`
 
-[**Arguments**]:[** **]`minGramSize (integer, default 1)`:
+**Arguments**: `minGramSize (integer, default 1)`:
 The minimum n-gram size.`maxGramSize (integer, default 2)`:
 The maximum n-gram size
 
 
-### []{#note27}Note
+### Note
 
 The following condition must be fulfilled when providing gram-size
 arguments:`0 < minGramSize <= maxGramSize`
 
 
-[**Example**]:
+**Example**:
 
 
 ``` {.programlisting .language-markup}
@@ -1106,9 +1007,9 @@ arguments:`0 < minGramSize <= maxGramSize`
 ```
 
 
-[**Input**]: `send me`
+**Input**: `send me`
 
-[**Output**]:[** **]`se`, `sen`, `en`, `end`, `nd`, `nd`, `d`, `dm`, `m`, `me`, `me`
+**Output**: `se`, `sen`, `en`, `end`, `nd`, `nd`, `d`, `dm`, `m`, `me`, `me`
 
 N-gram tokenizer executes tokenization over the entire input string.
 Also, it does not consider white spaces as delimiters, so white space
@@ -1122,27 +1023,20 @@ For example, the input string is
 `Please send me a mail at dharmesh.vasoya@example.com` and we
 want to match `mail at dharmesh.vasoya@example.com`.
 
-
-
-
 #### Edge n-gram tokenizer
-
-
-
 This generates n-gram tokens from the start
 over the entire input string. Like the n-gram tokenizer, the edge n-gram
 tokenizer also does not consider white space as a delimiter, so white
 space is also considered during tokenization.
 
-[**Factory
-class**]:[** **]`solr.EdgeNGramTokenizerFactory`
+**Factory class**: `solr.EdgeNGramTokenizerFactory`
 
-[**Arguments**]:
+**Arguments**:
 
 
--   `minGramSize` (integer, default is `1`): The
+-  `minGramSize` (integer, default is `1`): The
     minimum n-gram size
--   `maxGramSize` (integer, default is `1`): The
+-  `maxGramSize` (integer, default is `1`): The
     maximum n-gram size (`0 < minGramSize <= maxGramSize`)
 
 
@@ -1152,7 +1046,7 @@ In earlier versions, Solr supported an argument side
 This argument has now been removed and Solr generates the token from the
 front end of the input string.
 
-[**Example**]:
+**Example**:
 
 
 ``` {.programlisting .language-markup}
@@ -1164,9 +1058,9 @@ front end of the input string.
 ```
 
 
-[**Input**]: `send me`
+**Input**: `send me`
 
-[**Output**]:[** **]`se`, `sen`, `send`, `send`, `send m`, `send me`
+**Output**: `se`, `sen`, `send`, `send`, `send m`, `send me`
 
 The entire input string is split into n-gram pattern tokens considering
 size parameters (`minGramSize` (2) and `maxGramSize`
@@ -1176,9 +1070,6 @@ matching n-characters from the start of the string.
 For example, the input string is
 `Please send me a mail at dharmesh.vasoya@example.com` and we
 want to match `Please send me a mail` but it will not match. 
-
-
-
 Understanding filters
 ---------------------------------------
 
@@ -1192,22 +1083,16 @@ token stream. The input for a filter will be a token stream, not an
 input string, unlike what we were passing at the time of tokenization.
 The entire token stream generated through tokenization will be passed to
 the first filter class in the list. Let's cover filters in detail.
-
-
-
 ### What is a filter?
-
-
-
 A filter is a tool provided by Solr that runs
 a filtering process as follows:
 
 
--   [**Adding**]: Adds a new token to the stream, such
+-  **Adding**: Adds a new token to the stream, such
     as adding synonyms
--   [**Removing**]: Removes a token from the stream, such as
+-  **Removing**: Removes a token from the stream, such as
     stop words
--   [**Conversation**]: Converts a token from one form to
+-  **Conversation**: Converts a token from one form to
     another form, say uppercase to lower case
 
 
@@ -1250,22 +1135,10 @@ The preceding example is very simple. Solr comes with a large number of
 filters to meet most of our search requirements. Let's understand them
 in detail.
 
-
-
-
 ### Available filters in Solr
-
-
-
 Solr provides the following filters. Let's
 explore their behavior.
-
-
-
 #### Stop filter
-
-
-
 This removes all the words listed inside the
 `stopwords.txt` file. Removing stop words will reduce the size
 of the index and improve performance. These are the standard English
@@ -1287,25 +1160,24 @@ We can manage (add or remove) words from the file as per our
 requirement. We can also create a file for other languages and include
 it by mentioning the file path in the word argument:
 
-[**Factory
-class**]:[** **]`solr.StopFilterFactory`
+**Factory class**: `solr.StopFilterFactory`
 
-[**Arguments**]:
+**Arguments**:
 
 
--   `words` (optional): The path of the file that contains a
+-  `words` (optional): The path of the file that contains a
     list of stop words, one per line. Blank lines and lines that begin
     with `#` will be ignored from the file. The path may be an
     absolute or relative path.
--   `format` (optional): Indicates the format of the stopword
+-  `format` (optional): Indicates the format of the stopword
     list, for example, `format="snowball"` for a stopwords
     list that has been formatted for snowball.
--   `ignoreCase` (true/false, default false): This ignores
+-  `ignoreCase` (true/false, default false): This ignores
     casing when testing for stop words. If it is `true`, the
     stop list should contain lowercase words.
 
 
-[**Example**]:
+**Example**:
 
 
 ``` {.programlisting .language-markup}
@@ -1318,14 +1190,14 @@ class**]:[** **]`solr.StopFilterFactory`
 ```
 
 
-[**Input**]: `This is an example`
+**Input**: `This is an example`
 
-[**Tokenizer to
-filter**]:[** **]`This`, `is`, `an`, `example`
+**Tokenizer to
+filter**: `This`, `is`, `an`, `example`
 
-[**Output**]:[** **]`This`, `example`
+**Output**: `This`, `example`
 
-[**Example**]:
+**Example**:
 
 
 ``` {.programlisting .language-markup}
@@ -1338,30 +1210,29 @@ filter**]:[** **]`This`, `is`, `an`, `example`
 ```
 
 
-[**Input**]:[** **]`This is an example`
+**Input**: `This is an example`
 
-[**Tokenizer to
-filter**]:[** **]`This`, `is`, `an`, `example`
+**Tokenizer to
+filter**: `This`, `is`, `an`, `example`
 
-[**Output**]:[** **]`example`
+**Output**: `example`
 
 In the first example, we have not specified the argument
 `ignoreCase`, but in the second example, we have set it to
 `true`; so the outputs from both the examples are different.
 The location of the file `stopwords_en.txt` is
 `%SOLR_HOME%/example/techproducts/solr/techproducts/conf/lang/stopwords_en.txt`,
-as we currently understand from Solr\'s built-in example
+as we currently understand from Solr's built-in example
 `techproducts`.
 
-[**LCF**]: Converts all uppercase letters to lowercase in the
+**LCF**: Converts all uppercase letters to lowercase in the
 token
 
-[**Factory
-class**]:[** **]`solr.LowerCaseFilterFactory`
+**Factory class**: `solr.LowerCaseFilterFactory`
 
-[**Arguments**]: None
+**Arguments**: None
 
-[**Example**]:
+**Example**:
 
 
 ``` {.programlisting .language-markup}
@@ -1374,12 +1245,12 @@ class**]:[** **]`solr.LowerCaseFilterFactory`
 ```
 
 
-[**Input**]: `This is An example`
+**Input**: `This is An example`
 
-[**Tokenizer to
-Filter**]: `This`, `is`, `An`, `example`
+**Tokenizer to
+Filter**: `This`, `is`, `An`, `example`
 
-[**Output**]: `this`, `is`, `an`, `example`
+**Output**: `this`, `is`, `an`, `example`
 
 All uppercase letters from the tokens are converted to lowercase. The
 sequence order of `LowerCaseFilterFactory` in the filter chain
@@ -1388,7 +1259,7 @@ will unnecessarily apply lower case filtering on those stop words that
 are going to be removed in the next step.
 
 
-### []{#tip28}Note
+### Note
 
 If we need to use LCF in text analysis, then must apply LCF to both the
 phases of an analyzer (index and query). If we define LCF only in the
@@ -1397,22 +1268,16 @@ indexing phase and not in the querying phase, a query for
 `soccer`.
 
 
-
-
-
 #### Classic filter
-
-
-
 The classic filter is used with the classic
 tokenizer. It removes dots from acronyms and `'s` from
 possessives.
 
-[**Factory class**]: `solr.ClassicFilterFactory`
+**Factory class**: `solr.ClassicFilterFactory`
 
-[**Arguments**]: None
+**Arguments**: None
 
-[**Example**]:
+**Example**:
 
 
 ``` {.programlisting .language-markup}
@@ -1425,48 +1290,36 @@ possessives.
 ```
 
 
-[**Input**]:[** **]`Computer's C.P.U. isn't`
+**Input**: `Computer's C.P.U. isn't`
 
-[**Tokenizer to
-filter**]: `Computer's`, `C.P.U.`, `isn't`
+**Tokenizer to
+filter**: `Computer's`, `C.P.U.`, `isn't`
 
-[**Output**]:[** **]`Computer`, `CPU`, `isn't`
+**Output**: `Computer`, `CPU`, `isn't`
 
 The classic tokenizer and classic filter together converted
 `Computer's` to `Computer` by removing
 `'s` and reduced `C.P.U.` to `CPU` by
 removing the dots.
 
-
-
-
 #### Synonym filter
-
-
-
-[** **]During filtering, the synonym filter looks for
+** **During filtering, the synonym filter looks for
 synonymous words in the `synonyms.txt` file. The found
 synonyms will be added at the place of the original token. All
 the synonym mappings are configured inside
 the `synonyms.txt` file.
 
-[**Factory class**]: `solr.SynonymFilterFactory`
+**Factory class**: `solr.SynonymFilterFactory`
 
 
-### []{#note29}Note
+### Note
 
 The synonym filter is now deprecated in Solr as it does not
 support multi-term synonym mapping. Solr provides a synonym graph filter
 as an alternative to the synonym filter with multi-term support.
 
 
-
-
-
 #### Synonym graph filter
-
-
-
 The synonym graph filter supports single- or
 multi-token synonyms. The filter maps single- or multi-token synonyms
 and generates a correct token, which was not supported by the synonym
@@ -1486,12 +1339,12 @@ configuring the synonym graph filter before the ASCII folding filter,
 then we need to maintain all diacritical words (like `caffé`)
 in `synonyms.txt` as well:
 
-[**Factory class**]: `solr.SynonymGraphFilterFactory`
+**Factory class**: `solr.SynonymGraphFilterFactory`
 
-[**Arguments**]:
+**Arguments**:
 
 
--   `synonyms` (required): The path of a file
+-  `synonyms` (required): The path of a file
     (`synonyms.txt`) that contains a list of synonyms, one per
     line. Blank lines and lines that begin with `#` are
     ignored. This may be a comma-separated list of absolute paths, or
@@ -1525,36 +1378,33 @@ For example:
 country => nation
 smart,clever,bright => intelligent,genius
 ```
-
-
-
--   `ignoreCase` (optional; default: `false`): This
+-  `ignoreCase` (optional; default: `false`): This
     determines the behavior of the filter in case-sensitive or case
     insensitive matching from the file. If it is `true`,
     synonyms will be matched case insensitively.
--   `expand` (optional; default: `true`): If this is
+-  `expand` (optional; default: `true`): If this is
     set to `true`, a synonym will be expanded to all
     equivalent synonyms. If `false`, all equivalent synonyms
     will be reduced to the first in the list.
--   `format` (optional; default: `solr`): Controls
+-  `format` (optional; default: `solr`): Controls
     how the synonyms will be parsed. Supported formats are:
     
-    -   `solr` (`SolrSynonymParser`)
-    -   `wordnet` (`WordnetSynonymParser`)
-    -   We can pass the name of our own `SynonymMap.Builder`
+    -  `solr` (`SolrSynonymParser`)
+    -  `wordnet` (`WordnetSynonymParser`)
+    -  We can pass the name of our own `SynonymMap.Builder`
         subclass.
     
--   `tokenizerFactory`: The name of the tokenizer factory to
+-  `tokenizerFactory`: The name of the tokenizer factory to
     use when parsing the synonyms file. If `tokenizerFactory`
     is specified, then analyzer may not be, and vice versa.
--   `analyzer` (optional; default:
+-  `analyzer` (optional; default:
     `WhitespaceTokenizerFactory`): The name of the analyzer
     class to use when parsing the synonyms file. If the analyzer is
     specified, then `tokenizerFactory` may not be, and vice
     versa.
 
 
-[**Example**]:
+**Example**:
 
 
 ``` {.programlisting .language-markup}
@@ -1567,12 +1417,12 @@ smart,clever,bright => intelligent,genius
 ```
 
 
-[**Input**]: `He is stupid, not clever`
+**Input**: `He is stupid, not clever`
 
-[**Tokenizer to
-filter**]:[** **]`He`, `is`, `stupid`, `not`, `clever`
+**Tokenizer to
+filter**: `He`, `is`, `stupid`, `not`, `clever`
 
-[**Output**]: `He`, `is`, `dumb`, `dull`, `stupid`, `not`, `intelligent`,`genius`
+**Output**: `He`, `is`, `dumb`, `dull`, `stupid`, `not`, `intelligent`,`genius`
 
 All the matching synonyms (from `synonyms.txt`) are added to
 the token stream.
@@ -1581,7 +1431,7 @@ If we want to apply the synonym graph filter at index time, we must
 define `FlattenGraphFilterFactory` in an analyzer definition
 index.
 
-[**Example**]:
+**Example**:
 
 
 ``` {.programlisting .language-markup}
@@ -1600,40 +1450,34 @@ index.
 ```
 
 
-[**Input**]:[** **]`He is stupid, not clever`
+**Input**: `He is stupid, not clever`
 
-[**Tokenizer to
-Filter**]: `He`, `is`, `stupid`, `not`, `clever`
+**Tokenizer to
+Filter**: `He`, `is`, `stupid`, `not`, `clever`
 
-[**Output**]:[** **]`He`, `is`, `dumb`, `dull`, `stupid`, `not`, `intelligent`, `genius`
+**Output**: `He`, `is`, `dumb`, `dull`, `stupid`, `not`, `intelligent`, `genius`
 
 All the matching synonyms (from `synonyms.txt`) are added to
 the token stream.
 
-
-
-
 #### ASCII folding filter
-
-
-
 You can transform alphabetic, numeric, and symbolic Unicode
 characters that are not in the Basic Latin
 Unicode block (the first 127 ASCII characters) into their ASCII
 equivalents, if one exists.
 
-[**Factory class**]: `solr.ASCIIFoldingFilterFactory`
+**Factory class**: `solr.ASCIIFoldingFilterFactory`
 
-[**Arguments**]:
+**Arguments**:
 
 
--   `preserveOriginal`: A Boolean. The default is
+-  `preserveOriginal`: A Boolean. The default is
     `false`. If `true`, the original token is
     preserved (`caffé` \--\>
     `caffé`, `cafe`).
 
 
-[**Example**]:
+**Example**:
 
 
 ``` {.programlisting .language-markup}
@@ -1646,34 +1490,28 @@ equivalents, if one exists.
 ```
 
 
-[**Input**]: `thé caffé`
+**Input**: `thé caffé`
 
-[**Tokenizer to
-filter**]:[** **]`thé`, `caffé`
+**Tokenizer to
+filter**: `thé`, `caffé`
 
-[**Output**]:[** **]`the`, `caffe`
-
-
-
+**Output**: `the`, `caffe`
 
 #### Keep word filter
-
-
-
 We keep only those tokens that are listed in
 the `keepwords.txt` files. This is the inverse of the stop
 words filter.
 
-[**Factory class**]: `solr.KeepWordFilterFactory`
+**Factory class**: `solr.KeepWordFilterFactory`
 
-[**Arguments**]:
+**Arguments**:
 
 
--   `words`: Required. This is the path of a text file
+-  `words`: Required. This is the path of a text file
     containing the list of keep words, one per line. Blank lines and
     lines that begin with `#` are ignored. This may be an
     absolute path or a simple filename.
--   `ignoreCase`: `True` or `false`. The
+-  `ignoreCase`: `True` or `false`. The
     default is `false`. If it is `true`, then
     comparisons are done case insensitively and the word file is assumed
     to contain only lowercase words.
@@ -1689,7 +1527,7 @@ excellent
 ```
 
 
-[**Example**]:
+**Example**:
 
 
 ``` {.programlisting .language-markup}
@@ -1702,12 +1540,12 @@ excellent
 ```
 
 
-[**Input**]: `Good and excellent job`
+**Input**: `Good and excellent job`
 
-[**Tokenizer to
-filter**]:[** **]`Good`, `and`, `excellent`, `job`
+**Tokenizer to
+filter**: `Good`, `and`, `excellent`, `job`
 
-[**Output**]:[** **]`Good`, `excellent`
+**Output**: `Good`, `excellent`
 
 Here, we have set `ignoreCase="true"` to match the words from
 the `keepwords.txt` file case insensitively. The patch of
@@ -1715,24 +1553,18 @@ the `keepwords.txt` file case insensitively. The patch of
 `%SOLR_HOME%/example/techproducts/solr/techproducts/conf/keepwords.txt`.
 We can configure a file patch as relative or absolute as per our needs.
 
-
-
-
 #### KStem filter
-
-
-
 Solr provides a stemming mechanism though
 which words are converted to their base form by applying
 language-specific rules. For that, Solr provides a number of stemming
 filters. The KStem filter is an English-specific and less aggressive
 stemmer.
 
-[**Factory class**]: `solr.KStemFilterFactory`
+**Factory class**: `solr.KStemFilterFactory`
 
-[**Arguments**]: None
+**Arguments**: None
 
-[**Example**]:
+**Example**:
 
 
 ``` {.programlisting .language-markup}
@@ -1745,12 +1577,12 @@ stemmer.
 ```
 
 
-[**Input**]: `remove removing removed`
+**Input**: `remove removing removed`
 
-[**Tokenizer to filter**]:[** **]`remove`,
+**Tokenizer to filter**: `remove`,
 `removing`, `removed`
 
-[**Output**]: `remove`
+**Output**: `remove`
 
 From the input string, the KStem filter has transformed three forms of a
 word to their base form `remove`. The first word
@@ -1765,21 +1597,15 @@ popular stemmers. What if we do not want to modify some words by
 stemming? We configure `KeywordMarkerFilterFactory`
 before `KStemFilterFactory`. We will cover this soon.
 
-
-
-
 #### KeywordMarkerFilterFactory
-
-
-
  This discards the modification/stemming of words
 .indexterm} listed in the file `protwords.txt`. Any words in
 the protected word list will not be modified by any stemmer in Solr.
 
-[**Arguments**]:
+**Arguments**:
 
 
--   `protected`: The path of the file that contains the
+-  `protected`: The path of the file that contains the
     protected word list, one per line
 
 
@@ -1792,7 +1618,7 @@ transforming
 ```
 
 
-[**Example**]:
+**Example**:
 
 
 ``` {.programlisting .language-markup}
@@ -1806,12 +1632,11 @@ transforming
 ```
 
 
-[**Input**]: `remove removing removed transforming`
+**Input**: `remove removing removed transforming`
 
-[**Tokenizer to filter**]:
-`remove`, `removing`, `removed`, `transforming`
+**Tokenizer to filter**: `remove`, `removing`, `removed`, `transforming`
 
-[**Output**]: `remove`, `removing`, `remove`, `transforming`
+**Output**: `remove`, `removing`, `remove`, `transforming`
 
 Here we can see that the words `removing` and
 `transforming` are not stemmed by
@@ -1819,14 +1644,8 @@ Here we can see that the words `removing` and
 file `protwords.txt` and protected
 by `KeywordMarkerFilterFactory`.
 
-
-
-
 #### Word delimiter graph filter 
-
-
-
-[** **]This filter splits tokens at
+** **This filter splits tokens at
 word delimiters. This is an alternative to the word delimiter filter.
 Always use a word delimiter graph filter at query time and not at index
 time because the indexer can't directly consume a graph at index
@@ -1836,29 +1655,28 @@ a flatten graph filter.
 The rules for determining delimiters are as follows:
 
 
--   A change in case within a word: `KnowMore` -\>
+-  A change in case within a word: `KnowMore` -\>
     `Know`, `More`. This can be disabled by setting
     `splitOnCaseChange="0"`.
--   A transition from alpha to numeric characters or vice versa:
+-  A transition from alpha to numeric characters or vice versa:
     `Alpha1000` -\> `Alpha`,
     `1000` `100MS` -\> `100`,
     `MS`. This can be disabled by setting
     `splitOnNumerics="0"`.
--   Non-alphanumeric characters are discarded: `air-crew` -\>
+-  Non-alphanumeric characters are discarded: `air-crew` -\>
     `air`, `crew`.
--   A trailing `'s` is removed: `Solr's` -\>
+-  A trailing `'s` is removed: `Solr's` -\>
     `Solr`.
--   Any leading or trailing delimiters are discarded:
+-  Any leading or trailing delimiters are discarded:
     `-air-crew!!` -\> `air`, `crew`.
 
 
-[**Factory class**]:
-`solr.WordDelimiterGraphFilterFactory`
+**Factory class**: `solr.WordDelimiterGraphFilterFactory`
 
-[**Arguments**]: It\'s not possible to list all the arguments
+**Arguments**: It's not possible to list all the arguments
 here. Please refer to the Solr document for these.
 
-[**Example**]:
+**Example**:
 
 
 ``` {.programlisting .language-markup}
@@ -1877,24 +1695,17 @@ here. Please refer to the Solr document for these.
 ```
 
 
-[**Input**]: `KnowMore air-crew Alpha1000`
+**Input**: `KnowMore air-crew Alpha1000`
 
-[**Tokenizer to filter**]:
-`KnowMore`, `air-crew`, `Alpha1000`
+**Tokenizer to filter**: `KnowMore`, `air-crew`, `Alpha1000`
 
-[**Output**]: `Know`, `More`, `air`, `crew`, `Alpha`, `1000`
+**Output**: `Know`, `More`, `air`, `crew`, `Alpha`, `1000`
 
 This is a simple example of a word delimiter graph filter. However, we
 can play with this filter by applying much more complex filtering terms.
 
 
-
-
-
 ### Understanding CharFilter
-
-
-
 During an analysis, the analyzer passes the
 input string to the first tokenizer in the list. If we want to apply any
 preprocessing to the input string before
@@ -1905,31 +1716,25 @@ remove characters from an input string. Here is a list of char filters
 provided by Solr:
 
 
--   `solr.MappingCharFilterFactory`
--   `solr.HTMLStripCharFilterFactory`
--   `solr.ICUNormalizer2CharFilterFactory`
--   `solr.PatternReplaceCharFilterFactor`
-
-
-
+-  `solr.MappingCharFilterFactory`
+-  `solr.HTMLStripCharFilterFactory`
+-  `solr.ICUNormalizer2CharFilterFactory`
+-  `solr.PatternReplaceCharFilterFactor`
 
 #### Understanding PatternReplaceCharFilterFactor
-
-
-
 This filter uses regular expressions to replace
 .indexterm} or change character patterns.
 
-[**Arguments**]:
+**Arguments**:
 
 
--   `pattern`: The regular expression pattern to apply to the
+-  `pattern`: The regular expression pattern to apply to the
     incoming text
--   `replacement`: The text to use to replace matching
+-  `replacement`: The text to use to replace matching
     patterns
 
 
-[**Example**]:
+**Example**:
 
 
 ``` {.programlisting .language-markup}
@@ -1942,18 +1747,15 @@ This filter uses regular expressions to replace
 ```
 
 
-[**Input**]: `showing see-ing viewing`
+**Input**: `showing see-ing viewing`
 
-[**Output**]: `show`, `see-ing`, `view`
+**Output**: `show`, `see-ing`, `view`
 
 As per the behavior of the pattern, `ing` is removed from the
 end of the words except `see-ing`.
 
 Explaining every char filter is not possible here. Please refer to the
 Solr documents for these.
-
-
-
 Understanding multilingual analysis
 -----------------------------------------------------
 
@@ -1989,13 +1791,7 @@ in `managed-schema.xml`:
  </fieldType>
 ```
 
-
-
-
 ### Language identification
-
-
-
 At the time of indexing, language identification is
 required to map text to language-specific
 fields. Solr uses the langid `UpdateRequestProcessor` for
@@ -2003,9 +1799,9 @@ language identification. Two types of `UpdateRequestProcessor`
 are provided by Solr.
 
 
--   `TikaLanguageIdentifierUpdateProcessor`: Uses the
+-  `TikaLanguageIdentifierUpdateProcessor`: Uses the
     language identification libraries in Apache Tika
--   `LangDetectLanguageIdentifierUpdateProcessor`: Uses the
+-  `LangDetectLanguageIdentifierUpdateProcessor`: Uses the
     open source Language Detection Library for Java
 
 
@@ -2044,27 +1840,15 @@ query time, the input provided by the user may be short and sometimes
 not meaningful enough to extract language information. At index time,
 full documents are present, so language identification becomes easier.
 
-
-
-
 ### Configuring Solr for multiple language search
-
-
-
 There are mainly three approaches to
 configure Solr for multiple language search.
-
-
-
 #### Creating separate fields per language
-
-
-
 This is a very simple and straightforward
 approach, done by creating a separate field per language. Create a per
 language field in `managed-schema.xml`.
 
-[**Example**]:
+**Example**:
 
 
 ``` {.programlisting .language-markup}
@@ -2111,13 +1895,7 @@ the multi-language search requirements. The approach has a
 disadvantage too. The index size may increase as we define separate
 fields per language, and so queries may slow down.
 
-
-
-
 #### Creating separate indexes per language
-
-
-
 In this approach, Solr creates a separate
 Solr index (Solr Core) per language. Solr supports the creation of
 multiple cores. Every core contains a unique Solr index. Every core uses
@@ -2193,14 +1971,8 @@ match different spellings that are pronounced similarly by encoding
 them. Some examples are `Sandeep` and `Sandip`;
 `Taylor`, `Tailer`, and `Tailor`; and so
 on. Solr provides several filters for phonetic matching.
-
-
-
 ### Understanding Beider-Morse phonetic matching
-
-
-
-[**Beider-Morse Phonetic Matching**] ([**BMPM**])
+**Beider-Morse Phonetic Matching** (**BMPM**)
 helps you search for personal
 names or surnames. It is a very intelligent
 algorithm compared to soundex, metaphone, caverphone, and so on. Its
@@ -2212,12 +1984,12 @@ It executes these steps to extract names that are phonetically
 equivalent:
 
 
--   Determines the language from the spelling of the name
--   Applies phonetic rules to identify the language and translates the
+-  Determines the language from the spelling of the name
+-  Applies phonetic rules to identify the language and translates the
     name into phonetic alphabets
--   In the case of a language not identified from the name, it applies
+-  In the case of a language not identified from the name, it applies
     generic phonetics
--   Finally, it applies language-independent rules regarding things
+-  Finally, it applies language-independent rules regarding things
     such as voiced and unvoiced consonants and vowels to further ensure
     the reliability of the matches
 
@@ -2227,25 +1999,25 @@ Hebrew written in Hebrew script, Hungarian, Italian, Polish, Romanian,
 Russian written in Cyrillic script, Russian transliterated into Latin
 script, Spanish, and Turkish.
 
-[**Factory class**]: `solr.BeiderMorseFilterFactory`
+**Factory class**: `solr.BeiderMorseFilterFactory`
 
-[**Arguments**]:
+**Arguments**:
 
 
--   `nameType`: Types of names. Valid values are
+-  `nameType`: Types of names. Valid values are
     `GENERIC`, `ASHKENAZI`, or
     `SEPHARDIC`. If you are not processing Ashkenazi or
     Sephardic names, use `GENERIC`.
--   `ruleType`: The types of rules to apply. Valid values are
+-  `ruleType`: The types of rules to apply. Valid values are
     `APPROX` or `EXACT`.
--   `concat`: Defines whether multiple possible matches should
+-  `concat`: Defines whether multiple possible matches should
     be combined with a pipe (`|`).
--   `languageSet`: The language set to use. The value
+-  `languageSet`: The language set to use. The value
     `auto` will allow the filter to identify the language, or
     a comma-separated list can be provided.
 
 
-[**Example**]:
+**Example**:
 
 
 ``` {.programlisting .language-markup}
@@ -2258,11 +2030,11 @@ script, Spanish, and Turkish.
 ```
 
 
-[**Input**]: `sandeep`
+**Input**: `sandeep`
 
-[**Tokenizer to filter**]: `sandeep`
+**Tokenizer to filter**: `sandeep`
 
-[**Output**]:[** **]`sYndip`, `sandDp`, `sandi`, `sandip`, `sondDp`, `sondi`, `sondip`, `zYndip`, `zandip`,
+**Output**: `sYndip`, `sandDp`, `sandi`, `sandip`, `sondDp`, `sondi`, `sondip`, `zYndip`, `zandip`,
 `zondip`
 
 From the generated tokens, token `sandip` is similar to our
@@ -2273,23 +2045,20 @@ behavior for implementing phonetic matching. Following is the list of
 those algorithms:
 
 
--   Daitch-Mokotoff soundex
--   Double metaphone
--   Metaphone
--   Soundex
--   Refined soundex
--   Caverphone
--   Kölner Phonetik also known as Cologne Phonetic
--   NYSIIS
+-  Daitch-Mokotoff soundex
+-  Double metaphone
+-  Metaphone
+-  Soundex
+-  Refined soundex
+-  Caverphone
+-  Kölner Phonetik also known as Cologne Phonetic
+-  NYSIIS
 
 
 Explaining each algorithm is not possible,
 but we can understand their behavior through
 the Solr Admin console by configuring them in the
 `managed-schema.xml` file.
-
-
-
 Summary
 -------------------------
 

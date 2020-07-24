@@ -1,10 +1,7 @@
 
 
-Chapter 9. Client APIs -- An Overview
+Lab 9. Client APIs -- An Overview
 ----------------------------------------------
-
-
-
 In the previous lab, we saw the various steps to be configured for
 production readiness. We also explored the fine-tuning configuration
 needs to be considered during production setup for better performance.
@@ -14,9 +11,6 @@ with all the required configurations to meet any search request. In this
 lab, we will learn how Solr can be used with a web application and
 how to call APIs in different languages. We\'ll have an overview of
 various Client APIs supported by Solr.
-
-
-
 Client API overview
 -------------------------------------
 
@@ -48,22 +42,19 @@ are similar, although in certain cases the HTTP request is a POST
 operation and contains information beyond whatever is included in the
 request URL. For example, an index operation may contain a document in
 the body of the request.
-
-
-
 JavaScript Client API
 ---------------------------------------
 
-JavaScript client is very easy, simple, and straightforward. We don\'t
+JavaScript client is very easy, simple, and straightforward. We don't
 need to create any client to connect to Solr. Also, no packages need to
 be installed for the JavaScript client.
 JavaScript sends the request to Solr using `XMLHttpRequest`.
 Solr processes the request and returns the response in JSON format,
-which can easily be parsed in JavaScript. We don\'t need to configure
+which can easily be parsed in JavaScript. We don't need to configure
 the wt response parameter as Solr, by default, returns the response in
 JSON format.
 
-[**Example: **]Configure `hostURL= http://localhost:8983/solr/techproducts/select`
+**Example: **Configure `hostURL= http://localhost:8983/solr/techproducts/select`
 in JavaScript as follows:
 
 
@@ -133,14 +124,14 @@ function showResponse(str){
 
 
 This is a simple implementation to call the Solr API using
-JavaScript\'s `XMLHttpRequest`. Now if we want to run this
+JavaScript's `XMLHttpRequest`. Now if we want to run this
 code, we create a `.html` file and paste the preceding code in
 this file. The created HTML file should reside in the same
 environment in which Solr is running because modern browsers don't allow
 cross-site access in JavaScript for security reasons. It may be possible
 that searching will not work due to an
 `Access-Control-Allow-Origin` error. There are various
-solutions available for this error; it\'s up to us how we can deal with
+solutions available for this error; it's up to us how we can deal with
 it.
 
 Now open the HTML file in your browser
@@ -153,7 +144,7 @@ the
 ![](https://github.com/fenago/apache-solr/raw/master/images/a7691ee7-d6e0-4895-aee9-43fe234f3cb0.png)
 
 
-[**Response**]:
+**Response**:
 
 
 ``` {.programlisting .language-markup}
@@ -215,7 +206,7 @@ Solr needs all documents in XML or JSON format. SolrJ uses an internal
 binary protocol by default, called JavaBin. Normally, the client
 application sends an update request using HTTP POST with JSON or XML
 format, but the SolrJ client can send the update request as JSON, XML,
-or Solr\'s internal binary JavaBin format. The JavaBin protocol is more
+or Solr's internal binary JavaBin format. The JavaBin protocol is more
 efficient than XML or JSON.
 
 Apart from normal communication to Solr, SolrJ also supports load
@@ -229,7 +220,7 @@ To create a SolrJ client, we do not need to worry much about the
 libraries; SolrJ libraries are already available in the Solr structure.
 Just navigate to `%SOLR_HOME%/dist`. You will
 find `solr-solrj.jar` (with a specific number); copy that jar
-and add it to your Java application build path. That\'s the only library
+and add it to your Java application build path. That's the only library
 required for your SolrJ implementation! Additionally needed libraries
 are available inside the `%SOLR_HOME%/dist/solrj-lib`
 directory; add all those to the Java application class path. Once the
@@ -285,7 +276,7 @@ public class SolrJSearchClientAPI {
 ```
 
 
-[**Response**]:
+**Response**:
 
 
 ``` {.programlisting .language-markup}
@@ -491,17 +482,11 @@ we delete documents in bulk:
 ``` {.programlisting .language-markup}
 solr.deleteById(List<String> ids);
 ```
+### Note
 
-
-
-### []{#tip35}Note
-
-After adding/updating/deleting, don\'t forget to commit the transaction
+After adding/updating/deleting, don't forget to commit the transaction
 using `solr.commit()`; otherwise, the indexes will not be
 affected.
-
-
-
 Ruby Client API
 ---------------------------------
 
@@ -541,7 +526,7 @@ puts response
 ```
 
 
-[**Response**]:
+**Response**:
 
 
 ``` {.programlisting .language-markup}
@@ -580,7 +565,7 @@ it will give the following response, provided it was added successfully:
 ```
 
 
-After adding/updating/deleting, don\'t forgot to commit the transaction
+After adding/updating/deleting, don't forgot to commit the transaction
 using `solr.commit()`, or else the indexes will not be
 affected.
 
@@ -643,9 +628,6 @@ Here we have explored various Solr APIs using basic Ruby programming
 steps. Now, referring to this, we can take a deep dive and add more
 configurations to Ruby and Solr API connectivity to achieve the expected
 results.
-
-
-
 Python Client API
 -----------------------------------
 
@@ -671,7 +653,7 @@ print(response)
 ```
 
 
-[**Response**]:
+**Response**:
 
 
 ``` {.programlisting .language-markup}
@@ -800,9 +782,6 @@ search/add/delete, dealing with the Solr API. The Python programming
 language supports more detailed configurations to meet the all
 expectations from any web application. Now, taking this as a reference,
 we can dive deep and explore Python and Solr bounding in more detail.
-
-
-
 Summary
 -------------------------
 

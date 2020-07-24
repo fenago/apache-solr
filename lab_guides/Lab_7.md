@@ -1,10 +1,7 @@
 
 
-Chapter 7. Advanced Queries -- Part II
+Lab 7. Advanced Queries -- Part II
 -----------------------------------------------
-
-
-
 We started understanding the concept of relevance and its terms
 precision and recall in the previous lab. Then we learned about
 various query parsers, their parameters, and how we can configure them.
@@ -18,9 +15,6 @@ highlighters, and boundary scanners.
 In this lab, we will learn about more search functionalities such as
 spellchecking, suggester, pagination, result grouping and clustering,
 and spatial search. Let's start with the spellchecking feature of Solr.
-
-
-
 Spellchecking
 -------------------------------
 
@@ -40,19 +34,19 @@ Likewise, there are some scenarios where we need to be careful about the
 input word:
 
 
--   If a user enters input search terms with incorrect spelling and
+-  If a user enters input search terms with incorrect spelling and
     there is no matching document available, we use the Solr spellcheck
     feature, displaying a message that searching for `soccer`
     instead of `socer` will give the user a hassle-free
     experience of searching without worrying much about the spelling.
--   A user enters less terms for search which is not sufficient to fetch
+-  A user enters less terms for search which is not sufficient to fetch
     more or sufficient matching documents at that time if any suggestion
     terms available which contains more matching documents then we can
     instruct the user by giving a message like
     `Did you mean xxxxx`. But if the suggestion terms have the
     same or lesser-matching documents than the query terms, then no
     message should be shown.
--   When no index is available for the entered search terms, no
+-  When no index is available for the entered search terms, no
     suggestions should be given to the user.
 
 
@@ -91,8 +85,7 @@ performs spellchecking for all queries processed through this request
 handler, for example, searching for `cemera` instead of
 `camera`.
 
-[**URL**]:
-`http://localhost:8983/solr/techproducts/select?q=cemera`:
+**URL**: `http://localhost:8983/solr/techproducts/select?q=cemera`:
 
 
 ``` {.programlisting .language-markup}
@@ -131,13 +124,12 @@ response. Here we have searched for an incorrect word
 (`cemera`) but in the response, the correct spelling has been
 returned as a spellcheck-suggested word.
 
-However, you don\'t need to provide any spellchecking-related parameters
+However, you don't need to provide any spellchecking-related parameters
 to the query string. Still, if you want to disable spellchecking for any
 specific query, you can use `spellcheck=false` and disable
 spellchecking for that particular query. For example:
 
-[**URL**]:
-`http://localhost:8983/solr/techproducts/select?q=cemera&spellcheck=false`:
+**URL**: `http://localhost:8983/solr/techproducts/select?q=cemera&spellcheck=false`:
 
 
 ``` {.programlisting .language-markup}
@@ -162,13 +154,7 @@ execute during query processing. This can be done easily by setting
 `spellcheck.collate=true`. This is a collation parameter that
 tells Solr to run spellchecking last because generating the collation
 query requires an already executed query.
-
-
-
 ### Spellcheck parameters
-
-
-
 As we discussed earlier in this lab, we
 do not need to pass any parameter to enable or configure a parameter
 with a query string. Configuring them with any request handler in the
@@ -177,14 +163,14 @@ our parameters:
 
 
   ------------------------------------------------------ ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- ------------------------------
-  [**Parameter**]                               [**Behavior**]                                                                                                                                                                                                                                                                                                                  [**Default value**]
+  **Parameter**                               **Behavior**                                                                                                                                                                                                                                                                                                                  **Default value**
   `spellcheck`                                 Enables or disables spellchecking.                                                                                                                                                                                                                                                                                                       `false`
   `spellcheck.q` or `spellcheck.q`   Specifies the query for spellchecking. It will be used if `spellcheck.q` is specified, or else the original input query will be used.                                                                                                                                                                                          
   `spellcheck.build`                           Boolean parameter that tells Solr to generate a dictionary if it does not exist. Dictionary building will take additional time in query processing, so it is advisable not to pass this parameter with every request.                                                                                                                    `false`
   `spellcheck.reload`                          A Boolean parameter that tells Solr to reload the spellchecker implementation.                                                                                                                                                                                                                                                           
   `spellcheck.count`                           Specifies the maximum number of suggestions a spellchecker should return in the response for a specific query term. The default value is `1` if the parameter is not set and is `5` if the parameter is set but no value is assigned.                                                                                `1`
   `spellcheck.onlyMorePopular`                 Specifying this as true will tell Solr to return only those suggestions that have more hits than the original query.                                                                                                                                                                                                                     
-  `spellcheck.maxResultsForSuggest`            Specifies a threshold count based on the number of documents matched from the user\'s original query. For example, if we have set this to `5` and a user\'s original query returns [*\>= 5*] matching documents, Solr will disable the suggestion automatically.                                                    
+  `spellcheck.maxResultsForSuggest`            Specifies a threshold count based on the number of documents matched from the user's original query. For example, if we have set this to `5` and a user's original query returns [*\>= 5*] matching documents, Solr will disable the suggestion automatically.                                                    
   `spellcheck.alternativeTermCount`            Specifies the number of suggestions to be returned from the index and/or dictionary for each query term. It will also enable context-sensitive spelling suggestions.                                                                                                                                                                     
   `spellcheck.extendedResults`                 Boolean variable that tells Solr to return additional details about the spellcheck results. For example, setting this to true will return the frequency of the original terms and of suggestions from the index.                                                                                                                         
   `spellcheck.collate`                         If true, this parameter tells Solr to create a new query (collation query) from the suggested spelling correction. The collation query can be executed by clicking on the link **`Did you mean ... ?`** Returning results is guaranteed, so Solr must execute the collation query in the background before returning results to users.   
@@ -200,23 +186,11 @@ our parameters:
   ------------------------------------------------------ ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- ------------------------------
 
 
-
-
-
 ### Implementation approaches
-
-
-
 Solr provides many approaches for implementing
 .indexterm} spellchecking. Let's get a brief overview of these
 approaches.
-
-
-
 #### IndexBasedSpellChecker
-
-
-
 The `IndexBasedSpellChecker` builds a parallel
 .indexterm} index based on the Solr index and performs spellchecking
 using this parallel index. For this, a field needs to be defined as a
@@ -248,13 +222,7 @@ spellchecking. If we do not define this
 attribute, `solr.IndexBasedSpellChecker` is the default one
 used for spellchecking.
 
-
-
-
 #### DirectSolrSpellChecker
-
-
-
 The `DirectSolrSpellChecker` performs
 spellchecking directly using the terms from
 the Solr index without building a parallel index like
@@ -283,13 +251,7 @@ is an example configured in `solrconfig.xml`:
 ```
 
 
-
-
-
 #### FileBasedSpellChecker
-
-
-
 The `FileBasedSpellChecker` evaluates spellings
 .indexterm} from an external file dictionary. This is useful when Solr
 works as a spellchecking server. This is also useful where spelling
@@ -320,13 +282,7 @@ contains the spelling dictionary. The
 `characterEncoding`parameter specifies the character-encoding
 algorithm.
 
-
-
-
 #### WordBreakSolrSpellChecker
-
-
-
 The `WordBreakSolrSpellChecker` performs
 spellchecking by breaking and/or combining
 query terms. This is useful for terms where users put whitespaces at
@@ -352,13 +308,7 @@ for this approach:
 
 
 
-
-
-
 ### Distributed spellcheck
-
-
-
 Solr supports spellchecking on distributed
 indexes also. The following are the two
 parameters that are required for the request handler (excluding request
@@ -367,7 +317,7 @@ indexes:
 
 
   -------------------------- ----------------------------------------------------------------------------------------------------------------------------------
-  [**Parameter**]   [**Behavior**]
+  **Parameter**   **Behavior**
   `shards`         Specifies the shards in distributed indexing configuration.
   `shards.qt`      Specifies a request handler for requesting to shards. This parameter is not required by the `/select` request handler.
   -------------------------- ----------------------------------------------------------------------------------------------------------------------------------
@@ -378,9 +328,6 @@ indexing (`shard1` and `shard2`), the following is
 the URL:
 
 `http://localhost:8983/solr/techproducts/spell?spellcheck=true&spellcheck.build=true&spellcheck.q=cemera&shards.qt=/spell&shards=solr-shard1:8983/solr/techproducts,solr-shard2:8983/solr/techproducts`
-
-
-
 Suggester
 ---------------------------
 
@@ -394,9 +341,9 @@ suggester suggests terms when the user types words. During the
 implementation of the suggester, we need to consider these two things:
 
 
--   It must be very fast as we need to display suggestions on the
-    user\'s characters type
--   The suggestions should be ranked and ordered by term frequency
+-  It must be very fast as we need to display suggestions on the
+    user's characters type
+-  The suggestions should be ranked and ordered by term frequency
 
 
 To configure any suggester, `SuggestComponent` needs to be
@@ -450,13 +397,7 @@ Now, all requests coming at the `/suggest` request handler
 will be treated for suggestions only. This will work as the other
 request handler and allow us to configure default parameters for
 suggestion requests.
-
-
-
 ### Suggester parameters
-
-
-
 As we have seen, first we need to define a
 search component and then we need to inject that component with any
 request handler. Both the sections contain some parameters that fulfill
@@ -466,7 +407,7 @@ Suggester search component parameters are as follows:
 
 
   ----------------------------------------------------------- ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- ---------------------------------------------
-  [**Parameter**]                                    [**Behavior**]                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      [**Default value**]
+  **Parameter**                                    **Behavior**                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      **Default value**
   `searchComponent`                                 The name of the search component.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            
   `name`                                            Suggester name, which will be referred with the request handler.                                                                                                                                                                                                                                                                                                                                                                                                                                                             
   `lookupImpl`                                      Specifies the lookupImpl implementation algorithms used to look up terms in the suggest index. Available implementations are `AnalyzingLookupFactory`, `FuzzyLookupFactory`, `AnalyzingInfixLookupFactory`, `BlendedInfixLookupFactory`, `FreeTextLookupFactory`, `FSTLookupFactory, TSTLookupFactory`, `WFSTLookupFactory`, and `JaspellLookupFactory`.                                                                                     `JaspellLookupFactory`
@@ -485,12 +426,12 @@ Suggester request handler parameters are as follows:
 
 
   -------------------------------- ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- ------------------------------
-  [**Parameter**]         [**Behavior**]                                                                                                                                                                                                                                                                               [**Default value**]
+  **Parameter**         **Behavior**                                                                                                                                                                                                                                                                               **Default value**
   `suggest`              A boolean parameter to enable/disable suggestions.                                                                                                                                                                                                                                                    `true`
   `suggest.dictionary`   A mandatory parameter. It specifies the dictionary component configured inside the search component.                                                                                                                                                                                                  
   `suggest.q`            Specifies a query to use for suggestions.                                                                                                                                                                                                                                                             
   `suggest.count`        Specifies the number of suggestions to be returned.                                                                                                                                                                                                                        `10`
-  `suggest.cfq`          Specifies the [**context filter query**] ([**CFQ**]) used to filter suggestions based on the context field. CFQ is only supported by `AnalyzingInfixLookupFactory` and `BlendedInfixLookupFactory` and only when backed by a `Document*Dictionary`.   
+  `suggest.cfq`          Specifies the **context filter query** (**CFQ**) used to filter suggestions based on the context field. CFQ is only supported by `AnalyzingInfixLookupFactory` and `BlendedInfixLookupFactory` and only when backed by a `Document*Dictionary`.   
   `suggest.build`        If true, it will build the suggester index.                                                                                                                                                                                                                                                           `false`
   `suggest.reload`       If true, it will reload the suggester index.                                                                                                                                                                                                                                                          `false`
   `suggest.buildAll`     If true, it will build all suggester indexes                                                                                                                                                                                                                                                          `false`
@@ -504,21 +445,15 @@ All of these parameters are usually configured in the request handler.
 However, we can override them at query time by passing parameters in the
 URL.
 
-
-
-
 ### Running suggestions
-
-
-
 We have configured the suggester and request
 handler for this suggester in `solrconfig.xml`. Now Let's run
 the configured suggester and examine the response.
 
-[**Example**]: Let's search for `elec` and see how
+**Example**: Let's search for `elec` and see how
 many suggestions are returned in response. 
 
-[**URL**]: `http://localhost:8983/solr/techproducts/suggest?suggest=true&suggest.build=true&suggest.dictionary=mySuggester&suggest.q=elec`:
+**URL**: `http://localhost:8983/solr/techproducts/suggest?suggest=true&suggest.build=true&suggest.dictionary=mySuggester&suggest.q=elec`:
 
 
 ``` {.programlisting .language-markup}
@@ -554,9 +489,6 @@ we can configure multiple dictionaries in `solrconfig.xml` and
 use them in a URL like this:
 
 `http://localhost:8983/solr/techproducts/suggest?suggest=true&suggest.build=true&suggest.dictionary=mySuggester&suggest.dictionary=yourSuggester&suggest.q=elec`
-
-
-
 Pagination
 ----------------------------
 
@@ -567,7 +499,7 @@ returning the top [*N*] number of matching results (sorted
 based on some fields) first is the ideal way for an application. Solr
 supports a pagination feature whereby we can return a certain number of
 results rather than all results and display them on the first page. If
-we can\'t find the results we are looking for on the first page, we can
+we can't find the results we are looking for on the first page, we can
 call the next page of results by running the subsequent request with
 pagination parameters. Pagination is very helpful in terms of
 performance because instead of returning all matching results at a time,
@@ -575,20 +507,14 @@ it will return only a specific number of results; so the result is very
 quick. Using pagination, we also can determine how many queries are
 required to fulfill the expectations behind the search; so we can manage
 relevance accordingly.
-
-
-
 ### How to implement pagination
-
-
-
 To implement pagination, we need to configure
 two parameters in the query request.
 
 
--   `start`: Indicates from where the results should be
+-  `start`: Indicates from where the results should be
     returned from the complete result set
--   `rows`: Indicates how many results must be returned from
+-  `rows`: Indicates how many results must be returned from
     the complete result set
 
 
@@ -598,10 +524,10 @@ less than the total number of matching results. If we set
 `start` higher than the total number of matching results
 found, the query will not return anything.
 
-[**Example**]: Search for a `query ``q=*:*`
+**Example**: Search for a `query ``q=*:*`
 and get the first five results sorted by ID in ascending order.
 
-[**URL**]: `http://localhost:8983/solr/techproducts/select?q=*:*&fl=id,name&start=0&rows=5&sort=id asc`:
+**URL**: `http://localhost:8983/solr/techproducts/select?q=*:*&fl=id,name&start=0&rows=5&sort=id asc`:
 
 
 ``` {.programlisting .language-markup}
@@ -640,33 +566,27 @@ Only five results are returned in the response. Now, if we want the next
 five results, we set `start=5` and `rows=5`. Please
 note that the response index starts with zero.
 
-
-
-
 ### Cursor pagination
-
-
-
 Pagination implementation using the start and
 rows parameters is very easy and straightforward. But when we have very
 large data volumes, these parameters are not sufficient to implement
 pagination. For example, consider this:
 
 
--   During query processing, Solr first loads all the matching documents
+-  During query processing, Solr first loads all the matching documents
     in memory; then it creates an offset by the start and rows
     parameters and returns that offset for that query. If the data
     volume is very large, Solr first loads all matching results in the
     memory and then applies pagination. So this will create a
     performance problem.
--   In large volumes of data, a request for
+-  In large volumes of data, a request for
     `start=0&rows=1000000` may create trouble for Solr in
     maintaining and sorting a collection of 1 million documents in
     memory.
--   A request for `start=999000&rows=1000` also creates the
+-  A request for `start=999000&rows=1000` also creates the
     same problem. To match the document at the 999001^th^ place, Solr
     has to traverse through the first 999,000 documents.
--   A similar problem exists with SolrCloud, where indexes are
+-  A similar problem exists with SolrCloud, where indexes are
     distributed. If we have 10 shards, then Solr retrieves 10 million
     documents (1 million from each shard) and then sorts to find 1,000
     documents matching the query parameters.
@@ -690,9 +610,9 @@ expected result set is retrieved or the value of
 `nextCursorMark` matches `cursorMark` (which means
 that there are no more results).
 
-[**Examples**]: Fetching all documents.
+**Examples**: Fetching all documents.
 
-[**Using pseudo-code**]:
+**Using pseudo-code**:
 
 
 ``` {.programlisting .language-markup}
@@ -709,7 +629,7 @@ while (not $done) {
 ```
 
 
-[**Using SolrJ**]:
+**Using SolrJ**:
 
 
 ``` {.programlisting .language-markup}
@@ -729,7 +649,7 @@ while (! done) {
 ```
 
 
-[**Using curl**]:
+**Using curl**:
 
 
 ``` {.programlisting .language-markup}
@@ -767,9 +687,9 @@ $ curl '...&rows=10&sort=id+asc&cursorMark=AoEpdmlld3Nvbmlj'
 ```
 
 
-[**Examples**]: Fetching [*N*] Number of documents.
+**Examples**: Fetching [*N*] Number of documents.
 
-[**SolrJ**]:
+**SolrJ**:
 
 
 ``` {.programlisting .language-markup}
@@ -789,11 +709,11 @@ while (! done) {
 When implementing pagination, we need to take care of a few things:
 
 
--   If we have used a start parameter in the request, we have to specify
+-  If we have used a start parameter in the request, we have to specify
     some value.
--   The field on which we are applying sorting must be unique
+-  The field on which we are applying sorting must be unique
     (`uniqueKey` field).
--   The `cursorMark` values are calculated based on the sort
+-  The `cursorMark` values are calculated based on the sort
     values of each document, and it may be possible that multiple
     documents have the same sort values; that will create identical
     `cursorMarks` values. Now, Solr will be confused in
@@ -803,16 +723,13 @@ When implementing pagination, we need to take care of a few things:
     This `uniqueKey` guarantees that the documents are
     returned in deterministic order, and that way each
     `cursorMark` will always point to a unique value.
--   When documents are sorted based on a `Date` function,
+-  When documents are sorted based on a `Date` function,
     `NOW` will create confusion for cursor because
     `NOW` will create a new sort value for each document in
     each subsequent request. This will result in never-ending cursors
     and return the same document every time. To overcome
     this situation, select a fixed value for the
     `NOW` parameter in all requests.
-
-
-
 Result grouping
 ---------------------------------
 
@@ -848,16 +765,10 @@ range faceting are included in grouped faceting, but date and pivot
 faceting are not included. The facet counts are calculated based on the
 first `group.field` parameter and other
 `group.field` parameters are ignored.
-
-
-
 ### Result grouping parameters
 
-
-
-
   --------------------------------- ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- ------------------------------
-  [**Parameter**]          [**Behavior**]                                                                                                                                                               [**Default value**]
+  **Parameter**          **Behavior**                                                                                                                                                               **Default value**
   `group`                 If true, query results will be grouped.                                                                                                                    `false`
   `group.field`           Specifies the field by which the result will be grouped.                                                                                                                              
   `group.func`            Specifies a function name by which the result will be grouped.                                                                                                                        
@@ -877,21 +788,15 @@ first `group.field` parameter and other
   --------------------------------- ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- ------------------------------
 
 
-
-
-
 ### Running result grouping
-
-
-
 We have explored the result grouping concept
 and configurations. Now Let's execute some examples.
 
-[**Example**]: Grouping by field `manu_exact"`, which
+**Example**: Grouping by field `manu_exact"`, which
 specifies the manufacturers of items in the `techproducts`
 dataset.
 
-[**URL**]: `http://localhost:8983/solr/techproducts/select?fl=id,name&q=solr+memory&group=true&group.field=manu_exact`
+**URL**: `http://localhost:8983/solr/techproducts/select?fl=id,name&q=solr+memory&group=true&group.field=manu_exact`
 
 
 ``` {.programlisting .language-markup}
@@ -953,11 +858,11 @@ dataset.
 In the same way, grouping can be achieved by specifying a query or
 queries.
 
-[**Example**]: Retrieve the top three results for the field
+**Example**: Retrieve the top three results for the field
 `memory` for two price ranges of 0.00 to 99.99 and over 100,
 using `group.query`. 
 
-[**URL**]: `http://localhost:8983/solr/techproducts/select?indent=true&fl=name,price&q=memory&group=true&group.query=price:[0+TO+99.99]&group.query=price:[100+TO+*]&group.limit=3`
+**URL**: `http://localhost:8983/solr/techproducts/select?indent=true&fl=name,price&q=memory&group=true&group.query=price:[0+TO+99.99]&group.query=price:[100+TO+*]&group.limit=3`
 
 
 ``` {.programlisting .language-markup}
@@ -999,9 +904,6 @@ using `group.query`. 
     "correctlySpelled":false,
     "collations":[]}}
 ```
-
-
-
 Result clustering
 -----------------------------------
 
@@ -1017,16 +919,10 @@ and identifies similar terms or phrases found within the search
 results. A clustering algorithm discovers relationships across all the
 documents from the search result and forms in a meaningful cluster
 label. Solr comes with several algorithms for clustering implementation.
-
-
-
 ### Result clustering parameters
 
-
-
-
   ----------------------------------- -------------------------------------------------------------------------------------------------------------------- ------------------------------
-  [**Parameter**]            [**Behavior**]                                                                                              [**Default value**]
+  **Parameter**            **Behavior**                                                                                              **Default value**
   `clustering`              Enable/disable clustering.                                                                                           `true`
   `clustering.engine`       Specifies which clustering engine to use. If not specified, the first declared engine will become the default one.   first in a list
   `clustering.results`      When true, the component will run a clustering of the search results (this should be enabled).                       `true`
@@ -1042,25 +938,13 @@ There are some additional parameters that are specific to engine-level
 configuration. We can pass these parameters to the query url to modify
 configurations at query runtime.
 
-
-
-
 ### Result clustering implementation
-
-
-
-Solr\'s built-in example `techproducts` contains preconfigured
+Solr's built-in example `techproducts` contains preconfigured
 components for result clustering, but by
 default, the configurations are disabled.
 
 The clustering implementation requires the following configurations.
-
-
-
 #### Install the clustering contrib
-
-
-
 The clustering contrib extension requires
 `solr-clustering-*.jar` under `/dist` and all JARs
 under `contrib/clustering/lib`. Configure the file path
@@ -1073,14 +957,8 @@ according to your system file path in `solrconfig.xml`:
 ```
 
 
-
-
-
 #### Declare the cluster search component
-
-
-
-[** **]Define the search component
+** **Define the search component
 for clustering in `solrconfig.xml`:
 
 
@@ -1105,13 +983,7 @@ We can also declare cluster components as engines or a multiple
 clustering pipeline, which can be selected by specifying the parameter
 `clustering.engine=<engine name>` in the query URL.
 
-
-
-
 #### Declare the request handler and include the cluster search component
-
-
-
 Define the request handler for the
 cluster in `solrconfig.xml`:
 
@@ -1164,7 +1036,7 @@ solr start -e techproducts -Dsolr.clustering.enabled=true
 Let's run a query for electronics using the configured request
 handler `/clustering` and see the cluster response.
 
-[**URL**]:[** **]`http://localhost:8983/solr/techproducts/clustering?q=electronics&rows=100`:
+**URL**: `http://localhost:8983/solr/techproducts/clustering?q=electronics&rows=100`:
 
 
 ``` {.programlisting .language-markup}
@@ -1225,9 +1097,6 @@ Here we can see a few clusters discovered for the query
 shows the kindness of the cluster. The score is specific to an algorithm
 and meaningful only in relation to the scores of other clusters in the
 same set. A score with a higher value is better.
-
-
-
 Spatial search
 --------------------------------
 
@@ -1250,22 +1119,10 @@ while implementing by indexing geographical shapes helps to search all
 documents within a given range. Solr also supports returning the
 distances of matching documents in a response. We can also apply sorting
 on distances to provide more useful results to the user.
-
-
-
 ### Spatial search implementation
-
-
-
 There are various sequential steps we need to
 execute in order to implement spatial search. 
-
-
-
 #### Field types
-
-
-
 First we need to configure field type in
 `managed-schema.xml` or `schema.xml`:
 
@@ -1279,27 +1136,21 @@ First we need to configure field type in
 spatial search:
 
 
--   `LatLonPointSpatialField`: The most commonly used field
+-  `LatLonPointSpatialField`: The most commonly used field
     type and an alternative to `LatLonType` (deprecated) for
     latitude---and longitude-based search.
--   `LatLonType`: Its non-geodetic twin `PointType`
+-  `LatLonType`: Its non-geodetic twin `PointType`
     field type, and this one is deprecated now.
--   `SpatialRecursivePrefixTreeFieldType`: RPT supports more
+-  `SpatialRecursivePrefixTreeFieldType`: RPT supports more
     advanced search features, such as polygons and
     heatmaps. `RptWithGeometrySpatialField` is derived from
     RPT. It is used for geography-based searches. Sorting and boosting
     are not supported.
--   `BBoxField`: Used to search a bounding box. It supports
+-  `BBoxField`: Used to search a bounding box. It supports
     sorting and boosting.
 
 
-
-
-
 #### Query parser
-
-
-
 Previously, we explored various query parsers that support normal
 searching. But when it comes to spatial search, we need to
 configure a special parser that supports
@@ -1312,15 +1163,12 @@ spatial search:
  There are two types of spatial search parsers available in Solr.
 
 
--   `geofilt`: The `geofilt` parser is used to
+-  `geofilt`: The `geofilt` parser is used to
     retrieve results based on the geospatial distance from a given
     point. Please look at the preceding image. Another way of looking at
     it is that it creates a circular shape filter. For example, to find
     all documents within 5 kilometers of a given latitude-longitude
     point, the query will be:
-
-
-
 ``` {.programlisting .language-markup}
 &q=:&fq={!geofilt sfield=location}&pt=45.15,-93.85&d=5
 ```
@@ -1330,31 +1178,22 @@ This filter returns all results within a circle of the given radius
 around the initial point.
 
 
--   `bbox`[**: **]The `bbox` parser works
+-  `bbox`**: **The `bbox` parser works
     like `geofilt`, except that it uses the bounding box of
     the calculated circle. Please look at the preceding diagram. For the
     same example, the query will be:
-
-
-
 ``` {.programlisting .language-markup}
 &q=:&fq={!bbox sfield=location}&pt=45.15,-93.85&d=5
 ```
 
 
-
-
-
 #### Spatial search query parser parameters
-
-
-
 Both the parsers support the following
 parameters:
 
 
   -------------------------- ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- ------------------------------
-  [**Parameter**]   [**Behavior**]                                                                                                                                                                                                                                                                                                               [**Default value**]
+  **Parameter**   **Behavior**                                                                                                                                                                                                                                                                                                               **Default value**
   `d`              Specifies a radius distance (usually in kilometers) within the document that should be considered for matching.                                                                                                                                                                                                                       
   `pt`             Specifies latitude and longitude for the format as `lat,lon`, `x,y` for `PointType`, or `x, y` for RPT field types.                                                                                                                                                                           
   `sfield`         Specifies a spatial field defined in `managed-schema.xml` or `schema.xml`.                                                                                                                                                                                                                                        
@@ -1364,13 +1203,7 @@ parameters:
 
 
 
-
-
-
 ### Function queries
-
-
-
 In spatial search, along with returning matching documents within a
 given range, Solr also supports calculation of matching document
 distances from the search point and merging
@@ -1379,19 +1212,18 @@ on the calculated distance. To calculate
 distances, the following are the functions available in Solr:
 
 
--   `geodist`: This calculates the distance between too points
+-  `geodist`: This calculates the distance between too points
     (latitude and longitude)
--   `dist`: Calculates the p-norm distance between
+-  `dist`: Calculates the p-norm distance between
     multidimensional vectors
--   `hsin`: This calculates the distance between two points on
+-  `hsin`: This calculates the distance between two points on
     a sphere
--   `sqedist`: Calculates the squared Euclidean distance
+-  `sqedist`: Calculates the squared Euclidean distance
     between two points
 
 
 From the preceding list, `geodist` is the most commonly used
-function for most search cases. It takes three optional parameters:
-`sfield` (spatial field defined in
+function for most search cases. It takes three optional parameters: `sfield` (spatial field defined in
 `managed-schema.xml`), latitude, and longitude. For example,
 we find all cities from the searching point (`45.15`,
 `-93.85`) within a radius of 50 kilometers, calculate their
@@ -1417,9 +1249,6 @@ spatial searching features available in Solr. Exploring every feature
 here is not possible. However, we can take this lab as a reference
 and explore more spatial search features. Rather than going into more
 details of spatial search, Let's move on to the next lab.
-
-
-
 Summary
 -------------------------
 
@@ -1436,6 +1265,3 @@ and get an overview of SolrCloud.
 
 
 ![](https://github.com/fenago/apache-solr/raw/master/images/f809d079111e31b1f0b7716cb973d607.jpg){.mb15 .ng-hide}
-
-
-

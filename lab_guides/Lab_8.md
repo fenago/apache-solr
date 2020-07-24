@@ -1,12 +1,9 @@
 
 
-Chapter 8. Managing and Fine-Tuning Solr
+Lab 8. Managing and Fine-Tuning Solr
 -------------------------------------------------
-
-
-
 Okay, so you have your brand new car up and running and have been using
-it judiciously day in and day out, but you don\'t maintain it properly
+it judiciously day in and day out, but you don't maintain it properly
 from time to time! What will happen? Of course, the performance is going
 to deteriorate over a period of time. Another thing could be that your
 car supports automatic parking but you never found out how to override
@@ -15,22 +12,13 @@ learning and tweaking all the features that your car can provide.
 Similarly, you need to fine-tune and manage your Solr so as to get the
 most out of it. This is exactly what we are going to see in this
 lab.
-
-
-
 JVM configuration
 -----------------------------------
 
 One of the things that you need to take particular care of when you are
 working on any Java-based application is configuring the JVM optimally,
 and Solr is no exception.
-
-
-
 ### Managing the memory heap 
-
-
-
 Anyone who has worked with Java-based
 applications would have surely come across
 setting the heap space. We do it using `-Xms` and
@@ -58,9 +46,6 @@ available space that already exists in the heap. Also, the size of the
 heap plays a crucial role in garbage collection. The larger the heap
 size, the more the time spent by JVM to do garbage collection, leading
 to [*stop the world*] conditions.
-
-
-
 Managing solrconfig.xml
 -----------------------------------------
 
@@ -71,8 +56,8 @@ configuring Solr.
 There are two ways in which this file is modified:
 
 
--   By making direct changes in `solrconfig.xml`
--   Using the config API to create `configoverlay.json`, which
+-  By making direct changes in `solrconfig.xml`
+-  Using the config API to create `configoverlay.json`, which
     holds configuration overlays to modify the default values specified
     in `solrconfig.xml`
 
@@ -98,7 +83,7 @@ ${propertyname[:default value]}
 
 
 Doing so will allow a default, which can be overridden when Solr is
-started. If we don\'t specify a default value, then it we should make
+started. If we don't specify a default value, then it we should make
 sure that the property is specified at runtime or else we will get an
 error.
 
@@ -125,13 +110,7 @@ bin/solr start -Dsolr.autoCommit.maxTime=20000
 
 
 In this way, we can set any Java system property at runtime.
-
-
-
 ### User-defined properties
-
-
-
 We can also add `solrcore.properties` in the
 .indexterm} configuration directory to specify user-defined properties
 that can be set in `solrconfig.xml`. 
@@ -140,7 +119,7 @@ For example, `solr.autoCommit.maxTime` can be added to
 `solrcore.properties`.
 
 
-### []{#note31}Note
+### Note
 
 The `solrcore.properties` is deprecated in cloud mode.
 
@@ -164,31 +143,22 @@ user.name=Dharmesh Vasoya
 
 Now this property can be used in `solrconfig.xml` as
 `${user.name}`.
-
-
-
 #### Implicit Solr core properties
-
-
-
 The following properties are available as implicit
 properties for the Solr core:
 
 
--   `solr.core.config`
--   `solr.core.dataDir`
--   `solr.core.loadOnStartup`
--   `solr.core.name`
--   `solr.core.schema`
--   `solr.core.transient`
+-  `solr.core.config`
+-  `solr.core.dataDir`
+-  `solr.core.loadOnStartup`
+-  `solr.core.name`
+-  `solr.core.schema`
+-  `solr.core.transient`
 
 
 Since implicitly we do not need to specify them in
 `core.properties`, but they are implicitly available to be
 used in `solrconfig.xml`.
-
-
-
 Managing backups
 ----------------------------------
 
@@ -199,16 +169,10 @@ hard disk to crash and all our index data to disappear or get corrupted.
 Solr provides two ways to back up based on how you are running it:
 
 
--   Collections API in SolrCloud mode
--   Replication handler in standalone mode
-
-
-
+-  Collections API in SolrCloud mode
+-  Replication handler in standalone mode
 
 ### Backup in SolrCloud
-
-
-
 As mentioned earlier, using the collections API, we can take
 backups in SolrCloud. Doing so will ensure
 that the backups are generated across multiple shards; and then, at the
@@ -218,32 +182,20 @@ here:
 
 
   ----------------------------- ------------------------------------------------
-  [**Command name**]   [**Description**]
+  **Command name**   **Description**
   `action=BACKUP`     Used to back up Solr indexes and configuration
   `action=RESTORE`    Used to restore Solr indexes and configuration
   ----------------------------- ------------------------------------------------
 
 
-
-
-
 ### Standalone mode backups
-
-
-
 In the case of standalone mode, backups and restoration
 .indexterm} are done using replication handler. The configuration of
 replication handler can be customized using our
 .indexterm} own replication handler in `solrconfig.xml`;
 however, we will use the out-of-the-box implicit support for replication
 using the API.
-
-
-
 #### Backup API
-
-
-
 In order to back up, we will use the
 following command to the core that we would like to take a backup of:
 
@@ -267,21 +219,15 @@ A backup request can have the following parameters:
 
 
   ------------------------------- ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-  [**Parameter name**]   [**Description**]
-  `location`            The location for the backup. Unless you specify an absolute path, everything will be relative to Solr\'s instance directory. The snapshot will be created in a directory named `snapshot.<name>`. If you don\'t specify the name, then the directory name will have a timestamp as the suffix, such as `snapshot.<yyyyMMddHHmmssSSS>`.
+  **Parameter name**   **Description**
+  `location`            The location for the backup. Unless you specify an absolute path, everything will be relative to Solr's instance directory. The snapshot will be created in a directory named `snapshot.<name>`. If you don't specify the name, then the directory name will have a timestamp as the suffix, such as `snapshot.<yyyyMMddHHmmssSSS>`.
   `numberToKeep`        Defines the number of backups. You cannot use this parameter if you have already defined `maxNumberOfBackups` in `solrconfig.xml`.
   `repository`          Defines the name of the repository to be used for the backup. The default will be the filesystem repository.
   `commitName`          Defines the name of the commit that was used while taking a snapshot with the `CREATESNAPSHOT` command.
   ------------------------------- ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
-
-
-
 #### Backup status
-
-
-
 We can monitor the backup operation to check
 the current status using the following call:
 
@@ -308,13 +254,7 @@ The output will be something like this: 
 If there is a failure, then we will get `snapShootException`
 in the response.
 
-
-
-
 #### API to restore
-
-
-
 Similar to taking backups, the restore API
 requires `command=restore` to be sent to the replication
 handler on the core, as follows:
@@ -333,20 +273,14 @@ A restore request can have the following parameters:
 
 
   ------------------------------- --------------------------------------------------------------------------------------------------------------
-  [**Parameter name**]   [**Description**]
-  `location`            The location of the backup. Unless you specify this, it will look for a backup in Solr\'s data directory.
+  **Parameter name**   **Description**
+  `location`            The location of the backup. Unless you specify this, it will look for a backup in Solr's data directory.
   `name`                Defines the name of the backed-up index snapshot to be restored.
   `repository`          Defines the name of the repository to be used for the backup. The default will be the filesystem repository.
   ------------------------------- --------------------------------------------------------------------------------------------------------------
 
 
-
-
-
 #### Restore status API
-
-
-
 Similar to the backup status API, we have a
 restore status API to check the restore status:
 
@@ -373,13 +307,7 @@ The output of the API will be as follows:
 ```
 
 
-
-
-
 #### Snapshot API
-
-
-
 We can create, restore, and list snapshots of
 the index using APIs. 
 
@@ -387,19 +315,19 @@ The details are shown in tabular format as follows:
 
 
 +--------------------+-----------------------+-----------------------+
-| [**API**] | [**URL**]    | [**P                  |
-|                    |                       | arameters**] |
+| **API** | **URL**    | **P                  |
+|                    |                       | arameters** |
 +--------------------+-----------------------+-----------------------+
 | Create snapshot    | `ht                   |    |
-|                    | tp://localhost:8983 / | -   `c                |
+|                    | tp://localhost:8983 / | -  `c                |
 |                    | solr/admin /cores?act | ommitName`: |
-|                    | ion=CREATESNAPSHOT& c |     The parameter\'s  |
+|                    | ion=CREATESNAPSHOT& c |     The parameter's  |
 |                    | ore=myschema&commitNa |     name to be used   |
 |                    | me=commit1` |     for storage       |
-|                    |                       | -   `core`: |
+|                    |                       | -  `core`: |
 |                    |                       |     The name of the   |
 |                    |                       |     core              |
-|                    |                       | -                     |
+|                    |                       | -                    |
 |                    |                       |    `async`: |
 |                    |                       |     The request ID to |
 |                    |                       |     track this        |
@@ -409,10 +337,10 @@ The details are shown in tabular format as follows:
 |                    |                       |                    |
 +--------------------+-----------------------+-----------------------+
 | List snapshot      | `h                    |    |
-|                    | ttp://localhost:8983  | -   `core`: |
+|                    | ttp://localhost:8983  | -  `core`: |
 |                    | /solr/admin /cores?ac |     The name of the   |
 |                    | tion=LISTSNAPSHOTS& c |     core              |
-|                    | ore=myschema&commitNa | -                     |
+|                    | ore=myschema&commitNa | -                    |
 |                    | me=commit1` |    `async`: |
 |                    |                       |     The request ID to |
 |                    |                       |     track this        |
@@ -438,31 +366,22 @@ The details are shown in tabular format as follows:
 |                    |                       | commitName` |
 |                    |                       | to be deleted         |
 +--------------------+-----------------------+-----------------------+
-
-
-
 JMX with Solr
 -------------------------------
 
-[**Java Management Extensions**] ([**JMX**]) is a
+**Java Management Extensions** (**JMX**) is a
 technology that was released in the J2SE 5.0
 release; it provides tools for managing and monitoring resources
 dynamically at runtime. It is used in enterprise applications to make
 configurable systems and get the state of an enterprise application at
 any point of time. The resources are
-represented by [**managed beans**] ([**MBeans**]).
+represented by **managed beans** (**MBeans**).
 
 Solr can be controlled via the JMX interface; we can make use of
 VisualVM or JConsole to connect with Solr.
-
-
-
 ### JMX configuration
-
-
-
 Solr will automatically identify its location
-on startup if you have an MBean server running in Solr\'s JVM or if you
+on startup if you have an MBean server running in Solr's JVM or if you
 start Solr with the `Dcom.sun.management.jmxremote` system
 property.
 
@@ -475,23 +394,14 @@ Open `solr.in.cmd` or `solr.in.sh` in the
 `SOLR_HOME/bin` directory and set
 the `ENABLE_REMOTE_JMX_OPTS` property to `true`,
 along with `RMI_PORT=18983`, to enable remote JMX access.
-
-
-
 Logging configuration
 ---------------------------------------
 
 Setting up logs is a key part of any
 enterprise application and Solr is no exception. Luckily, Solr provides
 many different ways to tweak the default logging configuration.
-
-
-
 ### Log settings using the admin web interface
-
-
-
-Using Solr\'s admin web interface, we can set
+Using Solr's admin web interface, we can set
 various log levels. Go to the admin interface by typing the following
 URL:
 
@@ -528,7 +438,7 @@ next to `ssl`, as shown here:
 This will open up a small popup with various log levels that we can set.
 
 
-### []{#tip32}Note
+### Note
 
 Any log level set in this manner will be lost during the next restart of
 the server.
@@ -537,15 +447,15 @@ the server.
 Various log level settings are listed here:
 
 
--   **`ALL`**: Logs everything
--   **`TRACE`**: Logs everything but leaves the least important messages
--   **`DEBUG`**: Logs debug-level messages
--   **`INFO`**: Logs info-level messages
--   **`WARN`**: Logs all warning messages
--   **`ERROR`**: Logs all errors
--   **`FATAL`**: Logs every fatal message
--   **`OFF`**: Removes logging
--   **`UNSET`**: Removes the previously selected logging option
+-  **`ALL`**: Logs everything
+-  **`TRACE`**: Logs everything but leaves the least important messages
+-  **`DEBUG`**: Logs debug-level messages
+-  **`INFO`**: Logs info-level messages
+-  **`WARN`**: Logs all warning messages
+-  **`ERROR`**: Logs all errors
+-  **`FATAL`**: Logs every fatal message
+-  **`OFF`**: Removes logging
+-  **`UNSET`**: Removes the previously selected logging option
 
 
 You can also set the log level using an API:
@@ -559,27 +469,15 @@ curl -s http://localhost:8983/solr/admin/info/logging --data-binary "set=root:WA
 The preceding `curl` command sets the `root`
 category to the `WARN` level.
 
-
-
-
 ### Log level at startup
-
-
-
 There are two other ways to set up logging
 temporarily:
 
 
--   Setting the environment variable
--   Pass parameters in the startup script
-
-
-
+-  Setting the environment variable
+-  Pass parameters in the startup script
 
 #### Setting the environment variable
-
-
-
 The first option is to set the environment
 variable `SOLR_LOG_LEVEL` at startup or put the variable in
 `SOLR_HOME/bin/solr.in.sh` in the case of Linux
@@ -587,13 +485,7 @@ and `SOLR_HOME/bin/solr.in.cmd` in the case of Windows.
 
 The values will be one of the log levels that were mentioned earlier.
 
-
-
-
 #### Passing parameters in the startup script
-
-
-
 You can start Solr with parameters telling
 how much logging would you like:
 
@@ -617,13 +509,7 @@ Solr with quiet logging or print `WARN` level or more severe
 logs.
 
 
-
-
-
 ### Configuring Log4J for logging
-
-
-
 All the logging solutions that we have seen
 so far are non-permanent settings and are good only until the next
 restart of the server. To make permanent log changes, we resort to
@@ -648,14 +534,11 @@ be written to `solr[port]-console.log`.
 
 As mentioned earlier, the log level, the size of the log file, and the
 logging policy can be changed using `log4j.properties`.
-
-
-
 SolrCloud overview
 ------------------------------------
 
 One of the must have when going to production
-is clustering for fault tolerance and high availability. Solr\'s answer
+is clustering for fault tolerance and high availability. Solr's answer
 to this is SolrCloud, which provides ways to have distributed indexing
 and search capabilities with central configuration for the entire
 cluster, and load balancing with failover support.
@@ -668,13 +551,7 @@ hosted on multiple boxes having replicas; this provides redundancy,
 fault tolerance, and scalability. ZooKeeper holds the strings to manage
 the shards and replication and to decide which server will handle a
 specific request.
-
-
-
 ### SolrCloud in interactive mode
-
-
-
 Let's set up SolrCloud. Go to the `SOLR_HOME/bin` directory
 and start the server in interactive mode
 using the following command: 
@@ -683,9 +560,6 @@ using the following command: 
 ``` {.programlisting .language-markup}
 solr -e cloud
 ```
-
-
-
 ![](https://github.com/fenago/apache-solr/raw/master/images/395b1329-f3db-4146-a4a2-a97038f64f76.png)
 
 
@@ -719,13 +593,7 @@ As you can see, the node is started with two
 shards and a replication factor of two for the
 `gettingstarted` schema. 
 
-
-
-
 ### SolrCloud -- core concepts
-
-
-
 In order to scale, a collection is split or
 partitioned into various shards having documents distributed, which
 means shards have subsets of overall documents in the collection. A
@@ -766,8 +634,8 @@ adding a new replica:
 
 
   ----------------------------- ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-  [**Replica type**]   [**Description**]
-  NRT                           [**Near real-time**] ([**NRT**]) which is the default and initially the only replica type supported by Solr. The way it works is as follows: it maintains a transaction log and writes new documents locally to its index. Here, any replica of this type is eligible for becoming a leader.
+  **Replica type**   **Description**
+  NRT                           **Near real-time** (**NRT**) which is the default and initially the only replica type supported by Solr. The way it works is as follows: it maintains a transaction log and writes new documents locally to its index. Here, any replica of this type is eligible for becoming a leader.
   TLOG                          The only difference between NRT and TLOG is that while the former indexes document changes locally, TLOG does not do that. The TLOG type of replica only maintains a transaction log, resulting in better speeds compared to NR as there are no commits involved. Just like NRT, this type of replica is eligible to become a shard leader.
   PULL                          Does not maintain transaction and document changes locally. The only thing it does is pull or replicate the index from the shard leader. Having this replica type ensures that the replica never becomes a shard leader.
   ----------------------------- ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -780,20 +648,14 @@ Some commonly used combinations are as follows:
 
 
   ---------------------------------- ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-  [**Combination**]         [**Description**]
+  **Combination**         **Description**
   All NRT replicas                   This can be used wherever the update index throughput is less since it involves a commit on every replica during index. Can be ideal for small to medium clusters or wherever the update index throughput is less.
   All TLOG replicas                  This can be used if we have more replicas per shard, with the replicas being able to handle update requests; NRT is not desired.
   TLOG replicas with PULL replicas   This combination is used more often in scenarios where we want to increase the availability of search queries and document updates take the backseat. This will give an outdated result as we are not having NRT updates.
   ---------------------------------- ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
-
-
-
 ### Routing documents
-
-
-
 You can specify the router implementation used
 .indexterm} by a collection using the `router.name` parameter
 while creating your collection.
@@ -809,13 +671,7 @@ restaurant chain is `KFC` and document ID is
 `KFC!87364`. The exclamation mark is used to differentiate the
 prefix used to determine the shard where the document will be routed.
 
-
-
-
 ### Splitting shards
-
-
-
 Let's say that you have created a collection in SolrCloud and created
 two shards initially.  Down the line, there are some additional
 requirements and now you want more shards. You find yourself in the
@@ -826,13 +682,7 @@ collections API provides a way to split a shard into two pieces. It does
 not touch the existing shard at all (which can be deleted later) and the
 split will create two copies of the data as new shards. 
 
-
-
-
 ### Setting up ignore commits from client applications
-
-
-
 Care should be taken in SolrCloud mode: the client
 application should not send explicit commit
 requests. Instead, we should set auto commits to make updates visible,
@@ -860,22 +710,13 @@ here:
 
 In the preceding snippet, we return status 200 to the client but ignore
 the commit.
-
-
-
 Enabling SSL -- Solr security
 -----------------------------------------------
 
 In this example, we will see a basic SSL setup using a self-signed
 certificate. Enabling SSL ensures that
 communication between the client and Solr server is encrypted.
-
-
-
 ### Prerequisites
-
-
-
 Before generating a self-signed certificate, ensure that
 .indexterm} you have OpenSSL installed on your machine. To check whether
 OpenSSL is already installed, type the following command in the Command
@@ -891,16 +732,10 @@ It should print out the current version of OpenSSL running on your
 system. If it does not do so, kindly download the latest version of
 OpenSSL for your operating system and then install it.
 
-We will also make use of JDK\'s keytool for generating self-signed
+We will also make use of JDK's keytool for generating self-signed
 certificates.
 
-
-
-
 ### Generating a key and self-signed certificate
-
-
-
 JDK provides the `keytool` command to create self-signed
 certificates. What we will first do is create
 a keystore using the following command:
@@ -929,8 +764,8 @@ We will now convert this keystore into PEM format, which is accepted by
 most clients. This requires a two-step process:
 
 
--   Converting the keystore from JKS to PKCS12 format
--   Final conversion to PEM format
+-  Converting the keystore from JKS to PKCS12 format
+-  Final conversion to PEM format
 
 
 In order to do the first conversion to PKCS12 format, we will still use
@@ -977,13 +812,7 @@ folder from where you have issued the command with all the three files
 
 Congratulations!!! You are one step closer to setting up SSL.
 
-
-
-
 ### Starting Solr with SSL system properties
-
-
-
 In order to enable SSL, there are some system
 properties that you have to turn on. These properties can be found in
 `SOLR_HOME/bin/solr.in.cmd` in Windows
@@ -994,10 +823,7 @@ SSL, as highlighted here:
 
 
 ![](https://github.com/fenago/apache-solr/raw/master/images/35b01f57-9367-4545-88db-398563fa9568.png)
-
-
-
-### []{#note33}Note
+### Note
 
 As highlighted, there is a section of properties that are related to SSL
 and they are commented.
@@ -1046,10 +872,7 @@ home page:
 
 
 ![](https://github.com/fenago/apache-solr/raw/master/images/dc2a55f3-acd2-41d7-9e40-d4909dfc0d63.png)
-
-
-
-### []{#note34}Note
+### Note
 
 Note that you still have a cross mark on `https` since it is a
 self-signed certificate; it will not have such errors if you are using a
@@ -1068,22 +891,13 @@ As shown, click on the **`Security`** tab and then on the
 **`View Certificate`** option, which will open a dialog box. Navigate to
 the **`Details`** tab and you will see all the details of the
 certificate that you have created.
-
-
-
 Performance statistics
 ----------------------------------------
 
 In order to measure performance, Solr provides statistics
 .indexterm} and metrics; they can read either using Metrics API or by
 enabling JMX.
-
-
-
 ### Statistics for request handlers
-
-
-
 Both search and update request handlers
 provide various statistics.
 
@@ -1097,30 +911,27 @@ There are various attributes that can be added at the end of both of
 these URLs to get various statistics, as listed here:
 
 
--   `5minRate`: Used to find out the requests per second that
+-  `5minRate`: Used to find out the requests per second that
     have we received in the last 5 minutes.
--   `15minRate`: Same as `5minRate`, but here we
+-  `15minRate`: Same as `5minRate`, but here we
     check for requests per second in the last 15 minutes.
--   `p75_ms/p95_ms/p99_ms/p999_ms`: Each of the four
+-  `p75_ms/p95_ms/p99_ms/p999_ms`: Each of the four
     attributes represent how much processing time `x`
     percentile of the request took. `x` is to be replaced by
     the number specified.
--   `count`: Number of requests made from the time Solr was
+-  `count`: Number of requests made from the time Solr was
     time.
--   `median_ms`: As the name suggests, this is the median of
+-  `median_ms`: As the name suggests, this is the median of
     processing times for all requests.
--   `avgRequestsPerSecond`: Average requests per second, just
+-  `avgRequestsPerSecond`: Average requests per second, just
     as the name suggests.
--   `avgTimePerSecond`: Average time for the requests to be
+-  `avgTimePerSecond`: Average time for the requests to be
     processed.
 
 
 Just as there are statistics for requests, we have
 statistics for cache and commits made as
 well. 
-
-
-
 Summary
 -------------------------
 

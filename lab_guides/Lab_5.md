@@ -2,17 +2,11 @@
 
 Lab 5. Data Indexing and Operations
 ------------------------------------------------
-
-
-
 In the last lab, we jumped into various text analysis methodologies,
 such as seeing the use of analyzers, filters, and tokenizers, to have an
 efficient text analysis. 
 
 In this lab, we will see ways to add data to Solr indexes.
-
-
-
 Basics of Solr indexing
 -----------------------------------------
 
@@ -29,44 +23,38 @@ Let's drill down and look at the indexing process, which has the
 following main actions:
 
 
--   Adding content to the Solr Index
--   Updating the index
--   Deleting from the index
+-  Adding content to the Solr Index
+-  Updating the index
+-  Deleting from the index
 
 
 Now, there are two basic questions that might arise in your mind:
 
 
--   From where does Solr accept data to be indexed? Or what are
+-  From where does Solr accept data to be indexed? Or what are
     different sources from where data can be indexed?
--   How do we index data from the sources that we have identified?
+-  How do we index data from the sources that we have identified?
 
 
 Common sources that the Solr index can get data from are:
 
 
--   Database tables
--   CSV files
--   XML files
--   Microsoft Word or PDF
+-  Database tables
+-  CSV files
+-  XML files
+-  Microsoft Word or PDF
 
 
 The answers to \"[*How does the Solr index get data from the
 aforementioned sources?*]\" are as follows:
 
 
--   Using client APIs
--   Uploading XML files using HTTP requests to the Solr server
--   Using the Apache Tika-based Solr Cell framework to ingest
+-  Using client APIs
+-  Uploading XML files using HTTP requests to the Solr server
+-  Using the Apache Tika-based Solr Cell framework to ingest
     proprietary data formats, such as Word or PDF files
 
-
-
-
 ### Installing Postman
-
-
-
 For all HTTP-based service calls, we will be
 using Postman to invoke such services.
 
@@ -82,17 +70,11 @@ like this: 
 ![](https://github.com/fenago/apache-solr/raw/master/images/40daa2bd-ce0d-4119-9e77-561dbfe22277.png)
 
 
-Don\'t worry! We will get into the details as to how to use Postman
+Don't worry! We will get into the details as to how to use Postman
 later in the lab. Alternatively, you can use `curl` to do
 the same, but I prefer Postman due to its easy usability.
 
-
-
-
 ### Exploring the post tool
-
-
-
 In order to index different types of content
 to the Solr server, Solr provides a command-line tool.
 
@@ -190,10 +172,7 @@ java -jar example/exampledocs/post.jar -Dc gettingstarted -Dfiletypes doc,pdf sa
 
 Now that we have learned how to use the post
 tool for indexing, Let's see another technique
-.indexterm} to do the same, known as [**index handlers**].
-
-
-
+.indexterm} to do the same, known as **index handlers**.
 Understanding index handlers
 ----------------------------------------------
 
@@ -225,13 +204,7 @@ Or you can mention them separately in `solrconfig.xml`:
 </requestHandler>
 ```
 
-
-
-
 ### Working with an index handler with the XML format
-
-
-
 Now Let's try to add some content to
 our index using the XML format. Open the
 Postman tool and add the
@@ -265,10 +238,10 @@ For adding any documents to index, the XML schema should have the
 following elements:
 
 
--   `<add>`: Specifies that the operation we are going to
+-  `<add>`: Specifies that the operation we are going to
     perform will add one or more documents
--   `<doc>`: This has fields that make up the whole document
--   `<field>`: Specifies each field to be added for the
+-  `<doc>`: This has fields that make up the whole document
+-  `<field>`: Specifies each field to be added for the
     document
 
 
@@ -331,7 +304,7 @@ something like this:
 
 As you can see, the document with the title
 `Harry Potter and Prisoner of Azkaban` is added to the index.
-I had previously added some other documents, so that\'s why you are
+I had previously added some other documents, so that's why you are
 seeing two additional entries.
 
 Now Let's try to delete some documents from the index. Open Postman and
@@ -365,19 +338,13 @@ button once again:
 As you can see, there is only one entry now
 as the other two entries have been deleted.
 
-
-
-
 ### Index handler with JSON
-
-
-
 Solr also supports JSON-formatted documents
 to be indexed. Let's look at a simple
 example of indexing just one document. To add documents in JSON format
 on our `gettingstarted` collection, we need to use the
 following
-[**URL**]: `http://localhost:8983/solr/gettingstarted/update/json/docs`.
+**URL**: `http://localhost:8983/solr/gettingstarted/update/json/docs`.
 
 Open Postman and create a new request with this URL. See the following
 screenshot for clarity:
@@ -552,13 +519,7 @@ binary files and to index as well as extract data.
 This framework in Solr is known as Solr Cell, which is an abbreviation
 of Solr content extraction library, the name when this framework was
 under development.
-
-
-
 ### Solr Cell basics
-
-
-
 As we have earlier seen that, the Solr Cell
 framework leverages the Tika framework.
 Let's look at some basic concepts about this.
@@ -573,34 +534,34 @@ respects `DublinCore`. Some of the file types where metadata
 can be extracted are as follows:
 
 
--   HTML
--   XML and derived formats such as XHTML, OOXML and ODF
--   Formats of MS Office document types
--   [**OpenDocument**] ([**ODF**])
--   Formats with iWorks document
--   PDF
--   Email formats
--   Crypto formats
--   [**Rich Text Format**] ([**RTF**])
--   Electronic publication 
--   Packaging and compression formats such as `.tar`,
+-  HTML
+-  XML and derived formats such as XHTML, OOXML and ODF
+-  Formats of MS Office document types
+-  **OpenDocument** (**ODF**)
+-  Formats with iWorks document
+-  PDF
+-  Email formats
+-  Crypto formats
+-  **Rich Text Format** (**RTF**)
+-  Electronic publication 
+-  Packaging and compression formats such as `.tar`,
     `.zip`, and `.7zip` files
--   Text format
--   Help formats
--   Feed and syndication formats (RSS and atom feeds)
--   Audio formats
--   JARs and Java class files
--   Video formats
--   Cad formats
--   Scientific formats
--   EXE programs and libraries
--   Image formats
--   Source code
--   Font formats
+-  Text format
+-  Help formats
+-  Feed and syndication formats (RSS and atom feeds)
+-  Audio formats
+-  JARs and Java class files
+-  Video formats
+-  Cad formats
+-  Scientific formats
+-  EXE programs and libraries
+-  Image formats
+-  Source code
+-  Font formats
 
 
 All extracted text from any of these formats is mapped with content
-field. Along with these formats, Tika\'s metadata fields can be mapped
+field. Along with these formats, Tika's metadata fields can be mapped
 to Solr fields.
 
 First, Tika produces an XHTML stream, which is passed to the SAX
@@ -608,13 +569,7 @@ First, Tika produces an XHTML stream, which is passed to the SAX
 finally it creates the fields to index. Since there is an XML-based
 parser, we can apply an XPath expression to XHTML to filter the content.
 
-
-
-
 ### Indexing a binary using Tika
-
-
-
 Now Let's get our hands dirty and start
 putting Tika to use. For this example, we will use
 the `gettingstarted` schema. I will just start one cloud node
@@ -684,17 +639,17 @@ While making the request, we specified `literal.id=doc1`,
 which tells Solr to use `doc1` as the unique ID for this
 particular document.
 
-Other parameters that Solr\'s extracting request handler accepts are
+Other parameters that Solr's extracting request handler accepts are
 covered in this table:
 
 
   -------------------------------------- ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-  [**Parameter**]               [**Description**]
+  **Parameter**               **Description**
   `capture`                    This captures XHTML elements having specified names for supplementary addition to the document. This parameter is useful to copy chunks of XHTML into a separate field. 
   `captureAttr`                Indexes attributes of Tika XHTML elements to separate fields, which are named after the element.
   `commitWithin`               The time, in milliseconds, to commit the document.
   `date.formats`               Defines date format patterns for identification in the documents.
-  `defaultField`               The default field will be used only when the `uprefix` parameter is unspecified and a field can\'t be determined.
+  `defaultField`               The default field will be used only when the `uprefix` parameter is unspecified and a field can't be determined.
   `extractOnly`                This is false by default. If the value is true, it returns the extracted content from Tika, with no need to index the document.
   `extractFormat`              The extraction format to be used, the default being XML. We can change it to text if needed.
   `fmap.source_field`          Used to map one field name to another. 
@@ -706,13 +661,10 @@ covered in this table:
   `passwordsFile`              The file path to password mappings will be set here.
   `resource.name`              Used to specify the optional name of the file.
   `resource.password`          The password for the PDF (which is password protected) is defined using `resource.password`.
-  `tika.config`                The file path used to specify Tika\'s configuration file.
+  `tika.config`                The file path used to specify Tika's configuration file.
   `uprefix`                    Used to prefix fields that have not been defined in the schema with the given prefix. 
   `xpath`                      Used to filter based on the XPath expression during extraction from Tika XHTML content.
   -------------------------------------- ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-
-
 Language detection 
 -------------------------------------
 
@@ -723,16 +675,10 @@ language-specific field while indexing.
 There are two implementations provided by Solr for language detection: 
 
 
--   Tika language detection
--   Langdetect language detection
-
-
-
+-  Tika language detection
+-  Langdetect language detection
 
 ### Language detection configuration
-
-
-
 The configuration for language detection is
 done in `solrconfig.xml` and both Tika as well as langdetect
 language detection use the same parameters, as follows:
@@ -761,7 +707,7 @@ parameters is given here:
 
 
   ------------------------------- ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-  [**Parameter**]        [**Description**]
+  **Parameter**        **Description**
   `langid`              Used to enable language detection by setting the value to true.
   `langid.fl`           This is a required parameter, which can contain either comma-delimited or space-delimited fields to be processed using `langid`.
   `langid.langField`    This is a required parameter used to specify the field for the returned language code.
@@ -772,9 +718,6 @@ parameters is given here:
   `langid.whitelist`    Used to specify the allowed language identification codes list.
   `langid.map`          Used to enable field name mapping. The default value is false.
   ------------------------------- ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-
-
 Client APIs 
 ------------------------------
 
@@ -784,14 +727,14 @@ APIs:
 
 
 +-------------------------+-------------------------------------------+
-| [**Language**] | [**Description**]                |
+| **Language** | **Description**                |
 +-------------------------+-------------------------------------------+
 | Python                  | There are two output formats:             |
 |                         |                                           |
 |                         |                        |
-|                         | -   The first output format is            |
+|                         | -  The first output format is            |
 |                         |     specifically designed for Python      |
-|                         | -   The second format is JSON             |
+|                         | -  The second format is JSON             |
 |                         |                                        |
 +-------------------------+-------------------------------------------+
 | Java                    | A library named SolrJ is available for    |
@@ -810,9 +753,6 @@ APIs:
  
 
 More details on the client API will be covered in a later lab.
-
-
-
 Summary
 -------------------------
 
