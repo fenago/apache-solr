@@ -1,12 +1,9 @@
 
 
-[]{#ch09}Chapter 9. Client APIs -- An Overview {#chapter-9.-client-apis-an-overview .title}
+Chapter 9. Client APIs -- An Overview
 ----------------------------------------------
 
-</div>
 
-</div>
-:::
 
 In the previous chapter, we saw the various steps to be configured for
 production readiness. We also explored the fine-tuning configuration
@@ -20,17 +17,10 @@ various Client APIs supported by Solr.
 
 
 
-[]{#ch09lvl1sec64}Client API overview {#client-api-overview .title style="clear: both"}
+Client API overview
 -------------------------------------
 
-</div>
-
-</div>
-
-------------------------------------------------------------------------
-:::
-
-Solr comes with a bunch of REST APIs, which exposes[]{#id288339952
+Solr comes with a bunch of REST APIs, which exposes
 .indexterm} its features such as query, index, delete, commit, and
 optimize; it also allows a web application to connect with Solr and
 perform any operation by calling these APIs. Solr has taken care of
@@ -45,7 +35,7 @@ the application. Solr also supports various response formats based on
 programming languages such as Java, JavaScript/JSON, Python, Ruby, PHP,
 and many more (we have seen this in [Chapter
 6](https://subscription.packtpub.com/book/big_data_and_business_intelligence/9781788837385/6){.link},
-[*Advanced Queries -- Part I*]{.emphasis}). So it becomes very easy for
+[*Advanced Queries -- Part I*]). So it becomes very easy for
 any programming languages to deal with Solr and to parse a response in
 expected format. Now Solr is the first choice for web applications
 developed in any language.
@@ -61,32 +51,21 @@ the body of the request.
 
 
 
-[]{#ch09lvl1sec65}JavaScript Client API {#javascript-client-api .title style="clear: both"}
+JavaScript Client API
 ---------------------------------------
-
-</div>
-
-</div>
-
-------------------------------------------------------------------------
-:::
 
 JavaScript client is very easy, simple, and straightforward. We don\'t
 need to create any client to connect to Solr. Also, no packages need to
-be installed for[]{#id288339956 .indexterm} the JavaScript client.
-JavaScript sends the request to Solr using `XMLHttpRequest`{.literal}.
+be installed for the JavaScript client.
+JavaScript sends the request to Solr using `XMLHttpRequest`.
 Solr processes the request and returns the response in JSON format,
 which can easily be parsed in JavaScript. We don\'t need to configure
 the wt response parameter as Solr, by default, returns the response in
 JSON format.
 
-[**Example: **]{.strong}Configure `hostURL= http://localhost:8983/solr/techproducts/select`{.literal}
+[**Example: **]Configure `hostURL= http://localhost:8983/solr/techproducts/select`
 in JavaScript as follows:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
 
 ``` {.programlisting .language-markup}
 <html>
@@ -151,35 +130,31 @@ function showResponse(str){
 </body>
 </html>
 ```
-:::
+
 
 This is a simple implementation to call the Solr API using
-JavaScript\'s `XMLHttpRequest`{.literal}. Now if we want to run this
-code, we create a `.html`{.literal} file and paste the preceding code in
+JavaScript\'s `XMLHttpRequest`. Now if we want to run this
+code, we create a `.html` file and paste the preceding code in
 this file. The created HTML file should reside in the same
 environment in which Solr is running because modern browsers don't allow
 cross-site access in JavaScript for security reasons. It may be possible
 that searching will not work due to an
-`Access-Control-Allow-Origin`{.literal} error. There are various
+`Access-Control-Allow-Origin` error. There are various
 solutions available for this error; it\'s up to us how we can deal with
 it.
 
 Now open the HTML file in your browser
-(supporting `XMLHttpRequest`{.literal}); a search input box and a button
+(supporting `XMLHttpRequest`); a search input box and a button
 will be displayed. Enter whatever text you want to search and click on
 the
 **`Search button. If everything goes well, the Solr API will be called and the response will be displayed as follows. Here we are searching for ipod`:**
 
-::: {.mediaobject}
+
 ![](3_files/a7691ee7-d6e0-4895-aee9-43fe234f3cb0.png)
-:::
 
-[**Response**]{.strong}:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+[**Response**]:
+
 
 ``` {.programlisting .language-markup}
 { 
@@ -220,25 +195,18 @@ Copy
    }
 }
 ```
-:::
 
-We\'ve got a JSON response; now we can apply[]{#id288601117 .indexterm}
+
+We\'ve got a JSON response; now we can apply
 our JavaScript skills to parse and display responses as per the
 application requirement. Likewise, we can test more capabilities of
 JavaScript towards the Solr API.
 
 
-[]{#ch09lvl1sec66}SolrJ Client API {#solrj-client-api .title style="clear: both"}
+SolrJ Client API
 ----------------------------------
 
-</div>
-
-</div>
-
-------------------------------------------------------------------------
-:::
-
-SolrJ is built in Java technologies to connect[]{#id288339952
+SolrJ is built in Java technologies to connect
 .indexterm} with Solr from a Java application over HTTP.
 
 Solr and SolrJ both are built-in Java technologies, so communication
@@ -259,21 +227,17 @@ connection to the server.
 
 To create a SolrJ client, we do not need to worry much about the
 libraries; SolrJ libraries are already available in the Solr structure.
-Just navigate to `%SOLR_HOME%/dist`{.literal}. You will
-find `solr-solrj.jar`{.literal} (with a specific number); copy that jar
+Just navigate to `%SOLR_HOME%/dist`. You will
+find `solr-solrj.jar` (with a specific number); copy that jar
 and add it to your Java application build path. That\'s the only library
 required for your SolrJ implementation! Additionally needed libraries
-are available inside the `%SOLR_HOME%/dist/solrj-lib`{.literal}
+are available inside the `%SOLR_HOME%/dist/solrj-lib`
 directory; add all those to the Java application class path. Once the
 configuration is done, we can communicate to Solr using SolrJ.
 
 Here is the simple SolrJ client that connects to the Solr API to run a
 search query:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
 
 ``` {.programlisting .language-markup}
 package com.demo.solr.solrj;
@@ -319,41 +283,29 @@ public class SolrJSearchClientAPI {
   }
 }
 ```
-:::
 
-[**Response**]{.strong}:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+[**Response**]:
+
 
 ``` {.programlisting .language-markup}
 {responseHeader={status=0,QTime=1,params={q=ipod,fl=id,name,wt=javabin,version=2}},response={numFound=3,start=0,docs=[SolrDocument{id=IW-02, name=iPod & iPod Mini USB 2.0 Cable}, SolrDocument{id=F8V7067-APL-KIT, name=Belkin Mobile Power Cord for iPod w/ Dock}, SolrDocument{id=MA147LL/A, name=Apple 60 GB iPod with Video Playback Black}]},spellcheck={suggestions={},correctlySpelled=false,collations={}}}
 ```
-:::
+
 
 To query from the Solr instances running on the cloud using a
-`zkHostString`{.literal} key:
+`zkHostString` key:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
 
 ``` {.programlisting .language-markup}
 String zkHostString = "zkServerA:2181,zkServerB:2181,zkServerC:2181/solr";
 CloudSolrClient solr = new CloudSolrClient.Builder().withZkHost(zkHostString).build();
 ```
-:::
 
-Let\'s run a client that adds a document (builds an index). In our
-selected core, `techproducts`{.literal}, let\'s add one more product:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+Let's run a client that adds a document (builds an index). In our
+selected core, `techproducts`, Let's add one more product:
+
 
 ``` {.programlisting .language-markup}
 package com.demo.solr.solrj;
@@ -395,17 +347,13 @@ public class SolrJAddDocumentClientAPI {
   }
 }
 ```
-:::
 
-Through this client, a new product, `HP Probook 445`{.literal}, has been
-added to `techproducts`{.literal}. Now if we search for the query
-`q=HP Probook 445`{.literal}, we will get the following[]{#id288617178
+
+Through this client, a new product, `HP Probook 445`, has been
+added to `techproducts`. Now if we search for the query
+`q=HP Probook 445`, we will get the following
 .indexterm} response if the product was added successfully:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
 
 ``` {.programlisting .language-markup}
 {
@@ -432,15 +380,11 @@ Copy
     "collations":[]}
 }
 ```
-:::
+
 
 Here we have added a single product, but if we have a product list
 (bulk) to add, we can do it like this:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
 
 ``` {.programlisting .language-markup}
 package com.demo.solr.solrj;
@@ -497,18 +441,14 @@ public class SolrJAddDocumentsClientAPI {
   }
 }
 ```
-:::
+
 
 For bulk processes, Solr provides a thread-safe class called
-`ConcurrentUpdateSolrClient`{.literal}, which first holds all the
+`ConcurrentUpdateSolrClient`, which first holds all the
 documents in buffers and then writes to the HTTP connections.
 
 Using SolrJ, we can delete a document (index) as follows:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
 
 ``` {.programlisting .language-markup}
 package com.demo.solr.solrj;
@@ -541,42 +481,31 @@ public class SolrJDeleteDocumentClientAPI {
   }
 }
 ```
-:::
 
-Now if we search for the query `q=HP Probook 445`{.literal}, it should
+
+Now if we search for the query `q=HP Probook 445`, it should
 not return any results if it was deleted successfully. In the same way,
 we delete documents in bulk:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
 
 ``` {.programlisting .language-markup}
 solr.deleteById(List<String> ids);
 ```
-:::
 
-::: {.note style="margin-left: 0.5in; margin-right: 0.5in;"}
-### []{#tip35}Note {#note .title}
+
+
+### []{#tip35}Note
 
 After adding/updating/deleting, don\'t forget to commit the transaction
-using `solr.commit()`{.literal}; otherwise, the indexes will not be
+using `solr.commit()`; otherwise, the indexes will not be
 affected.
 
 
 
-[]{#ch09lvl1sec67}Ruby Client API {#ruby-client-api .title style="clear: both"}
+Ruby Client API
 ---------------------------------
 
-</div>
-
-</div>
-
-------------------------------------------------------------------------
-:::
-
-Like JavaScript and SolrJ, Ruby can also connect with[]{#id288339956
+Like JavaScript and SolrJ, Ruby can also connect with
 .indexterm} Solr using the Solr API and performs various operations such
 as search, indexing, and removal over the HTTP protocol. Solr also
 provides sufficient API support for the Ruby programming language. So,
@@ -584,30 +513,22 @@ the application that builds on a Ruby platform can also take advantage
 of Solr. Solr reverts a query response in Ruby format, which can be
 interpreted easily in Ruby programming. 
 
-For Ruby applications, to communicate with[]{#id288339964 .indexterm}
-Solr, `rsolr`{.literal} is an extensive library. It provides all the
+For Ruby applications, to communicate with
+Solr, `rsolr` is an extensive library. It provides all the
 functionalities needed to meet your expectations. To install the
-`rsolr`{.literal} dependency, please refer
-to <http://www.rubydoc.info/gems/rsolr>. To install `rsolr`{.literal},
+`rsolr` dependency, please refer
+to <http://www.rubydoc.info/gems/rsolr>. To install `rsolr`,
 use this command:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
 
 ``` {.programlisting .language-markup}
 gem install rsolr
 ```
-:::
 
-Now let\'s search using `rsolr`{.literal} for the query
-`q=ipod`{.literal}:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+Now Let's search using `rsolr` for the query
+`q=ipod`:
+
 
 ``` {.programlisting .language-markup}
 require 'rsolr'
@@ -618,32 +539,24 @@ response = solr.get 'select', :params => {:q => 'ipod',:fl=>'id,name',:wt=>:ruby
 
 puts response
 ```
-:::
 
-[**Response**]{.strong}:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+[**Response**]:
+
 
 ``` {.programlisting .language-markup}
 {"responseHeader"=>{"status"=>0, "QTime"=>2, "params"=>{"q"=>"ipod", "fl"=>"id,name", "wt"=>"ruby"}}, "response"=>{"numFound"=>3, "start"=>0, "docs"=>[{"id"=>"IW-02", "name"=>"iPod & iPod Mini USB 2.0 Cable"}, {"id"=>"F8V7067-APL-KIT", "name"=>"Belkin Mobile Power Cord for iPod w/ Dock"}, {"id"=>"MA147LL/A", "name"=>"Apple 60 GB iPod with Video Playback Black"}]}, "spellcheck"=>{"suggestions"=>[], "correctlySpelled"=>false, "collations"=>[]}}
 ```
-:::
 
-Solr treats the response format based[]{#id288601114 .indexterm} on the
-`:wt`{.literal} parameter value. For `:wt=>:ruby`{.literal}, the
+
+Solr treats the response format based on the
+`:wt` parameter value. For `:wt=>:ruby`, the
 response format will be a hash (a similar object returned by Solr but
-evaluated as Ruby), and for `:wt=>"ruby"`{.literal}, the response will
+evaluated as Ruby), and for `:wt=>"ruby"`, the response will
 be a string. For other formats, Solr returns the response as expected. 
 
-Now let\'s try to add a document (index) to Solr:
+Now Let's try to add a document (index) to Solr:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
 
 ``` {.programlisting .language-markup}
 require 'rsolr'
@@ -656,31 +569,23 @@ solr.commit
 
 puts response
 ```
-:::
 
-After adding, if we search for the query `q=HP Probook 445`{.literal},
+
+After adding, if we search for the query `q=HP Probook 445`,
 it will give the following response, provided it was added successfully:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
 
 ``` {.programlisting .language-markup}
 {"responseHeader"=>{"status"=>0, "QTime"=>4, "params"=>{"q"=>"HP Probook 445", "wt"=>"ruby"}}, "response"=>{"numFound"=>1, "start"=>0, "docs"=>[{"id"=>"HPPRO445", "name"=>"HP Probook 445", "manu"=>"Hewlett Packard", "features"=>["8GB DDR3LSD RAM"], "weight"=>1.2, "price"=>800.0, "price_c"=>"800,USD", "_version_"=>1591126555425243136, "price_c____l_ns"=>80000}]}, "spellcheck"=>{"suggestions"=>[], "correctlySpelled"=>false, "collations"=>[]}}
 ```
-:::
+
 
 After adding/updating/deleting, don\'t forgot to commit the transaction
-using `solr.commit()`{.literal}, or else the indexes will not be
+using `solr.commit()`, or else the indexes will not be
 affected.
 
-We can add multiple documents[]{#id288617163 .indexterm} at a time:
+We can add multiple documents at a time:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
 
 ``` {.programlisting .language-markup}
 require 'rsolr'
@@ -697,14 +602,10 @@ solr.commit
 
 puts response
 ```
-:::
 
-Now delete a document using `rsolr`{.literal}, like this:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+Now delete a document using `rsolr`, like this:
+
 
 ``` {.programlisting .language-markup}
 require 'rsolr'
@@ -717,17 +618,13 @@ solr.commit
 
 puts response
 ```
-:::
 
-Now if we search for the query `q=HP Probook 445`{.literal}, it should
+
+Now if we search for the query `q=HP Probook 445`, it should
 not give any response for the preceding ID if it was deleted
 successfully. In the same way, we can delete multiple documents in a
 single transaction:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
 
 ``` {.programlisting .language-markup}
 require 'rsolr'
@@ -740,7 +637,7 @@ solr.commit
 
 puts response
 ```
-:::
+
 
 Here we have explored various Solr APIs using basic Ruby programming
 steps. Now, referring to this, we can take a deep dive and add more
@@ -749,30 +646,19 @@ results.
 
 
 
-[]{#ch09lvl1sec68}Python Client API {#python-client-api .title style="clear: both"}
+Python Client API
 -----------------------------------
 
-</div>
-
-</div>
-
-------------------------------------------------------------------------
-:::
-
-Solr also comes with APIs that can[]{#id288339952 .indexterm} be
+Solr also comes with APIs that can be
 connected through applications developed in the Python programming
 language. Solr supports responses in Python format, which can be easily
 interpreted in Python programming. As we have seen before for
 JavaScript, SolrJ, and Ruby, Python also provides all the required
 packages to perform search, add, delete and so on.
 
-Let\'s start with search. Here is the simple search configuration for
-searching a query `q=ipod`{.literal} in `techproducts`{.literal}:
+Let's start with search. Here is the simple search configuration for
+searching a query `q=ipod` in `techproducts`:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
 
 ``` {.programlisting .language-markup}
 import urllib.request
@@ -783,32 +669,24 @@ response = eval(connection.read())
 
 print(response)
 ```
-:::
 
-[**Response**]{.strong}:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+[**Response**]:
+
 
 ``` {.programlisting .language-markup}
 {'responseHeader': {'status': 0, 'QTime': 51, 'params': {'q': 'ipod', 'fl': 'id,name', 'wt': 'python'}}, 'response': {'numFound': 3, 'start': 0, 'docs': [{'id': 'IW-02', 'name': 'iPod & iPod Mini USB 2.0 Cable'}, {'id': 'F8V7067-APL-KIT', 'name': 'Belkin Mobile Power Cord for iPod w/ Dock'}, {'id': 'MA147LL/A', 'name': 'Apple 60 GB iPod with Video Playback Black'}]}, 'spellcheck': {'suggestions': [], 'correctlySpelled': False, 'collations': []}}
 ```
-:::
+
 
 The response format is Python; here, even if we do not set
-`wt=python`{.literal}, Solr will give the response in Python format by
-default. The `eval()`{.literal} function is not recommended in Python
+`wt=python`, Solr will give the response in Python format by
+default. The `eval()` function is not recommended in Python
 because executing arbitrary code inside eval is easy to attack on the
-server. As a solution, Python provides a package called `json`{.literal}
-or `simplejson`{.literal}, which is more secure that `eval()`{.literal}.
-This is the syntax for `json`{.literal}:
+server. As a solution, Python provides a package called `json`
+or `simplejson`, which is more secure that `eval()`.
+This is the syntax for `json`:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
 
 ``` {.programlisting .language-markup}
 import json
@@ -816,31 +694,23 @@ import json
 ...
 response = json.load(connection)
 ```
-:::
 
-Now let\'s add documents to Solr using Python programming. Python
+
+Now Let's add documents to Solr using Python programming. Python
 provides many libraries for adding documents to Solr through APIs.
-`pysolr`{.literal} is one of the[]{#id288376074 .indexterm} rich
+`pysolr` is one of the rich
 libraries provided, which gives us a good and simple way to add
-documents to Solr. We need to add `pysolr`{.literal} packages like this
+documents to Solr. We need to add `pysolr` packages like this
 from the command line:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
 
 ``` {.programlisting .language-markup}
 pip install pysolr
 ```
-:::
+
 
 This is a simple implementation to add a single document to Solr:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
 
 ``` {.programlisting .language-markup}
 import pysolr
@@ -858,22 +728,18 @@ solr.add([
     }
 ])
 ```
-:::
+
 
 After adding the document through the preceding implementation,
-searching for `q=HP Probook 445`{.literal} will provide the same
+searching for `q=HP Probook 445` will provide the same
 response as we have added if the document got added successfully to
-`techproducts`{.literal}. Using `pysolr`{.literal}, we do not need to
+`techproducts`. Using `pysolr`, we do not need to
 perform any commit operation as it will be handled internally for any
 transactions.
 
 In the same way, to add multiple documents at a time, here is a simple
 implementation:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
 
 ``` {.programlisting .language-markup}
 import pysolr
@@ -895,18 +761,14 @@ solr.add([
     }
 ])
 ```
-:::
+
 
 All the documents will be added successfully inside
-`techproducts`{.literal}.
+`techproducts`.
 
-We can delete a document using `pysolr`{.literal} in Python. This a
+We can delete a document using `pysolr` in Python. This a
 sample to delete a single document by providing the ID:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
 
 ``` {.programlisting .language-markup}
 import pysolr
@@ -915,16 +777,12 @@ solr = pysolr.Solr("http://localhost:8983/solr/techproducts", timeout=5)
 
 solr.delete(id='HPPRO445')
 ```
-:::
 
-After deletion, if we search for `q=HP Probook 445`{.literal}, it should
+
+After deletion, if we search for `q=HP Probook 445`, it should
 not return the previously added document. Similar is the way to delete
 multiple documents at a time; here is a sample:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
 
 ``` {.programlisting .language-markup}
 import pysolr
@@ -933,7 +791,7 @@ solr = pysolr.Solr("http://localhost:8983/solr/techproducts", timeout=5)
 
 solr.delete(id=['id1','id2'])
 ```
-:::
+
 
 All the documents will be deleted successfully for these IDs.
 
@@ -945,15 +803,8 @@ we can dive deep and explore Python and Solr bounding in more detail.
 
 
 
-[]{#ch09lvl1sec69}Summary
+Summary
 -------------------------
-
-</div>
-
-</div>
-
-------------------------------------------------------------------------
-:::
 
 In this chapter, we got a basic overview of various JavaScript, SolrJ,
 Ruby, and Python supports for Solr API. We explored the basic

@@ -1,13 +1,10 @@
 
-[]{#ch03}Chapter 3. Designing Schemas {#chapter-3.-designing-schemas .title}
+Chapter 3. Designing Schemas
 -------------------------------------
 
-</div>
 
-</div>
-:::
 
-Now that we have seen how to install Solr on our machine, let\'s dive
+Now that we have seen how to install Solr on our machine, Let's dive
 deeper and understand the nitty-gritty of Solr.
 
 Assume that you are building a home that you have always desired. How
@@ -25,17 +22,10 @@ We will finally look at schemaless mode.
 
 
 
-[]{#ch03lvl1sec22}How Solr works {#how-solr-works .title style="clear: both"}
+How Solr works
 --------------------------------
 
-</div>
-
-</div>
-
-------------------------------------------------------------------------
-:::
-
-The easiest way to understand how Solr[]{#id288339996 .indexterm} works
+The easiest way to understand how Solr works
 is to see how a telephone directory helps you to look something up. A
 telephone directory, or yellow pages as it is called in some places, is
 a book containing lots of phone numbers. It has lots of pages. Now, to
@@ -47,12 +37,12 @@ finding the locality that we are living nearby.
 Similarly, Solr can be imagined as a huge directory that has been fed
 data as per our requirement, and it can be queried to get the relevant
 data by using an appropriate search criteria that was indexed while
-feeding in the data. Let\'s have a look at the following diagram and
+feeding in the data. Let's have a look at the following diagram and
 understand how Solr search platform works:
 
-::: {.mediaobject}
+
 ![](2_files/ebaeefbe-9985-45c7-b2a8-59f482a4a896.png)
-:::
+
 
 As you can see, the way to look at Solr is like this---it is basically
 fed with lots of information, which is correctly indexed. Then, in order
@@ -64,116 +54,88 @@ library using Solr. What I do is feed Solr with each book\'s
 information, such as the title, published date, author, price, genre,
 and so on. So, when I query all the books written by J.K. Rowling in the
 child fiction genre, it returns me my favorite [*Harry
-Potter*]{.emphasis} book series.
+Potter*] book series.
 
-::: {.section lang="en" lang="en"}
-::: {.titlepage}
-<div>
 
-<div>
 
-### []{#ch03lvl2sec50}Getting started with Solr\'s basics {#getting-started-with-solrs-basics .title}
+### Getting started with Solr\'s basics
 
-</div>
 
-</div>
-:::
 
-Everything for Solr[]{#id288605565 .indexterm} is a document, which
+Everything for Solr is a document, which
 forms the basic unit of information. Each document contains a set of
 fields, which can be of various types. If we take an example of a book
 store, each book forms a document. Now the author, publication date, and
 so on become fields of the document book, which can be a text or date
-format if we take up the example of the two fields quoted. Let\'s take a
+format if we take up the example of the two fields quoted. Let's take a
 look at the following diagram and understand how the documents, fields
 are laid out in index of Solr instance:
 
-::: {.mediaobject}
+
 ![](2_files/ff99aa2f-c23c-4a18-83d3-d8a39b76c635.png)
-:::
+
 
 As you can see from the previous diagram, we can have as many
 indexes/cores in a Solr instance as we like. The first index/core in the
 previous case is for a music store, which can have various documents
 related to songs indexed in them. Each document has fields or metadata,
 such as singer, song title, and so on.
-:::
 
-::: {.section lang="en" lang="en"}
-::: {.titlepage}
-<div>
 
-<div>
 
-### []{#ch03lvl2sec51}The schema file of Solr {#the-schema-file-of-solr .title}
 
-</div>
+### The schema file of Solr
 
-</div>
-:::
 
-All the information about fields and field types[]{#id288617165
+
+All the information about fields and field types
 .indexterm} is mentioned in the schema file of Solr. Now, the schema
 file can be in one of the following places depending on how you have
 configured Solr:
 
-::: {.itemizedlist}
--   If you use `ClassicIndexSchemaFactory`{.literal}, you would be
+
+-   If you use `ClassicIndexSchemaFactory`, you would be
     manually editing the schema file which
-    is named `schema.xml`{.literal} by default
+    is named `schema.xml` by default
 -   If you decide to make schema changes at runtime using either
     the Schema API or schemaless mode, then the schema file is managed
-    in the `managed-schema`{.literal} file.
-:::
+    in the `managed-schema` file.
 
-::: {.note style="margin-left: 0.5in; margin-right: 0.5in;"}
-### []{#note13}Note {#note .title}
+
+
+### []{#note13}Note
 
 In the case of SolrCloud, you will make changes to the schema using
 Solr\'s admin UI or Schema API if it is enabled. In such a case, you
-will not be able to find either `schema.xml`{.literal} or
-`managed-schema.xml`{.literal}.
+will not be able to find either `schema.xml` or
+`managed-schema.xml`.
 
 
 
-[]{#ch03lvl1sec23}Understanding field types {#understanding-field-types .title style="clear: both"}
+Understanding field types
 -------------------------------------------
 
-</div>
-
-</div>
-
-------------------------------------------------------------------------
-:::
-
 As discussed earlier, we are able to tell Solr how it
-should[]{#id288339944 .indexterm} interpret the incoming data in a field
+should interpret the incoming data in a field
 and how we can query a field using the information specified in field
 types.
 
-::: {.section lang="en" lang="en"}
-::: {.titlepage}
-<div>
 
-<div>
 
-### []{#ch03lvl2sec52}Definitions and properties of field types {#definitions-and-properties-of-field-types .title}
+### Definitions and properties of field types
 
-</div>
 
-</div>
-:::
 
-Before going to the definitions and[]{#id288339961 .indexterm}
+Before going to the definitions and
 properties, we will see what field analysis means.
 
 What Solr should do or how it should interpret data whenever data is
 indexed is important. For example, a description of a book can contain
-lots of useless words: helping verbs such as [*is*]{.emphasis},
-[*was*]{.emphasis}, and [*are*]{.emphasis}; pronouns such
-as [*they*]{.emphasis}, [*we*]{.emphasis}, and so on; and other general
-words such as [*the*]{.emphasis}, [*a*]{.emphasis}, [*this*]{.emphasis},
-and so on. Querying these words will bring[]{#id288340370 .indexterm}
+lots of useless words: helping verbs such as [*is*],
+[*was*], and [*are*]; pronouns such
+as [*they*], [*we*], and so on; and other general
+words such as [*the*], [*a*], [*this*],
+and so on. Querying these words will bring
 all the data. Similarly what should we do with words that have capital
 letters?
 
@@ -185,26 +147,22 @@ Now, coming back to field types, all analyses on a field are done by the
 field type, whether documents are indexed or a query is made on the
 index.
 
-All field types are specified in `schema.xml`{.literal}. A field type
+All field types are specified in `schema.xml`. A field type
 can have the following attributes:
 
-::: {.itemizedlist}
--   The `name`{.literal} field, which is mandatory.
--   The `class`{.literal} field, which is also mandatory. This tells us
+
+-   The `name` field, which is mandatory.
+-   The `class` field, which is also mandatory. This tells us
     which class to implement.
--   In the case of `TextField`{.literal}, you can mention description to
-    convey what the `TextField`{.literal} does.
--   Based on the `Implementation`{.literal} class certain field type
+-   In the case of `TextField`, you can mention description to
+    convey what the `TextField` does.
+-   Based on the `Implementation` class certain field type
     properties which may or may not be mandatory.
-:::
 
-The field type is defined within the `fieldType`{.literal} tags. Let\'s
-take a look at a field type definition for `text_en`{.literal}:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+The field type is defined within the `fieldType` tags. Let's
+take a look at a field type definition for `text_en`:
+
 
 ``` {.programlisting .language-markup}
  <fieldType name="text_en" class="solr.TextField" 
@@ -247,213 +205,198 @@ Copy
      </analyzer>
  </fieldType>
 ```
-:::
 
-As you can see, the first line defines `fieldType`{.literal} with name
-`text_en`{.literal}, which implements
-the `solr.TextField`{.literal} class. It also has an
-attribute, `positionIncrementGap`{.literal}, which adds spaces between
+
+As you can see, the first line defines `fieldType` with name
+`text_en`, which implements
+the `solr.TextField` class. It also has an
+attribute, `positionIncrementGap`, which adds spaces between
 multi-value fields.
 
-For example, let\'s say your text contains the following tokens:
+For example, Let's say your text contains the following tokens:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
 
 ``` {.programlisting .language-markup}
 writer: Sandeep Nair
 writer: Dharmesh Vasoya
 ```
-:::
 
-Now, without any `positionIncrementGap`{.literal} attribute, it is
+
+Now, without any `positionIncrementGap` attribute, it is
 possible to bring up the results when someone searches
-for `Nair Dharmesh`{.literal}. But with
-the `positionIncrementGap`{.literal} attribute, we can avoid this.
+for `Nair Dharmesh`. But with
+the `positionIncrementGap` attribute, we can avoid this.
 
 We will cover the rest of the details available in
-`fieldType`{.literal} class in detail in the next chapter.
+`fieldType` class in detail in the next chapter.
 
-::: {.note style="margin-left: 0.5in; margin-right: 0.5in;"}
-### []{#note14}Note {#note .title}
 
-You must have noticed that a class begins with `solr`{.literal} in
-`solr.TextField`{.literal}. This is a short form for the fully qualified
-package name `org.apache.solr.schema`{.literal}.
-:::
+### []{#note14}Note
 
-::: {.section lang="en" lang="en"}
-::: {.titlepage}
-<div>
+You must have noticed that a class begins with `solr` in
+`solr.TextField`. This is a short form for the fully qualified
+package name `org.apache.solr.schema`.
 
-<div>
 
-#### []{#ch03lvl3sec11}Field type properties {#field-type-properties .title}
 
-</div>
 
-</div>
-:::
+#### Field type properties
 
-All of field type is behavior generally controlled[]{#id288377106
-.indexterm} by the `fieldType`{.literal} class and the optional
+
+
+All of field type is behavior generally controlled
+.indexterm} by the `fieldType` class and the optional
 properties:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
 
 ``` {.programlisting .language-markup}
 <fieldType name="currency" class="solr.CurrencyFieldType"                           amountLongSuffix="_l_ns" codeStrSuffix="_s_ns" 
         defaultCurrency="USD" currencyConfig="currency.xml" />
 ```
-:::
 
-We see that the `defaultCurrency`{.literal} is `USD`{.literal} and extra
+
+We see that the `defaultCurrency` is `USD` and extra
 config-related information is specified in a file called
-`currency.xml`{.literal}.
+`currency.xml`.
 
 There are three types of properties that can be associated with a
-`fieldType`{.literal} class:
+`fieldType` class:
 
-::: {.itemizedlist}
+
 -   General properties, which can be applicable for any
-    `fieldType`{.literal} class
+    `fieldType` class
 -   Field default properties, as shown in the previous example where we
-    default the currency value to `USD`{.literal} if none is specified
+    default the currency value to `USD` if none is specified
 -   Finally, properties that are specific for a specific
-    `fieldType`{.literal} class
-:::
+    `fieldType` class
+
 
 General properties are specified as follows:
 
-::: {.informaltable}
+
   --------------------------------------- -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-  [**Properties**]{.strong}               [**Description**]{.strong}
-  `name`{.literal}                        The name of the `fieldType`{.literal}.
-  `class`{.literal}                       The name of the class that is used to index and store the data for this type.
-  `positionIncrementGap`{.literal}        Specifically for multi-value fields. It is used to specify the distance between multiple values. This helps in preventing phrase matches that are spurious in nature.
-  `autoGeneratePhraseQueries`{.literal}   This is used for `TextField`{.literal}. If this value is true, Solr generates phrase queries intended for adjacent terms automatically. If it is false, then terms are supposed to be enclosed in double quotes in order for them to be treated as phrases.
-  `enableGraphQueries`{.literal}          Used for only text fields. It is applicable only while querying `sow=false`{.literal}.
-  `docValuesFormat`{.literal}             This is used to define a custom `DocValuesFormat`{.literal}.
-  `postingsFormat`{.literal}              Helps in defining a custom `PostingsFormat`{.literal} to be used for fields of this type. 
+  [**Properties**]               [**Description**]
+  `name`                        The name of the `fieldType`.
+  `class`                       The name of the class that is used to index and store the data for this type.
+  `positionIncrementGap`        Specifically for multi-value fields. It is used to specify the distance between multiple values. This helps in preventing phrase matches that are spurious in nature.
+  `autoGeneratePhraseQueries`   This is used for `TextField`. If this value is true, Solr generates phrase queries intended for adjacent terms automatically. If it is false, then terms are supposed to be enclosed in double quotes in order for them to be treated as phrases.
+  `enableGraphQueries`          Used for only text fields. It is applicable only while querying `sow=false`.
+  `docValuesFormat`             This is used to define a custom `DocValuesFormat`.
+  `postingsFormat`              Helps in defining a custom `PostingsFormat` to be used for fields of this type. 
   --------------------------------------- -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-:::
+
 
  
 
-Now let\'s take a look at the field default properties. The values can
+Now Let's take a look at the field default properties. The values can
 be defaulted in actual fields or can be inherited from the field types.
 
-::: {.informaltable}
+
 +----------------+----------------+----------------+----------------+
 | [**Proper      | [**Deta        | [**Available   | [**Default     |
-| ty**]{.strong} | il**]{.strong} | valu           | val            |
-|                |                | es**]{.strong} | ue**]{.strong} |
+| ty**] | il**] | valu           | val            |
+|                |                | es**] | ue**] |
 +----------------+----------------+----------------+----------------+
-| `inde          | Tells whether  | ::: {          | `t             |
-| xed`{.literal} | to index the   | .itemizedlist} | rue`{.literal} |
+| `inde          | Tells whether  | 
+| xed` | to index the   | .itemizedlist} | rue` |
 |                | field or not.  | -   `t         |                |
-|                |                | rue`{.literal} |                |
+|                |                | rue` |                |
 |                |                | -   `fa        |                |
-|                |                | lse`{.literal} |                |
-|                |                | :::            |                |
+|                |                | lse` |                |
+|                |                |             |                |
 +----------------+----------------+----------------+----------------+
-| `sto           | The actual     | ::: {          | `t             |
-| red`{.literal} | value of the   | .itemizedlist} | rue`{.literal} |
+| `sto           | The actual     | 
+| red` | value of the   | .itemizedlist} | rue` |
 |                | field can be   | -   `t         |                |
-|                | retrieved      | rue`{.literal} |                |
+|                | retrieved      | rue` |                |
 |                | using queries  | -   `fa        |                |
-|                | if the value   | lse`{.literal} |                |
-|                | is             | :::            |                |
+|                | if the value   | lse` |                |
+|                | is             |             |                |
 |                | `tr            |                |                |
-|                | ue.`{.literal} |                |                |
+|                | ue.` |                |                |
 +----------------+----------------+----------------+----------------+
-| `sortMissingFi | If a sort      | ::: {          | `fa            |
-| rst`{.literal} | field is not   | .itemizedlist} | lse`{.literal} |
+| `sortMissingFi | If a sort      | 
+| rst` | field is not   | .itemizedlist} | lse` |
 |                | present, this  | -   `t         |                |
-| and            | decides the    | rue`{.literal} |                |
+| and            | decides the    | rue` |                |
 | `sortMissingL  | placement of   | -   `fa        |                |
-| ast`{.literal} | the document.  | lse`{.literal} |                |
-|                |                | :::            |                |
+| ast` | the document.  | lse` |                |
+|                |                |             |                |
 +----------------+----------------+----------------+----------------+
-| `docVal        | The value of   | ::: {          | `fa            |
-| ues`{.literal} | this field is  | .itemizedlist} | lse`{.literal} |
+| `docVal        | The value of   | 
+| ues` | this field is  | .itemizedlist} | lse` |
 |                | placed in a    | -   `t         |                |
-|                | column-or      | rue`{.literal} |                |
+|                | column-or      | rue` |                |
 |                | iented `docVal | -   `fa        |                |
-|                | ues`{.literal} | lse`{.literal} |                |
-|                | structure if   | :::            |                |
+|                | ues` | lse` |                |
+|                | structure if   |             |                |
 |                | set            |                |                |
 |                | to `tr         |                |                |
-|                | ue.`{.literal} |                |                |
+|                | ue.` |                |                |
 +----------------+----------------+----------------+----------------+
-| `multiVal      | Indicates      | ::: {          | `fa            |
-| ued`{.literal} | whether a      | .itemizedlist} | lse`{.literal} |
+| `multiVal      | Indicates      | 
+| ued` | whether a      | .itemizedlist} | lse` |
 |                | single         | -   `t         |                |
-|                | document can   | rue`{.literal} |                |
+|                | document can   | rue` |                |
 |                | have multiple  | -   `fa        |                |
-|                | values for     | lse`{.literal} |                |
-|                | this field     | :::            |                |
+|                | values for     | lse` |                |
+|                | this field     |             |                |
 |                | type.          |                |                |
 +----------------+----------------+----------------+----------------+
-| `omitNo        | Used to        | ::: {          | `*`{.literal}  |
-| rms`{.literal} | disable field  | .itemizedlist} |                |
+| `omitNo        | Used to        | 
+| rms` | disable field  | .itemizedlist} |                |
 |                | length         | -   `t         |                |
-|                | normalization  | rue`{.literal} |                |
+|                | normalization  | rue` |                |
 |                | and to save    | -   `fa        |                |
-|                | some memory.   | lse`{.literal} |                |
-|                | For all        | :::            |                |
+|                | some memory.   | lse` |                |
+|                | For all        |             |                |
 |                | primitive      |                |                |
 |                | field types,   |                |                |
 |                | the value is   |                |                |
 |                | `true          |                |                |
-|                | `{.literal} by |                |                |
+|                | ` by |                |                |
 |                | default. Norms |                |                |
 |                | are needed     |                |                |
 |                | only for       |                |                |
 |                | full-text      |                |                |
 |                | fields.        |                |                |
 +----------------+----------------+----------------+----------------+
-| `omitTer       | Omits term     | ::: {          | `*`{.literal}  |
+| `omitTer       | Omits term     | 
 | mFreqAndPositi | frequency,     | .itemizedlist} |                |
-| ons`{.literal} | position, and  | -   `t         |                |
-|                | payloads from  | rue`{.literal} |                |
+| ons` | position, and  | -   `t         |                |
+|                | payloads from  | rue` |                |
 |                | postings of    | -   `fa        |                |
-|                | this field     | lse`{.literal} |                |
-|                | when           | :::            |                |
+|                | this field     | lse` |                |
+|                | when           |             |                |
 |                | `tr            |                |                |
-|                | ue`{.literal}. |                |                |
+|                | ue`. |                |                |
 |                | Defaults to    |                |                |
 |                | `t             |                |                |
-|                | rue`{.literal} |                |                |
+|                | rue` |                |                |
 |                | for non-text   |                |                |
 |                | fields.        |                |                |
 +----------------+----------------+----------------+----------------+
-| `omitPositi    | This is        | ::: {          | `*`{.literal}  |
-| ons`{.literal} | similar to     | .itemizedlist} |                |
+| `omitPositi    | This is        | 
+| ons` | similar to     | .itemizedlist} |                |
 |                | `omitTerm      | -   `t         |                |
-|                | FreqAndPositio | rue`{.literal} |                |
-|                | ns`{.literal}; | -   `fa        |                |
-|                | however, in    | lse`{.literal} |                |
-|                | this case, it  | :::            |                |
+|                | FreqAndPositio | rue` |                |
+|                | ns`; | -   `fa        |                |
+|                | however, in    | lse` |                |
+|                | this case, it  |             |                |
 |                | preserves      |                |                |
 |                | information    |                |                |
 |                | about the term |                |                |
 |                | frequency.     |                |                |
 +----------------+----------------+----------------+----------------+
-| `termVecto     | Solr maintains | ::: {          | `fa            |
-| rs`{.literal}, | full term      | .itemizedlist} | lse`{.literal} |
+| `termVecto     | Solr maintains | 
+| rs`, | full term      | .itemizedlist} | lse` |
 | `termPositio   | vectors for    | -   `t         |                |
-| ns`{.literal}, | every single   | rue`{.literal} |                |
+| ns`, | every single   | rue` |                |
 | `termOffse     | document if    | -   `fa        |                |
-| ts`{.literal}, | these          | lse`{.literal} |                |
-| and            | properties are | :::            |                |
+| ts`, | these          | lse` |                |
+| and            | properties are |             |                |
 | `termPaylo     | `tr            |                |                |
-| ads`{.literal} | ue`{.literal}. |                |                |
+| ads` | ue`. |                |                |
 |                | These vectors, |                |                |
 |                | may include    |                |                |
 |                | position,      |                |                |
@@ -464,21 +407,21 @@ be defaulted in actual fields or can be inherited from the field types.
 |                | each term      |                |                |
 |                | occurrence.    |                |                |
 +----------------+----------------+----------------+----------------+
-| `requi         | Tells Solr not | ::: {          | `fa            |
-| red`{.literal} | to accept any  | .itemizedlist} | lse`{.literal} |
+| `requi         | Tells Solr not | 
+| red` | to accept any  | .itemizedlist} | lse` |
 |                | attempts to    | -   `t         |                |
-|                | add a document | rue`{.literal} |                |
+|                | add a document | rue` |                |
 |                | that does not  | -   `fa        |                |
-|                | have a value   | lse`{.literal} |                |
-|                | for the field. | :::            |                |
+|                | have a value   | lse` |                |
+|                | for the field. |             |                |
 +----------------+----------------+----------------+----------------+
-| `use           | This is        | ::: {          | `t             |
-| DocValuesAsSto | dependent on   | .itemizedlist} | rue`{.literal} |
-| red`{.literal} | the `docVal    | -   `t         |                |
-|                | ues`{.literal} | rue`{.literal} |                |
+| `use           | This is        | 
+| DocValuesAsSto | dependent on   | .itemizedlist} | rue` |
+| red` | the `docVal    | -   `t         |                |
+|                | ues` | rue` |                |
 |                | enabled. This  | -   `fa        |                |
-|                | is enabled if  | lse`{.literal} |                |
-|                | we set it to   | :::            |                |
+|                | is enabled if  | lse` |                |
+|                | we set it to   |             |                |
 |                | true and will  |                |                |
 |                | allow the      |                |                |
 |                | field to be    |                |                |
@@ -486,18 +429,18 @@ be defaulted in actual fields or can be inherited from the field types.
 |                | it were a      |                |                |
 |                | stored field   |                |                |
 |                | while matching |                |                |
-|                | `*`{.literal}  |                |                |
+|                | `*`  |                |                |
 |                | in an          |                |                |
-|                | `fl`{.literal} |                |                |
+|                | `fl` |                |                |
 |                | parameter.     |                |                |
 +----------------+----------------+----------------+----------------+
-| `la            | This will      | ::: {          | `fa            |
-| rge`{.literal} | work only wh   | .itemizedlist} | lse`{.literal} |
+| `la            | This will      | 
+| rge` | work only wh   | .itemizedlist} | lse` |
 |                | en `stored="tr | -   `t         |                |
-|                | ue"`{.literal} | rue`{.literal} |                |
+|                | ue"` | rue` |                |
 |                | and `mul       | -   `fa        |                |
-|                | tiValued="fals | lse`{.literal} |                |
-|                | e"`{.literal}. | :::            |                |
+|                | tiValued="fals | lse` |                |
+|                | e"`. |             |                |
 |                | In order       |                |                |
 |                | not to get     |                |                |
 |                | cached in      |                |                |
@@ -508,215 +451,193 @@ be defaulted in actual fields or can be inherited from the field types.
 |                | very large     |                |                |
 |                | values.        |                |                |
 +----------------+----------------+----------------+----------------+
-:::
+
 
  
 
 In order to score a document in searching, Solr uses similarity. For
 every collection, there is one global similarity and Solr implicitly
-uses `BM25Similarity`{.literal}. You can declare a top-level
-`<similarity/>`{.literal} element and override it.
+uses `BM25Similarity`. You can declare a top-level
+`<similarity/>` element and override it.
 
-::: {.note style="margin-left: 0.5in; margin-right: 0.5in;"}
-### []{#note15}Note {#note-1 .title}
+
+### []{#note15}Note
 
 **`Best Matching (BM)`**BM25 is a ranking algorithm used by search
 engines such as Lucene to rank matching documents according to their
 relevance by a given search query. 
-:::
-:::
-:::
 
-::: {.section lang="en" lang="en"}
-::: {.titlepage}
-<div>
 
-<div>
 
-### []{#ch03lvl2sec53}Field types available in Solr {#field-types-available-in-solr .title}
 
-</div>
 
-</div>
-:::
 
-Let\'s see the various field types available[]{#id288340580 .indexterm}
+### Field types available in Solr
+
+
+
+Let's see the various field types available
 with Solr:
 
-::: {.itemizedlist}
--   `BinaryField`{.literal}: This is intended for binary data.
--   `BoolField`{.literal}: This is for Boolean data. It can either be
-    true or false. If values `1`{.literal}, `t`{.literal}, or
-    `T`{.literal} are encountered in the first character, then it is
+
+-   `BinaryField`: This is intended for binary data.
+-   `BoolField`: This is for Boolean data. It can either be
+    true or false. If values `1`, `t`, or
+    `T` are encountered in the first character, then it is
     interpreted as true. All other values are interpreted as false.
--   `CollationField`{.literal}: This is used for collated sort keys,
+-   `CollationField`: This is used for collated sort keys,
     which can be used for locale-sensitive sort and range queries.
--   `CurrencyFieldType`{.literal}: This is used for currencies and
+-   `CurrencyFieldType`: This is used for currencies and
     exchange rates.
-:::
 
-::: {.note style="margin-left: 0.5in; margin-right: 0.5in;"}
-### []{#note16}Note {#note-2 .title}
 
-There is also a `CurrencyField`{.literal} that does the same thing, but
+
+### []{#note16}Note
+
+There is also a `CurrencyField` that does the same thing, but
 it is deprecated.
-:::
 
-::: {.itemizedlist}
--   `DateRangeField`{.literal}: This is used for working with date
+
+
+-   `DateRangeField`: This is used for working with date
     ranges, as the name suggests. We will cover this in detail in the
     next section.
--   `ExternalFileField`{.literal}: This is used when values have to be
+-   `ExternalFileField`: This is used when values have to be
     pulled from an external file.
--   `EnumFieldType`{.literal}: This is used for enumerated sets of
+-   `EnumFieldType`: This is used for enumerated sets of
     values.
-:::
 
-::: {.note style="margin-left: 0.5in; margin-right: 0.5in;"}
-### []{#note17}Note {#note-3 .title}
 
-There is also an `EnumField`{.literal} that does the same thing, but it
+
+### []{#note17}Note
+
+There is also an `EnumField` that does the same thing, but it
 is now deprecated.
-:::
 
-::: {.itemizedlist}
--   `ICUCollationField`{.literal}: This is similar to
-    `CollationField`{.literal} and is recommended instead of
-    `CollationField`{.literal}.
--   `LatLonPointSpatialField`{.literal}: This is used for multi-value
+
+
+-   `ICUCollationField`: This is similar to
+    `CollationField` and is recommended instead of
+    `CollationField`.
+-   `LatLonPointSpatialField`: This is used for multi-value
     for multiple points of latitude and longitude coordinate pairs. It
     is usually specified as latitude, longitude in that order, with a
     comma to separate the two.
--   `PointType`{.literal}: This is used when we have a single-valued
+-   `PointType`: This is used when we have a single-valued
     n-dimensional point, and if we have to sort spatial data that is
     non-latitude, non-longitude or handle rare use cases.
--   `PreAnalyzedField`{.literal}: This is used when we have to send
+-   `PreAnalyzedField`: This is used when we have to send
     serialized token streams to Solr to store and index without any
     additional text processing.
--   `RandomSortField`{.literal}: This does not contain values and is
-    used to return results[]{#id288340769 .indexterm} in a random order.
--   `SpatialRecursivePrefixTreeFieldType`{.literal}: This accepts
-    latitude, longitude strings in [**well-known text**]{.strong}
-    ([**WKT**]{.strong}) format.
--   `StrField`{.literal}: This is intended for small fields and is not
+-   `RandomSortField`: This does not contain values and is
+    used to return results in a random order.
+-   `SpatialRecursivePrefixTreeFieldType`: This accepts
+    latitude, longitude strings in [**well-known text**]
+    ([**WKT**]) format.
+-   `StrField`: This is intended for small fields and is not
     tokenized or analyzed.
--   `TextField`{.literal}: This is used for multiple words or tokens.
--   `DatePointField`{.literal}/`DoublePointField`{.literal}/`FloatPointField`{.literal}/`IntPointField`{.literal}/`LongPointField`{.literal}:
+-   `TextField`: This is used for multiple words or tokens.
+-   `DatePointField`/`DoublePointField`/`FloatPointField`/`IntPointField`/`LongPointField`:
     These are all similar to the analogous Trie-based fields. The only
     difference is that they use dimensional-points-based data structures
     and do not require any configuration of precision steps.
-:::
 
-::: {.note style="margin-left: 0.5in; margin-right: 0.5in;"}
-### []{#note18}Note {#note-4 .title}
 
-As of Solr 7, all the `Trie[Datatype]Fields`{.literal} are
-deprecated: `TrieField`{.literal}, `TrieDateField`{.literal},
-`TrieDoubleField`{.literal}, `TrieFloatField`{.literal},
-`TrieIntField`{.literal}, and `TrieLongField`{.literal}.
-:::
 
-`UUIDField`{.literal} will generate a new UUID when we pass a value of
-`NEW`{.literal}. It is recommended to
-use `UUIDUpdateProcessorFactory`{.literal} instead of
-`UUIDField`{.literal} to generate UUID values when using
-`SolrCloud`{.literal}, since doing so will make each document of each
+### []{#note18}Note
+
+As of Solr 7, all the `Trie[Datatype]Fields` are
+deprecated: `TrieField`, `TrieDateField`,
+`TrieDoubleField`, `TrieFloatField`,
+`TrieIntField`, and `TrieLongField`.
+
+
+`UUIDField` will generate a new UUID when we pass a value of
+`NEW`. It is recommended to
+use `UUIDUpdateProcessorFactory` instead of
+`UUIDField` to generate UUID values when using
+`SolrCloud`, since doing so will make each document of each
 replica have a unique UUID value.
-:::
 
-::: {.section lang="en" lang="en"}
-::: {.titlepage}
-<div>
 
-<div>
 
-### []{#ch03lvl2sec54}Understanding date fields {#understanding-date-fields .title}
 
-</div>
+### Understanding date fields
 
-</div>
-:::
 
-As seen before, Solr\'s date fields[]{#id288340872 .indexterm} such
-as `DatePointField`{.literal}, `DateRangeField`{.literal}, and
-`TrieDateField`{.literal} (deprecated) represent dates as points in time
+
+As seen before, Solr\'s date fields such
+as `DatePointField`, `DateRangeField`, and
+`TrieDateField` (deprecated) represent dates as points in time
 with millisecond precision. Solr uses
-`DateTimeFormatter.ISO_INSTANT`{.literal} for formatting and parsing:
+`DateTimeFormatter.ISO_INSTANT` for formatting and parsing:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
 
 ``` {.programlisting .language-markup}
 YYYY-MM-DDThh:mm:ssZ
 ```
-:::
 
-Let\'s break up the preceding date pattern. Please take a look at the
+
+Let's break up the preceding date pattern. Please take a look at the
 break up listed as follow:
 
-::: {.itemizedlist}
--   `YYYY`{.literal} is the year. An example is 1985
--   `MM`{.literal} is the month. For example, `02`{.literal} represents
-    February
--   `DD`{.literal} is the day of the month
--   `T`{.literal} is a literal used to separate date and time
--   `hh`{.literal} is the hour of the day
--   `mm`{.literal} is minutes
--   `ss`{.literal} is seconds
--   `Z`{.literal} is a literal used to indicate the string
-    representation of the[]{#id288340942 .indexterm} date in
-    [**Coordiated Universal Time**]{.strong} ([**UTC**]{.strong})
-:::
 
-::: {.note style="margin-left: 0.5in; margin-right: 0.5in;"}
-### []{#tip19}Note {#note-5 .title}
+-   `YYYY` is the year. An example is 1985
+-   `MM` is the month. For example, `02` represents
+    February
+-   `DD` is the day of the month
+-   `T` is a literal used to separate date and time
+-   `hh` is the hour of the day
+-   `mm` is minutes
+-   `ss` is seconds
+-   `Z` is a literal used to indicate the string
+    representation of the date in
+    [**Coordiated Universal Time**] ([**UTC**])
+
+
+
+### []{#tip19}Note
 
 No time zone can be specified and all the string representations of
 dates are specified in UTC.
-:::
+
 
 An example would be:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
 
 ``` {.programlisting .language-markup}
 1985-02-21T06:33:19Z
 ```
-:::
+
 
 We can optionally add fractional seconds, but as mentioned earlier, any
 precision beyond milliseconds will not be considered.
 
-::: {.note style="margin-left: 0.5in; margin-right: 0.5in;"}
-### []{#tip20}Note {#note-6 .title}
 
-If we need a date prior to the year `0000`{.literal}, then the date
-should have a leading `-`{.literal}; similarly for years after
-`9999`{.literal}, there should be a leading `+`{.literal}.
-:::
+### []{#tip20}Note
 
-In order to express date ranges, Solr\'s `DateRangeField`{.literal} is
+If we need a date prior to the year `0000`, then the date
+should have a leading `-`; similarly for years after
+`9999`, there should be a leading `+`.
+
+
+In order to express date ranges, Solr\'s `DateRangeField` is
 used. Some of the examples are shown as follows:
 
-::: {.itemizedlist}
--   `1985-02`{.literal}: This represents the entire month of February
+
+-   `1985-02`: This represents the entire month of February
     1985
--   `1985-02T06`{.literal}: This also adds an hour element from 6 AM to
+-   `1985-02T06`: This also adds an hour element from 6 AM to
     7 AM during February 1985
--   `-0002`{.literal}: Since there is a leading `–`{.literal}, this
+-   `-0002`: Since there is a leading `–`, this
     represents 3 BC
--   `[1985-02-21 TO 1989-08-27]`{.literal}: The date range between these
+-   `[1985-02-21 TO 1989-08-27]`: The date range between these
     two dates
--   `[1985 TO 1985-02-21]`{.literal}: From the start of 1985
+-   `[1985 TO 1985-02-21]`: From the start of 1985
     until February 21, 1985
--   `[* TO 1985-02-21]`{.literal}: From the earliest representable time
+-   `[* TO 1985-02-21]`: From the earliest representable time
     to the end of the 21^st^ day of February 1985
-:::
+
 
 Date math expressions are one more interesting format. They help by
 adding some quantity of time in a specified unit or rounding off the
@@ -726,166 +647,139 @@ expression.
 
 Some valid expressions are as follows:
 
-::: {.itemizedlist}
--   `NOW+4DAYS`{.literal}: Specifies 4 days from today.
--   `NOW-6MONTHS`{.literal}: Specifies 6 months before now.
--   `NOW/HOUR`{.literal}: Here, the slash indicates rounding. This tells
+
+-   `NOW+4DAYS`: Specifies 4 days from today.
+-   `NOW-6MONTHS`: Specifies 6 months before now.
+-   `NOW/HOUR`: Here, the slash indicates rounding. This tells
     us to round off to the beginning of the current hour.
--   `NOW+4MONTHS+6DAYS/DAY`{.literal}: This expression specifies a point
+-   `NOW+4MONTHS+6DAYS/DAY`: This expression specifies a point
     in the future four months and six days from now and rounds off to
     the beginning of that day.
-:::
+
 
 Date math can be applied between any two times and not everything has to
-necessarily be relative to `NOW`{.literal}.
+necessarily be relative to `NOW`.
 
-::: {.note style="margin-left: 0.5in; margin-right: 0.5in;"}
-### []{#tip21}Note {#note-7 .title}
 
-The `NOW`{.literal} parameter can also be used to specify an arbitrary
+### []{#tip21}Note
+
+The `NOW` parameter can also be used to specify an arbitrary
 moment in time and not necessarily the current time. It can be
 overridden using long-valued milliseconds since the epoch.
-:::
 
-`DateRangeFields`{.literal} also supports three relational predicates
+
+`DateRangeFields` also supports three relational predicates
 between the indexed data and the query range:
 
-::: {.itemizedlist}
--   `Intersects`{.literal} (which is default)
--   `Contains`{.literal}
--   `Within`{.literal}
-:::
 
-We can specify the predicate by querying using the `op`{.literal} local
+-   `Intersects` (which is default)
+-   `Contains`
+-   `Within`
+
+
+We can specify the predicate by querying using the `op` local
 parameter:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
 
 ``` {.programlisting .language-markup}
 fq={!field f=dateRange op=Contains}[1985 TO 1989]
 ```
-:::
+
 
 This would find documents with indexed ranges that contain the range
-`1985`{.literal} to `1989`{.literal}.
-:::
+`1985` to `1989`.
 
-::: {.section lang="en" lang="en"}
-::: {.titlepage}
-<div>
 
-<div>
 
-### []{#ch03lvl2sec55}Understanding currencies and exchange rates  {#understanding-currencies-and-exchange-rates .title}
 
-</div>
+### Understanding currencies and exchange rates 
 
-</div>
-:::
 
-As the name implies, a currency field type is used[]{#id288341176
-.indexterm} for any monetary value. It supports currency[]{#id288341185
+
+As the name implies, a currency field type is used
+.indexterm} for any monetary value. It supports currency
 .indexterm} conversion and exchange rates during a query.
 
-Solr provides[]{#id288341232 .indexterm} the following
-features[]{#id288341238 .indexterm} for it:
+Solr provides the following
+features for it:
 
-::: {.itemizedlist}
+
 -   Range queries
 -   Point queries
 -   Sorting
 -   Function range queries
 -   Symmetric and asymmetric exchange rates
 -   Currency parsing
-:::
 
-As with other field types, the `currency`{.literal} field type is
-configured in `schema.xml`{.literal}. Shown here is the default
+
+As with other field types, the `currency` field type is
+configured in `schema.xml`. Shown here is the default
 configuration:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
 
 ``` {.programlisting .language-markup}
 <fieldType name="currency" class="solr.CurrencyFieldType"                           amountLongSuffix="_l_ns" codeStrSuffix="_s_ns" 
         defaultCurrency="USD" currencyConfig="currency.xml" />
 ```
-:::
 
-As you can see, `name`{.literal} is set as `currency`{.literal} and
-`class`{.literal} is specified as `solr.CurrencyFieldType`{.literal}. We
-have defined the `defaultCurrency`{.literal} as `INR`{.literal} or
-Indian rupee. Also note `currencyConfig`{.literal}, which says that the
-file location is set to `currency.xml`{.literal}. This file specifies
-exchange rates between `INR`{.literal} and other currencies.
 
-In your open `managed-schema`{.literal} file under
-the `SOLR_HOME/example/example-DIH/solr/solr/conf`{.literal} folder,
+As you can see, `name` is set as `currency` and
+`class` is specified as `solr.CurrencyFieldType`. We
+have defined the `defaultCurrency` as `INR` or
+Indian rupee. Also note `currencyConfig`, which says that the
+file location is set to `currency.xml`. This file specifies
+exchange rates between `INR` and other currencies.
+
+In your open `managed-schema` file under
+the `SOLR_HOME/example/example-DIH/solr/solr/conf` folder,
 using a text editor, you will find the following dynamic field:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
 
 ``` {.programlisting .language-markup}
 <dynamicField name="*_c" type="currency" indexed="true" stored="true"/>
 ```
-:::
 
-This `dynamicField`{.literal} matches any fields suffixed by
-`_c`{.literal} and treats them as `currency`{.literal} type fields.
+
+This `dynamicField` matches any fields suffixed by
+`_c` and treats them as `currency` type fields.
 
 Solr gives us the flexibility to index money fields in our native
-currency. We can specify `100,SGD`{.literal} to index the money field in
+currency. We can specify `100,SGD` to index the money field in
 Singapore dollars:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
 
 ``` {.programlisting .language-markup}
 <fieldType name="currency" class="solr.CurrencyFieldType"                           amountLongSuffix="_l_ns" codeStrSuffix="_s_ns" 
         defaultCurrency="USD" currencyConfig="currency.xml" />
 ```
-:::
 
-Let\'s revisit the field type.
+
+Let's revisit the field type.
 
 Here, you will notice one thing; there are a couple of subfield suffixes
-named `amountLongSuffix`{.literal} and `codeStrSuffix`{.literal}, which
+named `amountLongSuffix` and `codeStrSuffix`, which
 correspond to raw amount and currency code respectively. In this case,
-the raw amount field will make use of the `*_l_ns`{.literal} dynamic
+the raw amount field will make use of the `*_l_ns` dynamic
 field, which uses a long field type. The currency code field will make
-use of the `*_s_ns`{.literal} dynamic field, which uses a string field
+use of the `*_s_ns` dynamic field, which uses a string field
 type.
 
-In the previous tag, you can also see `currencyConfig`{.literal}, which
-refers to a file called `currency.xml`{.literal}. This is used to
+In the previous tag, you can also see `currencyConfig`, which
+refers to a file called `currency.xml`. This is used to
 specify exchange rates.
 
 Solr supports two types of providers:
 
-::: {.itemizedlist}
--   `FileExchangeRateProvider`{.literal}
--   `OpenExchangeRatesOrgProvider`{.literal}
-:::
 
-`FileExchangeRateProvider`{.literal} is the default provider. In order
-to use this, we specify the config file using `currencyConfig`{.literal}
-as shown previously. The contents of `currency.xml`{.literal} are as
+-   `FileExchangeRateProvider`
+-   `OpenExchangeRatesOrgProvider`
+
+
+`FileExchangeRateProvider` is the default provider. In order
+to use this, we specify the config file using `currencyConfig`
+as shown previously. The contents of `currency.xml` are as
 follows:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
 
 ``` {.programlisting .language-markup}
 <?xml version="1.0" ?>
@@ -937,82 +831,63 @@ Copy
  </rates>
 </currencyConfig>
 ```
-:::
 
-Updating `currency.xml`{.literal} becomes tedious manual work. In order
+
+Updating `currency.xml` becomes tedious manual work. In order
 to dynamically pull the latest exchange rates from the Web, we use
-`OpenExchangeRatesOrgProvider`{.literal}. This will download the latest
-exchange[]{#id288341460 .indexterm} rates from
+`OpenExchangeRatesOrgProvider`. This 
+exchange rates from
 [https://openexchangerates.org](https://openexchangerates.org/){.ulink}:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
 
 ``` {.programlisting .language-markup}
 <fieldType name="currency" class="solr.CurrencyFieldType"
     amountLongSuffix="_l_ns" codeStrSuffix="_s_ns"        providerClass="solr.OpenExchangeRatesOrgProvider" 
     refreshInterval="60"     ratesFileLocation=     "http://www.openexchangerates.org/api/latest.json?app_id=yourPersonalAppIdKey"/>
 ```
-:::
+
 
 As shown in the previous tag, we have specified
-`providerClass`{.literal}
-as `solr.OpenExchangeRatesOrgProvider`{.literal} and specified the
+`providerClass`
+as `solr.OpenExchangeRatesOrgProvider` and specified the
 refresh interval as 1 hour. We have also specified the URL from which to
 pull the latest exchange rates.
 
-::: {.note style="margin-left: 0.5in; margin-right: 0.5in;"}
-### []{#tip22}Note {#note-8 .title}
+
+### []{#tip22}Note
 
 You need to register first at Open Exchange Rates to get your own
 personal app ID key, which you will then replace in the preceding URL.
-:::
-:::
 
-::: {.section lang="en" lang="en"}
-::: {.titlepage}
-<div>
 
-<div>
 
-### []{#ch03lvl2sec56}Understanding enum fields {#understanding-enum-fields .title}
 
-</div>
 
-</div>
-:::
+### Understanding enum fields
 
-Just as Java has the[]{#id288341538 .indexterm} enum data type to
-have[]{#id288341546 .indexterm} something for a closed set of values,
-Solr has `EnumFieldType`{.literal}, which lets us define closed set
+
+
+Just as Java has the enum data type to
+have something for a closed set of values,
+Solr has `EnumFieldType`, which lets us define closed set
 values. Here, the sort order is predetermined.
 
-Defining an `EnumFieldType`{.literal} is done as follows:
+Defining an `EnumFieldType` is done as follows:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
 
 ``` {.programlisting .language-markup}
 <fieldType name="genreList" class="solr.EnumFieldType" docValues="true" enumsConfig= "enumsConfig.xml" enumName="genre"/>
 ```
-:::
 
-Here, as you can see, we have defined the name as `genreList`{.literal}
-and the class is specified as `solr.EnumFieldType`{.literal}. We also
-have specified `enumConfig`{.literal} to specify the path of the
+
+Here, as you can see, we have defined the name as `genreList`
+and the class is specified as `solr.EnumFieldType`. We also
+have specified `enumConfig` to specify the path of the
 configuration file.
 
-Last but not least, we have specified `enumName`{.literal} to uniquely
+Last but not least, we have specified `enumName` to uniquely
 identify the name of the enumeration:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
 
 ``` {.programlisting .language-markup}
 <?xml version="1.0" ?>
@@ -1028,262 +903,193 @@ Copy
     </enum>
 </enumsConfig>
 ```
-:::
 
-The `enumsConfig`{.literal} file can contain many enumeration value
+
+The `enumsConfig` file can contain many enumeration value
 lists with different names as per your requirement. Take a look at the
 content of the enumeration file for the genres shown in the preceding
 code.
 
 
-[]{#ch03lvl1sec24}Field management {#field-management .title style="clear: both"}
+Field management
 ----------------------------------
 
-</div>
-
-</div>
-
-------------------------------------------------------------------------
-:::
-
 Once your primary work of field types setup is done, field definition
-is[]{#id288339995 .indexterm} a small task. Just as with field types,
-the fields element of `schema.xml`{.literal} holds the field definition.
+is a small task. Just as with field types,
+the fields element of `schema.xml` holds the field definition.
 
-::: {.section lang="en" lang="en"}
-::: {.titlepage}
-<div>
 
-<div>
 
-### []{#ch03lvl2sec57}Field properties {#field-properties .title}
+### Field properties
 
-</div>
 
-</div>
-:::
 
-Let\'s first see a sample[]{#id288340358 .indexterm} field definition:
+Let's first see a sample field definition:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
 
 ``` {.programlisting .language-markup}
 <field name="weight" type="float" default=”0.0” indexed="true" stored="true"/>
 ```
-:::
+
 
 In the preceding example, we have defined a field named
-`weight`{.literal}, whose field type is `float`{.literal} with
-a `default`{.literal} value of `0.0`{.literal}. Moreover, the
-`indexed`{.literal} as well as `stored`{.literal} properties
-are explicitly set to `true`{.literal}.
+`weight`, whose field type is `float` with
+a `default` value of `0.0`. Moreover, the
+`indexed` as well as `stored` properties
+are explicitly set to `true`.
 
 Field definitions will have these properties:
 
-::: {.itemizedlist}
--   `name`{.literal}: The field name. This has to be alphanumeric and
+
+-   `name`: The field name. This has to be alphanumeric and
     can include underscore characters. It cannot begin with a digit.
     Reserved names should start and end with underscores (for example,
-    `_root_`{.literal}). Every field must have a name.
--   `type`{.literal}: The name of the `fieldType`{.literal}. All the
+    `_root_`). Every field must have a name.
+-   `type`: The name of the `fieldType`. All the
     fields should have a type.
--   `default`{.literal}: The default value to be used for the field.
-:::
+-   `default`: The default value to be used for the field.
+
 
 Fields and field types share many of the optional properties here. If
 there are two different values of a property specified in both field and
 field type, then the property value specified in the field takes
 precedence.
-:::
 
-::: {.section lang="en" lang="en"}
-::: {.titlepage}
-<div>
 
-<div>
 
-### []{#ch03lvl2sec58}Copying fields {#copying-fields .title}
 
-</div>
+### Copying fields
 
-</div>
-:::
 
-Copying fields is used when you want[]{#id288605565 .indexterm} to
+
+Copying fields is used when you want to
 interpret a field in more than one way. Solr provides a solution to copy
 fields so that one can apply distinct field types for the same field.
 
-Let\'s see the following element that I have copied from one of the
+Let's see the following element that I have copied from one of the
 managed-schemas available in demo Solr projects:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
 
 ``` {.programlisting .language-markup}
 <copyField source="name" dest="text"/>
 ```
-:::
 
-In the previous example, we are copying the `name`{.literal} field
-specified in the `source`{.literal} attribute to a field name
-`text`{.literal}, which is specified in `dest`{.literal}.
+
+In the previous example, we are copying the `name` field
+specified in the `source` attribute to a field name
+`text`, which is specified in `dest`.
 
 The actual copying of fields occurs before analysis, which makes it
 possible to have two fields with the same content but different
 analyses.
 
 The general use case of this functionality is when we have one global
-search for all fields. Let\'s say I want to search the word
-`Harry`{.literal} in the title and description. Then I can create a
-`copyField`{.literal} for the title and description fields and redirect
+search for all fields. Let's say I want to search the word
+`Harry` in the title and description. Then I can create a
+`copyField` for the title and description fields and redirect
 them to a common destination. Look at the following snippet:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
 
 ``` {.programlisting .language-markup}
 <copyField source="*_e" dest="text" maxChars="10000" />
 ```
-:::
+
 
 Here, we are specifying a wildcard pattern that matches everything that
-ends with `_e`{.literal} and indexes them to the destination
-`text`{.literal} field.
+ends with `_e` and indexes them to the destination
+`text` field.
 
-::: {.note style="margin-left: 0.5in; margin-right: 0.5in;"}
-### []{#note23}Note {#note .title}
 
-You cannot chain `copyField`{.literal}; that is, the destination of one
-`copyField`{.literal} cannot be a part of the source of another
-`copyField`{.literal}. The workaround is to create multiple destination
+### []{#note23}Note
+
+You cannot chain `copyField`; that is, the destination of one
+`copyField` cannot be a part of the source of another
+`copyField`. The workaround is to create multiple destination
 fields and use the same source field.
-:::
-:::
 
-::: {.section lang="en" lang="en"}
-::: {.titlepage}
-<div>
 
-<div>
 
-### []{#ch03lvl2sec59}Dynamic fields {#dynamic-fields .title}
 
-</div>
 
-</div>
-:::
+### Dynamic fields
 
-We use dynamic fields to index fields that we do not want[]{#id288617288
+
+
+We use dynamic fields to index fields that we do not want
 .indexterm} to explicitly define in our schema.
 
 This feature is handy when you want to use a wild card for indexing
 fields, where you want to index all the fields having a certain pattern.
-Let\'s see an example of `dynamicField`{.literal}:
+Let's see an example of `dynamicField`:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
 
 ``` {.programlisting .language-markup}
 <dynamicField name="*_e" type="int" indexed="true" stored="true"/>
 ```
-:::
+
 
 As you can see, dynamic fields also have name, type, and options.
 However, here you can see that the name has a wildcard pattern
-`*_e`{.literal}, which means any field with `_e`{.literal} will have the
+`*_e`, which means any field with `_e` will have the
 same indexing.
 
 
 
-[]{#ch03lvl1sec25}Mastering Schema API {#mastering-schema-api .title style="clear: both"}
+Mastering Schema API
 --------------------------------------
 
-</div>
-
-</div>
-
-------------------------------------------------------------------------
-:::
-
-Schema API is the one-stop shop for most[]{#id288339943 .indexterm}
+Schema API is the one-stop shop for most
 operations on your schema. It provides a REST-like HTTP API for doing
 all these operations.
 
 You can read, write, or delete dynamic fields, fields, copy field rules,
 and field types. 
 
-::: {.note style="margin-left: 0.5in; margin-right: 0.5in;"}
-### []{#tip24}Note {#note .title}
 
-Do not manually write any changes into the `managed-schema`{.literal}
+### []{#tip24}Note
+
+Do not manually write any changes into the `managed-schema`
 file yourself. This will work only as long as you don\'t use Schema API.
 If you use Schema API by mistake, all your changes might be overwritten.
 So, it is highly recommend that you leave your
-`managed-schema`{.literal} file alone.
-:::
+`managed-schema` file alone.
+
 
 The response of the API call is of either JSON or XML format. 
 
-Assuming that you are using the `gettingstarted`{.literal} collection,
+Assuming that you are using the `gettingstarted` collection,
 the base address of API will be
-`http://localhost:8983/solr/gettingstarted`{.literal}.
+`http://localhost:8983/solr/gettingstarted`.
 
-::: {.note style="margin-left: 0.5in; margin-right: 0.5in;"}
-### []{#tip25}Note {#note-1 .title}
+
+### []{#tip25}Note
 
 Always reindex once you use Schema API for modifications. Only then
 will the changes that you have applied to the schema be reflected for
 existing documents that are already indexed.
-:::
 
-::: {.section lang="en" lang="en"}
-::: {.titlepage}
-<div>
 
-<div>
 
-### []{#ch03lvl2sec60}Schema API in detail {#schema-api-in-detail .title}
 
-</div>
+### Schema API in detail
 
-</div>
-:::
 
-Let\'s see some of the important schema[]{#id288340001 .indexterm}
-endpoints. We will do all the examples on the `gettingstarted`{.literal}
+
+Let's see some of the important schema
+endpoints. We will do all the examples on the `gettingstarted`
 collection.
 
-::: {.section lang="en" lang="en"}
-::: {.titlepage}
-<div>
 
-<div>
 
-#### []{#ch03lvl3sec12}Schema operations {#schema-operations .title}
+#### Schema operations
 
-</div>
 
-</div>
-:::
 
-In order[]{#id288340377 .indexterm} to see the schema, we need to use
-the `/schema`{.literal} endpoint, `http://localhost:8983/solr/gettingstarted/schema/`{.literal}.
+In order to see the schema, we need to use
+the `/schema` endpoint, `http://localhost:8983/solr/gettingstarted/schema/`.
 
 This will retrieve the entire schema information:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
 
 ``` {.programlisting .language-markup}
 {
@@ -1330,14 +1136,10 @@ Copy
 ...
 ...
 ```
-:::
+
 
 In order to add a field, we will use the following command:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
 
 ``` {.programlisting .language-markup}
 curl -X POST -H 'Content-type:application/json' --data-binary '{
@@ -1347,18 +1149,14 @@ curl -X POST -H 'Content-type:application/json' --data-binary '{
     "stored":true }
 }' http://localhost:8983/solr/gettingstarted/schema
 ```
-:::
 
-The previous code will add a `song-name`{.literal} field name whose type
-is `text_general`{.literal} to the `gettingstarted`{.literal} schema.
+
+The previous code will add a `song-name` field name whose type
+is `text_general` to the `gettingstarted` schema.
 
 We can also replace a field\'s definition. To do so we can issue the
 following command:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
 
 ``` {.programlisting .language-markup}
 curl -X POST -H 'Content-type:application/json' --data-binary '{
@@ -1368,52 +1166,44 @@ curl -X POST -H 'Content-type:application/json' --data-binary '{
     "stored":false }
 }' http://localhost:8983/solr/gettingstarted/schema
 ```
-:::
+
 
 This will replace the definition of song with string.
 
-Now let\'s take a look at the snippet to delete the field:
+Now Let's take a look at the snippet to delete the field:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
 
 ``` {.programlisting .language-markup}
 curl -X POST -H 'Content-type:application/json' --data-binary '{
     "delete-field" : { "name":"song-name" }
 }' http://localhost:8983/solr/gettingstarted/schema
 ```
-:::
 
-This will delete the `song-name`{.literal} field that we created just
+
+This will delete the `song-name` field that we created just
 now.
 
 Similarly, to add, delete, and replace dynamic field rules, we need to
 use the following endpoints:
 
-::: {.itemizedlist}
--   `add-dynamic-field`{.literal}
--   `delete-dynamic-field`{.literal}
--   `replace-dynamic-field`{.literal}
-:::
 
-We can also add, update, and delete field[]{#id288377114 .indexterm}
+-   `add-dynamic-field`
+-   `delete-dynamic-field`
+-   `replace-dynamic-field`
+
+
+We can also add, update, and delete field
 types using these endpoints:
 
-::: {.itemizedlist}
--   `add-field-type`{.literal}
--   `delete-field-type`{.literal}
--   `replace-field-type`{.literal}
-:::
+
+-   `add-field-type`
+-   `delete-field-type`
+-   `replace-field-type`
+
 
 We will take a look at the syntax of making an API call to
-`add-field-type`{.literal} as it has some additional parameters:
+`add-field-type` as it has some additional parameters:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
 
 ``` {.programlisting .language-markup}
 curl -X POST -H 'Content-type:application/json' --data-binary '{
@@ -1433,43 +1223,32 @@ curl -X POST -H 'Content-type:application/json' --data-binary '{
                 "preserveOriginal":"0" }]}}
 }' http://localhost:8983/solr/gettingstarted/schema
 ```
-:::
+
 
 Here, we have added a new field type for song description, which is of
-type `TextField`{.literal} and uses
-`WhitespaceTokenizerFactory`{.literal} as a tokenizer using a filter
-`WordDelimiterFilterFactory`{.literal}.
+type `TextField` and uses
+`WhitespaceTokenizerFactory` as a tokenizer using a filter
+`WordDelimiterFilterFactory`.
 
 Finally, in order to add or delete a copy field rule, use the following:
 
-::: {.itemizedlist}
--   `add-copy-field`{.literal}
--   `delete-copy-field`{.literal}
-:::
-:::
 
-::: {.section lang="en" lang="en"}
-::: {.titlepage}
-<div>
+-   `add-copy-field`
+-   `delete-copy-field`
 
-<div>
 
-#### []{#ch03lvl3sec13}Listing fields, field types, DynamicFields, and CopyField rules {#listing-fields-field-types-dynamicfields-and-copyfield-rules .title}
 
-</div>
 
-</div>
-:::
 
-In order[]{#id288628904 .indexterm} to list all[]{#id288340248
-.indexterm} the fields, type the[]{#id288340257 .indexterm} following
-URL in the[]{#id288340265 .indexterm}
-browser: `http://localhost:8983/solr/gettingstarted/schema/fields`{.literal}:
+#### Listing fields, field types, DynamicFields, and CopyField rules
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
+
+In order to list all
+.indexterm} the fields, type the following
+URL in the
+browser: `http://localhost:8983/solr/gettingstarted/schema/fields`:
+
 
 ``` {.programlisting .language-markup}
 {
@@ -1501,16 +1280,12 @@ Copy
       "required":true,
       "stored":true}]}
 ```
-:::
+
 
 This will list all the fields defined. Now, to see all the field types,
 enter
-this `http://localhost:8983/solr/gettingstarted/schema/fieldtypes`{.literal}:
+this `http://localhost:8983/solr/gettingstarted/schema/fieldtypes`:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
 
 ``` {.programlisting .language-markup}
 {
@@ -1550,17 +1325,13 @@ Copy
         "filters":[{
             "class":"solr.DelimitedPayloadTokenFilterFactory",
 ```
-:::
+
 
 This will display all the field types. You can also see an individual
 field type by passing the field type name. Similarly, to display dynamic
 fields and copy field rules, we can use the following endpoints
-respectively, `http://localhost:8983/solr/gettingstarted/schema/dynamicfields`{.literal}:
+respectively, `http://localhost:8983/solr/gettingstarted/schema/dynamicfields`:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
 
 ``` {.programlisting .language-markup}
 {
@@ -1605,17 +1376,13 @@ Copy
 ...
 ...
 ```
-:::
+
 
 We can see a list of all copy fields using the following URL:
-`http://localhost:8983/solr/gettingstarted/schema/copyfields`{.literal}.
+`http://localhost:8983/solr/gettingstarted/schema/copyfields`.
 
 We will see this response:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
 
 ``` {.programlisting .language-markup}
 {
@@ -1624,17 +1391,13 @@ Copy
     "QTime":0},
   "copyFields":[]}
 ```
-:::
+
 
 In order to see the schema name, use this URL:
-`http://localhost:8983/solr/gettingstarted/schema/name`{.literal}.
+`http://localhost:8983/solr/gettingstarted/schema/name`.
 
 This will display the schema name\'s details:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
 
 ``` {.programlisting .language-markup}
 {
@@ -1643,15 +1406,11 @@ Copy
     "QTime":0},
   "name":"default-config"}
 ```
-:::
+
 
 Similarly, you can see the schema version using the following
-URL, `http://localhost:8983/solr/gettingstarted/schema/version`{.literal}:
+URL, `http://localhost:8983/solr/gettingstarted/schema/version`:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
 
 ``` {.programlisting .language-markup}
 {
@@ -1660,17 +1419,13 @@ Copy
     "QTime":0},
   "version":1.6}
 ```
-:::
 
-This shows that the current schema version is `1.6`{.literal}.
+
+This shows that the current schema version is `1.6`.
 
 Likewise, in order to see the unique key, we can use this
-URL, `http://localhost:8983/solr/gettingstarted/schema/uniquekey`{.literal}:
+URL, `http://localhost:8983/solr/gettingstarted/schema/uniquekey`:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
 
 ``` {.programlisting .language-markup}
 {
@@ -1679,19 +1434,15 @@ Copy
     "QTime":0},
   "uniqueKey":"id"}
 ```
-:::
 
-Here we see that the `uniqueKey`{.literal} of the schema is
-`id`{.literal}.
+
+Here we see that the `uniqueKey` of the schema is
+`id`.
 
 Finally, in order to see the class name of the global similarity, we
 have to use the following
-URL, `http://localhost:8983/solr/gettingstarted/schema/similarity`{.literal}:
+URL, `http://localhost:8983/solr/gettingstarted/schema/similarity`:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
 
 ``` {.programlisting .language-markup}
 {
@@ -1701,80 +1452,58 @@ Copy
   "similarity":{
     "class":"org.apache.solr.search.similarities.SchemaSimilarityFactory"}}
 ```
-:::
 
-This shows that our schema uses `SchemaSimilarityFactory`{.literal} as
+
+This shows that our schema uses `SchemaSimilarityFactory` as
 the global similarity.
 
 
-[]{#ch03lvl1sec26}Deciphering schemaless mode {#deciphering-schemaless-mode .title style="clear: both"}
+Deciphering schemaless mode
 ---------------------------------------------
 
-</div>
-
-</div>
-
-------------------------------------------------------------------------
-:::
-
-Schemaless mode is used when[]{#id288339995 .indexterm} we want to
+Schemaless mode is used when we want to
 quickly create a useful schema by indexing sample data. It does not
 involve any manual editing of the data.
 
-All of its features are managed by `solrconfig.xml`{.literal}.
+All of its features are managed by `solrconfig.xml`.
 
 The features that we are particularly interested in are:
 
-::: {.itemizedlist}
--   [**Managed schema**]{.strong}: All modifications in the schema are
-    made via Solr API at runtime using `schemaFactory`{.literal}, which
+
+-   [**Managed schema**]: All modifications in the schema are
+    made via Solr API at runtime using `schemaFactory`, which
     supports these changes.
--   [**Field value class guessing**]{.strong}: This is a technique of
+-   [**Field value class guessing**]: This is a technique of
     using a cascading set of parsers on fields that have not been seen
     before. It then guesses whether the field is an Integer, Long,
     Float, Double, Boolean, or Date.
-:::
+
 
 And finally used for automatic schema field addition that is based on
 field value classes.
 
-::: {.section lang="en" lang="en"}
-::: {.titlepage}
-<div>
 
-<div>
 
-### []{#ch03lvl2sec61}Creating a schemaless example {#creating-a-schemaless-example .title}
+### Creating a schemaless example
 
-</div>
 
-</div>
-:::
 
-All of the preceding three features are already[]{#id288340352
+All of the preceding three features are already
 .indexterm} configured in the Solr bundle. To start using schemaless
 mode, run the following command:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
 
 ``` {.programlisting .language-markup}
 bin/solr start -e schemaless
 ```
-:::
+
 
 This will start a single Solr server with the collection
-`gettingstarted`{.literal}.
+`gettingstarted`.
 
 In order to see the schema fields, use the following
-URL, `http://localhost:8983/solr/gettingstarted/schema/fields`{.literal}:
+URL, `http://localhost:8983/solr/gettingstarted/schema/fields`:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
 
 ``` {.programlisting .language-markup}
 {
@@ -1806,55 +1535,37 @@ Copy
       "required":true,
       "stored":true}]}
 ```
-:::
+
 
 As you can see in the previous response, there are three predefined
-fields available, named `_text_`{.literal}, `_version_`{.literal}, and
-`_id_`{.literal}.
-:::
+fields available, named `_text_`, `_version_`, and
+`_id_`.
 
-::: {.section lang="en" lang="en"}
-::: {.titlepage}
-<div>
 
-<div>
 
-### []{#ch03lvl2sec62}Schemaless mode configuration {#schemaless-mode-configuration .title}
 
-</div>
+### Schemaless mode configuration
 
-</div>
-:::
 
-We have already[]{#id288601061 .indexterm} discussed that the schemaless
-mode provides three configuration elements. In the `_default`{.literal}
-config set, we already have these three preconfigured. Let\'s see how to
+
+We have already discussed that the schemaless
+mode provides three configuration elements. In the `_default`
+config set, we already have these three preconfigured. Let's see how to
 make changes and get our own schemaless configuration.
-:::
 
-::: {.section lang="en" lang="en"}
-::: {.titlepage}
-<div>
 
-<div>
 
-### []{#ch03lvl2sec63}Managed schema {#managed-schema .title}
 
-</div>
+### Managed schema
 
-</div>
-:::
 
-The support for Managed schema is enabled[]{#id288601118 .indexterm} by
-default if you don\'t specify anything in `solr-config.xml`{.literal}.
+
+The support for Managed schema is enabled by
+default if you don\'t specify anything in `solr-config.xml`.
 
 However, if you wish to make changes, then you can explicitly add your
-own `schemaFactory`{.literal}, as follows:
+own `schemaFactory`, as follows:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
 
 ``` {.programlisting .language-markup}
 <schemaFactory class="ManagedIndexSchemaFactory">
@@ -1862,48 +1573,33 @@ Copy
     <str name="managedSchemaResourceName">managed-schema</str>
 </schemaFactory>
 ```
-:::
+
 
 In the previous code snippet, we have changed
-`managedSchemaResourceName`{.literal} to `managed-schema`{.literal}.
-:::
+`managedSchemaResourceName` to `managed-schema`.
 
-::: {.section lang="en" lang="en"}
-::: {.titlepage}
-<div>
 
-<div>
 
-### []{#ch03lvl2sec64}Field guessing {#field-guessing .title}
 
-</div>
+### Field guessing
 
-</div>
-:::
 
-If you open `solrconfig.xml`{.literal} for the new[]{#id288617168
+
+If you open `solrconfig.xml` for the new
 .indexterm} schemaless project that you have created, you will see there
-is a section for `UpdateRequestProcessorChain`{.literal}. This is
+is a section for `UpdateRequestProcessorChain`. This is
 primarily used to automatically apply some operations to the documents
 before they get indexed and helps in field guessing. We will see some of
-the snippets from `solrconfig.xml`{.literal} now:
+the snippets from `solrconfig.xml` now:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
 
 ``` {.programlisting .language-markup}
 <updateProcessor class="solr.RemoveBlankFieldUpdateProcessorFactory" name="remove-blank"/>
 ```
-:::
+
 
 The previous plugin will remove any blanks from indexing:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
 
 ``` {.programlisting .language-markup}
 <updateProcessor class="solr.ParseBooleanFieldUpdateProcessorFactory" name="parse-boolean"/>
@@ -1931,16 +1627,12 @@ Copy
      </arr>
  </updateProcessor>
 ```
-:::
+
 
 Here, you can see that we have added many update request processors to
 parse various field types. In the case of dates, we can also specify
 various patterns of a date that we can interpret:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
 
 ``` {.programlisting .language-markup}
 <updateProcessor class="solr.AddSchemaFieldsUpdateProcessorFactory" name="add-schema-fields">
@@ -1973,18 +1665,14 @@ Copy
      </lst>
  </updateProcessor>
 ```
-:::
+
 
 In the preceding snippet, you can see that we have assigned a field type
 to the fields that we parsed. The default field type is String, as you
 can see highlighted in bold. We also made the copy field rule to copy
-the data to `text_general_str`{.literal} with a max of `256`{.literal}
+the data to `text_general_str` with a max of `256`
 characters:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
 
 ``` {.programlisting .language-markup}
  <updateRequestProcessorChain name="add-unknown-fields-to-the-schema" default="${update.autoCreateFields:true}"
@@ -1994,22 +1682,15 @@ Copy
      <processor class="solr.RunUpdateProcessorFactory"/>
  </updateRequestProcessorChain>
 ```
-:::
 
-Finally, we add an `updateRequestProcessChain`{.literal} to add all the
+
+Finally, we add an `updateRequestProcessChain` to add all the
 predefined processors and make it default.
 
 
 
-[]{#ch03lvl1sec27}Summary
+Summary
 -------------------------
-
-</div>
-
-</div>
-
-------------------------------------------------------------------------
-:::
 
 In this chapter, we got an overview of how Solr works and saw schema
 design. We then jumped into Solr field types and saw how to define
