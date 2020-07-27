@@ -1,3 +1,4 @@
+<img align="right" src="https://github.com/fenago/apache-solr/raw/master/images/logo.png">
 
 
 Lab 5. Data Indexing and Operations
@@ -54,15 +55,16 @@ The answers to "*How does the Solr index get data from the aforementioned sourc
     proprietary data formats, such as Word or PDF files
 
 ### Installing Postman
-For all HTTP-based service calls, we will be
-using Postman to invoke such services.
+For all HTTP-based service calls, we will be using Postman to invoke such services.
+
+**Note:** Postman has been already installed in the lab environment.
 
 Postman can be downloaded from <https://www.getpostman.com/>. The site
 provides installation instructions for each
 of the major operating systems. In this lab, we will do our exercise
-based on Windows, so we\'ll proceed to install the Windows executable.
+based on Windows, so we'll proceed to install the Windows executable.
 
-Once you\'ve downloaded and installed Postman, you should see a screen
+Once you've downloaded and installed Postman, you should see a screen
 like this: 
 
 

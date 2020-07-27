@@ -1,3 +1,4 @@
+<img align="right" src="https://github.com/fenago/apache-solr/raw/master/images/logo.png">
 
 
 Lab 9. Client APIs -- An Overview
@@ -9,7 +10,7 @@ We learned how to secure a Solr, take backups, and configure logs. Then
 we got an overview of SolrCloud. Now we have a complete configured Solr
 with all the required configurations to meet any search request. In this
 lab, we will learn how Solr can be used with a web application and
-how to call APIs in different languages. We\'ll have an overview of
+how to call APIs in different languages. We'll have an overview of
 various Client APIs supported by Solr.
 Client API overview
 -------------------------------------
@@ -188,7 +189,7 @@ the
 ```
 
 
-We\'ve got a JSON response; now we can apply
+We've got a JSON response; now we can apply
 our JavaScript skills to parse and display responses as per the
 application requirement. Likewise, we can test more capabilities of
 JavaScript towards the Solr API.

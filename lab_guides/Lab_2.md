@@ -1,4 +1,6 @@
 
+<img align="right" src="https://github.com/fenago/apache-solr/raw/master/images/logo.png">
+
 
 Lab 2. Getting Started
 -----------------------------------
@@ -779,7 +781,7 @@ sample data and understand the various ways to load and query data.
 Loading sample data
 -------------------------------------
 
-Now that we\'ve got acquainted with Solr and
+Now that we've got acquainted with Solr and
 the various commands involved in Solr's day-to-day usage, Let's
 populate it with data so that we can query it as needed. Solr comes with
 sample data in examples. We will use the same

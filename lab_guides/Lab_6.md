@@ -1,3 +1,4 @@
+<img align="right" src="https://github.com/fenago/apache-solr/raw/master/images/logo.png">
 
 
 Lab 6. Advanced Queries -- Part I

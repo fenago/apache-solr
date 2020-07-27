@@ -1,3 +1,5 @@
+<img align="right" src="https://github.com/fenago/apache-solr/raw/master/images/logo.png">
+
 
 Lab 3. Designing Schemas
 -------------------------------------

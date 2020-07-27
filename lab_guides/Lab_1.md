@@ -1,7 +1,8 @@
+<img align="right" src="https://github.com/fenago/apache-solr/raw/master/images/logo.png">
+
 
 
 ### Lab 1. Introduction to Solr 7
-
 
 Today we are in the age of digitization. People are generating data in
 different ways: they take pictures, upload images, write blogs, comment

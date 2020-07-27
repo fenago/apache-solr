@@ -1,3 +1,4 @@
+<img align="right" src="https://github.com/fenago/apache-solr/raw/master/images/logo.png">
 
 
 Lab 4. Mastering Text Analysis Methodologies
@@ -240,7 +241,7 @@ and `football`
 As we know that analysis takes place in both phases (index time and
 query time), we have configured two `<analyzer>` elements
 distinguished by type attribute value (`index` for index time
-and `query` for query time). And we\'ve configured a set of
+and `query` for query time). And we've configured a set of
 tokenizers and filters in each phase. The configurations for each phase
 may vary based on requirements. It is also possible to define a single
 `<analyzer>` element without the `type` attribute
@@ -293,7 +294,7 @@ configuration:
 
 
 Here, we have defined a single `<analyzer>` element. This is
-the simplest way to define an analyzer. We\'ve already understood the
+the simplest way to define an analyzer. We've already understood the
 `positionIncrementGap` attribute, which adds a space
 between multi-value fields, in the previous lab.
 

@@ -1,3 +1,4 @@
+<img align="right" src="https://github.com/fenago/apache-solr/raw/master/images/logo.png">
 
 
 Lab 8. Managing and Fine-Tuning Solr
@@ -207,7 +208,7 @@ http://localhost:8983/solr/myschema/replication?command=backup&name=mybackup
 
 Here, `myschema` is the name of the core that we are working
 with and `/replication` is the handler to the backup. In the
-end, you can see we\'ve specified `command=backup` to back up
+end, you can see we've specified `command=backup` to back up
 our core.
 
 The `backup` command will bring data from the last committed
@@ -597,7 +598,7 @@ shards and a replication factor of two for the
 In order to scale, a collection is split or
 partitioned into various shards having documents distributed, which
 means shards have subsets of overall documents in the collection. A
-cluster hosts multiple Solr Documents\' collections. The maximum number
+cluster hosts multiple Solr Documents' collections. The maximum number
 of documents that a collection can hold and also the parallelization for
 individual search requests are based on the number of shards a
 collection has.
@@ -778,7 +779,7 @@ keytool -importkeystore -srckeystore mysolrkeystore.jks -destkeystore mysolrkeys
 
 
 As you can see, we are trying to import the keystore and have specified
-both source and destination keystore names; finally we\'ve specified the
+both source and destination keystore names; finally we've specified the
 keystore type to be `pkcs12`. You will see an interactive
 session opening up again:
 
