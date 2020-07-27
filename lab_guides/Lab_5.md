@@ -45,8 +45,7 @@ Common sources that the Solr index can get data from are:
 -  Microsoft Word or PDF
 
 
-The answers to \"[*How does the Solr index get data from the
-aforementioned sources?*]\" are as follows:
+The answers to "*How does the Solr index get data from the aforementioned sources?*" are as follows:
 
 
 -  Using client APIs

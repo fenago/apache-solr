@@ -3,11 +3,8 @@
 Lab 2. Getting Started
 -----------------------------------
 
-> [*\"Information is the oil of the 21st Century, and analytics is the
-> combustion engine.\"*]
+*Information is the oil of the 21st Century, and analytics is the combustion engine.*
 
-
--- [*Peter Sondergaard*]
 
 Apache Solr is one tool that has some common features such as full-text
 search, facets-based search, clustering on demand, the ability to select
@@ -380,8 +377,7 @@ Solr provides the following config sets:
 -  `techproducts`
 
 
-Let's look at one such directory structure of an out-of-the-box example
-of Solr `cloud`:
+Let's look at one such directory structure of an out-of-the-box example of Solr `cloud`:
 
 
 ![](https://github.com/fenago/apache-solr/raw/master/images/276a41df-5385-4103-a9fe-d53bfe4ae026.jpg)

@@ -1,0 +1,9 @@
+{
+   "pdf_options": {
+      "format": "A4",
+      "margin": "30mm 20mm",
+      "printBackground": true,
+      "headerTemplate": "<style>\n  section {\n    margin: 0 auto;\n    font-family: system-ui;\n    font-size: 11px;\n  }\n</style>\n<section>\n  <span class=\"date\"></span>\n</section>",
+      "footerTemplate": "<section>\n  <div>\n    Page <span class=\"pageNumber\"></span>\n    of <span class=\"totalPages\"></span>\n  </div>\n</section>"
+   }
+}
