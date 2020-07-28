@@ -16,7 +16,7 @@ Client API overview
 -------------------------------------
 
 Solr comes with a bunch of REST APIs, which exposes
-.indexterm} its features such as query, index, delete, commit, and
+ its features such as query, index, delete, commit, and
 optimize; it also allows a web application to connect with Solr and
 perform any operation by calling these APIs. Solr has taken care of
 these REST APIs such that any web application developed in any
@@ -28,9 +28,7 @@ web application asks Solr to perform some operations, such as querying
 and indexing. Solr performs those operations and provides a response to
 the application. Solr also supports various response formats based on
 programming languages such as Java, JavaScript/JSON, Python, Ruby, PHP,
-and many more (we have seen this in [Lab
-6](https://subscription.packtpub.com/book/big_data_and_business_intelligence/9781788837385/6){.link},
-[*Advanced Queries -- Part I*]). So it becomes very easy for
+and many more. So it becomes very easy for
 any programming languages to deal with Solr and to parse a response in
 expected format. Now Solr is the first choice for web applications
 developed in any language.
@@ -199,7 +197,7 @@ SolrJ Client API
 ----------------------------------
 
 SolrJ is built in Java technologies to connect
-.indexterm} with Solr from a Java application over HTTP.
+ with Solr from a Java application over HTTP.
 
 Solr and SolrJ both are built-in Java technologies, so communication
 between them is easy and straightforward. While uploading a document,
@@ -344,7 +342,7 @@ public class SolrJAddDocumentClientAPI {
 Through this client, a new product, `HP Probook 445`, has been
 added to `techproducts`. Now if we search for the query
 `q=HP Probook 445`, we will get the following
-.indexterm} response if the product was added successfully:
+ response if the product was added successfully:
 
 
 ``` {.programlisting .language-markup}
@@ -492,7 +490,7 @@ Ruby Client API
 ---------------------------------
 
 Like JavaScript and SolrJ, Ruby can also connect with
-.indexterm} Solr using the Solr API and performs various operations such
+ Solr using the Solr API and performs various operations such
 as search, indexing, and removal over the HTTP protocol. Solr also
 provides sufficient API support for the Ruby programming language. So,
 the application that builds on a Ruby platform can also take advantage

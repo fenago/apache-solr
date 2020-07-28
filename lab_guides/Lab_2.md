@@ -33,8 +33,9 @@ Solr/Lucene. This lab focuses mainly on the following points:
 -  Loading sample data
 -  Understanding the browser interface
 -  Using the Solr admin interface
+
 Solr installation
------------------------------------
+-----------------
 
 Let's get up and running with Solr. At the
 time of writing of this book, the latest stable version of Solr was
@@ -45,7 +46,6 @@ prerequisites:
 
 
 -  Java 8 (mandatory)
--  Cygwin (optional, recommended for Windows)
 -  curl (optional, recommended)
 
 
@@ -72,8 +72,7 @@ download Java
 from <http://www.oracle.com/technetwork/java/javase/downloads/index.html>
 if needed.
 
-Cygwin and curl utilities are not mandatory but will be helpful when we
-go deeper.
+Curl utilities are not mandatory but will be helpful when we go deeper.
 
 The next step is to download Apache Solr. An important point to keep in
 mind is that Apache Solr can also run as a standalone unit and is
@@ -92,6 +91,7 @@ Solr, follow along steps:
     and extract it to a location of your choice.
 6.  If you are on Linux/Unix or macOS, download the `.tgz`file
     and extract it to the local home directory:
+
 ``` {.programlisting .language-markup}
 wget http://www-eu.apache.org/dist/lucene/solr/7.1.0/solr-7.1.0.tgz
 
@@ -108,6 +108,7 @@ another alternative.
 
 7.  For macOS, if you don't have `wget` installed, you can
     use the native `brew` command:
+
 ``` {.programlisting .language-markup}
 brew install solr
 
@@ -177,7 +178,7 @@ What did we just do? While running this command, we started Solr in
 cloud mode. When we specified the number of hosts, port number, and
 collection name, it created an initial configuration set. Solr comes
 with an example configuration set, which we can use
-.indexterm} with cloud mode. It can be found at: `$SOLR_HOME/server/solr/configsets`.
+ with cloud mode. It can be found at: `$SOLR_HOME/server/solr/configsets`.
 
 If you navigate to that folder, you will be able to see
 the `_default` and `sample_techproducts_configs`
@@ -245,10 +246,12 @@ system, use the `.cmd` or `.sh` version accordingly:
 
 
 -  If you are on Windows, use the following command:
+
 ``` {.programlisting .language-markup}
 bin\solr.cmd start
 ```
 -  If you are on Linux, use this command:
+
 ``` {.programlisting .language-markup}
 bin/solr.sh start
 ```
@@ -335,7 +338,7 @@ can be per field or for the whole document.
 This module is used when we want to add
 third-party implementations. At the time of writing this course, it
 provides clustering support for search results
-.indexterm} using the Carrot2 project (<https://project.carrot2.org/>).
+ using the Carrot2 project (<https://project.carrot2.org/>).
 
 #### VelocityIntegration
 This contrib helps us to integrate Solr with
@@ -459,7 +462,7 @@ It is not recommended to use embedded ZooKeeper in production.
 
 ### solr.xml
 The `solr.xml` contains Solr configuration that
-.indexterm} can apply to single or multiple cores as needed. The
+ can apply to single or multiple cores as needed. The
 following table briefly summarizes the configurations available in this
 file:
 
@@ -736,6 +739,7 @@ steps:
     `/opt`. If you want to change that path, just add
     the `-i` option while running the Solr script. You can
     install the Solr service by simply hitting:
+
 ``` {.programlisting .language-markup}
 sudo bash ./install_solr_service.sh solr-7.1.0.tgz
 ```
@@ -904,7 +908,7 @@ Solr. Let's now look at how to load structured data in Solr.
 ### Loading data from MySQL
 Solr's contrib provides
 the `datahandlerimport` module, and one
-.indexterm} of the examples in Solr is also focused on
+ of the examples in Solr is also focused on
 `DataImportHandler`, also known as DIH. Let's run the DIH
 example given by default. Hit `solr -e dih` to start Solr with
 the example of DIH. It will pick the configuration set in
@@ -947,6 +951,7 @@ is available in `dist`:
     Add the following lines of code and create a file
     `db-data-config.xml` parallel to
     `solrconfig.xml`:
+
 ``` {.programlisting .language-markup}
 <requestHandler name="/dataimport" class="solr.DataImportHandler">
     <lst name="defaults">
@@ -957,6 +962,7 @@ is available in `dist`:
 3.  `db-data-config.xml` is the file where we will define our
     database and Solr mapping. Create one file and define that file
     with the following schema:
+
 ``` {.programlisting .language-markup}
 <dataConfig>
     <dataSource driver="com.mysql.jdbc.Driver"
@@ -976,6 +982,7 @@ is available in `dist`:
     `${solr_home}/example/example-DIH/solr/db/conf/managed-schema`
     and make the following changes. Change the primary key from
     `id` to `category_id`:
+
 ``` {.programlisting .language-markup}
 <field name="category_id" type="string" indexed="true" stored="true" required="true" multiValued="false" />
  …
@@ -988,6 +995,7 @@ we are changing the primary key. In the real world, doing this is
 strongly not recommended.
 5.  Now Let's add the new fields you introduced in
     `db-data-config.xml`:
+
 ``` {.programlisting .language-markup}
 <field name="category_name" type="string" indexed="true" stored="true"/>
 <field name="remarks" type="string" indexed="true" stored="true"/>
@@ -1155,6 +1163,7 @@ also be changed in the following ways:
 
 
 -  Using the log level API as mentioned here:
+
 ``` {.programlisting .language-markup}
 # Set the root logger to level WARN curl -s http://localhost:8983/solr/admin/info/logging --data-binary "set=root:WARN"
 ```
@@ -1299,7 +1308,7 @@ be taken into consideration.
 ### DataImport
 We saw this screen when we imported from MySQL. This screen allows us to
 monitor the status of all the import commands and the
-.indexterm} entities that we have defined in `managed_schema`.
+ entities that we have defined in `managed_schema`.
 
 ### Documents
 This screen allows us to directly run various

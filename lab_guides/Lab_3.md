@@ -73,7 +73,7 @@ such as singer, song title, and so on.
 
 ### The schema file of Solr
 All the information about fields and field types
-.indexterm} is mentioned in the schema file of Solr. Now, the schema
+ is mentioned in the schema file of Solr. Now, the schema
 file can be in one of the following places depending on how you have
 configured Solr:
 
@@ -211,7 +211,7 @@ package name `org.apache.solr.schema`.
 
 #### Field type properties
 All of field type is behavior generally controlled
-.indexterm} by the `fieldType` class and the optional
+ by the `fieldType` class and the optional
 properties:
 
 
@@ -627,8 +627,8 @@ This would find documents with indexed ranges that contain the range
 
 ### Understanding currencies and exchange rates 
 As the name implies, a currency field type is used
-.indexterm} for any monetary value. It supports currency
-.indexterm} conversion and exchange rates during a query.
+ for any monetary value. It supports currency
+ conversion and exchange rates during a query.
 
 Solr provides the following
 features for it:
@@ -922,7 +922,7 @@ fields and use the same source field.
 
 ### Dynamic fields
 We use dynamic fields to index fields that we do not want
-.indexterm} to explicitly define in our schema.
+ to explicitly define in our schema.
 
 This feature is handy when you want to use a wild card for indexing
 fields, where you want to index all the fields having a certain pattern.
@@ -1130,7 +1130,7 @@ Finally, in order to add or delete a copy field rule, use the following:
 
 #### Listing fields, field types, DynamicFields, and CopyField rules
 In order to list all
-.indexterm} the fields, type the following
+ the fields, type the following
 URL in the
 browser: `http://localhost:8983/solr/gettingstarted/schema/fields`:
 
@@ -1366,7 +1366,7 @@ And finally used for automatic schema field addition that is based on
 field value classes.
 ### Creating a schemaless example
 All of the preceding three features are already
-.indexterm} configured in the Solr bundle. To start using schemaless
+ configured in the Solr bundle. To start using schemaless
 mode, run the following command:
 
 
@@ -1445,7 +1445,7 @@ In the previous code snippet, we have changed
 
 ### Field guessing
 If you open `solrconfig.xml` for the new
-.indexterm} schemaless project that you have created, you will see there
+ schemaless project that you have created, you will see there
 is a section for `UpdateRequestProcessorChain`. This is
 primarily used to automatically apply some operations to the documents
 before they get indexed and helps in field guessing. We will see some of

@@ -584,7 +584,7 @@ example, `price:[5 TO 20}`.
 
 #### Boolean operators
 Here is a list of Boolean operators supported by standard
-.indexterm} query parser:
+ query parser:
 
 
 +----------------------+----------------------+----------------------+
@@ -694,7 +694,7 @@ will be treated as normal characters like this:
 
 #### Grouping terms
 Solr supports groups of clauses using parentheses to form
-.indexterm} subqueries that control the Boolean logic for a query.
+ subqueries that control the Boolean logic for a query.
 
 This example will form a query that searches for either
 `soccer` or `volleyball` and `world cup`:
@@ -718,7 +718,7 @@ game:(+soccer +volleyball)
 
 #### Dates and times in query strings
 We need to use an appropriate date format whenever
-.indexterm} we are running a query against any date field. Search
+ we are running a query against any date field. Search
 queries for exact date values will require quoting or escaping because
 `:` is listed as a special character for the parser:
 
@@ -765,12 +765,12 @@ operators `AND` and `OR`, which can be used to
 determine mandatory and optional clauses.
 #### Advantages
 It produces syntax error messages. It also provides
-.indexterm} additional boosting queries, boosting functions, and
+ additional boosting queries, boosting functions, and
 filtering queries for search results.
 
 #### DisMax query parser parameters
 Apart from common parameters, the following is a list
-.indexterm} of all parameters supported by the DisMax Query Parser. All
+ of all parameters supported by the DisMax Query Parser. All
 the default values for these parameters are configured in
 `solrconfig.xml`:
 
@@ -1025,9 +1025,9 @@ parameters as well.
 
 ### eDisMax Query Parser
 The eDisMax Query Parser is an improved version
-.indexterm} of the DisMax Query Parser. Along with supporting all the
+ of the DisMax Query Parser. Along with supporting all the
 features provided by DisMax Query Parser, it supports
-.indexterm} the following:
+ the following:
 
 
 -  Lucene query parser syntax
@@ -1134,7 +1134,7 @@ Response writer
 ---------------------------------
 
 The user who is searching is mainly interested
-.indexterm} in the search output/response. Rather than providing output
+ in the search output/response. Rather than providing output
 in only a single format, if we allow them to select their choice of
 output/response format and return a response in that format, it will
 really make the user happy. The good news is that Solr provides various
@@ -2275,7 +2275,7 @@ many parameters for **fragment
 sizing**, **formatting**, **ordering**,
 **backup.alternate behavior**, and
 **categorization**. Fragments or snippets
-.indexterm} are parts of the response that contain matching terms.
+ are parts of the response that contain matching terms.
 ### Highlighting parameters
 Solr provides a large list for highlighting
 fragments. The following are the basic parameters required to start
@@ -2352,7 +2352,7 @@ specify a boundary scanner using the parameter
 `hl.boundaryScanner`.
 #### The breakIterator boundary scanner
 The `breakIterator` boundary scanner scans
-.indexterm} term boundaries by considering the language
+ term boundaries by considering the language
 (`hl.bs.language`) and boundary type (`hl.bs.type`)
 and provides expected, accurate, and complete output without any loss of
 characters. It is used most often. To implement the

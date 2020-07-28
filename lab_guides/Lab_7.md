@@ -189,11 +189,11 @@ our parameters:
 
 ### Implementation approaches
 Solr provides many approaches for implementing
-.indexterm} spellchecking. Let's get a brief overview of these
+ spellchecking. Let's get a brief overview of these
 approaches.
 #### IndexBasedSpellChecker
 The `IndexBasedSpellChecker` builds a parallel
-.indexterm} index based on the Solr index and performs spellchecking
+ index based on the Solr index and performs spellchecking
 using this parallel index. For this, a field needs to be defined as a
 basis for the index terms. The easiest way is to copy terms from some
 fields (subject, description, and so on) to another field created for
@@ -254,7 +254,7 @@ is an example configured in `solrconfig.xml`:
 
 #### FileBasedSpellChecker
 The `FileBasedSpellChecker` evaluates spellings
-.indexterm} from an external file dictionary. This is useful when Solr
+ from an external file dictionary. This is useful when Solr
 works as a spellchecking server. This is also useful where spelling
 suggestions are not on the base of actual terms. To implement
 `FileBasedSpellChecker`, modify `solrconfig.xml` as
@@ -735,7 +735,7 @@ Result grouping
 ---------------------------------
 
 Result grouping is a useful feature in Solr; it returns
-.indexterm} an optimal mix of search results for a query. Result
+ an optimal mix of search results for a query. Result
 grouping can be performed based on field values, functions, or queries.
 
 Sometimes, we have multiple similar documents for a single search term,
@@ -909,7 +909,7 @@ Result clustering
 -----------------------------------
 
 So far, we have seen Solr searching by the keyword
-.indexterm} used in search query. Result clustering is the advanced
+ used in search query. Result clustering is the advanced
 search component of Solr; it first identifies the similarities between
 documents, and using these similarities, it finds related documents. It
 is also not necessary for the identified similarities to be present in
@@ -1170,6 +1170,7 @@ spatial search:
     it is that it creates a circular shape filter. For example, to find
     all documents within 5 kilometers of a given latitude-longitude
     point, the query will be:
+
 ``` {.programlisting .language-markup}
 &q=:&fq={!geofilt sfield=location}&pt=45.15,-93.85&d=5
 ```
@@ -1183,6 +1184,7 @@ around the initial point.
     like `geofilt`, except that it uses the bounding box of
     the calculated circle. Please look at the preceding diagram. For the
     same example, the query will be:
+
 ``` {.programlisting .language-markup}
 &q=:&fq={!bbox sfield=location}&pt=45.15,-93.85&d=5
 ```

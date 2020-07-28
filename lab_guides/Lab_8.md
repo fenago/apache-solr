@@ -100,7 +100,7 @@ For example, take a look at this config:
 
 
 In the preceding snippet, we have specified to keep the
-.indexterm} maximum time for doing a hard commit as 15 seconds.
+ maximum time for doing a hard commit as 15 seconds.
 
 This can be changed at runtime:
 
@@ -113,7 +113,7 @@ bin/solr start -Dsolr.autoCommit.maxTime=20000
 In this way, we can set any Java system property at runtime.
 ### User-defined properties
 We can also add `solrcore.properties` in the
-.indexterm} configuration directory to specify user-defined properties
+ configuration directory to specify user-defined properties
 that can be set in `solrconfig.xml`. 
 
 For example, `solr.autoCommit.maxTime` can be added to
@@ -191,9 +191,9 @@ here:
 
 ### Standalone mode backups
 In the case of standalone mode, backups and restoration
-.indexterm} are done using replication handler. The configuration of
+ are done using replication handler. The configuration of
 replication handler can be customized using our
-.indexterm} own replication handler in `solrconfig.xml`;
+ own replication handler in `solrconfig.xml`;
 however, we will use the out-of-the-box implicit support for replication
 using the API.
 #### Backup API
@@ -658,7 +658,7 @@ Some commonly used combinations are as follows:
 
 ### Routing documents
 You can specify the router implementation used
-.indexterm} by a collection using the `router.name` parameter
+ by a collection using the `router.name` parameter
 while creating your collection.
 
 By default, the `compositeId` router is used. In this
@@ -719,7 +719,7 @@ certificate. Enabling SSL ensures that
 communication between the client and Solr server is encrypted.
 ### Prerequisites
 Before generating a self-signed certificate, ensure that
-.indexterm} you have OpenSSL installed on your machine. To check whether
+ you have OpenSSL installed on your machine. To check whether
 OpenSSL is already installed, type the following command in the Command
 Prompt:
 
@@ -748,7 +748,7 @@ keytool -genkeypair -alias mysolr -keyalg RSA -keysize 2048 -keypass solrpass -s
 
 
 In the preceding command, we are creating a keystore
-.indexterm} named `mysolrkeystore.jks` using the RSA
+ named `mysolrkeystore.jks` using the RSA
 algorithm, with a key size of `2048` and validity of 10 years.
 We have also given the alias name of `mysolr` and specified
 the key password and store password. This will open up an interactive
@@ -896,7 +896,7 @@ Performance statistics
 ----------------------------------------
 
 In order to measure performance, Solr provides statistics
-.indexterm} and metrics; they can read either using Metrics API or by
+ and metrics; they can read either using Metrics API or by
 enabling JMX.
 ### Statistics for request handlers
 Both search and update request handlers

@@ -53,7 +53,7 @@ Solr is one of the most popular
 enterprise search servers and is widely used
 across the world. It is written based on Java and uses the Lucene Java
 search library. Solr is an open source project
-.indexterm} from **Apache Software Foundation**
+ from **Apache Software Foundation**
 (**ASF**) and is amazingly fast, scalable, and ideal for
 searching relevant data. Some of the major Solr users are Netfix,
 SourceForge, Instagram, CNET, and Flipkart. You can check out more such
@@ -327,7 +327,7 @@ Lucene, with about 1 terabyte of data added every week.
 
 ### Science and research
 NASA (<https://www.nasa.gov/open/nebula.html>) uses Solr
-.indexterm} for its Nebula Cloud Computing Platform.
+ for its Nebula Cloud Computing Platform.
 Similarly, **Public Library of Science**
 (**PLOS**) that is a non-profit
 publisher of research articles on various subjects. VUFind
@@ -373,7 +373,7 @@ The White House uses Solr for <https://www.whitehouse.gov/>. It uses
 features such as
 search, highlighting, and faceting. Similarly, **Federal Communications
 Commission** (**FCC**) uses Solr for
-.indexterm} its website search.
+ its website search.
 
 ### Education
 Hathitrust is another wonderful use case of

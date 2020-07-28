@@ -173,7 +173,7 @@ java -jar example/exampledocs/post.jar -Dc gettingstarted -Dfiletypes doc,pdf sa
 
 Now that we have learned how to use the post
 tool for indexing, Let's see another technique
-.indexterm} to do the same, known as **index handlers**.
+ to do the same, known as **index handlers**.
 Understanding index handlers
 ----------------------------------------------
 
@@ -723,7 +723,7 @@ Client APIs 
 ------------------------------
 
 There are various client APIs available to add
-.indexterm} data to Solr indexes. This table shows the available client
+ data to Solr indexes. This table shows the available client
 APIs:
 
 

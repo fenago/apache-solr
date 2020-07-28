@@ -148,9 +148,6 @@ is hidden in its three powerful tools:
     
     -  **Adding**: Adds new tokens to the stream, such as
         adding synonyms
-    
-
-    
     -  **Removing**: Removes tokens from the stream, such
         as stop words
     -  **Conversation**: Converts tokens from one form to
@@ -201,7 +198,7 @@ We have configured the `text_en` field as follows in the
 
 Applying **lower case filter** (**LCF**) during
 index time and query
-.indexterm} time:
+ time:
 
 
 ![](https://github.com/fenago/apache-solr/raw/master/images/825bb1bd-5c2c-49aa-8d7a-53f6de026a40.png)
@@ -1600,7 +1597,7 @@ before `KStemFilterFactory`. We will cover this soon.
 
 #### KeywordMarkerFilterFactory
  This discards the modification/stemming of words
-.indexterm} listed in the file `protwords.txt`. Any words in
+ listed in the file `protwords.txt`. Any words in
 the protected word list will not be modified by any stemmer in Solr.
 
 **Arguments**:
@@ -1724,7 +1721,7 @@ provided by Solr:
 
 #### Understanding PatternReplaceCharFilterFactor
 This filter uses regular expressions to replace
-.indexterm} or change character patterns.
+ or change character patterns.
 
 **Arguments**:
 
