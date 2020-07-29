@@ -1371,7 +1371,7 @@ mode, run the following command:
 
 
 ``` {.programlisting .language-markup}
-bin/solr start -e schemaless
+solr start -e schemaless
 ```
 
 

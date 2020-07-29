@@ -106,7 +106,7 @@ This can be changed at runtime:
 
 
 ``` {.programlisting .language-markup}
-bin/solr start -Dsolr.autoCommit.maxTime=20000
+solr start -Dsolr.autoCommit.maxTime=20000
 ```
 
 
@@ -492,7 +492,7 @@ how much logging would you like:
 
 
 ``` {.programlisting .language-markup}
-bin/solr start -f -v
+solr start -f -v
 ```
 
 
@@ -501,7 +501,7 @@ Solr with verbose logging:
 
 
 ``` {.programlisting .language-markup}
-bin/solr start -f -q
+solr start -f -q
 ```
 
 

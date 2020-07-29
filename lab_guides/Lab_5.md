@@ -83,7 +83,7 @@ To run this tool in Unix, use the following command:
 
 
 ``` {.programlisting .language-markup}
-bin/post -c gettingstarted example/exampledocs/books.json
+post -c gettingstarted /opt/solr/example/exampledocs/books.json
 ```
 
 
@@ -92,8 +92,8 @@ only as a Unix shell script.
 
 On Windows, we need to use `SimplePostTool`, which is
 a standalone Java program and can be packaged in `post.jar`
-located at `example/exampledocs`. Navigate to
-`example/exampledocs` and issue this command:
+located at `/opt/solr/example/exampledocs`. Navigate to
+`/opt/solr/example/exampledocs` and issue this command:
 
 
 ``` {.programlisting .language-markup}
@@ -113,19 +113,18 @@ Issue the following command to run the post tool in Windows:
 
 
 ``` {.programlisting .language-markup}
-java -Dc=gettingstarted -jar example/exampledocs/post.jar example/films/films.json
+java -Dc=gettingstarted -jar /opt/solr/example/exampledocs/post.jar example/films/films.json
 ```
 
 
-This will index content from `films.json` to the server at
-`localhost:8983`.
+This will index content from `films.json` to the server at `localhost:8983`.
 
 In order to index all the documents with the extension XML, issue the
 following command from the `SOLR_HOME` directory:
 
 
 ``` {.programlisting .language-markup}
-java -jar example/exampledocs/post.jar -Dc gettingstarted *.xml
+java -jar /opt/solr/example/exampledocs/post.jar -Dc gettingstarted *.xml
 ```
 
 
@@ -135,7 +134,7 @@ following command:
 
 
 ``` {.programlisting .language-markup}
-java -jar example/exampledocs/post.jar -Dc gettingstarted -Dd '<delete><id>23</id></delete>'
+java -jar /opt/solr/example/exampledocs/post.jar -Dc gettingstarted -Dd '<delete><id>23</id></delete>'
 ```
 
 
@@ -144,8 +143,8 @@ shown here:
 
 
 ``` {.programlisting .language-markup}
-java -jar example/exampledocs/post.jar -Dc gettingstarted *.json
-java -jar example/exampledocs/post.jar -Dc gettingstarted *.csv
+java -jar /opt/solr/example/exampledocs/post.jar -Dc gettingstarted *.json
+java -jar /opt/solr/example/exampledocs/post.jar -Dc gettingstarted *.csv
 ```
 
 
@@ -157,7 +156,7 @@ index a Word document; we will issue the following command:
 
 
 ``` {.programlisting .language-markup}
-java -jar example/exampledocs/post.jar -Dc gettingstarted sample.doc
+java -jar /opt/solr/example/exampledocs/post.jar -Dc gettingstarted sample.doc
 ```
 
 
@@ -167,7 +166,7 @@ issue the following command:
 
 
 ``` {.programlisting .language-markup}
-java -jar example/exampledocs/post.jar -Dc gettingstarted -Dfiletypes doc,pdf samplefolder/
+java -jar /opt/solr/example/exampledocs/post.jar -Dc gettingstarted -Dfiletypes doc,pdf samplefolder/
 ```
 
 
@@ -586,7 +585,7 @@ solr start -cloud -p 8983 -s E:\book\solr\solr-7.2.0\example\cloud\node1\solr
 
 
 We will index a sample PDF provided by Solr. The PDF is available at
-`SOLR_HOME/example/exampledocs` by the name of
+`SOLR_HOME//opt/solr/example/exampledocs` by the name of
 `solr-word.pdf`. 
 
 Open Postman and create a new POST request with the

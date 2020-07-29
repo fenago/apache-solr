@@ -680,7 +680,7 @@ If you are on Linux, hit the following command:
 
 
 ``` {.programlisting .language-markup}
-bin/post -c chintan /root/apache-solr/*.pdf
+post -c chintan /root/Desktop/apache-solr/*.pdf
 ```
 
 
