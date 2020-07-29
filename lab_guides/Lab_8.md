@@ -2,7 +2,8 @@
 
 
 Lab 8. Managing and Fine-Tuning Solr
--------------------------------------------------
+-------------------------------------
+
 Okay, so you have your brand new car up and running and have been using
 it judiciously day in and day out, but you don't maintain it properly
 from time to time! What will happen? Of course, the performance is going
@@ -13,6 +14,7 @@ learning and tweaking all the features that your car can provide.
 Similarly, you need to fine-tune and manage your Solr so as to get the
 most out of it. This is exactly what we are going to see in this
 lab.
+
 JVM configuration
 -----------------------------------
 
