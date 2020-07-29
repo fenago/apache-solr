@@ -1,1 +1,0 @@
-curl -X POST -H "Content-type:application/json" --data-binary "{ \"add-field\":{\"name\":\"song-name\",\"type\":\"text_general\",\"stored\":true }}" "http://localhost:8983/solr/gettingstarted/schema"

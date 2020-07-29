@@ -1,1 +1,0 @@
-curl -X POST -H "Content-type:application/json" --data-binary "{ \"delete-field\":{\"name\":\"song-name\"}}" "http://localhost:8983/solr/gettingstarted/schema"
