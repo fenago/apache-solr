@@ -342,6 +342,7 @@ filters in the order you want to run them in. Here is an example:
  </analyzer>
 </fieldType>
 ```
+
 ### Note
 
 Solr will execute tokenizers and filters in the order in which they are

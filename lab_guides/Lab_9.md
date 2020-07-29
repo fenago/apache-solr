@@ -481,6 +481,7 @@ we delete documents in bulk:
 ``` {.programlisting .language-markup}
 solr.deleteById(List<String> ids);
 ```
+
 ### Note
 
 After adding/updating/deleting, don't forget to commit the transaction

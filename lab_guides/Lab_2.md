@@ -39,7 +39,7 @@ Solr installation
 
 Let's get up and running with Solr. At the
 time of writing of this book, the latest stable version of Solr was
-7.1.0. This course focuses all its aspects on Apache Solr 7.1.0.
+8.6.0. This course focuses all its aspects on Apache Solr 8.6.0.
 
 Getting up and running with Apache Solr requires the following
 prerequisites:
@@ -84,20 +84,20 @@ Solr, follow along steps:
 1.  Go to <http://lucene.apache.org/solr/>.
 2.  Click on **`DOWNLOAD`**.
 3.  You will be redirected to
-    <http://www.apache.org/dyn/closer.lua/lucene/solr/7.1.0>.
+    <http://www.apache.org/dyn/closer.lua/lucene/solr/8.6.0>.
 4.  Select the mirror site, which will open up the following page:
 ![](https://github.com/fenago/apache-solr/raw/master/images/d348364e-c01c-4103-94eb-255b9a76fb41.jpg)
-5.  If you are on Windows, download the `solr-7.1.0.zip` file
+5.  If you are on Windows, download the `solr-8.6.0.zip` file
     and extract it to a location of your choice.
 6.  If you are on Linux/Unix or macOS, download the `.tgz`file
     and extract it to the local home directory:
 
 ``` {.programlisting .language-markup}
-wget http://www-eu.apache.org/dist/lucene/solr/7.1.0/solr-7.1.0.tgz
+wget https://downloads.apache.org/lucene/solr/8.6.0/solr-8.6.0.tgz
 
 cd ~/
 
-tar zxf solr-7.1.0.tgz
+tar -zxvf solr-8.6.0.tgz 
 ```
 
 
@@ -186,7 +186,7 @@ config sets.
 
 However, cloud mode is not the only mode Solr comes with. Solr comes
 with tailor made configuration sets, which we can use if they fit our
-purpose. The following config sets are available in Solr 7.1.0 and they
+purpose. The following config sets are available in Solr 8.6.0 and they
 can be viewed at `$SOLR_HOME/example`. If you navigate to that
 folder, you will be able to find config sets for an instance
 of `cloud`, `example-DIH`, `films`, and
@@ -233,7 +233,7 @@ to run it as a service on any Linux/Unix service.
 
 Since we will be using Solr scripts very often, it is advisable to add
 `$SOLR_HOME/bin` (for
-example, `E:\solr-7.1.0\solr-7.1.0\bin`) in the path
+example, `E:\solr-8.6.0\solr-8.6.0\bin`) in the path
 environment variable so that we can use it anywhere.
 
 ### Solr script
@@ -312,8 +312,8 @@ and HTTP data sources very smoothly and easily. The data sources for
 importing go beyond relational databases and cover filesystems,
 websites, emails, FTP servers, NoSQL databases, LDAP, and so on. You can
 set default locales, time zones, or charsets via this extension. You can
-find two JAR files of this extension in the `dist` folder: `solr-dataimporthandler-7.1.0.jar` and
-`solr-dataimporthandler-extras-7.1.0.jar`.
+find two JAR files of this extension in the `dist` folder: `solr-dataimporthandler-8.6.0.jar` and
+`solr-dataimporthandler-extras-8.6.0.jar`.
 
 #### ContentExtractionLibrary
 This contrib module provides a way to extract
@@ -350,7 +350,7 @@ Apache Velocity template engine on the GUI to render Solr responses.
 The `dist` folder contains all the
 distributions that can be used as deployment
 artifacts in other servers. It contains the main Solr file, which is
-`solr-core.7.1.0.jar`. This folder also contains JAR files of
+`solr-core.8.6.0.jar`. This folder also contains JAR files of
 all the contribs we discussed earlier. You can deploy these artifacts to
 any application server as per your needs.
 
@@ -562,6 +562,7 @@ following command:
 ``` {.programlisting .language-markup}
 bin\solr.cmd start -p 8984
 ```
+
 ### Note
 
 Based on your operating system, you have to use `bin/solr` or
@@ -646,7 +647,7 @@ just use the following command:
 
 
 ``` {.programlisting .language-markup}
-bin\solr.cmd create -c <name>
+bin\solr create -c chintan
 ```
 
 
@@ -679,7 +680,7 @@ If you are on Linux, hit the following command:
 
 
 ``` {.programlisting .language-markup}
-bin/post -c chintan <path_to_documents>/*.pdf
+bin/post -c chintan /root/apache-solr/*.pdf
 ```
 
 
@@ -687,7 +688,7 @@ If you are on Windows, do this:
 
 
 ``` {.programlisting .language-markup}
-java -Dauto -Dc=chintan -jar post.jar E:\\books\\solr\\chintan\\*.pdf
+java -Dauto -Dc=chintan -jar post.jar E:\\books\\solr\\fenago\\*.pdf
 ```
 
 
@@ -741,7 +742,7 @@ steps:
     install the Solr service by simply hitting:
 
 ``` {.programlisting .language-markup}
-sudo bash ./install_solr_service.sh solr-7.1.0.tgz
+sudo bash ./install_solr_service.sh solr-8.6.0.tgz
 ```
 
 
@@ -750,7 +751,7 @@ link:
 
 
 ``` {.programlisting .language-markup}
-/opt/solr --> /opt/solr-7.1.0
+/opt/solr --> /opt/solr-8.6.0
 ```
 
 
@@ -862,6 +863,7 @@ Create the collection again using the following command:
 ``` {.programlisting .language-markup}
 bin\solr.cmd -c films -shards 10 -n schemaless
 ```
+
 ### Note
 
 We will be passing `-n` so that it will pick up the schemaless
@@ -885,7 +887,7 @@ auto-guess as Float:
 You should get a successful response.
 
 Now try hitting the import command
-again:`java -Dauto -Dc=films -jar post.jar E:\solr-7.1.0\solr-7.1.0\example\films\films.json`
+again:`java -Dauto -Dc=films -jar post.jar E:\solr-8.6.0\solr-8.6.0\example\films\films.json`
 
 You should be able to do so successfully. Go to the browser and open
 `http://localhost:8983/solr/films/select?q=*:*`. You should be
@@ -933,9 +935,7 @@ the necessary configurations:
     Add the following lines of code in this file.
 
 
-Since we are going to use MySql, we need to download the MySQL connector
-JAR
-([http://central.maven.org/maven2/mysql/mysql-connector-java/8.0.8-dmr/mysql-connector-java-8.0.8-dmr.jar](http://www.google.com/url?q=http%3A%2F%2Fcentral.maven.org%2Fmaven2%2Fmysql%2Fmysql-connector-java%2F8.0.8-dmr%2Fmysql-connector-java-8.0.8-dmr.jar&sa=D&sntz=1&usg=AFQjCNGO3122cUUPDB2JY_F8OyrFY1Lr0Q){.ulink}),
+Since we are going to use MySql, we have downloaded the MySQL connector JAR,
 place it in the `dist` folder `$solr_home/dist`, and
 let Solr know where to find the connector JAR by adding the following
 lines of code. Make sure that the `dataimporthandler` module
@@ -944,9 +944,10 @@ is available in `dist`:
 
 ``` {.programlisting .language-markup}
 <lib dir="${solr.install.dir:../../../..}/dist/" regex="solr-dataimporthandler-.*\.jar" />
-  <lib dir="${solr.install.dir:../../../..}/contrib/extraction/lib" regex=".*\.jar" />
-  <lib dir="${solr.install.dir:../../../..}/dist" regex="mysql-connector-java-\d.*\.jar" />
+<lib dir="${solr.install.dir:../../../..}/contrib/extraction/lib" regex=".*\.jar" />
+<lib dir="${solr.install.dir:../../../..}/dist" regex="mysql-connector-java-\d.*\.jar" />
 ```
+
 2.  Next, we need to tell Solr where our database configuration file is.
     Add the following lines of code and create a file
     `db-data-config.xml` parallel to
@@ -959,6 +960,7 @@ is available in `dist`:
     </lst>
   </requestHandler>
 ```
+
 3.  `db-data-config.xml` is the file where we will define our
     database and Solr mapping. Create one file and define that file
     with the following schema:
@@ -977,6 +979,7 @@ is available in `dist`:
  </document>
  </dataConfig>
 ```
+
 4.  The last part is to let Solr know about the new entity we have
     added. Go to
     `${solr_home}/example/example-DIH/solr/db/conf/managed-schema`
@@ -988,6 +991,7 @@ is available in `dist`:
  …
  <uniqueKey>category_id</uniqueKey>
 ```
+
 ### Note
 
 This is just a method to show how to import data from MySQL, and hence
@@ -1388,6 +1392,7 @@ dropdown, you will see the following screens:
     segments by Lucene for the core selected. It shows information about
     the size of each segment, with units in both bytes and number of
     documents. You can also check out the number of deleted documents.
+
 Summary
 -------------------------
 
