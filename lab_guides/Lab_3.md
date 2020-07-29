@@ -51,6 +51,7 @@ information, such as the title, published date, author, price, genre,
 and so on. So, when I query all the books written by J.K. Rowling in the
 child fiction genre, it returns me my favorite [*Harry
 Potter*] book series.
+
 ### Getting started with Solr's basics
 Everything for Solr is a document, which
 forms the basic unit of information. Each document contains a set of
@@ -84,6 +85,7 @@ configured Solr:
 -  If you decide to make schema changes at runtime using either
     the Schema API or schemaless mode, then the schema file is managed
     in the `managed-schema` file.
+
 ### Note
 
 In the case of SolrCloud, you will make changes to the schema using
@@ -97,6 +99,7 @@ As discussed earlier, we are able to tell Solr how it
 should interpret the incoming data in a field
 and how we can query a field using the information specified in field
 types.
+
 ### Definitions and properties of field types
 Before going to the definitions and
 properties, we will see what field analysis means.
@@ -449,6 +452,7 @@ with Solr:
     which can be used for locale-sensitive sort and range queries.
 -  `CurrencyFieldType`: This is used for currencies and
     exchange rates.
+
 ### Note
 
 There is also a `CurrencyField` that does the same thing, but
@@ -460,6 +464,7 @@ it is deprecated.
     pulled from an external file.
 -  `EnumFieldType`: This is used for enumerated sets of
     values.
+
 ### Note
 
 There is also an `EnumField` that does the same thing, but it
@@ -489,6 +494,7 @@ is now deprecated.
     These are all similar to the analogous Trie-based fields. The only
     difference is that they use dimensional-points-based data structures
     and do not require any configuration of precision steps.
+
 ### Note
 
 As of Solr 7, all the `Trie[Datatype]Fields` are
@@ -841,6 +847,7 @@ Field management
 Once your primary work of field types setup is done, field definition
 is a small task. Just as with field types,
 the fields element of `schema.xml` holds the field definition.
+
 ### Field properties
 Let's first see a sample field definition:
 
@@ -975,6 +982,7 @@ existing documents that are already indexed.
 Let's see some of the important schema
 endpoints. We will do all the examples on the `gettingstarted`
 collection.
+
 #### Schema operations
 In order to see the schema, we need to use
 the `/schema` endpoint, `http://localhost:8983/solr/gettingstarted/schema/`.
@@ -1364,6 +1372,7 @@ The features that we are particularly interested in are:
 
 And finally used for automatic schema field addition that is based on
 field value classes.
+
 ### Creating a schemaless example
 All of the preceding three features are already
  configured in the Solr bundle. To start using schemaless

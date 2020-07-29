@@ -111,6 +111,7 @@ Solr:
 Each parser has its own configuration parameters for clubbing with Solr.
 However, there are some common parameters required by all parsers. First
 Let's take a look at these common parameters.
+
 ### Common query parameters
 The following are the common query parameters
 supported by standard query parser, DisMax query parser, and extended
@@ -376,6 +377,7 @@ Standard query parser, also
 known as **Lucene query
 parser**, is the default query
 parser for Solr.
+
 #### Advantage
 The syntax is easy and differently structured
 queries can easily be created using standard query parser.
@@ -476,6 +478,7 @@ We can format the response by setting the `wt` parameter as
 `javabin`, `geojson`, `python`,
 `php`, `phps`, `ruby`, `csv`,
 `velocity`, `smile`, or `xlsx`.
+
 ##### Searching terms for standard query parser
 A query string to standard query parser
 contains terms and operators. There are two types of terms:
@@ -763,6 +766,7 @@ grouping phrases. The DisMax Query Parser
 escapes all Boolean operators to simplify the query syntax, except the
 operators `AND` and `OR`, which can be used to
 determine mandatory and optional clauses.
+
 #### Advantages
 It produces syntax error messages. It also provides
  additional boosting queries, boosting functions, and
@@ -1185,6 +1189,7 @@ the `wt` parameter. These are the response writer values for
 
 
 Let's explore some of these response writers in detail.
+
 ### JSON
 JSON response writer converts results into
 JSON format. This is a default response writer for Solr, so if we do not
@@ -1429,7 +1434,7 @@ retrieving the response in XML format:
 ![](https://github.com/fenago/apache-solr/raw/master/images/97bd976d-fb25-4212-892b-ff236235dc22.png)
 
 
-**URL**`:`**** `http://localhost:8983/solr/techproducts/select?q=SP2514N&wt=xml`
+**URL**: `http://localhost:8983/solr/techproducts/select?q=SP2514N&wt=xml`
 
 **Response**:
 
@@ -1576,6 +1581,7 @@ faceting types that Solr currently supports:
 We will explore these later in this lab. But to configure any
 faceting in Solr, first we have to configure the related parameters. So
 Let's understand faceting parameters first.
+
 ### Common parameters
 These are the common parameters for all types
 of faceting:
@@ -2276,6 +2282,7 @@ sizing**, **formatting**, **ordering**,
 **backup.alternate behavior**, and
 **categorization**. Fragments or snippets
  are parts of the response that contain matching terms.
+
 ### Highlighting parameters
 Solr provides a large list for highlighting
 fragments. The following are the basic parameters required to start
@@ -2304,6 +2311,7 @@ can't expect identical results when switching highlighters. Normally,
 highlighter selection is done via the `hl.method` parameter,
 but we can also explicitly configure an implementation by class name in
 `solrconfig.xml`. Let's explore highlighters in detail.
+
 #### Unified highlighter (hl.method=unified)
 Unified highlighter is the new highlighter
 from Solr 6.4. This is the most flexible highlighter and supports the
@@ -2350,6 +2358,7 @@ we need to configure a boundary scanner in `solrconfig.xml`.
 There are two types of boundary scanners available in Solr. We have to
 specify a boundary scanner using the parameter
 `hl.boundaryScanner`.
+
 #### The breakIterator boundary scanner
 The `breakIterator` boundary scanner scans
  term boundaries by considering the language

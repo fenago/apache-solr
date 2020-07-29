@@ -219,6 +219,7 @@ directory of Solr, along with an explanation of each folder:
 
 
 Let's look at the major folders and files we will be dealing with.
+
 ### bin
 The bin folder has all the scripts primarily
 needed to get up and running with Solr. Mainly, we will be using Solr
@@ -305,6 +306,7 @@ found in the `dist` folder; here it's just the source and the
 `README.md` files.
 
 Some of the useful extensions are as follows.
+
 #### DataImportHandler
 `DataImportHandler` is an import
 tool for Solr that helps in importing data from databases, XML files,
@@ -907,6 +909,7 @@ java -jar -Dc=films -Dparams=f.genre.split=true & f.directed_by.split=true &  f.
 
 This is how we can load unstructured data in
 Solr. Let's now look at how to load structured data in Solr.
+
 ### Loading data from MySQL
 Solr's contrib provides
 the `datahandlerimport` module, and one
@@ -1085,6 +1088,7 @@ dashboard. The whole screen is divided into two parts:
 
 
 Let's take a deep dive into each of the sections.
+
 ### Dashboard
 This is the default page that opens up
 whenever we open Solr. The dashboard contains various pieces of
@@ -1197,6 +1201,7 @@ information about the level data stored in ZooKeeper. An important point
 to note is that this option is not visible when a single node is running
 or master-slave replication instances of Solr are running. It provides
 three different views: tree, graph, and graph (radial).
+
 #### Tree view
 This shows the directory structure of data
 residing in ZooKeeper and according to ZooKeeper configurations. It has
@@ -1286,6 +1291,7 @@ thread can be in any one of `new`, `runnable`,
 Clicking on any one of the collections in the
 collection dropdown opens up the various things that we can do on any
 collection. It has the following suboptions.
+
 #### Overview
 This just contains basic metadata about the
 collection: the number of shards, the replica per shard, the range of

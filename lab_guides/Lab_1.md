@@ -2,7 +2,7 @@
 
 
 
-### Lab 1. Introduction to Solr 7
+### Lab 1. Introduction to Solr
 
 Today we are in the age of digitization. People are generating data in
 different ways: they take pictures, upload images, write blogs, comment
@@ -89,6 +89,7 @@ research, and so on. Solr can index billions of documents/rows via XML,
 JSON, CSV, or HTTP APIs. It can secure your data with the help of
 authentication and can be drilled down to role-based authentication.
 Solr is now an integral part of many big data solutions too.
+
 ### History of Solr
 Doug Cutting created `Lucene` in 2000, which is the
 core technology behind Solr.
@@ -231,6 +232,7 @@ integrated search solutions to help users find relevant information
 quickly. User experience is a key element for any solution that we
 develop; and searching is one of the major features that cannot be
 ignored when we talk about user experience.
+
 ### Benefits of keyword search
 One of the basic needs a search engine should
 support is a keyword search, as that's the primary goal behind the
@@ -398,6 +400,7 @@ features have been introduced. Overall, there are 51 new small-to-major
 features introduced in Solr 7. Along with these features, lots of bug
 fixes, optimization, and updates have been introduced. Let us go through
 some of the major changes introduced in Solr 7.
+
 ### Replication for SolrCloud
 Before we understand the new replication
 methods introduced in Solr 7, Let's go through what was available for

@@ -1,4 +1,5 @@
-<img align="right" src="./logo-small.png">
+<img align="right" src="https://github.com/fenago/apache-solr/raw/master/images/logo.png">
+
 
 <h2><span style="color:red;">Apache Solr</span></h2>
 
@@ -38,15 +39,15 @@ By the end of this course, you will gain advanced proficiency to build out-of-bo
 
 Labs for this course are listed below:
 
-1. 
-2. 
-3. 
-4. 
-5. 
-6. 
-7. 
-8. 
-9. 
+1. Introduction to Solr
+2. Getting Started
+3. Designing Schemas
+4. Mastering Text Analysis Methodologies
+5. Data Indexing and Operations
+6. Advanced Queries -- Part I
+7. Advanced Queries -- Part II
+8. Managing and Fine-Tuning Solr
+9. Client APIs -- An Overview
 
 
 ### About

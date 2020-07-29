@@ -19,6 +19,7 @@ JVM configuration
 One of the things that you need to take particular care of when you are
 working on any Java-based application is configuring the JVM optimally,
 and Solr is no exception.
+
 ### Managing the memory heap 
 Anyone who has worked with Java-based
 applications would have surely come across
@@ -111,6 +112,7 @@ solr start -Dsolr.autoCommit.maxTime=20000
 
 
 In this way, we can set any Java system property at runtime.
+
 ### User-defined properties
 We can also add `solrcore.properties` in the
  configuration directory to specify user-defined properties
@@ -144,6 +146,7 @@ user.name=Dharmesh Vasoya
 
 Now this property can be used in `solrconfig.xml` as
 `${user.name}`.
+
 #### Implicit Solr core properties
 The following properties are available as implicit
 properties for the Solr core:
@@ -196,6 +199,7 @@ replication handler can be customized using our
  own replication handler in `solrconfig.xml`;
 however, we will use the out-of-the-box implicit support for replication
 using the API.
+
 #### Backup API
 In order to back up, we will use the
 following command to the core that we would like to take a backup of:
@@ -380,6 +384,7 @@ represented by **managed beans** (**MBeans**).
 
 Solr can be controlled via the JMX interface; we can make use of
 VisualVM or JConsole to connect with Solr.
+
 ### JMX configuration
 Solr will automatically identify its location
 on startup if you have an MBean server running in Solr's JVM or if you
@@ -401,6 +406,7 @@ Logging configuration
 Setting up logs is a key part of any
 enterprise application and Solr is no exception. Luckily, Solr provides
 many different ways to tweak the default logging configuration.
+
 ### Log settings using the admin web interface
 Using Solr's admin web interface, we can set
 various log levels. Go to the admin interface by typing the following
@@ -552,6 +558,7 @@ hosted on multiple boxes having replicas; this provides redundancy,
 fault tolerance, and scalability. ZooKeeper holds the strings to manage
 the shards and replication and to decide which server will handle a
 specific request.
+
 ### SolrCloud in interactive mode
 Let's set up SolrCloud. Go to the `SOLR_HOME/bin` directory
 and start the server in interactive mode
@@ -717,6 +724,7 @@ Enabling SSL -- Solr security
 In this example, we will see a basic SSL setup using a self-signed
 certificate. Enabling SSL ensures that
 communication between the client and Solr server is encrypted.
+
 ### Prerequisites
 Before generating a self-signed certificate, ensure that
  you have OpenSSL installed on your machine. To check whether
@@ -898,6 +906,7 @@ Performance statistics
 In order to measure performance, Solr provides statistics
  and metrics; they can read either using Metrics API or by
 enabling JMX.
+
 ### Statistics for request handlers
 Both search and update request handlers
 provide various statistics.

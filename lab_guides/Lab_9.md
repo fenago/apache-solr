@@ -12,8 +12,9 @@ with all the required configurations to meet any search request. In this
 lab, we will learn how Solr can be used with a web application and
 how to call APIs in different languages. We'll have an overview of
 various Client APIs supported by Solr.
+
 Client API overview
--------------------------------------
+-------------------
 
 Solr comes with a bunch of REST APIs, which exposes
  its features such as query, index, delete, commit, and

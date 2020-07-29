@@ -27,6 +27,7 @@ processes sequentially behind the scenes: it examines the input string,
 normalizes the text, generates the token stream, builds indexes, and so
 on. The set of all of these processes is called text analysis. Let's
 explore text analysis in detail.
+
 ### What is text analysis?
 Text analysis is a Solr mechanism that takes
 place in two phases:
@@ -672,9 +673,8 @@ and `LowerCaseFilterFactory`).
 Now, these are the final streams of both phases:
 
 
--  **Indexed
-    stream**: `host`, `country`, `soccer`, `world`, `cup`, `2018`
--  **Query ****stream**: `host`, `country`, `nation`, `soccer`, `football`, `world`, `cup`, `2018`
+-  **Indexed stream**: `host`, `country`, `soccer`, `world`, `cup`, `2018`
+-  **Query stream**: `host`, `country`, `nation`, `soccer`, `football`, `world`, `cup`, `2018`
 
 
 We can see that many tokens from the query stream are matching tokens
@@ -769,6 +769,7 @@ set in the original text.
 ### Available tokenizers in Solr
 Solr provides a large number of tokenizers.
 Let's explore the behavior of some of them.
+
 #### Standard tokenizer
 This splits the text field into tokens,
 treating white space and punctuation as delimiters. It considers white
@@ -1082,6 +1083,7 @@ token stream. The input for a filter will be a token stream, not an
 input string, unlike what we were passing at the time of tokenization.
 The entire token stream generated through tokenization will be passed to
 the first filter class in the list. Let's cover filters in detail.
+
 ### What is a filter?
 A filter is a tool provided by Solr that runs
 a filtering process as follows:
@@ -1137,6 +1139,7 @@ in detail.
 ### Available filters in Solr
 Solr provides the following filters. Let's
 explore their behavior.
+
 #### Stop filter
 This removes all the words listed inside the
 `stopwords.txt` file. Removing stop words will reduce the size
@@ -1842,6 +1845,7 @@ full documents are present, so language identification becomes easier.
 ### Configuring Solr for multiple language search
 There are mainly three approaches to
 configure Solr for multiple language search.
+
 #### Creating separate fields per language
 This is a very simple and straightforward
 approach, done by creating a separate field per language. Create a per
@@ -1970,6 +1974,7 @@ match different spellings that are pronounced similarly by encoding
 them. Some examples are `Sandeep` and `Sandip`;
 `Taylor`, `Tailer`, and `Tailor`; and so
 on. Solr provides several filters for phonetic matching.
+
 ### Understanding Beider-Morse phonetic matching
 **Beider-Morse Phonetic Matching** (**BMPM**)
 helps you search for personal

@@ -155,6 +155,7 @@ execute during query processing. This can be done easily by setting
 `spellcheck.collate=true`. This is a collation parameter that
 tells Solr to run spellchecking last because generating the collation
 query requires an already executed query.
+
 ### Spellcheck parameters
 As we discussed earlier in this lab, we
 do not need to pass any parameter to enable or configure a parameter
@@ -191,6 +192,7 @@ our parameters:
 Solr provides many approaches for implementing
  spellchecking. Let's get a brief overview of these
 approaches.
+
 #### IndexBasedSpellChecker
 The `IndexBasedSpellChecker` builds a parallel
  index based on the Solr index and performs spellchecking
@@ -398,6 +400,7 @@ Now, all requests coming at the `/suggest` request handler
 will be treated for suggestions only. This will work as the other
 request handler and allow us to configure default parameters for
 suggestion requests.
+
 ### Suggester parameters
 As we have seen, first we need to define a
 search component and then we need to inject that component with any
@@ -508,6 +511,7 @@ it will return only a specific number of results; so the result is very
 quick. Using pagination, we also can determine how many queries are
 required to fulfill the expectations behind the search; so we can manage
 relevance accordingly.
+
 ### How to implement pagination
 To implement pagination, we need to configure
 two parameters in the query request.
@@ -766,6 +770,7 @@ range faceting are included in grouped faceting, but date and pivot
 faceting are not included. The facet counts are calculated based on the
 first `group.field` parameter and other
 `group.field` parameters are ignored.
+
 ### Result grouping parameters
 
   --------------------------------- ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- ------------------------------
@@ -920,6 +925,7 @@ and identifies similar terms or phrases found within the search
 results. A clustering algorithm discovers relationships across all the
 documents from the search result and forms in a meaningful cluster
 label. Solr comes with several algorithms for clustering implementation.
+
 ### Result clustering parameters
 
   ----------------------------------- -------------------------------------------------------------------------------------------------------------------- ------------------------------
@@ -945,6 +951,7 @@ components for result clustering, but by
 default, the configurations are disabled.
 
 The clustering implementation requires the following configurations.
+
 #### Install the clustering contrib
 The clustering contrib extension requires
 `solr-clustering-*.jar` under `/dist` and all JARs
@@ -1120,6 +1127,7 @@ while implementing by indexing geographical shapes helps to search all
 documents within a given range. Solr also supports returning the
 distances of matching documents in a response. We can also apply sorting
 on distances to provide more useful results to the user.
+
 ### Spatial search implementation
 There are various sequential steps we need to
 execute in order to implement spatial search. 

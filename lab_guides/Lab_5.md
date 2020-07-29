@@ -519,6 +519,7 @@ binary files and to index as well as extract data.
 This framework in Solr is known as Solr Cell, which is an abbreviation
 of Solr content extraction library, the name when this framework was
 under development.
+
 ### Solr Cell basics
 As we have earlier seen that, the Solr Cell
 framework leverages the Tika framework.
