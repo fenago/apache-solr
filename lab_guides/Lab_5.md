@@ -8,8 +8,9 @@ such as seeing the use of analyzers, filters, and tokenizers, to have an
 efficient text analysis. 
 
 In this lab, we will see ways to add data to Solr indexes.
+
 Basics of Solr indexing
------------------------------------------
+-----------------------
 
 In order to make content available for
 searching, we need to index it first---as simple as that! The process of

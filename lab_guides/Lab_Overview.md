@@ -32,7 +32,9 @@ By the end of this course, you will gain advanced proficiency to build out-of-bo
 **Note**
 
 - Lab 1 is theoretical Lab.
-- Lab 4, 5, 6, 7, and 8 do not have separate code files. Most of the code is command-line. Some of the files comes in-built with the setup, we need to change the content of the files and run them.
+- Lab 4, 5, 6, 7 and 8 do not have separate code files.
+- Lab 2,3 and 9 files are provided. Open "/root/Desktpop/apache-solr/lab_files" directory in VScode to view files.
+- Most of the code is command-line. Some of the files comes in-built with the setup, we need to change the content of the files and run them.
 
 
 ### Labs

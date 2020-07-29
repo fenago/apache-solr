@@ -92,6 +92,10 @@ Solr, follow along steps:
 6.  If you are on Linux/Unix or macOS, download the `.tgz`file
     and extract it to the local home directory:
 
+<h6><span style="color:red;">Note</span></h6>
+
+Solr has been already installed "/opt/solr", their is no need to download following solr setup.
+
 ``` {.programlisting .language-markup}
 wget https://downloads.apache.org/lucene/solr/8.6.0/solr-8.6.0.tgz
 
@@ -124,8 +128,15 @@ follows:
 ![](https://github.com/fenago/apache-solr/raw/master/images/feb03e12-8d55-4fa2-95e5-fec6b8bcacd7.jpg)
 
 
+<h2><span style="color:red;">Solr User Solr</span></h2>
+
+Make sure to switch to **solr** user by running following command or user `-force` flag to start solr service with root user:
+
+`su solr`
+
+
 Now that we have Solr installed, the next step is to get it up and
-running. Navigate to the `bin` folder, which contains the Solr
+running. Bin folder has been already added to environment path, which contains the Solr
 startup script. Open the terminal and hit the following command, which
 will open up an interactive prompt screen, as shown in the following
 screenshot:
@@ -134,6 +145,7 @@ screenshot:
 ``` {.programlisting .language-markup}
 solr -e cloud
 ```
+
 ![](https://github.com/fenago/apache-solr/raw/master/images/1bddc411-3d2a-4ede-934b-37e9447ca940.jpg)
 
 
@@ -562,13 +574,12 @@ following command:
 
 
 ``` {.programlisting .language-markup}
-bin\solr.cmd start -p 8984
+solr start -p 8984
 ```
 
 ### Note
 
-Based on your operating system, you have to use `bin/solr` or
-`bin\solr.cmd`.
+Based on your operating system, you have to use `bin/solr` or `bin\solr.cmd`.
 
 
 Similar to `start`, there's a command `stop`. To
@@ -576,7 +587,7 @@ stop Solr, simply use the following command:
 
 
 ``` {.programlisting .language-markup}
-bin\solr.cmd stop -all
+solr stop -all
 ```
 
 
@@ -587,7 +598,7 @@ you can stop that particular instance by passing the key as a parameter:
 
 
 ``` {.programlisting .language-markup}
-bin\solr.cmd stop -k <key_name>
+solr stop -k <key_name>
 ```
 
 
@@ -596,11 +607,11 @@ flag:
 
 
 ``` {.programlisting .language-markup}
-bin\solr.cmd -e <example_name>
+solr -e <example_name>
 ```
 
 
-Let's start Solr in cloud mode; hitting `bin\solr.cmd -e`
+Let's start Solr in cloud mode; hitting `solr -e`
 cloud will start the interactive process as follows:
 
 
@@ -630,7 +641,7 @@ have up and running:
 
 
 ``` {.programlisting .language-markup}
-bin\solr.cmd status
+solr status
 ```
 
 
@@ -649,7 +660,7 @@ just use the following command:
 
 
 ``` {.programlisting .language-markup}
-bin\solr create -c chintan
+solr create -c chintan
 ```
 
 
@@ -742,6 +753,10 @@ steps:
     `/opt`. If you want to change that path, just add
     the `-i` option while running the Solr script. You can
     install the Solr service by simply hitting:
+
+<h6><span style="color:red;">Note</span></h6>
+
+Solr has been already installed "/opt/solr", their is no need to run following setup again.
 
 ``` {.programlisting .language-markup}
 sudo bash ./install_solr_service.sh solr-8.6.0.tgz
@@ -863,7 +878,7 @@ Create the collection again using the following command:
 
 
 ``` {.programlisting .language-markup}
-bin\solr.cmd -c films -shards 10 -n schemaless
+solr -c films -shards 10 -n schemaless
 ```
 
 ### Note
@@ -876,15 +891,17 @@ Now make a post call with the following details, which will basically
 tell Solr to expect a field's name as a text rather than letting it
 auto-guess as Float:
 
+-------------------------------------------------------------------------------------------------------
 
-  -------------------------- -------------------------------------------------------------------------------------------------------
   **End point**   `http://localhost:8983/solr/films/schema`
-  **Header**      **`{“Content-Type”:application/json}`**
+
+  **Header**      `{“Content-Type”:application/json}`
+
   **Body**        `{"add-field": {"name":"name", "type":"text_general", "multiValued":false, "stored":true}}`
-  -------------------------- -------------------------------------------------------------------------------------------------------
+
+-------------------------------------------------------------------------------------------------------
 
 
- 
 
 You should get a successful response.
 
@@ -1033,7 +1050,7 @@ will look at multiple queries and the browse interface, through which we
 can query without actually knowing the end points. The data provided in
 `techproducts` includes a wide variety of fields along with
 geospatial indexes. So Let's use that for a change. Open up the
-terminal and hit `bin\solr.cmd -e techproducts -p 4202`. As we
+terminal and hit `solr -e techproducts -p 4202`. As we
 have loaded a sample `techproducts` config set, it will import
 a bunch of files into the collection while starting up the server.
 
@@ -1185,12 +1202,10 @@ also be changed in the following ways:
         `-v` or `-q` options. For example:
     
 ``` {.programlisting .language-markup}
-bin\solr start -f -v
-bin\solr start -f -q
+solr start -f -v
+solr start -f -q
 ```
--  A more permanent solution can be to
-    change `log4j.properties` directly, which can be found at
-    `$solr_home/server/resources`.
+-  A more permanent solution can be to change `log4j.properties` directly, which can be found at `$solr_home/server/resources`.
 
 
 ### Cloud screens
