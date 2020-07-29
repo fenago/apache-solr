@@ -544,8 +544,7 @@ can be extracted are as follows:
 -  Crypto formats
 -  **Rich Text Format** (**RTF**)
 -  Electronic publication 
--  Packaging and compression formats such as `.tar`,
-    `.zip`, and `.7zip` files
+-  Packaging and compression formats such as `.tar`, `.zip`, and `.7zip` files
 -  Text format
 -  Help formats
 -  Feed and syndication formats (RSS and atom feeds)
@@ -753,8 +752,9 @@ APIs:
  
 
 More details on the client API will be covered in a later lab.
+
 Summary
--------------------------
+-------
 
 In this lab, we saw various techniques to index data. We went
 through index handlers and how they help us in indexing data using XML
