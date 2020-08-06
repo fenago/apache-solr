@@ -165,8 +165,9 @@ properties for the Solr core:
 Since implicitly we do not need to specify them in
 `core.properties`, but they are implicitly available to be
 used in `solrconfig.xml`.
+
 Managing backups
-----------------------------------
+-----------------
 
 Going into production, we obviously need a
 proper backup and restore plan. The last thing we would want is for our
@@ -186,13 +187,7 @@ time of restore, we use the same number of
 shards and replicas as the original collection. The commands are listed
 here:
 
-
-  ----------------------------- ------------------------------------------------
-  **Command name**   **Description**
-  `action=BACKUP`     Used to back up Solr indexes and configuration
-  `action=RESTORE`    Used to restore Solr indexes and configuration
-  ----------------------------- ------------------------------------------------
-
+![](https://github.com/fenago/apache-solr/raw/master/images/48.PNG)
 
 ### Standalone mode backups
 In the case of standalone mode, backups and restoration
@@ -224,15 +219,7 @@ already going on.
 
 A backup request can have the following parameters:
 
-
-  ------------------------------- ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-  **Parameter name**   **Description**
-  `location`            The location for the backup. Unless you specify an absolute path, everything will be relative to Solr's instance directory. The snapshot will be created in a directory named `snapshot.<name>`. If you don't specify the name, then the directory name will have a timestamp as the suffix, such as `snapshot.<yyyyMMddHHmmssSSS>`.
-  `numberToKeep`        Defines the number of backups. You cannot use this parameter if you have already defined `maxNumberOfBackups` in `solrconfig.xml`.
-  `repository`          Defines the name of the repository to be used for the backup. The default will be the filesystem repository.
-  `commitName`          Defines the name of the commit that was used while taking a snapshot with the `CREATESNAPSHOT` command.
-  ------------------------------- ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
+![](https://github.com/fenago/apache-solr/raw/master/images/49.PNG)
 
 #### Backup status
 We can monitor the backup operation to check
@@ -278,14 +265,7 @@ restored, searches will start reflecting from the restored data.
 
 A restore request can have the following parameters:
 
-
-  ------------------------------- --------------------------------------------------------------------------------------------------------------
-  **Parameter name**   **Description**
-  `location`            The location of the backup. Unless you specify this, it will look for a backup in Solr's data directory.
-  `name`                Defines the name of the backed-up index snapshot to be restored.
-  `repository`          Defines the name of the repository to be used for the backup. The default will be the filesystem repository.
-  ------------------------------- --------------------------------------------------------------------------------------------------------------
-
+![](https://github.com/fenago/apache-solr/raw/master/images/50.PNG)
 
 #### Restore status API
 Similar to the backup status API, we have a
@@ -320,59 +300,8 @@ the index using APIs. 
 
 The details are shown in tabular format as follows:
 
+![](https://github.com/fenago/apache-solr/raw/master/images/51.PNG)
 
-+--------------------+-----------------------+-----------------------+
-| **API** | **URL**    | **P                  |
-|                    |                       | arameters** |
-+--------------------+-----------------------+-----------------------+
-| Create snapshot    | `ht                   |    |
-|                    | tp://localhost:8983 / | -  `c                |
-|                    | solr/admin /cores?act | ommitName`: |
-|                    | ion=CREATESNAPSHOT& c |     The parameter's  |
-|                    | ore=myschema&commitNa |     name to be used   |
-|                    | me=commit1` |     for storage       |
-|                    |                       | -  `core`: |
-|                    |                       |     The name of the   |
-|                    |                       |     core              |
-|                    |                       | -                    |
-|                    |                       |    `async`: |
-|                    |                       |     The request ID to |
-|                    |                       |     track this        |
-|                    |                       |     action, which     |
-|                    |                       |     will be processed |
-|                    |                       |     asynchronously    |
-|                    |                       |                    |
-+--------------------+-----------------------+-----------------------+
-| List snapshot      | `h                    |    |
-|                    | ttp://localhost:8983  | -  `core`: |
-|                    | /solr/admin /cores?ac |     The name of the   |
-|                    | tion=LISTSNAPSHOTS& c |     core              |
-|                    | ore=myschema&commitNa | -                    |
-|                    | me=commit1` |    `async`: |
-|                    |                       |     The request ID to |
-|                    |                       |     track this        |
-|                    |                       |     action, which     |
-|                    |                       |     will be processed |
-|                    |                       |     asynchronously    |
-|                    |                       |                    |
-+--------------------+-----------------------+-----------------------+
-| Delete snapshot    | `http://              | `core`:     |
-|                    | localhost:8983 /solr/ | The name of the core  |
-|                    | admin /cores?action=D |                       |
-|                    | ELETESNAPSHOT& core=t | `async`:    |
-|                    | echproducts& commitNa | The request ID to     |
-|                    | me=commit1` | track this action,    |
-|                    |                       | which will be         |
-|                    |                       | processed             |
-|                    |                       | asynchronously        |
-|                    |                       |                       |
-|                    |                       | `c                    |
-|                    |                       | ommitName`: |
-|                    |                       | To specify the        |
-|                    |                       | `                     |
-|                    |                       | commitName` |
-|                    |                       | to be deleted         |
-+--------------------+-----------------------+-----------------------+
 JMX with Solr
 -------------------------------
 
@@ -642,28 +571,12 @@ leader.
 We can set the following replica types when creating a new collection or
 adding a new replica:
 
-
-  ----------------------------- ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-  **Replica type**   **Description**
-  NRT                           **Near real-time** (**NRT**) which is the default and initially the only replica type supported by Solr. The way it works is as follows: it maintains a transaction log and writes new documents locally to its index. Here, any replica of this type is eligible for becoming a leader.
-  TLOG                          The only difference between NRT and TLOG is that while the former indexes document changes locally, TLOG does not do that. The TLOG type of replica only maintains a transaction log, resulting in better speeds compared to NR as there are no commits involved. Just like NRT, this type of replica is eligible to become a shard leader.
-  PULL                          Does not maintain transaction and document changes locally. The only thing it does is pull or replicate the index from the shard leader. Having this replica type ensures that the replica never becomes a shard leader.
-  ----------------------------- ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-
- 
+ ![](https://github.com/fenago/apache-solr/raw/master/images/52.PNG)
 
 We can create different mixes of replica type combos for our replicas.
 Some commonly used combinations are as follows:
 
-
-  ---------------------------------- ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-  **Combination**         **Description**
-  All NRT replicas                   This can be used wherever the update index throughput is less since it involves a commit on every replica during index. Can be ideal for small to medium clusters or wherever the update index throughput is less.
-  All TLOG replicas                  This can be used if we have more replicas per shard, with the replicas being able to handle update requests; NRT is not desired.
-  TLOG replicas with PULL replicas   This combination is used more often in scenarios where we want to increase the availability of search queries and document updates take the backseat. This will give an outdated result as we are not having NRT updates.
-  ---------------------------------- ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
+![](https://github.com/fenago/apache-solr/raw/master/images/53.PNG)
 
 ### Routing documents
 You can specify the router implementation used

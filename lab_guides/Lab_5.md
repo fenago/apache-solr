@@ -522,6 +522,7 @@ of Solr content extraction library, the name when this framework was
 under development.
 
 ### Solr Cell basics
+
 As we have earlier seen that, the Solr Cell
 framework leverages the Tika framework.
 Let's look at some basic concepts about this.
@@ -643,29 +644,10 @@ particular document.
 Other parameters that Solr's extracting request handler accepts are
 covered in this table:
 
+![](https://github.com/fenago/apache-solr/raw/master/images/10.PNG)
 
-  -------------------------------------- ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-  **Parameter**               **Description**
-  `capture`                    This captures XHTML elements having specified names for supplementary addition to the document. This parameter is useful to copy chunks of XHTML into a separate field. 
-  `captureAttr`                Indexes attributes of Tika XHTML elements to separate fields, which are named after the element.
-  `commitWithin`               The time, in milliseconds, to commit the document.
-  `date.formats`               Defines date format patterns for identification in the documents.
-  `defaultField`               The default field will be used only when the `uprefix` parameter is unspecified and a field can't be determined.
-  `extractOnly`                This is false by default. If the value is true, it returns the extracted content from Tika, with no need to index the document.
-  `extractFormat`              The extraction format to be used, the default being XML. We can change it to text if needed.
-  `fmap.source_field`          Used to map one field name to another. 
-  `ignoreTikaException`        This is used to ignore exceptions during processing.
-  `literal.fieldname`          Whatever value is specified in literal.fieldname is used for populating the field with this particular name. If the field is multivalued, then the data can also be multivalued.
-  `literalsOverride`           Literal field values will override other values having the same field name if set to true; otherwise, literal values that are defined with `literal.fieldname` will be added at the end.
-  `lowernames`                 By setting this to true, the entire set of field names will be mapped to lowercase letters with underscores.
-  `multipartUploadLimitInKB`   Used to set a limit on the document size to be uploaded.
-  `passwordsFile`              The file path to password mappings will be set here.
-  `resource.name`              Used to specify the optional name of the file.
-  `resource.password`          The password for the PDF (which is password protected) is defined using `resource.password`.
-  `tika.config`                The file path used to specify Tika's configuration file.
-  `uprefix`                    Used to prefix fields that have not been defined in the schema with the given prefix. 
-  `xpath`                      Used to filter based on the XPath expression during extraction from Tika XHTML content.
-  -------------------------------------- ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+![](https://github.com/fenago/apache-solr/raw/master/images/11.PNG)
+
 Language detection 
 -------------------------------------
 
@@ -706,19 +688,8 @@ As you can see, both the configurations use the same parameters, the
 only difference being the `processor` class. The list of
 parameters is given here:
 
+![](https://github.com/fenago/apache-solr/raw/master/images/12.PNG)
 
-  ------------------------------- ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-  **Parameter**        **Description**
-  `langid`              Used to enable language detection by setting the value to true.
-  `langid.fl`           This is a required parameter, which can contain either comma-delimited or space-delimited fields to be processed using `langid`.
-  `langid.langField`    This is a required parameter used to specify the field for the returned language code.
-  `langid.langsField`   The same as `langid.langField`, but in this case, it is used to specify the field for a list instead of a single language code.
-  `langid.overwrite`    If you enable this parameter, then the content of the `langField` and `langsFields` fields will be overwritten provided they already have a value. By default, the value is set to false.
-  `langid.lcmap`        Contains a space-separated list that specifies the language code mappings (colon-delimited) to apply to the detected languages.
-  `langid.threshold`    Used to set a threshold between `0` and `1`, and the language identification score must reach the threshold. Only then is `langid` accepted. The default value is `0.5`.
-  `langid.whitelist`    Used to specify the allowed language identification codes list.
-  `langid.map`          Used to enable field name mapping. The default value is false.
-  ------------------------------- ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Client APIs 
 ------------------------------
 
@@ -726,32 +697,8 @@ There are various client APIs available to add
  data to Solr indexes. This table shows the available client
 APIs:
 
+![](https://github.com/fenago/apache-solr/raw/master/images/13.PNG)
 
-+-------------------------+-------------------------------------------+
-| **Language** | **Description**                |
-+-------------------------+-------------------------------------------+
-| Python                  | There are two output formats:             |
-|                         |                                           |
-|                         |                        |
-|                         | -  The first output format is            |
-|                         |     specifically designed for Python      |
-|                         | -  The second format is JSON             |
-|                         |                                        |
-+-------------------------+-------------------------------------------+
-| Java                    | A library named SolrJ is available for    |
-|                         | working with Java                         |
-+-------------------------+-------------------------------------------+
-| Ruby                    | A specific output format for Ruby is      |
-|                         | available and this extends the JSON       |
-|                         | format                                    |
-+-------------------------+-------------------------------------------+
-| JavaScript              | Out-of-the-box support for JSON is        |
-|                         | available, which makes it very easy to    |
-|                         | work with JavaScript                      |
-+-------------------------+-------------------------------------------+
-
-
- 
 
 More details on the client API will be covered in a later lab.
 

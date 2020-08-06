@@ -86,7 +86,9 @@ Solr, follow along steps:
 3.  You will be redirected to
     <http://www.apache.org/dyn/closer.lua/lucene/solr/8.6.0>.
 4.  Select the mirror site, which will open up the following page:
+
 ![](https://github.com/fenago/apache-solr/raw/master/images/d348364e-c01c-4103-94eb-255b9a76fb41.jpg)
+
 5.  If you are on Windows, download the `solr-8.6.0.zip` file
     and extract it to a location of your choice.
 6.  If you are on Linux/Unix or macOS, download the `.tgz`file
@@ -294,18 +296,7 @@ post script from the command line:
 
 This table consists of some example commands used for the same purpose:
 
-
-  --------------------------------------------------------------- ---------------------------------------------------------------------------------------------
-  **Command**                                          **Description**
-  `post -c chintan *.xml`                               This adds all files with extension `.xml` to the core or collection named chintan
-  `post -c chintan -d '<delete><id>42</id></delete>'`   Deletes a document from the chintan collection or core that has ID `42`
-  `post -c chintan *.csv`                               Indexes all CSV files with auto field mappings on
-  `post -c chintan *.json`                              Indexed all JSON files
-  `post -c chintan *.pdf`                               Indexes all PDF files
-  `post -c chintan abc/`                                Indexes all files inside the `abc` folder
-  `post -c chintan -filetypes ppt,html abc/`            Indexes only PPT and HTML files inside the `abc` folder
-  --------------------------------------------------------------- ---------------------------------------------------------------------------------------------
-
+![](https://github.com/fenago/apache-solr/raw/master/images/1.PNG)
 
 ### contrib
 The `contrib` folder is one where
@@ -431,44 +422,20 @@ Let's look at all the configuration files that we would be using on a
 day-to-day basis.
 
 ### core.properties
+
 The core.properties contains some of the
 following properties, which we can configure as per our needs for our
 Solr core:
 
-
-  --------------------------- ---------------------------------------------------------------------------------------------------------------------------------------------
-  **Property**     **Description**
-  `name`             The name of the Solr core. Whenever you need to reference `SolrCore` with `CoreAdminHandler`, you will need this name.
-  `config`          Configuration filename and path. By default, this is `solrconfig.xml`.
-  `schema`          Schema filename of a core.
-  `dataDir`         Data directory where indexes are stored.
-  `configSet`       The config set that should be picked up to configure the core.
-  `properties`      The properties file path for this core.
-  `transient`       This decides whether the core can be unloaded or not if Solr reaches `transientCacheSize`.
-  `loadOnStartUp`   This decides whether or not to load the core on startup.
-  `coreCodeName`    A unique identifier for the node hosting the core. It can be helpful when you are replacing a machine that has had a hardware failure.
-  `ulogDir`         Directory for the update log.
-  `Shard`           The name of the shard to which the core would be assigned.
-  `Roles`           The name of the collection of the core in which you will index data.
-  --------------------------- ---------------------------------------------------------------------------------------------------------------------------------------------
+![](https://github.com/fenago/apache-solr/raw/master/images/2.PNG)
 
 
 ### zoo.cfg
 This contains some of the following
 properties, by which we can configure for ZooKeeper:
 
+![](https://github.com/fenago/apache-solr/raw/master/images/3.PNG)
 
-  --------------------------------------- ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-  **Property**                 **Description**
-  `tickTime`                    The `tickTime` decides actually how long `eachTick` has to be. This part of ZooKeeper determines which servers are up and running at any point in time by sending ticks.
-  `initLimit`                   The amount of time in ticks for a forwarder to connect to the leader. It's the number of ticks that can be allowed for the initial synchronization phase to take place.
-  `syncLimit`                   The amount of time that can be allowed for followers to keep in sync with ZooKeeper. If the followers cross this limit and yet don't sync up, they will be dropped.
-  `dataDir`                     This is the directory in which cluster data information would be stored in ZooKeeper. It should initially be empty.
-  `clientPort`                  This is the port at which Solr will access ZooKeeper; when this file is in place, you can start a ZooKeeper instance.
-  `maxClientCnxns`              The maximum number of client connections you want to handle.
-  `autopurge.snapRetainCount`   The number of snapshots to retain in the data directory.
-  `Autopurge.purgeInterval`     The purge task interval in hours. After this much time, it will start the retain task.
-  --------------------------------------- ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ### Note
 
 It is not recommended to use embedded ZooKeeper in production.
@@ -480,31 +447,10 @@ The `solr.xml` contains Solr configuration that
 following table briefly summarizes the configurations available in this
 file:
 
-
-  --------------------------------- ----------------------------------------------------------------- ---------------------------------------------------------------------------------------------
-  **Parent element**     **Property**                                           **Description**
-  `solrCloud`             `distribUpdateConnTimeout`                              Used to define the connection timeout limit for intra-cluster updates
-  `solrCloud`             `distribUpdateSoTimeout`                                Used to define the socket time for intra-cluster updates
-  `solrCloud`             `host`                                                  The hostname that Solr will use to access cores
-  `solrCloud`             `hostContext`                                           The context path
-  `solrCloud`             `hostPort`                                              The port that Solr will use to access cores
-  `solrCloud`             `genericCoreNodeNames`                                  Decides whether the node names should be based on the address of the node or not
-  `solrCloud`             `zkClientTimeout`                                       The timeout limit for connection to the ZooKeeper server
-  `solrCloud`             `zkCredentialsProvider` and `zkACLProvider`   The parameters used for ZooKeeper access control
-  `solrCloud`             `leaderVoteWait`                                        The Solr node will wait for this much time for all known replicas of that shard to be found
-  `solrCloud`             `leaderConflictResolveWait`                             The maximum time the replica will wait to see conflicting state information to be resolved
-  `shardHandlerFactory`   `socketTimeOut`                                         The read time out for querying among intra-clusters
-  `shardHandlerFactory`   `connTimeOut`                                           The connection timeout for intra-cluster queries and administrative requests
-  `shardHandlerFactory`   `urlScheme`                                             The `urlScheme` to be used in distributed search
-  `shardHandlerFactory`   `maxConnectionsPerHost`                                 Maximum connections allowed per hosts
-  `shardHandlerFactory`   `maxConnections`                                        Maximum total connections allowed
-  `shardHandlerFactory`   `corePoolSize`                                          Initial core size of threadpool servicing requests
-  `shardHandlerFactory`   `maximumPoolSize`                                       Maximum size of threadpool servicing requests
-  `shardHandlerFactory`   `maxThreadIdleTime`                                     The amount of time in seconds that a thread persists in queue before getting killed
-  --------------------------------- ----------------------------------------------------------------- ---------------------------------------------------------------------------------------------
-
+![](https://github.com/fenago/apache-solr/raw/master/images/4.PNG)
 
 ### server
+
 This directory contains an instance of the
 Jetty servlet and a container setup to run
 Solr. Given here is the `server` directory layout:
@@ -552,6 +498,7 @@ Solr. Given here is the `server` directory layout:
 Now that we have a detailed idea about Solr's directory and file
 structure, let us get acquainted with running and configuring Solr for
 our needs.
+
 Running Solr
 ------------------------------
 

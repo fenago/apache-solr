@@ -92,6 +92,7 @@ In the case of SolrCloud, you will make changes to the schema using
 Solr's admin UI or Schema API if it is enabled. In such a case, you
 will not be able to find either `schema.xml` or
 `managed-schema.xml`.
+
 Understanding field types
 -------------------------------------------
 
@@ -242,187 +243,19 @@ There are three types of properties that can be associated with a
 
 General properties are specified as follows:
 
-
-  --------------------------------------- -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-  **Properties**               **Description**
-  `name`                        The name of the `fieldType`.
-  `class`                       The name of the class that is used to index and store the data for this type.
-  `positionIncrementGap`        Specifically for multi-value fields. It is used to specify the distance between multiple values. This helps in preventing phrase matches that are spurious in nature.
-  `autoGeneratePhraseQueries`   This is used for `TextField`. If this value is true, Solr generates phrase queries intended for adjacent terms automatically. If it is false, then terms are supposed to be enclosed in double quotes in order for them to be treated as phrases.
-  `enableGraphQueries`          Used for only text fields. It is applicable only while querying `sow=false`.
-  `docValuesFormat`             This is used to define a custom `DocValuesFormat`.
-  `postingsFormat`              Helps in defining a custom `PostingsFormat` to be used for fields of this type. 
-  --------------------------------------- -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-
+![](https://github.com/fenago/apache-solr/raw/master/images/5.PNG)
  
 
 Now Let's take a look at the field default properties. The values can
 be defaulted in actual fields or can be inherited from the field types.
 
+![](https://github.com/fenago/apache-solr/raw/master/images/6.PNG)
 
-+----------------+----------------+----------------+----------------+
-| **Proper      | **Deta        | **Available   | **Default     |
-| ty** | il** | valu           | val            |
-|                |                | es** | ue** |
-+----------------+----------------+----------------+----------------+
-| `inde          | Tells whether  | 
-| xed` | to index the   | .itemizedlist} | rue` |
-|                | field or not.  | -  `t         |                |
-|                |                | rue` |                |
-|                |                | -  `fa        |                |
-|                |                | lse` |                |
-|                |                |             |                |
-+----------------+----------------+----------------+----------------+
-| `sto           | The actual     | 
-| red` | value of the   | .itemizedlist} | rue` |
-|                | field can be   | -  `t         |                |
-|                | retrieved      | rue` |                |
-|                | using queries  | -  `fa        |                |
-|                | if the value   | lse` |                |
-|                | is             |             |                |
-|                | `tr            |                |                |
-|                | ue.` |                |                |
-+----------------+----------------+----------------+----------------+
-| `sortMissingFi | If a sort      | 
-| rst` | field is not   | .itemizedlist} | lse` |
-|                | present, this  | -  `t         |                |
-| and            | decides the    | rue` |                |
-| `sortMissingL  | placement of   | -  `fa        |                |
-| ast` | the document.  | lse` |                |
-|                |                |             |                |
-+----------------+----------------+----------------+----------------+
-| `docVal        | The value of   | 
-| ues` | this field is  | .itemizedlist} | lse` |
-|                | placed in a    | -  `t         |                |
-|                | column-or      | rue` |                |
-|                | iented `docVal | -  `fa        |                |
-|                | ues` | lse` |                |
-|                | structure if   |             |                |
-|                | set            |                |                |
-|                | to `tr         |                |                |
-|                | ue.` |                |                |
-+----------------+----------------+----------------+----------------+
-| `multiVal      | Indicates      | 
-| ued` | whether a      | .itemizedlist} | lse` |
-|                | single         | -  `t         |                |
-|                | document can   | rue` |                |
-|                | have multiple  | -  `fa        |                |
-|                | values for     | lse` |                |
-|                | this field     |             |                |
-|                | type.          |                |                |
-+----------------+----------------+----------------+----------------+
-| `omitNo        | Used to        | 
-| rms` | disable field  | .itemizedlist} |                |
-|                | length         | -  `t         |                |
-|                | normalization  | rue` |                |
-|                | and to save    | -  `fa        |                |
-|                | some memory.   | lse` |                |
-|                | For all        |             |                |
-|                | primitive      |                |                |
-|                | field types,   |                |                |
-|                | the value is   |                |                |
-|                | `true          |                |                |
-|                | ` by |                |                |
-|                | default. Norms |                |                |
-|                | are needed     |                |                |
-|                | only for       |                |                |
-|                | full-text      |                |                |
-|                | fields.        |                |                |
-+----------------+----------------+----------------+----------------+
-| `omitTer       | Omits term     | 
-| mFreqAndPositi | frequency,     | .itemizedlist} |                |
-| ons` | position, and  | -  `t         |                |
-|                | payloads from  | rue` |                |
-|                | postings of    | -  `fa        |                |
-|                | this field     | lse` |                |
-|                | when           |             |                |
-|                | `tr            |                |                |
-|                | ue`. |                |                |
-|                | Defaults to    |                |                |
-|                | `t             |                |                |
-|                | rue` |                |                |
-|                | for non-text   |                |                |
-|                | fields.        |                |                |
-+----------------+----------------+----------------+----------------+
-| `omitPositi    | This is        | 
-| ons` | similar to     | .itemizedlist} |                |
-|                | `omitTerm      | -  `t         |                |
-|                | FreqAndPositio | rue` |                |
-|                | ns`; | -  `fa        |                |
-|                | however, in    | lse` |                |
-|                | this case, it  |             |                |
-|                | preserves      |                |                |
-|                | information    |                |                |
-|                | about the term |                |                |
-|                | frequency.     |                |                |
-+----------------+----------------+----------------+----------------+
-| `termVecto     | Solr maintains | 
-| rs`, | full term      | .itemizedlist} | lse` |
-| `termPositio   | vectors for    | -  `t         |                |
-| ns`, | every single   | rue` |                |
-| `termOffse     | document if    | -  `fa        |                |
-| ts`, | these          | lse` |                |
-| and            | properties are |             |                |
-| `termPaylo     | `tr            |                |                |
-| ads` | ue`. |                |                |
-|                | These vectors, |                |                |
-|                | may include    |                |                |
-|                | position,      |                |                |
-|                | offset, and    |                |                |
-|                | payload        |                |                |
-|                | information    |                |                |
-|                | optionally for |                |                |
-|                | each term      |                |                |
-|                | occurrence.    |                |                |
-+----------------+----------------+----------------+----------------+
-| `requi         | Tells Solr not | 
-| red` | to accept any  | .itemizedlist} | lse` |
-|                | attempts to    | -  `t         |                |
-|                | add a document | rue` |                |
-|                | that does not  | -  `fa        |                |
-|                | have a value   | lse` |                |
-|                | for the field. |             |                |
-+----------------+----------------+----------------+----------------+
-| `use           | This is        | 
-| DocValuesAsSto | dependent on   | .itemizedlist} | rue` |
-| red` | the `docVal    | -  `t         |                |
-|                | ues` | rue` |                |
-|                | enabled. This  | -  `fa        |                |
-|                | is enabled if  | lse` |                |
-|                | we set it to   |             |                |
-|                | true and will  |                |                |
-|                | allow the      |                |                |
-|                | field to be    |                |                |
-|                | returned as if |                |                |
-|                | it were a      |                |                |
-|                | stored field   |                |                |
-|                | while matching |                |                |
-|                | `*`  |                |                |
-|                | in an          |                |                |
-|                | `fl` |                |                |
-|                | parameter.     |                |                |
-+----------------+----------------+----------------+----------------+
-| `la            | This will      | 
-| rge` | work only wh   | .itemizedlist} | lse` |
-|                | en `stored="tr | -  `t         |                |
-|                | ue"` | rue` |                |
-|                | and `mul       | -  `fa        |                |
-|                | tiValued="fals | lse` |                |
-|                | e"`. |             |                |
-|                | In order       |                |                |
-|                | not to get     |                |                |
-|                | cached in      |                |                |
-|                | memory, this   |                |                |
-|                | is meant for   |                |                |
-|                | fields that    |                |                |
-|                | might have     |                |                |
-|                | very large     |                |                |
-|                | values.        |                |                |
-+----------------+----------------+----------------+----------------+
-
-
+![](https://github.com/fenago/apache-solr/raw/master/images/7.PNG)
  
+![](https://github.com/fenago/apache-solr/raw/master/images/8.PNG)
+
+![](https://github.com/fenago/apache-solr/raw/master/images/9.PNG)
 
 In order to score a document in searching, Solr uses similarity. For
 every collection, there is one global similarity and Solr implicitly
@@ -432,7 +265,7 @@ uses `BM25Similarity`. You can declare a top-level
 
 ### Note
 
-**`Best Matching (BM)`**BM25 is a ranking algorithm used by search
+**`Best Matching (BM)`** BM25 is a ranking algorithm used by search
 engines such as Lucene to rank matching documents according to their
 relevance by a given search query. 
 

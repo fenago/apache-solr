@@ -113,258 +113,16 @@ However, there are some common parameters required by all parsers. First
 Let's take a look at these common parameters.
 
 ### Common query parameters
+
 The following are the common query parameters
 supported by standard query parser, DisMax query parser, and extended
 DisMax query parser:
 
+![](https://github.com/fenago/apache-solr/raw/master/images/14.PNG)
 
-+----------------------+----------------------+----------------------+
-| **P                 | **                  | **Default           |
-| arameter** | Behavior** | value**    |
-+----------------------+----------------------+----------------------+
-| `defType`  | Selects the query    | `Lucene`   |
-|                      | parser:              | (standard query      |
-|                      |                      | parser)              |
-|                      | `defTy               |                      |
-|                      | pe=dismax` |                      |
-+----------------------+----------------------+----------------------+
-| `sort`     | Sorts the search     | `desc`     |
-|                      | results in either    |                      |
-|                      | ascending or         |                      |
-|                      | descending order.    |                      |
-|                      | The value can be     |                      |
-|                      | specified as         |                      |
-|                      | `asc` or   |                      |
-|                      | `ASC` and  |                      |
-|                      | `desc` or  |                      |
-|                      | `DESC`.    |                      |
-|                      | Sorting is supported |                      |
-|                      | by numerical or      |                      |
-|                      | alphabetical         |                      |
-|                      | content. Solr        |                      |
-|                      | supports sorting by  |                      |
-|                      | field clones.        |                      |
-|                      |                      |                      |
-|                      | **                  |                      |
-|                      | Example**: |                      |
-|                      |                      |                      |
-|                      |   |                      |
-|                      | -  `sa              |                      |
-|                      | lary asc`: |                      |
-|                      |     Sorts based on   |                      |
-|                      |     salary (high to  |                      |
-|                      |     low).            |                      |
-|                      | -  `n               |                      |
-|                      | ame desc`: |                      |
-|                      |     Sorts based on   |                      |
-|                      |     names (z → a).   |                      |
-|                      | -  `salary asc n    |                      |
-|                      | ame desc`: |                      |
-|                      |     First sorts by   |                      |
-|                      |     salary high to   |                      |
-|                      |     low. Within      |                      |
-|                      |     that, it sorts   |                      |
-|                      |     the result set   |                      |
-|                      |     again sorts by   |                      |
-|                      |     name (z → a).    |                      |
-|                      |                   |                      |
-+----------------------+----------------------+----------------------+
-| `start`    | Specifies the        | `0`        |
-|                      | starting point from  |                      |
-|                      | where the results    |                      |
-|                      | should begin         |                      |
-|                      | displaying.          |                      |
-+----------------------+----------------------+----------------------+
-| `rows`     | Specifies the        | `10`       |
-|                      | maximum number of    |                      |
-|                      | documents to be      |                      |
-|                      | returned to the      |                      |
-|                      | client from the      |                      |
-|                      | complete result set  |                      |
-|                      | at a time.           |                      |
-+----------------------+----------------------+----------------------+
-| `fq`       | Limits the result    |                      |
-|                      | set to the documents |                      |
-|                      | matched by the       |                      |
-|                      | filter query         |                      |
-|                      | (`fq`)     |                      |
-|                      | without affecting    |                      |
-|                      | the score.           |                      |
-+----------------------+----------------------+----------------------+
-| `fl`       | Specifies the field  | `*`        |
-|                      | list to be returned  |                      |
-|                      | inside the response  |                      |
-|                      | for each matching    |                      |
-|                      | document. The fields |                      |
-|                      | can be specified by  |                      |
-|                      | a space or comma.    |                      |
-|                      | For example:         |                      |
-|                      |                      |                      |
-|                      |   |                      |
-|                      | -  `fl=id nam       |                      |
-|                      | e salary`: |                      |
-|                      |     Returns only     |                      |
-|                      |     `id`,  |                      |
-|                      |                      |                      |
-|                      |    `name`, |                      |
-|                      |     and              |                      |
-|                      |                      |                      |
-|                      |   `salary` |                      |
-|                      | -  `fl=id,nam       |                      |
-|                      | e,salary`: |                      |
-|                      |     Returns only     |                      |
-|                      |     `id`,  |                      |
-|                      |                      |                      |
-|                      |    `name`, |                      |
-|                      |     and              |                      |
-|                      |                      |                      |
-|                      |   `salary` |                      |
-|                      |                   |                      |
-|                      |                      |                      |
-|                      | Indicating           |                      |
-|                      | `fl=*`     |                      |
-|                      | will return all the  |                      |
-|                      | fields. We also can  |                      |
-|                      | return the           |                      |
-|                      | `score` of |                      |
-|                      | fields for each      |                      |
-|                      | document by          |                      |
-|                      | mentioning the       |                      |
-|                      | `score `{.           |                      |
-|                      | literal}string along |                      |
-|                      | with the fields. For |                      |
-|                      | example:             |                      |
-|                      |                      |                      |
-|                      |   |                      |
-|                      | -  `fl=             |                      |
-|                      | id score`: |                      |
-|                      |     Returns the      |                      |
-|                      |     `id`   |                      |
-|                      |     field and the    |                      |
-|                      |                      |                      |
-|                      |    `score` |                      |
-|                      | -  `fl              |                      |
-|                      | =* score`: |                      |
-|                      |     Returns all the  |                      |
-|                      |     fields in each   |                      |
-|                      |     document along   |                      |
-|                      |     with each        |                      |
-|                      |     field's         |                      |
-|                      |                      |                      |
-|                      |    `score` |                      |
-|                      |                   |                      |
-+----------------------+----------------------+----------------------+
-| `debug`    | Returns debug        | Not including        |
-|                      | information about    | debugging            |
-|                      | the specified value. | information          |
-|                      | For example:         |                      |
-|                      |                      |                      |
-|                      |   |                      |
-|                      | -  `de              |                      |
-|                      | bug=query` |                      |
-|                      |     will return      |                      |
-|                      |     debug            |                      |
-|                      |     information      |                      |
-|                      |     about the query  |                      |
-|                      | -  `deb             |                      |
-|                      | ug=timing` |                      |
-|                      |     will return      |                      |
-|                      |     debug            |                      |
-|                      |     information      |                      |
-|                      |     about the        |                      |
-|                      |     processing time  |                      |
-|                      |     of the query     |                      |
-|                      | -  `debu            |                      |
-|                      | g=results` |                      |
-|                      |     will return      |                      |
-|                      |     debug            |                      |
-|                      |     information      |                      |
-|                      |     about the score  |                      |
-|                      |     results          |                      |
-|                      |     (explain)        |                      |
-|                      | -  `                |                      |
-|                      | debug=all` |                      |
-|                      |     or               |                      |
-|                      |     `d               |                      |
-|                      | ebug=true` |                      |
-|                      |     will return all  |                      |
-|                      |     debugging        |                      |
-|                      |     information for  |                      |
-|                      |     the request      |                      |
-|                      |                   |                      |
-+----------------------+----------------------+----------------------+
-| `exp                 | This specifies a     | blank                |
-| lainOther` | Lucene query that    |                      |
-|                      | will return          |                      |
-|                      | debugging            |                      |
-|                      | information with the |                      |
-|                      | explain information  |                      |
-|                      | of each document     |                      |
-|                      | matching to that     |                      |
-|                      | Lucene query,        |                      |
-|                      | relative to the      |                      |
-|                      | original query       |                      |
-|                      | (specified by the    |                      |
-|                      | `q`        |                      |
-|                      | parameter). For      |                      |
-|                      | example:             |                      |
-|                      |                      |                      |
-|                      | `q=soccer&debug      |                      |
-|                      | =true&explainOther=i |                      |
-|                      | d:cricket` |                      |
-|                      |                      |                      |
-|                      | The preceding query  |                      |
-|                      | calculates the       |                      |
-|                      | scoring explain info |                      |
-|                      | of the top matching  |                      |
-|                      | documents and        |                      |
-|                      | compares with the    |                      |
-|                      | explain info for the |                      |
-|                      | documents matching   |                      |
-|                      | `id                  |                      |
-|                      | :cricket`. |                      |
-+----------------------+----------------------+----------------------+
-| `wt`       | Specifies a response | `json`     |
-|                      | writer               |                      |
-|                      | format. Supported    |                      |
-|                      | formats are          |                      |
-|                      | `json`,    |                      |
-|                      | `xml`,     |                      |
-|                      | `xslt`,    |                      |
-|                      | `javabin`, |                      |
-|                      | `geojson`, |                      |
-|                      | `python`,  |                      |
-|                      | `php`,     |                      |
-|                      | `phps`,    |                      |
-|                      | `ruby`,    |                      |
-|                      | `csv`,     |                      |
-|                      | `                    |                      |
-|                      | velocity`, |                      |
-|                      | `smile`,   |                      |
-|                      | and                  |                      |
-|                      | `xlsx`.    |                      |
-+----------------------+----------------------+----------------------+
-| `o                   | Tells Solr to        | `false`    |
-| mitHeader` | include or exclude   |                      |
-|                      | header information   |                      |
-|                      | from the returned    |                      |
-|                      | results;             |                      |
-|                      | `omitHe              |                      |
-|                      | ader=true` |                      |
-|                      | will exclude the     |                      |
-|                      | header information   |                      |
-|                      | from the returned    |                      |
-|                      | results.             |                      |
-+----------------------+----------------------+----------------------+
-| `cache`    | This tells Solr to   | `true`     |
-|                      | cache results of all |                      |
-|                      | queries and filter   |                      |
-|                      | queries. If set to   |                      |
-|                      | `false`,   |                      |
-|                      | it will disable      |                      |
-|                      | result caching.      |                      |
-+----------------------+----------------------+----------------------+
+![](https://github.com/fenago/apache-solr/raw/master/images/15.PNG)
 
+![](https://github.com/fenago/apache-solr/raw/master/images/16.PNG)
 
 Apart from the preceding common parameters for parsers,
 `timeAllowed`, `segmentTerminateEarly`,
@@ -389,15 +147,7 @@ syntax error. So, identifying syntax errors is a little tough.
 The following parameters are supported by standard query parser. We can
 configure them in `solrconfig.xml`:
 
-
-  -------------------------- --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- ------------------------------
-  **Parameter**   **Behavior**                                                                                                                                                           **Default value**
-  `q`              Specifies a query using standard query syntax. This is a mandatory parameter for any request.                                                                                     
-  `q.op`           Specifies the default operator for query expressions, which overrides the default operator configured inside the schema. Possible values are `AND` or `OR`.   
-  `df`             Specifies a default field, which overrides the default field definition inside the schema.                                                                                        
-  `sow`            If this is set to `true`, it splits on white spaces.                                                                                                                    `false`
-  -------------------------- --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- ------------------------------
-
+![](https://github.com/fenago/apache-solr/raw/master/images/17.PNG)
 
 **Standard query parser response**: The following is the
 sample response provided by the standard query parser when we search for
@@ -505,13 +255,7 @@ of wildcard searches within a single term. They are single
 (`?`) and multiple (`*`) characters. They can be
 applied to single terms only, and not to search phrases. For example:
 
-
-  ------------------------------------------------------------------ ---------------------------------- -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-  **Wildcard search type**                                **Special character**   **Search example**
-  Single character (matches a single character)                      `?`                      Searching for a string `te?t` will match `test` and `text`.
-  Multiple characters (matches zero or more sequential characters)   `*`                      Searching for string `tes*` will match `test`, `testing`, and `tester`. The wildcard characters can be used at the beginning, middle, or end of a term. For example, the string `te*t` will match `test` and `text`, and `*est` will match `pest` and `test`.
-  ------------------------------------------------------------------ ---------------------------------- -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
+![](https://github.com/fenago/apache-solr/raw/master/images/18.PNG)
 
 #### Fuzzy searches
 In fuzzy searching, instead of matching exact terms, Solr searches
@@ -589,84 +333,8 @@ example, `price:[5 TO 20}`.
 Here is a list of Boolean operators supported by standard
  query parser:
 
+![](https://github.com/fenago/apache-solr/raw/master/images/19.PNG)
 
-+----------------------+----------------------+----------------------+
-| **                  | [                    | **Des               |
-| Operator** | **Symbol** | cription** |
-+----------------------+----------------------+----------------------+
-| `AND`      | `&&`       | Requires both terms  |
-|                      |                      | to match. For        |
-|                      |                      | example, we search   |
-|                      |                      | documents that       |
-|                      |                      | contain soccer and   |
-|                      |                      | volleyball:          |
-|                      |                      |                      |
-|                      |                      |   |
-|                      |                      | -                   |
-|                      |                      |    `"soccer" AND "vo |
-|                      |                      | lleyball"` |
-|                      |                      | -  `"soccer" && "vo |
-|                      |                      | lleyball"` |
-|                      |                      |                   |
-+----------------------+----------------------+----------------------+
-| `NOT`      | `!`        | Requires that the    |
-|                      |                      | following term not   |
-|                      |                      | be present. For      |
-|                      |                      | example, we search   |
-|                      |                      | for documents that   |
-|                      |                      | contain the phrase   |
-|                      |                      | soccer but do not    |
-|                      |                      | contain volleyball:  |
-|                      |                      |                      |
-|                      |                      |   |
-|                      |                      | -                   |
-|                      |                      |    `"soccer" NOT "vo |
-|                      |                      | lleyball"` |
-|                      |                      | -  `"soccer" ! "vo  |
-|                      |                      | lleyball"` |
-|                      |                      |                   |
-+----------------------+----------------------+----------------------+
-| `OR`       | `||`       | Requires one of the  |
-|                      |                      | terms to match. This |
-|                      |                      | is a default         |
-|                      |                      | conjunction          |
-|                      |                      | operator, for        |
-|                      |                      | example, searching   |
-|                      |                      | for documents that   |
-|                      |                      | contains either      |
-|                      |                      | soccer or            |
-|                      |                      | volleyball:          |
-|                      |                      |                      |
-|                      |                      |   |
-|                      |                      | -  `"soccer" OR "vo |
-|                      |                      | lleyball"` |
-|                      |                      | -  `"soccer" || "vo |
-|                      |                      | lleyball"` |
-|                      |                      |                   |
-+----------------------+----------------------+----------------------+
-|                      | `+`        | Requires that the    |
-|                      |                      | following term be    |
-|                      |                      | present, for         |
-|                      |                      | example, searching   |
-|                      |                      | for documents that   |
-|                      |                      | must contain soccer  |
-|                      |                      | and that may or may  |
-|                      |                      | not contain          |
-|                      |                      | volleyball:          |
-|                      |                      |                      |
-|                      |                      | `+soccer v           |
-|                      |                      | olleyball` |
-+----------------------+----------------------+----------------------+
-|                      | `-`        | Prohibits the        |
-|                      |                      | following term, for  |
-|                      |                      | example, searching   |
-|                      |                      | for documents that   |
-|                      |                      | contain soccer but   |
-|                      |                      | not volleyball:      |
-|                      |                      |                      |
-|                      |                      | `+soccer -v          |
-|                      |                      | olleyball` |
-+----------------------+----------------------+----------------------+
 ### Note
 
 Please note that the Boolean operators `AND` and
@@ -779,125 +447,9 @@ the default values for these parameters are configured in
 `solrconfig.xml`:
 
 
-+--------------------------+------------------------------------------+
-| **Parameter** | **Behavior**                  |
-+--------------------------+------------------------------------------+
-| `q`            | Specifies a query string with no special |
-|                          | characters and treats Boolean operators  |
-|                          | `+` and `-` as term  |
-|                          | modifiers. Wildcard characters like      |
-|                          | `*` are not supported by this  |
-|                          | parameter:                               |
-|                          |                                          |
-|                          |                       |
-|                          | -  `q=apache`                 |
-|                          | -  `q="Apache Lucene"`        |
-|                          |                                       |
-+--------------------------+------------------------------------------+
-| `a.alt`        | Defines an alternate query when the main |
-|                          | query parameter `q` is not     |
-|                          | specified or blank. This parameter is    |
-|                          | mainly used to match all documents to    |
-|                          | get faceting counts.                     |
-+--------------------------+------------------------------------------+
-| `qf`           | The `qf` parameter assigns a   |
-|                          | boost factor to a specific field to      |
-|                          | increase or decrease its importance in   |
-|                          | the query. For example,                  |
-|                          | `qf="firstField^3.                       |
-|                          | 4 secondField thirdField^0.2"` |
-|                          | assigns `firstField` a boost   |
-|                          | of `3.4`, keeps                |
-|                          | `secondField` with the default |
-|                          | boost, and assigns                       |
-|                          | `thirdField` a boost of        |
-|                          | `0.2`. These boost factors     |
-|                          | make matches in `firstField`   |
-|                          | much more significant than matches in    |
-|                          | `secondField`, which becomes   |
-|                          | much more significant than matches in    |
-|                          | `thirdField`.                  |
-+--------------------------+------------------------------------------+
-| `mm`           | The minimum parameter defines the        |
-|                          | minimum number of optional clauses that  |
-|                          | must match. Words or phrases specified   |
-|                          | in the `q` parameter are       |
-|                          | considered as optional clauses unless    |
-|                          | they are preceded by a Boolean           |
-|                          | `AND` or `OR`.       |
-|                          |                                          |
-|                          | Possible values for the `mm`   |
-|                          | parameter are integer (positive and      |
-|                          | negative), percentage (positive and      |
-|                          | negative), simple, or multiple           |
-|                          | conditional expressions.                 |
-|                          |                                          |
-|                          | The default value for mm is 100%, which  |
-|                          | means all clauses must match.            |
-+--------------------------+------------------------------------------+
-| `pf`           | The **Phrase Fields**         |
-|                          | (**pf**) parameter            |
-|                          | boosts the    |
-|                          | score of a document when all the terms   |
-|                          | in the `q` parameter appear in |
-|                          | close proximity.                         |
-+--------------------------+------------------------------------------+
-| `ps`           | The **Phrase Slop**           |
-|                          | (**ps**) parameter specifies  |
-|                          | the number of positions a term is        |
-|                          | required to move to match a phrase       |
-|                          | specified in a query with the            |
-|                          | `pf` parameter.                |
-+--------------------------+------------------------------------------+
-| `qs`           | Similar to the `ps` parameter  |
-|                          | for the `pf` parameter, the    |
-|                          | **Query Phrase Slop**         |
-|                          | (**qs**) defines the amount   |
-|                          | of slop on phrase queries explicitly     |
-|                          | included in the user's query            |
-|                          | string with   |
-|                          | the `qf` parameter.            |
-+--------------------------+------------------------------------------+
-| `tie`          | The tie breaker parameter specifies a    |
-|                          | float value (which should be something   |
-|                          | much less than 1) to use as a            |
-|                          | tiebreaker when a query term is matched  |
-|                          | in more than one field in a document.    |
-+--------------------------+------------------------------------------+
-| `bq`           | The **Boost Query**           |
-|                          | (**bq**) parameter            |
-|                          | specifies an  |
-|                          | additional and optional query clause     |
-|                          | that will be added to the user's main   |
-|                          | query to influence the score. For        |
-|                          | example, if you want to add a relevancy  |
-|                          | boost for recent documents:              |
-|                          |                                          |
-|                          | `q=apache``bq=da               |
-|                          | te:[NOW/DAY-1YEAR TO NOW/DAY]` |
-|                          |                                          |
-|                          | Multiple `bq` parameters       |
-|                          | can also be used when a query needs to   |
-|                          | be parsed as separate clauses with       |
-|                          | separate boosts.                         |
-+--------------------------+------------------------------------------+
-| `bf`           | The **Boost Functions**       |
-|                          | (**bf**) parameter            |
-|                          | specifies     |
-|                          | functions (with optional boosts) that    |
-|                          | will be added to the user's main query  |
-|                          | to influence the score. Any function     |
-|                          | supported natively by Solr can be used   |
-|                          | along with a boost value. For example,   |
-|                          | if you want to show the most recent      |
-|                          | documents first, this is the syntax:     |
-|                          |                                          |
-|                          | `bf=recip                                |
-|                          | (rord(createddate),1,100,100)` |
-+--------------------------+------------------------------------------+
+![](https://github.com/fenago/apache-solr/raw/master/images/20.PNG)
 
-
- 
+ ![](https://github.com/fenago/apache-solr/raw/master/images/21.PNG)
 
 We have seen all the configuration parameters for DisMax Query Parser
 and now we are ready to run a search using DisMax query parser.
@@ -1048,21 +600,7 @@ features provided by DisMax Query Parser, it supports
 parameters, we have these eDisMax Query Parser parameters:
 
 
-  -------------------------------- ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- --------------------------------------
-  **Parameter**         **Behavior**                                                                                                                                                                                                                                                                                                   **Default Value**
-  `sow`                  Split on whitespace. Possible values are true and false. Once we set this to `true`, text analysis will be done for every individual whitespace-separated term.                                                                                                                                                 False
-  `mm.autoRelax`         Relax the clauses in case of some of the clauses removed like stop words and search wont get impacted due to any clause removal. We need to take care when using the `mm.autoRelax` parameter because sometimes we may get unpredictable results. Possible values are `true` and `false`.   False
-  `boost`                A multivalued list of strings parsed as queries, with scores multiplied by the score from the main query for all matching documents.                                                                                                                                                                                      
-  `lowercaseOperators`   Treats lowercase `and` and `or` the same as the operators `AND` and `OR`.                                                                                                                                                                                                         False
-  `pf2`                  A multivalued list of fields with optional weights. It's similar to `pf`, but based on pairs of word shingles.                                                                                                                                                                                                 
-  `pf3`                  A multivalued list of fields with optional weights, based on triplets of word shingles. It is similar to `pf`, except that instead of building a phrase per field out of all the words in the input, it builds a set of phrases for each field out of each triplet of word shingles.                            
-  `ps`                   The `ps` parameter specifies how many term positions the terms in the query can be off by to be considered a match on the phrase fields.                                                                                                                                                                        
-  `ps2`                  Similar to `ps` but overrides the slop factor used for `pf2`. If not specified, `ps` is used.                                                                                                                                                                                               
-  `ps3`                  Similar to `ps` but overrides the slop factor used for `pf3`. If not specified, `ps` is used.                                                                                                                                                                                               
-  `stopwords`            Tells Solr to disable `StopFilterFactory` configured in query analyzer. Possible values are `true` and `false`. False will disable `StopFilterFactory`.                                                                                                                           True
-  `uf`                   Specifies which schema fields the end user is allowed to explicitly query.                                                                                                                                                                                                                                                Allow all fields or `uf=*`
-  -------------------------------- ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- --------------------------------------
-
+![](https://github.com/fenago/apache-solr/raw/master/images/22.PNG)
 
  
 
@@ -1169,24 +707,7 @@ We can select the response writer by providing an appropriate value to
 the `wt` parameter. These are the response writer values for
 `wt`:​
 
-
-  -------------------------------- -----------------------------------
-  **Response writer**   **wt parameter value**
-  JSON                             `json`
-  Standard XML                     `xml`
-  XSLT                             `xslt`
-  Binary                           `javabin`
-  GeoJSON                          `geojson`
-  Python                           `python`
-  PHP                              `php`
-  PHP serialized                   `phps`
-  Ruby                             `ruby`
-  CSV                              `csv`
-  Velocity                         `velocity`
-  Smile                            `smile`
-  XLSX                             `xlsx`
-  -------------------------------- -----------------------------------
-
+![](https://github.com/fenago/apache-solr/raw/master/images/23.PNG)
 
 Let's explore some of these response writers in detail.
 
@@ -1218,142 +739,9 @@ configuration in `techproducts solrconfig.xml`:
 This is a list of JSON response writer parameters that we need to
 configure to get a response in the expected format:
 
+![](https://github.com/fenago/apache-solr/raw/master/images/24.PNG)
 
-+----------------+----------------+----------------+----------------+
-| **Paramet     | **Behavi      | **Val         | **Descripti   |
-| er** | or** | ue** | on** |
-+----------------+----------------+----------------+----------------+
-| `json          | Controls the   | `f             | `NamedL        |
-| .nl` | output format  | lat` | ist` |
-|                | of             | (default)      | is represented |
-|                | `NamedLi       |                | as a flat      |
-|                | st`, |                | array, with    |
-|                | where the      |                | alternating    |
-|                | order is more  |                | names and      |
-|                | important than |                | values.        |
-|                | access by      |                |                |
-|                | name.          |                | **Inpu        |
-|                | `NamedL        |                | t:** |
-|                | ist` |                |                |
-|                | is currently   |                | `Nam           |
-|                | used for field |                | edList("a"=1,  |
-|                | faceting data. |                | "bar"="foo", n |
-|                |                |                | ull=3, null=nu |
-|                |                |                | ll)` |
-|                |                |                |                |
-|                |                |                | **Outpu       |
-|                |                |                | t:** |
-|                |                |                |                |
-|                |                |                | `["a",1,       |
-|                |                |                | "bar","foo", n |
-|                |                |                | ull,3, null,nu |
-|                |                |                | ll]` |
-+----------------+----------------+----------------+----------------+
-|                |                | `              | `NamedL        |
-|                |                | map` | ist` |
-|                |                |                | can have       |
-|                |                |                | optional keys  |
-|                |                |                | and repeated   |
-|                |                |                | keys. It       |
-|                |                |                | preserves the  |
-|                |                |                | order.         |
-|                |                |                |                |
-|                |                |                | **Input:**    |
-|                |                |                | ]`Nam |
-|                |                |                | edList("a"=1,  |
-|                |                |                | "bar"="foo", n |
-|                |                |                | ull=3, null=nu |
-|                |                |                | ll)` |
-|                |                |                |                |
-|                |                |                | **Output:**  |
-|                |                |                | `{"a" |
-|                |                |                | :1, "bar":"foo |
-|                |                |                | ", "":3, "":nu |
-|                |                |                | ll}` |
-+----------------+----------------+----------------+----------------+
-|                |                | `arr           | `NamedL        |
-|                |                | arr` | ist` |
-|                |                |                | is represented |
-|                |                |                | as an array of |
-|                |                |                | two element    |
-|                |                |                | arrays.        |
-|                |                |                |                |
-|                |                |                | **Input:**    |
-|                |                |                | ]`Nam |
-|                |                |                | edList("a"=1,  |
-|                |                |                | "bar"="foo", n |
-|                |                |                | ull=3, null=nu |
-|                |                |                | ll)` |
-|                |                |                |                |
-|                |                |                | **Output:*    |
-|                |                |                | *]`[[ |
-|                |                |                | "a",1], ["bar" |
-|                |                |                | ,"foo"], [null |
-|                |                |                | ,3], [null,nul |
-|                |                |                | l]]` |
-+----------------+----------------+----------------+----------------+
-|                |                | `arr           | `NamedL        |
-|                |                | map` | ist` |
-|                |                |                | is represented |
-|                |                |                | as an array of |
-|                |                |                | JSON objects.  |
-|                |                |                |                |
-|                |                |                | **Input:**    |
-|                |                |                | ]`Nam |
-|                |                |                | edList("a"=1,  |
-|                |                |                | "bar"="foo", n |
-|                |                |                | ull=3, null=nu |
-|                |                |                | ll)` |
-|                |                |                |                |
-|                |                |                | **Ou          |
-|                |                |                | tput:**{.stro |
-|                |                |                | ng}`[{"a":1},  |
-|                |                |                | {"b":2}, 3, nu |
-|                |                |                | ll]` |
-+----------------+----------------+----------------+----------------+
-|                |                | `arr           | `NamedL        |
-|                |                | ntv` | ist` |
-|                |                |                | is represented |
-|                |                |                | as an array of |
-|                |                |                | name type      |
-|                |                |                | value JSON     |
-|                |                |                | objects.       |
-|                |                |                |                |
-|                |                |                | **Input:**    |
-|                |                |                | ]`Nam |
-|                |                |                | edList("a"=1,  |
-|                |                |                | "bar"="foo", n |
-|                |                |                | ull=3, null=nu |
-|                |                |                | ll)` |
-|                |                |                |                |
-|                |                |                | **Output:**   |
-|                |                |                | ]`[{" |
-|                |                |                | name":"a","typ |
-|                |                |                | e":"int","valu |
-|                |                |                | e":1}, {"name" |
-|                |                |                | :"bar","type": |
-|                |                |                | "str","value": |
-|                |                |                | "foo"}, {"name |
-|                |                |                | ":null,"type": |
-|                |                |                | "int","value": |
-|                |                |                | 3}, {"name":nu |
-|                |                |                | ll,"type":"nul |
-|                |                |                | l","value":nul |
-|                |                |                | l}]` |
-+----------------+----------------+----------------+----------------+
-| `json.         | Adds a wrapper | `funct         |                |
-| wrf` | function       | ion` |                |
-|                | around the     |                |                |
-|                | JSON response. |                |                |
-|                | Useful in AJAX |                |                |
-|                | with dynamic   |                |                |
-|                | script tags    |                |                |
-|                | for specifying |                |                |
-|                | a JavaScript   |                |                |
-|                | callback       |                |                |
-|                | function.      |                |                |
-+----------------+----------------+----------------+----------------+
-
+![](https://github.com/fenago/apache-solr/raw/master/images/25.PNG)
 
 **Example:** Searching for `id=SP2514N`.
 
@@ -1413,15 +801,7 @@ common and usable response writer in Solr.
 
 **Standard XML response writer parameters**:
 
-
-  -------------------------- -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- ---------------------------------------------------------------------------------------------------
-  **Parameter**   **Behavior**                                                                                                                                                                                              **Default Value**
-  `version`        The `version` parameter determines the XML protocol used in the response. The advantage of setting this parameter is that the response format remains the same even if the Solr version gets an upgrade.   The default value is the latest supported one. The only currently supported version value is 2.2.
-  `stylesheet`     It includes a `<?xml-stylesheet type="text/xsl" href="…​"?>` declaration in the XML response.                                                                                                              Solr does not return any style sheet declaration by default.
-  `indent`         Indenting the XML response for a more human-readable format.                                                                                                                                                         By default, Solr will not indent the XML response.
-  -------------------------- -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- ---------------------------------------------------------------------------------------------------
-
-
+![](https://github.com/fenago/apache-solr/raw/master/images/26.PNG)
  
 
 **Example**: Searching for query `id=SP2514N` and
@@ -1487,18 +867,7 @@ format.
 
 **CSV response writer parameters**:
 
-
-  ------------------------------ ------------------------------------------------------------------------------ ------------------------------
-  **Parameter**       **Behavior**                                                        **Default value**
-  `csv.encapsulator`   Specifies a character to be used as an encapsulator in the response            `"`
-  `csv.escape`         Specifies the items to be escaped from the response                            `None`
-  `csv.separator`      Specifies the separator for the CSV response                                   `,`
-  `csv.header`         Indicates whether to print header information in the CSV response or not       `true`
-  `csv.newline`        Used to start a new line from this parameter value                             `\n`
-  `csv.null`           Specifies the value to be returned in the response instead of returning null   Zero-length string
-  ------------------------------ ------------------------------------------------------------------------------ ------------------------------
-
-
+![](https://github.com/fenago/apache-solr/raw/master/images/27.PNG)
  
 
 **Example:** Searching for query `id=SP2514N` and
@@ -1586,13 +955,7 @@ Let's understand faceting parameters first.
 These are the common parameters for all types
 of faceting:
 
-
-  -------------------------- ---------------------------------------------------------------------------------------------------------- ------------------------------
-  **Parameter**   **Behavior**                                                                                    **Default value**
-  `facet`          Enable or disable faceting.                                                                                `false`
-  `facet.query`    Specifies a faceting query, which overrides Solr's default faceting query and returns a faceting count.   
-  -------------------------- ---------------------------------------------------------------------------------------------------------- ------------------------------
-
+![](https://github.com/fenago/apache-solr/raw/master/images/28.PNG)
 
 ### Field-value faceting parameters
 Field-value parameters are used to trigger
@@ -1601,239 +964,9 @@ field-value faceting parameters can be
 specified on a per field basis with the syntax of
 `f.<fieldname>.facet.<parameter>`:
 
+![](https://github.com/fenago/apache-solr/raw/master/images/29.PNG)
 
-+----------------------+----------------------+----------------------+
-| **P                 | **                  | **Default           |
-| arameter** | Behavior** | value**    |
-+----------------------+----------------------+----------------------+
-| `fa                  | Identifies a field   |                      |
-| cet.field` | that should be       |                      |
-|                      | treated as a facet.  |                      |
-|                      | At least one field   |                      |
-|                      | must have this       |                      |
-|                      | parameter;           |                      |
-|                      | otherwise, none of   |                      |
-|                      | the other            |                      |
-|                      | field-value faceting |                      |
-|                      | parameters will have |                      |
-|                      | any effect.          |                      |
-+----------------------+----------------------+----------------------+
-| `fac                 | Limits facet values  |                      |
-| et.prefix` | to terms beginning   |                      |
-|                      | with the string      |                      |
-|                      | specified.           |                      |
-+----------------------+----------------------+----------------------+
-| `facet               | Limits facet values  |                      |
-| .contains` | to terms containing  |                      |
-|                      | the                  |                      |
-|                      | string specified.    |                      |
-+----------------------+----------------------+----------------------+
-| `facet.contains.i    | If                   |                      |
-| gnoreCase` | `facet               |                      |
-|                      | .contains` |                      |
-|                      | is used, the         |                      |
-|                      | `facet.contains.i    |                      |
-|                      | gnoreCase` |                      |
-|                      | parameter causes     |                      |
-|                      | cases to be ignored  |                      |
-|                      | when matching the    |                      |
-|                      | given substring      |                      |
-|                      | against the          |                      |
-|                      | candidate facet      |                      |
-|                      | terms.               |                      |
-+----------------------+----------------------+----------------------+
-| `fa                  | Specifies the        | `100`      |
-| cet.limit` | maximum number of    |                      |
-|                      | constraint counts    |                      |
-|                      | that should be       |                      |
-|                      | returned for the     |                      |
-|                      | facet fields. The    |                      |
-|                      | possible values are  |                      |
-|                      | positive and         |                      |
-|                      | negative. Providing  |                      |
-|                      | any negative value   |                      |
-|                      | indicates that Solr  |                      |
-|                      | will return an       |                      |
-|                      | unlimited number of  |                      |
-|                      | constraint counts.   |                      |
-+----------------------+----------------------+----------------------+
-| `f                   | Determines the       |                      |
-| acet.sort` | ordering of the      |                      |
-|                      | facet field          |                      |
-|                      | constraints.         |                      |
-|                      | Possible values are: |                      |
-|                      |                      |                      |
-|                      |   |                      |
-|                      | -  `cou             |                      |
-|                      | nt`: Sorts |                      |
-|                      |     constraints      |                      |
-|                      |     based on the     |                      |
-|                      |     count (high to   |                      |
-|                      |     low)             |                      |
-|                      | -                   |                      |
-|                      |   `index`: |                      |
-|                      |     Sorts            |                      |
-|                      |     constraints      |                      |
-|                      |     based on their   |                      |
-|                      |     index order      |                      |
-|                      |                   |                      |
-|                      |                      |                      |
-|                      | The default sorting  |                      |
-|                      | is based on the      |                      |
-|                      | index, but if the    |                      |
-|                      | limit parameter      |                      |
-|                      | (`fac                |                      |
-|                      | et.limit`) |                      |
-|                      | is greater than      |                      |
-|                      | zero, the default    |                      |
-|                      | sorting will be the  |                      |
-|                      | count.               |                      |
-+----------------------+----------------------+----------------------+
-| `fac                 | Allows paging        | `0`        |
-| et.offset` | through facet        |                      |
-|                      | values. The offset   |                      |
-|                      | defines how many of  |                      |
-|                      | the top values to    |                      |
-|                      | skip instead of      |                      |
-|                      | returning later      |                      |
-|                      | facet values.        |                      |
-+----------------------+----------------------+----------------------+
-| `facet               | Specifies the        | `0`        |
-| .mincount` | minimum counts       |                      |
-|                      | required for a facet |                      |
-|                      | field to be included |                      |
-|                      | in the response. If  |                      |
-|                      | a field's counts    |                      |
-|                      | are less than the    |                      |
-|                      | minimum, the         |                      |
-|                      | field's facet is    |                      |
-|                      | not returned.        |                      |
-+----------------------+----------------------+----------------------+
-| `face                | Specifies whether or | `false`    |
-| t.missing` | not the count of all |                      |
-|                      | matching documents   |                      |
-|                      | that do not have any |                      |
-|                      | values is to be      |                      |
-|                      | returned in the      |                      |
-|                      | facet's field.      |                      |
-+----------------------+----------------------+----------------------+
-| `fac                 | Specifies the type   | `fc`       |
-| et.method` | of algorithm or      |                      |
-|                      | method Solr should   |                      |
-|                      | use when faceting a  |                      |
-|                      | field. The available |                      |
-|                      | methods in Solr are: |                      |
-|                      |                      |                      |
-|                      |   |                      |
-|                      | -  `enum`           |                      |
-|                      | : Iterates |                      |
-|                      |     over all the     |                      |
-|                      |     terms in the     |                      |
-|                      |     index,           |                      |
-|                      |     calculating a    |                      |
-|                      |     set intersection |                      |
-|                      |     with those terms |                      |
-|                      |     and the query.   |                      |
-|                      |     This method      |                      |
-|                      |     is faster for    |                      |
-|                      |     fields that      |                      |
-|                      |     contain fewer    |                      |
-|                      |     values.          |                      |
-|                      | -  `fc`             |                      |
-|                      | : Iterates |                      |
-|                      |     over documents   |                      |
-|                      |     that match the   |                      |
-|                      |     query and finds  |                      |
-|                      |     the terms within |                      |
-|                      |     those            |                      |
-|                      |     documents. The   |                      |
-|                      |     fc method is     |                      |
-|                      |     faster for       |                      |
-|                      |     fields that      |                      |
-|                      |     contain many     |                      |
-|                      |     unique values.   |                      |
-|                      | -  `fcs`: |                      |
-|                      |     Performs         |                      |
-|                      |     per-segment      |                      |
-|                      |     field faceting   |                      |
-|                      |     for              |                      |
-|                      |     single-valued    |                      |
-|                      |     string fields.   |                      |
-|                      |     This method      |                      |
-|                      |     performs better  |                      |
-|                      |     faceting if the  |                      |
-|                      |     index is         |                      |
-|                      |     changing         |                      |
-|                      |     constantly. It   |                      |
-|                      |     also accepts a   |                      |
-|                      |     threads local    |                      |
-|                      |     param, which can |                      |
-|                      |     speed up         |                      |
-|                      |     faceting.        |                      |
-|                      |                   |                      |
-+----------------------+----------------------+----------------------+
-| `facet.enum.ca       | Specifies the        | `0`        |
-| che.minDf` | minimum number of    |                      |
-|                      | documents required   |                      |
-|                      | to match a term      |                      |
-|                      | before               |                      |
-|                      | `fi                  |                      |
-|                      | lterCache` |                      |
-|                      | should be used for   |                      |
-|                      | that term.           |                      |
-|                      |                      |                      |
-|                      | The default is       |                      |
-|                      | `0`, which |                      |
-|                      | means                |                      |
-|                      | `fi                  |                      |
-|                      | lterCache` |                      |
-|                      | should always be     |                      |
-|                      | used.                |                      |
-+----------------------+----------------------+----------------------+
-| `fac                 | To cap facet counts  | `false`    |
-| et.exists` | by 1, specify        |                      |
-|                      | `facet.exi           |                      |
-|                      | sts=true`. |                      |
-|                      | This parameter can   |                      |
-|                      | be used with         |                      |
-|                      | `facet.me            |                      |
-|                      | thod=enum` |                      |
-|                      | or when it's        |                      |
-|                      | omitted. It can be   |                      |
-|                      | used only on on-trie |                      |
-|                      | fields (such as      |                      |
-|                      | strings). It may     |                      |
-|                      | speed up facet       |                      |
-|                      | counting on large    |                      |
-|                      | indices and/or       |                      |
-|                      | high-cardinality     |                      |
-|                      | facet values.        |                      |
-+----------------------+----------------------+----------------------+
-| `facet.exc           | Removes the          |                      |
-| ludeTerms` | specified terms from |                      |
-|                      | facet counts but     |                      |
-|                      | keeps them in the    |                      |
-|                      | index.               |                      |
-+----------------------+----------------------+----------------------+
-| `face                | Specifies the number |                      |
-| t.threads` | of threads to        |                      |
-|                      | execute for faceting |                      |
-|                      | the fields in        |                      |
-|                      | parallel. Specifying |                      |
-|                      | the thread count as  |                      |
-|                      | 0 will not create    |                      |
-|                      | any threads, and     |                      |
-|                      | only the main        |                      |
-|                      | request thread will  |                      |
-|                      | be used. Specifying  |                      |
-|                      | a negative number of |                      |
-|                      | threads will create  |                      |
-|                      | up to                |                      |
-|                      | `Integer.            |                      |
-|                      | MAX_VALUE` |                      |
-|                      | threads.             |                      |
-+----------------------+----------------------+----------------------+
-
+![](https://github.com/fenago/apache-solr/raw/master/images/30.PNG)
 
 ### Range faceting
 Range faceting can be done on date
@@ -1841,242 +974,11 @@ fields and numeric fields.
 
 **Range faceting parameters**:
 
-
-+-----------------------+-----------------------+--------------------+
-| **                   | [*                    | Default value      |
-| Parameter** | *Behavior** |                    |
-+-----------------------+-----------------------+--------------------+
-| `f                    | Specifies the field   |                    |
-| acet.range` | for which Solr should |                    |
-|                       | create range facets.  |                    |
-|                       | For example:          |                    |
-|                       |                       |                    |
-|                       | `face                 |                    |
-|                       | t.range=salary&facet. |                    |
-|                       | range=rank` |                    |
-|                       |                       |                    |
-|                       | `facet.range=c        |                    |
-|                       | reatedDate` |                    |
-+-----------------------+-----------------------+--------------------+
-| `facet.r              | Specifies from where  |                    |
-| ange.start` | (lower bound) the     |                    |
-|                       | range starts. For     |                    |
-|                       | example:              |                    |
-|                       |                       |                    |
-|                       | `f.salary.            |                    |
-|                       | facet.range.start=100 |                    |
-|                       | 00.0&f.rank.facet.ran |                    |
-|                       | ge.start=1` |                    |
-|                       |                       |                    |
-|                       | `f.createdDate.f      |                    |
-|                       | acet.range.start=NOW/ |                    |
-|                       | DAY-30DAYS` |                    |
-+-----------------------+-----------------------+--------------------+
-| `facet                | Specifies where       |                    |
-| .range.end` | (upper bound) the     |                    |
-|                       | range ends. For       |                    |
-|                       | example:              |                    |
-|                       |                       |                    |
-|                       | `f.salar              |                    |
-|                       | y.facet.range.end=100 |                    |
-|                       | 000.0&f.rank.facet.ra |                    |
-|                       | nge.end=50` |                    |
-|                       |                       |                    |
-|                       | `f.createdDate        |                    |
-|                       | .facet.range.end=NOW/ |                    |
-|                       | DAY+30DAYS` |                    |
-+-----------------------+-----------------------+--------------------+
-| `facet                | The size of each      |                    |
-| .range.gap` | range will be added   |                    |
-|                       | to the                |                    |
-|                       | `lower`     |                    |
-|                       | bound successively    |                    |
-|                       | until the             |                    |
-|                       | `upper`     |                    |
-|                       | bound is reached.     |                    |
-+-----------------------+-----------------------+--------------------+
-| `facet.ran            | A Boolean parameter   | `false`  |
-| ge.hardend` | that specifies how    |                    |
-|                       | Solr should handle    |                    |
-|                       | cases where           |                    |
-|                       | `facet                |                    |
-|                       | .range.gap` |                    |
-|                       | does not divide       |                    |
-|                       | evenly between        |                    |
-|                       | `lower`     |                    |
-|                       | bound and             |                    |
-|                       | `upper`     |                    |
-|                       | bound.                |                    |
-|                       |                       |                    |
-|                       | If it is              |                    |
-|                       | `true`, the |                    |
-|                       | last range constraint |                    |
-|                       | will have the         |                    |
-|                       | `facet                |                    |
-|                       | .range.end` |                    |
-|                       | value as an           |                    |
-|                       | `upper`     |                    |
-|                       | bound. If             |                    |
-|                       | `false`,    |                    |
-|                       | the last range will   |                    |
-|                       | have the smallest     |                    |
-|                       | possible              |                    |
-|                       | `upper`     |                    |
-|                       | bound greater than    |                    |
-|                       | `facet                |                    |
-|                       | .range.end` |                    |
-|                       | such that the range   |                    |
-|                       | is the exact width of |                    |
-|                       | the specified range   |                    |
-|                       | gap.                  |                    |
-+-----------------------+-----------------------+--------------------+
-| `facet.ran            | Determines how to     |                    |
-| ge.include` | compute range         |                    |
-|                       | faceting between the  |                    |
-|                       | lower bound and upper |                    |
-|                       | bound. Possible       |                    |
-|                       | values are:           |                    |
-|                       |                       |                    |
-|                       |    |                    |
-|                       | -                    |                    |
-|                       |    `lower`: |                    |
-|                       |     All gap-based     |                    |
-|                       |     ranges include    |                    |
-|                       |     their             |                    |
-|                       |     `lower` |                    |
-|                       |     bound             |                    |
-|                       | -                    |                    |
-|                       |    `upper`: |                    |
-|                       |     All gap-based     |                    |
-|                       |     ranges include    |                    |
-|                       |     their             |                    |
-|                       |     `upper` |                    |
-|                       |     bound             |                    |
-|                       | -  `edge`: |                    |
-|                       |     The first and     |                    |
-|                       |     last gap ranges   |                    |
-|                       |     include their     |                    |
-|                       |     `edge`  |                    |
-|                       |     bounds            |                    |
-|                       |                       |                    |
-|                       |    (`lower` |                    |
-|                       |     for the first     |                    |
-|                       |     one,              |                    |
-|                       |     `upper` |                    |
-|                       |     for the last one) |                    |
-|                       |     even if the       |                    |
-|                       |     corresponding     |                    |
-|                       |     `upper`{.liter    |                    |
-|                       | al}/`lower` |                    |
-|                       |     option is not     |                    |
-|                       |     specified         |                    |
-|                       | -                    |                    |
-|                       |    `outer`: |                    |
-|                       |     The               |                    |
-|                       |                       |                    |
-|                       |    `before` |                    |
-|                       |     and               |                    |
-|                       |     `after` |                    |
-|                       |     ranges will be    |                    |
-|                       |     inclusive of      |                    |
-|                       |     their bounds even |                    |
-|                       |     if the first or   |                    |
-|                       |     last ranges       |                    |
-|                       |     already include   |                    |
-|                       |     those boundaries  |                    |
-|                       | -  `all`:  |                    |
-|                       |     Includes all      |                    |
-|                       |     options           |                    |
-|                       | ---`lower`, |                    |
-|                       |                       |                    |
-|                       |    `upper`, |                    |
-|                       |     `edge`, |                    |
-|                       |     and               |                    |
-|                       |                       |                    |
-|                       |    `outer`. |                    |
-|                       |                    |                    |
-+-----------------------+-----------------------+--------------------+
-| `facet.r              | Specifies that, in    |                    |
-| ange.other` | addition to the       |                    |
-|                       | counts for each range |                    |
-|                       | between               |                    |
-|                       | `lower`     |                    |
-|                       | bound and             |                    |
-|                       | `upper`     |                    |
-|                       | bound, counts should  |                    |
-|                       | be computed for these |                    |
-|                       | options as well:      |                    |
-|                       |                       |                    |
-|                       |    |                    |
-|                       | -                    |                    |
-|                       |   `before`: |                    |
-|                       |     All records with  |                    |
-|                       |     field values      |                    |
-|                       |     lower than        |                    |
-|                       |     `lower` |                    |
-|                       |     bound of the      |                    |
-|                       |     first range       |                    |
-|                       | -                    |                    |
-|                       |    `after`: |                    |
-|                       |     All records with  |                    |
-|                       |     field values      |                    |
-|                       |     greater than the  |                    |
-|                       |     `upper` |                    |
-|                       |     bound of the last |                    |
-|                       |     range             |                    |
-|                       | -                    |                    |
-|                       |  `between`: |                    |
-|                       |     All records with  |                    |
-|                       |     field values      |                    |
-|                       |     between the start |                    |
-|                       |     and end bounds of |                    |
-|                       |     all ranges        |                    |
-|                       | -  `none`: |                    |
-|                       |     Do not compute    |                    |
-|                       |     any counts        |                    |
-|                       | -  `all`:  |                    |
-|                       |     Compute counts    |                    |
-|                       |     for               |                    |
-|                       |                       |                    |
-|                       |   `before`, |                    |
-|                       |                       |                    |
-|                       |  `between`, |                    |
-|                       |     and               |                    |
-|                       |     `after` |                    |
-|                       |                    |                    |
-+-----------------------+-----------------------+--------------------+
-| `facet.ra             | Specifies a faceting  | `filter` |
-| nge.method` | method:               |                    |
-|                       |                       |                    |
-|                       |    |                    |
-|                       | -  `filter`          |                    |
-|                       | : Generates |                    |
-|                       |     the ranges based  |                    |
-|                       |     on other          |                    |
-|                       |     `f                |                    |
-|                       | acet.range` |                    |
-|                       |     parameters.       |                    |
-|                       | -  `div`:  |                    |
-|                       |     Iterates all the  |                    |
-|                       |     documents that    |                    |
-|                       |     match the main    |                    |
-|                       |     query, and for    |                    |
-|                       |     each of them, it  |                    |
-|                       |     finds the correct |                    |
-|                       |     range for the     |                    |
-|                       |     value. Not        |                    |
-|                       |     supporting for    |                    |
-|                       |     `Date             |                    |
-|                       | RangeField` |                    |
-|                       |     field type or     |                    |
-|                       |     when we have used |                    |
-|                       |     `gro              |                    |
-|                       | up.facets`. |                    |
-|                       |                    |                    |
-+-----------------------+-----------------------+--------------------+
-
-
+![](https://github.com/fenago/apache-solr/raw/master/images/31.PNG)
  
+![](https://github.com/fenago/apache-solr/raw/master/images/32.PNG)
+
+![](https://github.com/fenago/apache-solr/raw/master/images/33.PNG)
 
 **Example**: Search query for `iPod` with faceting
 enabled and range for the field price from `1000` to
@@ -2137,15 +1039,7 @@ the latest spreadsheets. Pivot faceting provides a facility to generate
 an aggregate summary from fetched faceting
 results on multiple fields:
 
-
-  ---------------------------------- ----------------------------------------------------------------------------------------------------------------- ------------------------------
-  **Parameter**           **Behavior**                                                                                           **Default value**
-  `facet.pivot`            Specify the field on which you want to apply pivoting                                                             
-  `facet.pivot.mincount`   Specify the minimum number of documents that need to match in order for the facet to be included in the results   `1`
-  ---------------------------------- ----------------------------------------------------------------------------------------------------------------- ------------------------------
-
-
- 
+ ![](https://github.com/fenago/apache-solr/raw/master/images/34.PNG)
 
 **Example**:  In our `techproducts`, we need the
 stock availability based on the popularity of a category
@@ -2196,50 +1090,7 @@ be better with multiple intervals for the same fields, while a facet
 query is likely to be better in environments where a filter cache is
 more effective:
 
-
-+----------------------+----------------------+----------------------+
-| **P                 | **                  | **Default           |
-| arameter** | Behavior** | value**    |
-+----------------------+----------------------+----------------------+
-| `facet               | To specify a field   |                      |
-| .interval` | where we want to     |                      |
-|                      | apply the interval.  |                      |
-|                      | It can be used       |                      |
-|                      | multiple times for   |                      |
-|                      | multiple fields in a |                      |
-|                      | single request. For  |                      |
-|                      | example:             |                      |
-|                      |                      |                      |
-|                      | `facet.interval=pr   |                      |
-|                      | ice&facet.interval=p |                      |
-|                      | opularity` |                      |
-+----------------------+----------------------+----------------------+
-| `facet.int           | To specify a set of  |                      |
-| erval.set` | intervals for the    |                      |
-|                      | field. It can be     |                      |
-|                      | specified multiple   |                      |
-|                      | times to indicate    |                      |
-|                      | multiple intervals.  |                      |
-|                      | For example:         |                      |
-|                      |                      |                      |
-|                      | `                    |                      |
-|                      | f.price.facet.interv |                      |
-|                      | al.set=[0,10]&f.pric |                      |
-|                      | e.facet.interval.set |                      |
-|                      | =(10,100]` |                      |
-|                      |                      |                      |
-|                      | (1,100) -\> include  |                      |
-|                      | values greater than  |                      |
-|                      | 1 and lower than 100 |                      |
-|                      | \[1,100) -\> include |                      |
-|                      | values greater or    |                      |
-|                      | equal to 1 and lower |                      |
-|                      | than 100 \[1,100\]   |                      |
-|                      | -\> include values   |                      |
-|                      | greater or equal to  |                      |
-|                      | 1 and lower or equal |                      |
-|                      | to 100               |                      |
-+----------------------+----------------------+----------------------+
+![](https://github.com/fenago/apache-solr/raw/master/images/35.PNG)
 
 
  
@@ -2288,13 +1139,7 @@ Solr provides a large list for highlighting
 fragments. The following are the basic parameters required to start
 highlighting:
 
-
-  -------------------------- --------------------------------------------------------------------------------------------------------------------------------------------- ------------------------------
-  **Parameter**   **Behavior**                                                                                                                       **Default value**
-  `hl`             A Boolean parameter to enable/disable highlighting. `hl=true` will enable highlighting.                                             `false`
-  `hl.method`      To specify a method to implement highlighting. Available methods are `unified`, `original`, and `fastVector`.   `original`
-  -------------------------- --------------------------------------------------------------------------------------------------------------------------------------------- ------------------------------
-
+![](https://github.com/fenago/apache-solr/raw/master/images/36.PNG)
 
 ### Highlighter
 Highlighter is nothing but a highlighting

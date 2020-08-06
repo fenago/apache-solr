@@ -163,30 +163,11 @@ with a query string. Configuring them with any request handler in the
 `solrconfig.xml` file will enable them. Let's understand all
 our parameters:
 
+![](https://github.com/fenago/apache-solr/raw/master/images/37.PNG)
 
-  ------------------------------------------------------ ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- ------------------------------
-  **Parameter**                               **Behavior**                                                                                                                                                                                                                                                                                                                  **Default value**
-  `spellcheck`                                 Enables or disables spellchecking.                                                                                                                                                                                                                                                                                                       `false`
-  `spellcheck.q` or `spellcheck.q`   Specifies the query for spellchecking. It will be used if `spellcheck.q` is specified, or else the original input query will be used.                                                                                                                                                                                          
-  `spellcheck.build`                           Boolean parameter that tells Solr to generate a dictionary if it does not exist. Dictionary building will take additional time in query processing, so it is advisable not to pass this parameter with every request.                                                                                                                    `false`
-  `spellcheck.reload`                          A Boolean parameter that tells Solr to reload the spellchecker implementation.                                                                                                                                                                                                                                                           
-  `spellcheck.count`                           Specifies the maximum number of suggestions a spellchecker should return in the response for a specific query term. The default value is `1` if the parameter is not set and is `5` if the parameter is set but no value is assigned.                                                                                `1`
-  `spellcheck.onlyMorePopular`                 Specifying this as true will tell Solr to return only those suggestions that have more hits than the original query.                                                                                                                                                                                                                     
-  `spellcheck.maxResultsForSuggest`            Specifies a threshold count based on the number of documents matched from the user's original query. For example, if we have set this to `5` and a user's original query returns [*\>= 5*] matching documents, Solr will disable the suggestion automatically.                                                    
-  `spellcheck.alternativeTermCount`            Specifies the number of suggestions to be returned from the index and/or dictionary for each query term. It will also enable context-sensitive spelling suggestions.                                                                                                                                                                     
-  `spellcheck.extendedResults`                 Boolean variable that tells Solr to return additional details about the spellcheck results. For example, setting this to true will return the frequency of the original terms and of suggestions from the index.                                                                                                                         
-  `spellcheck.collate`                         If true, this parameter tells Solr to create a new query (collation query) from the suggested spelling correction. The collation query can be executed by clicking on the link **`Did you mean ... ?`** Returning results is guaranteed, so Solr must execute the collation query in the background before returning results to users.   
-  `spellcheck.maxCollations`                   The maximum number of collation queries Solr will generate. The default is `1`. It will work only if `spellcheck.collate` is true.                                                                                                                                                                                   `1`
-  `spellcheck.maxCollationTries`               Specifies the number of times Solr should try for collation before giving up. Specifying a lower value will improve performance as Solr will not provide suggestions in all cases.                                                                                                                                                       
-  `spellcheck.maxCollationEvaluations`         Specifies the maximum number of word correction combinations for evaluating a correct collation that will run against an index.                                                                                                                                                                                                          `10000`
-  `spellcheck.collateExtendedResults`          A boolean value that tells Solr whether to return a response in expanded format or not. Setting this to true will return the response in expanded format. It will work only if `spellcheck.collate` is true.                                                                                                                   `false`
-  `spellcheck.collateMaxCollectDocs`           Specifies the maximum number of documents to be collected for testing of collations against the index. The default value for this parameter is `0`, which means that all documents should be collected.                                                                                                                        `0`
-  `spellcheck.collateParam.*Prefix`            Used to specify an additional parameter that you want to be considered by the Spellchecker when internally validating collation queries.                                                                                                                                                                                                 
-  `spellcheck.dictionary`                      Specifies the dictionary name to be used by Solr for spellchecking.                                                                                                                                                                                                                                                                      `default`
-  `spellcheck.accuracy`                        Specifies the accuracy level to decide whether the results provided after spellchecking are sufficient or not. Possible values are float values between `0` and `1`.                                                                                                                                                 `Float.MIN_VALUE`
-  `spellcheck.<DICT_NAME>.key`                 Specifies a key/value pair for dictionary implementation of spellcheck.                                                                                                                                                                                                                                                                  
-  ------------------------------------------------------ ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- ------------------------------
+![](https://github.com/fenago/apache-solr/raw/master/images/38.PNG)
 
+![](https://github.com/fenago/apache-solr/raw/master/images/39.PNG)
 
 ### Implementation approaches
 Solr provides many approaches for implementing
@@ -318,13 +299,7 @@ parameters that are required for the request handler (excluding request
 handler `/select`) to implement spellchecking on distributed
 indexes:
 
-
-  -------------------------- ----------------------------------------------------------------------------------------------------------------------------------
-  **Parameter**   **Behavior**
-  `shards`         Specifies the shards in distributed indexing configuration.
-  `shards.qt`      Specifies a request handler for requesting to shards. This parameter is not required by the `/select` request handler.
-  -------------------------- ----------------------------------------------------------------------------------------------------------------------------------
-
+![](https://github.com/fenago/apache-solr/raw/master/images/40.PNG)
 
 For example, to search for the word `cemera` on distributed
 indexing (`shard1` and `shard2`), the following is
@@ -409,40 +384,13 @@ the suggestion requirements. Here is a list of parameters. 
 
 Suggester search component parameters are as follows:
 
+![](https://github.com/fenago/apache-solr/raw/master/images/41.PNG)
 
-  ----------------------------------------------------------- ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- ---------------------------------------------
-  **Parameter**                                    **Behavior**                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      **Default value**
-  `searchComponent`                                 The name of the search component.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            
-  `name`                                            Suggester name, which will be referred with the request handler.                                                                                                                                                                                                                                                                                                                                                                                                                                                             
-  `lookupImpl`                                      Specifies the lookupImpl implementation algorithms used to look up terms in the suggest index. Available implementations are `AnalyzingLookupFactory`, `FuzzyLookupFactory`, `AnalyzingInfixLookupFactory`, `BlendedInfixLookupFactory`, `FreeTextLookupFactory`, `FSTLookupFactory, TSTLookupFactory`, `WFSTLookupFactory`, and `JaspellLookupFactory`.                                                                                     `JaspellLookupFactory`
-  `dictionaryImpl`                                  Specifies a dictionary implementation for suggestions. Available implementations are `DocumentDictionaryFactory`, `DocumentExpressionDictionaryFactory`, `HighFrequencyDictionaryFactory`, and `FileDictionaryFactory`.                                                                                                                                                                                                                                                              `HighFrequency DictionaryFactory`
-  `sourceLocation`                                  Specifies the dictionary file path when a suggestion is implemented using `FileDictionaryFactory`. The main index will be used as the source of terms and weights if this parameter value is empty.                                                                                                                                                                                                                                                                                                                
-  `field`                                           Specifies a field from which the index is to be used as the basis of suggestion terms. The specified field must be stored in the index.                                                                                                                                                                                                                                                                                                                                                                                      
-  `storeDir`                                        Specifies a path to store the dictionary file.                                                                                                                                                                                                                                                                                                                                                                                                                                                                               
-  `buildOnCommit` and `buildOnOptimize`   If this is true, the suggestion dictionary will be rebuilt after a soft commit. If false, the suggestion dictionary will be built only when we provide the suggest.build=true parameter in the URL. Use `buildOnCommit` to rebuild the suggestion dictionary with every soft commit or `buildOnOptimize` to build it only when the index is optimized. This parameter is not recommended if the volume of the indexes is very high; in such a scenario, `suggest.build=true` is recommended.   `false`
-  `buildOnStartup`                                  Specifying this to true will build the suggestion directory at the time of Solr start or core reloading. If this parameter is not specified, the suggester will check whether the suggestion directory is present on disk, and build one if it is not found. Enabling (`true`) is not recommended as sometimes it may take too long in build; instead, use `suggest.build=true` for building manually.                                                                                                   `false`
-  ----------------------------------------------------------- ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- ---------------------------------------------
-
-
- 
+ ![](https://github.com/fenago/apache-solr/raw/master/images/42.PNG)
 
 Suggester request handler parameters are as follows:
 
-
-  -------------------------------- ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- ------------------------------
-  **Parameter**         **Behavior**                                                                                                                                                                                                                                                                               **Default value**
-  `suggest`              A boolean parameter to enable/disable suggestions.                                                                                                                                                                                                                                                    `true`
-  `suggest.dictionary`   A mandatory parameter. It specifies the dictionary component configured inside the search component.                                                                                                                                                                                                  
-  `suggest.q`            Specifies a query to use for suggestions.                                                                                                                                                                                                                                                             
-  `suggest.count`        Specifies the number of suggestions to be returned.                                                                                                                                                                                                                        `10`
-  `suggest.cfq`          Specifies the **context filter query** (**CFQ**) used to filter suggestions based on the context field. CFQ is only supported by `AnalyzingInfixLookupFactory` and `BlendedInfixLookupFactory` and only when backed by a `Document*Dictionary`.   
-  `suggest.build`        If true, it will build the suggester index.                                                                                                                                                                                                                                                           `false`
-  `suggest.reload`       If true, it will reload the suggester index.                                                                                                                                                                                                                                                          `false`
-  `suggest.buildAll`     If true, it will build all suggester indexes                                                                                                                                                                                                                                                          `false`
-  `suggest.reloadAll`    If true, it will reload all suggester indexes.                                                                                                                                                                                                                                                        `false`
-  -------------------------------- ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- ------------------------------
-
-
+![](https://github.com/fenago/apache-solr/raw/master/images/43.PNG)
  
 
 All of these parameters are usually configured in the request handler.
@@ -773,26 +721,9 @@ first `group.field` parameter and other
 
 ### Result grouping parameters
 
-  --------------------------------- ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- ------------------------------
-  **Parameter**          **Behavior**                                                                                                                                                               **Default value**
-  `group`                 If true, query results will be grouped.                                                                                                                    `false`
-  `group.field`           Specifies the field by which the result will be grouped.                                                                                                                              
-  `group.func`            Specifies a function name by which the result will be grouped.                                                                                                                        
-  `group.query`           Specifies a result grouping query that will return a single group of documents.                                                                                                       
-  `rows`                  Specifies the number of groups to return.                                                                                                                                             `10`
-  `start`                 Specifies starting point from the list of groups.                                                                                                                                     
-  `group.limit`           Specifies the number of results to be returned for every group.                                                                                                                       `1`
-  `group.offset`          Specifies starting point from the list of documents of every group.                                                                                                                   
-  `sort`                  Specifies the field based on groups will be sorted.                                                                                                                                   score desc
-  `group.sort`            Specifies the field based on documents will be sorted within each group. The default behaviour is that if group.sort is not specified, the sort parameter value will be used.         
-  `group.format`          Specifies the response format after grouping. Possible values for this parameter are simple and grouped.                                                                              Advanced grouping format
-  `group.main`            A boolean variable that tells Solr to use first the field grouping command as the main result in the response using `group.format=simple`. A true value will do the same.   `false`
-  `group.ngroups`         A boolean variable that tells Solr to include the number of groups that have matched to the query in result. A true value will do the same.                                           `false`
-  `group.truncate`        A boolean variable that tells Solr to calculate facet counts based on the most relevant document of each group matching the query. A true value will do the same.                     `false`
-  `group.facet`           To enable/disable grouped faceting.                                                                                                                                                   `false`
-  `group.cache.percent`   Enables caching for result grouping by configuring a value greater than zero. The maximum value is 100.                                                                               `0`
-  --------------------------------- ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- ------------------------------
+![](https://github.com/fenago/apache-solr/raw/master/images/44.PNG)
 
+![](https://github.com/fenago/apache-solr/raw/master/images/45.PNG)
 
 ### Running result grouping
 We have explored the result grouping concept
@@ -928,16 +859,7 @@ label. Solr comes with several algorithms for clustering implementation.
 
 ### Result clustering parameters
 
-  ----------------------------------- -------------------------------------------------------------------------------------------------------------------- ------------------------------
-  **Parameter**            **Behavior**                                                                                              **Default value**
-  `clustering`              Enable/disable clustering.                                                                                           `true`
-  `clustering.engine`       Specifies which clustering engine to use. If not specified, the first declared engine will become the default one.   first in a list
-  `clustering.results`      When true, the component will run a clustering of the search results (this should be enabled).                       `true`
-  `clustering.collection`   When true, the component will run a clustering of the whole document index.                                          `false`
-  ----------------------------------- -------------------------------------------------------------------------------------------------------------------- ------------------------------
-
-
- 
+![](https://github.com/fenago/apache-solr/raw/master/images/46.PNG)
 
 From the preceding list, some parameters are
 of the search component and some of them are of the request handler.
@@ -1202,17 +1124,7 @@ around the initial point.
 Both the parsers support the following
 parameters:
 
-
-  -------------------------- ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- ------------------------------
-  **Parameter**   **Behavior**                                                                                                                                                                                                                                                                                                               **Default value**
-  `d`              Specifies a radius distance (usually in kilometers) within the document that should be considered for matching.                                                                                                                                                                                                                       
-  `pt`             Specifies latitude and longitude for the format as `lat,lon`, `x,y` for `PointType`, or `x, y` for RPT field types.                                                                                                                                                                           
-  `sfield`         Specifies a spatial field defined in `managed-schema.xml` or `schema.xml`.                                                                                                                                                                                                                                        
-  `score`          If the query is used in a scoring context, this determines what type of scores will be produced. It is not supported by `LatLonType` or `PointType`. Possible values are `none`, `kilometers`, `miles`, `degrees`, `distance`, and `recipDistance`.   `none`
-  `filter`         If set to `false`, parser scoring will be disabled. This is not supported by `LatLonType` or `PointType`.                                                                                                                                                                                               `true`
-  -------------------------- ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- ------------------------------
-
-
+![](https://github.com/fenago/apache-solr/raw/master/images/47.PNG)
 
 ### Function queries
 In spatial search, along with returning matching documents within a
