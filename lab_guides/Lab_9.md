@@ -13,11 +13,15 @@ lab, we will learn how Solr can be used with a web application and
 how to call APIs in different languages. We'll have an overview of
 various Client APIs supported by Solr.
 
+<h2><span style="color:red;">Lab files</span></h2>
+Lab files for this lab are available in `lab_files\Lab09` directory. Use VScode to view files.
+
+
 Client API overview
 -------------------
 
 Solr comes with a bunch of REST APIs, which exposes
- its features such as query, index, delete, commit, and
+its features such as query, index, delete, commit, and
 optimize; it also allows a web application to connect with Solr and
 perform any operation by calling these APIs. Solr has taken care of
 these REST APIs such that any web application developed in any
@@ -54,7 +58,8 @@ which can easily be parsed in JavaScript. We don't need to configure
 the wt response parameter as Solr, by default, returns the response in
 JSON format.
 
-**Example: **Configure `hostURL= http://localhost:8983/solr/techproducts/select`
+**Example:** Configure `hostURL= http://localhost:8983/solr/techproducts/select`
+
 in JavaScript as follows:
 
 
@@ -488,6 +493,7 @@ solr.deleteById(List<String> ids);
 After adding/updating/deleting, don't forget to commit the transaction
 using `solr.commit()`; otherwise, the indexes will not be
 affected.
+
 Ruby Client API
 ---------------------------------
 
@@ -783,6 +789,7 @@ search/add/delete, dealing with the Solr API. The Python programming
 language supports more detailed configurations to meet the all
 expectations from any web application. Now, taking this as a reference,
 we can dive deep and explore Python and Solr bounding in more detail.
+
 Summary
 -------------------------
 

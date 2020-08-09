@@ -16,6 +16,7 @@ highlighters, and boundary scanners.
 In this lab, we will learn about more search functionalities such as
 spellchecking, suggester, pagination, result grouping and clustering,
 and spatial search. Let's start with the spellchecking feature of Solr.
+
 Spellchecking
 -------------------------------
 
@@ -86,7 +87,7 @@ performs spellchecking for all queries processed through this request
 handler, for example, searching for `cemera` instead of
 `camera`.
 
-**URL**: `http://localhost:8983/solr/techproducts/select?q=cemera`:
+**URL**: `http://localhost:8983/solr/techproducts/select?q=cemera`
 
 
 ``` {.programlisting .language-markup}
@@ -130,7 +131,7 @@ to the query string. Still, if you want to disable spellchecking for any
 specific query, you can use `spellcheck=false` and disable
 spellchecking for that particular query. For example:
 
-**URL**: `http://localhost:8983/solr/techproducts/select?q=cemera&spellcheck=false`:
+**URL**: `http://localhost:8983/solr/techproducts/select?q=cemera&spellcheck=false`
 
 
 ``` {.programlisting .language-markup}
@@ -306,6 +307,7 @@ indexing (`shard1` and `shard2`), the following is
 the URL:
 
 `http://localhost:8983/solr/techproducts/spell?spellcheck=true&spellcheck.build=true&spellcheck.q=cemera&shards.qt=/spell&shards=solr-shard1:8983/solr/techproducts,solr-shard2:8983/solr/techproducts`
+
 Suggester
 ---------------------------
 
@@ -1172,8 +1174,9 @@ spatial searching features available in Solr. Exploring every feature
 here is not possible. However, we can take this lab as a reference
 and explore more spatial search features. Rather than going into more
 details of spatial search, Let's move on to the next lab.
+
 Summary
--------------------------
+--------
 
 In this lab, we explored and understood various searching
 functionalities such as spellchecking, suggester, pagination, result

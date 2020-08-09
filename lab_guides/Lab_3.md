@@ -18,6 +18,11 @@ In this lab, we will traverse through schema design. We will
 understand how to design a schema using documents and fields. We will
 also see various field types and get an understanding of the Schema API.
 We will finally look at schemaless mode.
+
+<h2><span style="color:red;">Lab files</span></h2>
+Lab files for this lab are available in `lab_files\Lab03` directory. Use VScode to view files.
+
+
 How Solr works
 --------------------------------
 

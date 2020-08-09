@@ -34,11 +34,14 @@ Solr/Lucene. This lab focuses mainly on the following points:
 -  Understanding the browser interface
 -  Using the Solr admin interface
 
+<h2><span style="color:red;">Lab files</span></h2>
+Lab files for this lab are available in `lab_files\Lab02` directory. Use VScode to view files.
+
 Solr installation
 -----------------
 
 Let's get up and running with Solr. At the
-time of writing of this book, the latest stable version of Solr was
+time of writing of this course, the latest stable version of Solr was
 8.6.0. This course focuses all its aspects on Apache Solr 8.6.0.
 
 Getting up and running with Apache Solr requires the following
@@ -73,6 +76,11 @@ from <http://www.oracle.com/technetwork/java/javase/downloads/index.html>
 if needed.
 
 Curl utilities are not mandatory but will be helpful when we go deeper.
+
+
+<h2><span style="color:red;">Note</span></h2>
+
+Solr has been already installed, you can skip installation steps.
 
 The next step is to download Apache Solr. An important point to keep in
 mind is that Apache Solr can also run as a standalone unit and is
@@ -130,7 +138,7 @@ follows:
 ![](https://github.com/fenago/apache-solr/raw/master/images/feb03e12-8d55-4fa2-95e5-fec6b8bcacd7.jpg)
 
 
-<h2><span style="color:red;">Solr User Solr</span></h2>
+<h2><span style="color:red;">Solr User</span></h2>
 
 Make sure to switch to **solr** user by running following command or user `-force` flag to start solr service with root user:
 
@@ -167,7 +175,7 @@ Let's look at the following steps:
 3.  Next, it will ask us to provide the name of a collection in which we
     want to add data. Let's go with the default one.
 
-4.  The `bin/solr` and `bin/solr.cmd` contains Solr
+4.  The `solr` and `bin/solr.cmd` contains Solr
     preconfigurations. When we start Solr, it asks us whether we want to
     change those configurations. We can simply press
     [*Enter*] to keep the preconfigurations as default, or we

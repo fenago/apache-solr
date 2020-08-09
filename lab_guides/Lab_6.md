@@ -1302,8 +1302,9 @@ in the `name` field. When there is a match to the query term
 in that field, it will be included for each document ID in the list. In
 the same way, we can explore highlighting more by configuring different
 parameters.
+
 Summary
--------------------------
+--------
 
 In this lab, we learned the concept of relevance and its terms:
 Precision and Recall. Then we looked at the velocity search UI. We saw

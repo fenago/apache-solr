@@ -24,7 +24,6 @@ in this diagram:
 Let's drill down and look at the indexing process, which has the
 following main actions:
 
-
 -  Adding content to the Solr Index
 -  Updating the index
 -  Deleting from the index
@@ -32,14 +31,12 @@ following main actions:
 
 Now, there are two basic questions that might arise in your mind:
 
-
 -  From where does Solr accept data to be indexed? Or what are
     different sources from where data can be indexed?
 -  How do we index data from the sources that we have identified?
 
 
 Common sources that the Solr index can get data from are:
-
 
 -  Database tables
 -  CSV files
