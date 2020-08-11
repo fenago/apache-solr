@@ -41,6 +41,10 @@ By the end of this course, you will gain advanced proficiency to build out-of-bo
 
 Labs for this course are listed below:
 
+**Lab Guides**:           `Lab_1 - Lab_9`
+
+**Lab Files Directory**:  `lab_files`
+
 1. Introduction to Solr
 2. Getting Started
 3. Designing Schemas
@@ -50,6 +54,26 @@ Labs for this course are listed below:
 7. Advanced Queries -- Part II
 8. Managing and Fine-Tuning Solr
 9. Client APIs -- An Overview
+
+
+### Labs Part 2
+
+**Lab Files Directory**:  `exercise_files`
+
+1. Apache Solr - Core
+2. Apache Solr - Indexing Data
+3. Apache Solr - Adding Docs (XML)
+4. Apache Solr - Updating Data
+5. Apache Solr - Deleting Documents
+6. Apache Solr - Querying Data
+7. Apache Solr - Faceting
+
+### Labs Part 3
+
+1. Solr Tutorial
+
+
+### Extra
 
 
 ### About
