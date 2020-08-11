@@ -1,0 +1,26 @@
+{ 
+"facet_counts":{
+ "facet_queries":{},
+ "facet_fields":{
+ "cat":[
+ "electronics",14,
+ "currency",4,
+ "memory",3,
+ "connector",2,
+ "graphics card",2]},
+ "facet_dates":{},
+ "facet_ranges":{},
+ "facet_pivot":{
+ "cat,popularity,inStock":[{
+ "field":"cat",
+ "value":"electronics",
+ "count":14,
+ "pivot":[{
+ "field":"popularity",
+ "value":6,
+ "count":5,
+ "pivot":[{
+ "field":"inStock",
+ "value":true,
+ "count":5}]}]
+}]}}}

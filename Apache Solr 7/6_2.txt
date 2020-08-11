@@ -1,0 +1,14 @@
+{
+ "responseHeader":{
+ "status":0,
+ "QTime":17,
+ "params":{
+ "q":"SP2514N",
+ "fl":"id,name",
+ "wt":"json",
+ "_":"1515346597997"}},
+ "response":{"numFound":1,"start":0,"docs":[
+ {
+ "id":"SP2514N",
+ "name":"Samsung SpinPoint P120 SP2514N - hard drive - 250 GB - ATA-133"}]
+ }}

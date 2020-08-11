@@ -1,0 +1,15 @@
+createddate:2001-01-11T23\:45\:40.60Z
+
+createddate:"2001-01-11T23:45:40.60Z"
+
+createddate:[2001-01-11T23:45:40.60Z TO *]
+
+createddate:[1999-12-31T23:45:40.60Z TO 2001-01-11T00:00:00Z]
+
+timestamp:[* TO NOW]
+
+publisheddate:[NOW-1YEAR/DAY TO NOW/DAY+1DAY]
+
+createddate:[2001-01-11T23:45:40.60Z TO 2001-01-11T23:45:40.60Z+1YEAR]
+
+createddate:[2001-01-11T23:45:40.60Z/YEAR TO 2001-01-11T23:45:40.60Z]

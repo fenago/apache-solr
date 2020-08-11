@@ -1,0 +1,40 @@
+{
+ "responseHeader":{
+ "status":0,
+ "QTime":1,
+ "params":{
+ "facet.range":"price",
+ "q":"ipod",
+ "defType":"edismax",
+ "facet.range.gap":"5",
+ "fl":"id,name,price",
+ "facet":"true",
+ "facet.range.start":"10",
+ "facet.range.end":"20"}},
+ "response":{"numFound":3,"start":0,"docs":[
+ {
+ "id":"IW-02",
+ "name":"iPod & iPod Mini USB 2.0 Cable",
+ "price":11.5},
+ {
+ "id":"F8V7067-APL-KIT",
+ "name":"Belkin Mobile Power Cord for iPod w/ Dock",
+ "price":19.95},
+ {
+ "id":"MA147LL/A",
+ "name":"Apple 60 GB iPod with Video Playback Black",
+ "price":399.0}]
+ },
+ "facet_counts":{
+ "facet_queries":{},
+ "facet_fields":{},
+ "facet_ranges":{
+ "price":{
+ "counts":[
+ "10.0",1,
+ "15.0",1],
+ "gap":5.0,
+ "start":10.0,
+ "end":20.0}},
+ "facet_intervals":{},
+ "facet_heatmaps":{}}}

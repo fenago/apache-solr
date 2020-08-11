@@ -1,0 +1,21 @@
+{
+ "responseHeader":{
+ "status":0,
+ "QTime":14},
+ "command":"build",
+ "suggest":{"mySuggester":{
+ "elec":{
+ "numFound":3,
+ "suggestions":[{
+ "term":"electronics and computer1",
+ "weight":2199,
+ "payload":""},
+ {
+ "term":"electronics",
+ "weight":649,
+ "payload":""},
+ {
+ "term":"electronics and stuff2",
+ "weight":279,
+ "payload":""}]}}}
+}

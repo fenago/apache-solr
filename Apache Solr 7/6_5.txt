@@ -1,0 +1,28 @@
+{
+  "responseHeader":{
+    "status":0,
+    "QTime":1,
+    "params":{
+      "q":"iPod",
+      "defType":"dismax",
+      "qf":"features^10.0 cat^0.5"}},
+  "response":{"numFound":1,"start":0,"docs":[
+      {
+        "id":"IW-02",
+        "name":"iPod & iPod Mini USB 2.0 Cable",
+        "manu":"Belkin",
+        "manu_id_s":"belkin",
+        "cat":["electronics",
+          "connector"],
+        "features":["car power adapter for iPod, white"],
+        "weight":2.0,
+        "price":11.5,
+        "price_c":"11.50,USD",
+        "popularity":1,
+        "inStock":false,
+        "store":"37.7752,-122.4232",
+        "manufacturedate_dt":"2006-02-14T23:55:59Z",
+        "_version_":1583131913695002624,
+        "price_c____l_ns":1150}]
+  }}
+

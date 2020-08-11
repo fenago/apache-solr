@@ -1,0 +1,38 @@
+{
+ "responseHeader":{
+ "zkConnected":true,
+ "status":0,
+ "QTime":35,
+ "params":{
+ "q":"*:*",
+ "_":"1514453950466"}},
+ "response":{"numFound":4,"start":0,"maxScore":1.0,"docs":[
+     {
+     "title":["Red sails to Capri"],
+     "author":["Ann Weil"],
+     "id":"3813c196-0341-4708-8b05-f47225eacb12",
+     "title_str":["Red sails to Capri"],
+     "author_str":["Ann Weil"],
+     "_version_":1588021679301328896},
+     {
+     "title":["Harry Potter and Philosophers Stone"],
+     "author":["J.K. Rowling"],
+     "id":"dcbfd369-2a4b-4e9d-9713-1af373849438",
+     "title_str":["Harry Potter and Philosophers Stone"],
+     "author_str":["J.K. Rowling"],
+     "_version_":1587892903981613056},
+     {
+     "title":["Jonathan Livingston Seagull"],
+     "author":["Richard Bach"],
+     "id":"936df16b-f6fe-4147-874d-ad4525bf7e9f",
+     "title_str":["Jonathan Livingston Seagull"],
+     "author_str":["Richard Bach"],
+     "_version_":1588019816078245888},
+     {
+     "title":["Five Point Someone"],
+     "author":["Chetan Bhagat"],
+     "id":"68fb69cd-ad31-441b-be02-eb3339afdd42",
+     "title_str":["Five Point Someone"],
+     "author_str":["Chetan Bhagat"],
+     "_version_":1588021679292940288}]
+ }}

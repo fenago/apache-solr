@@ -1,0 +1,13 @@
+<searchComponent name="spellcheck" class="solr.SpellCheckComponent">
+ <lst name="spellchecker">
+ <str name="classname">solr.FileBasedSpellChecker</str>
+ <str name="name">file</str>
+ <str name="sourceLocation">spellings.txt</str>
+ <str name="characterEncoding">UTF-8</str>
+ <str name="spellcheckIndexDir">./spellcheckerFile</str>
+ <!-- optional elements with defaults
+ <str name="distanceMeasure">org.apache.lucene.search.spell.LevensteinDistance</str>
+ <str name="accuracy">0.5</str>
+ -->
+ </lst>
+</searchComponent>
