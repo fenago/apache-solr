@@ -1,0 +1,11 @@
+<queryResponseWriter name="velocity" class="solr.VelocityResponseWriter">
+ <str name="template.base.dir">${velocity.template.base.dir:}</str>
+<!--
+ <str name="init.properties.file">velocity-init.properties</str>
+ <bool name="params.resource.loader.enabled">true</bool>
+ <bool name="solr.resource.loader.enabled">false</bool>
+ <lst name="tools">
+ <str name="mytool">com.example.MyCustomTool</str>
+ </lst>
+-->
+</queryResponseWriter>

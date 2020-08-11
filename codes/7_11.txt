@@ -1,0 +1,13 @@
+<searchComponent name="clustering" enable="true"
+ class="solr.clustering.ClusteringComponent" >
+ <lst name="engine">
+ <str name="name">lingo</str>
+ <str name="carrot.algorithm">org.carrot2.clustering.lingo.LingoClusteringAlgorithm</str>
+ <str name="carrot.resourcesDir">clustering/carrot2</str>
+ </lst>
+ <lst name="engine">
+ <str name="name">stc</str>
+ <str name="carrot.algorithm">org.carrot2.clustering.stc.STCClusteringAlgorithm</str>
+ <str name="carrot.resourcesDir">clustering/carrot2</str>
+ </lst>
+</searchComponent>

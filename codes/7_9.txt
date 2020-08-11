@@ -1,0 +1,52 @@
+{
+ "responseHeader":{
+ "status":0,
+ "QTime":5,
+ "params":{
+ "q":"solr memory",
+ "fl":"id,name",
+ "group.field":"manu_exact",
+ "group":"true"}},
+ "grouped":{
+ "manu_exact":{
+ "matches":6,
+ "groups":[{
+ "groupValue":"Apache Software Foundation",
+ "doclist":{"numFound":1,"start":0,"docs":[
+ {
+ "id":"SOLR1000",
+ "name":"Solr, the Enterprise Search Server"}]
+ }},
+ {
+ "groupValue":"Corsair Microsystems Inc.",
+ "doclist":{"numFound":2,"start":0,"docs":[
+ {
+ "id":"VS1GB400C3",
+ "name":"CORSAIR ValueSelect 1GB 184-Pin DDR SDRAM Unbuffered DDR 400 (PC 3200) System Memory - Retail"}]
+ }},
+ {
+ "groupValue":"A-DATA Technology Inc.",
+ "doclist":{"numFound":1,"start":0,"docs":[
+ {
+ "id":"VDBDB1A16",
+ "name":"A-DATA V-Series 1GB 184-Pin DDR SDRAM Unbuffered DDR 400 (PC 3200) System Memory - OEM"}]
+ }},
+ {
+ "groupValue":"Canon Inc.",
+ "doclist":{"numFound":1,"start":0,"docs":[
+ {
+ "id":"0579B002",
+ "name":"Canon PIXMA MP500 All-In-One Photo Printer"}]
+ }},
+ {
+ "groupValue":"ASUS Computer Inc.",
+ "doclist":{"numFound":1,"start":0,"docs":[
+ {
+ "id":"EN7800GTX/2DHTV/256M",
+ "name":"ASUS Extreme N7800GTX/2DHTV (256 MB)"}]
+ }}]}},
+ "spellcheck":{
+ "suggestions":[],
+ "correctlySpelled":true,
+ "collations":[]}
+}

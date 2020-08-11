@@ -1,0 +1,26 @@
+{
+ "responseHeader": 
+    {
+        "zkConnected": true,"status": 0,"QTime": 46,"params": {"q": "pdf"}
+    },
+  "response": {"numFound": 1,"start": 0,"maxScore": 0.55955875,
+     "docs": [{"id": "doc1",
+         "date": ["2008-11-13T13:35:51Z"],
+         "pdf_docinfo_custom_aapl_keywords": ["solr, word, pdf"],
+         "pdf_pdfversion": [1.3],
+         "pdf_docinfo_title": ["solr-word"],
+         "xmp_creatortool": ["Microsoft Word"],
+         "stream_content_type": ["text/plain"],
+         "access_permission_can_print_degraded": [true],
+         "subject": ["solr word"],
+         "dc_format": ["application/pdf; version=1.3"],
+         "pdf_docinfo_creator_tool": ["Microsoft Word"],
+         "access_permission_fill_in_form": [true],
+         "pdf_encrypted": [false],
+         "dc_title": ["solr-word"],
+         "modified": ["2008-11-13T13:35:51Z"],
+         "cp_subject": ["solr word"],
+         "pdf_docinfo_subject": ["solr word"],
+.
+.
+.

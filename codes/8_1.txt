@@ -1,0 +1,7 @@
+<lst name="backup">
+    <str name="startTime">Tue Jan 30 14:32:12 DAVT 2018</str>
+    <int name="fileCount">15</int>
+    <str name="status">success</str>
+    <str name="snapshotCompletedAt">Tue Jan 30 14:32:12 DAVT 2018</str>
+    <str name="snapshotName">demobackup</str>
+</lst>

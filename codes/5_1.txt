@@ -1,0 +1,31 @@
+{
+ "responseHeader":{
+     "zkConnected":true,
+     "status":0,
+     "QTime":18,
+     "params":{
+         "q":"*:*",
+         "_":"1514434725886"}},
+ "response":{"numFound":3,"start":0,"maxScore":2.0,"docs":[
+     {
+         "title":["Harry Potter and Chamber of Secrets"],
+         "author":["J.K. Rowling"],
+         "id":"0bb62d53-20d0-4df2-a385-c08b8658dc28",
+         "title_str":["Harry Potter and Chamber of Secrets"],
+         "author_str":["J.K. Rowling"],
+         "_version_":1587892939487444992},
+     {
+         "title":["Harry Potter and Prisoner of Azkaban"],
+         "author":["J.K. Rowling"],
+         "id":"401f8336-88d9-478c-93a2-2de070188a3d",
+         "title_str":["Harry Potter and Prisoner of Azkaban"],
+         "author_str":["J.K. Rowling"],
+         "_version_":1587999318593241088},
+     {
+         "title":["Harry Potter and Philosophers Stone"],
+         "author":["J.K. Rowling"],
+         "id":"dcbfd369-2a4b-4e9d-9713-1af373849438",
+         "title_str":["Harry Potter and Philosophers Stone"],
+         "author_str":["J.K. Rowling"],
+         "_version_":1587892903981613056}]
+ }}

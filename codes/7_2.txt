@@ -1,0 +1,12 @@
+<searchComponent name="spellcheck" class="solr.SpellCheckComponent">
+ <lst name="spellchecker">
+ <str name="classname">solr.IndexBasedSpellChecker</str>
+ <str name="spellcheckIndexDir">./spellchecker</str>
+ <str name="field">content</str>
+ <str name="buildOnCommit">true</str>
+ <!-- optional elements with defaults
+ <str name="distanceMeasure">org.apache.lucene.search.spell.LevensteinDistance</str>
+ <str name="accuracy">0.5</str>
+ -->
+ </lst>
+</searchComponent>

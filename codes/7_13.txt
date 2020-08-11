@@ -1,0 +1,49 @@
+{
+  "responseHeader":{
+    "status":0,
+    "QTime":32},
+  "response":{"numFound":14,"start":0,"maxScore":2.9029632,"docs":[
+      ....
+    ....
+      ]
+  },
+  "clusters":[{
+      "labels":["DDR"],
+      "score":3.037927435185717,
+      "docs":["TWINX2048-3200PRO",
+        "VS1GB400C3",
+        "VDBDB1A16"]},
+    {
+      "labels":["iPod"],
+      "score":7.317758461138239,
+      "docs":["F8V7067-APL-KIT",
+        "IW-02",
+        "MA147LL/A"]},
+    {
+      "labels":["Canon"],
+      "score":6.785392802370259,
+      "docs":["0579B002",
+        "9885A004"]},
+    {
+      "labels":["Hard Drive"],
+      "score":10.460153088070832,
+      "docs":["SP2514N",
+        "6H500F0"]},
+    {
+      "labels":["Retail"],
+      "score":1.629540936033123,
+      "docs":["TWINX2048-3200PRO",
+        "VS1GB400C3"]},
+    {
+      "labels":["Video"],
+      "score":10.060361253597023,
+      "docs":["MA147LL/A",
+        "100-435805"]},
+    {
+      "labels":["Other Topics"],
+      "score":0.0,
+      "other-topics":true,
+      "docs":["EN7800GTX/2DHTV/256M",
+        "3007WFP",
+        "VA902B"]}]
+}

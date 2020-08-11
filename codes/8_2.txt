@@ -1,0 +1,10 @@
+<response>
+    <lst name="responseHeader">
+        <int name="status">0</int>
+        <int name="QTime">0</int>
+    </lst>
+    <lst name="restorestatus">
+        <str name="snapshotName">snapshot.<name></str>
+        <str name="status">success</str>
+    </lst>
+</response>

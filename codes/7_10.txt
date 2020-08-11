@@ -1,0 +1,37 @@
+{
+  "responseHeader":{
+    "status":0,
+    "QTime":2,
+    "params":{
+      "q":"memory",
+      "indent":"true",
+      "fl":"name,price",
+      "group.limit":"3",
+      "group.query":["price:[0 TO 99.99]",
+        "price:[100 TO *]"],
+      "group":"true"}},
+  "grouped":{
+    "price:[0 TO 99.99]":{
+      "matches":5,
+      "doclist":{"numFound":1,"start":0,"docs":[
+          {
+            "name":"CORSAIR ValueSelect 1GB 184-Pin DDR SDRAM Unbuffered DDR 400 (PC 3200) System Memory - Retail",
+            "price":74.99}]
+      }},
+    "price:[100 TO *]":{
+      "matches":5,
+      "doclist":{"numFound":3,"start":0,"docs":[
+          {
+            "name":"CORSAIR XMS 2GB (2 x 1GB) 184-Pin DDR SDRAM Unbuffered DDR 400 (PC 3200) Dual Channel Kit System Memory - Retail",
+            "price":185.0},
+          {
+            "name":"Canon PIXMA MP500 All-In-One Photo Printer",
+            "price":179.99},
+          {
+            "name":"ASUS Extreme N7800GTX/2DHTV (256 MB)",
+            "price":479.95}]
+      }}},
+  "spellcheck":{
+    "suggestions":[],
+    "correctlySpelled":false,
+    "collations":[]}}
