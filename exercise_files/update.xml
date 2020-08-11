@@ -1,0 +1,9 @@
+<add>   
+   <doc>     
+      <field name = "id">001</field>     
+      <field name = "first name" update = "set">Raj</field>     
+      <field name = "last name" update = "add">Malhotra</field>     
+      <field name = "phone" update = "add">9000000000</field>    
+      <field name = "city" update = "add">Delhi</field>   
+   </doc> 
+</add>
